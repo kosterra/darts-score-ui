@@ -1,0 +1,74 @@
+.game-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .modus-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin: 0 auto 10px auto;
+        padding: 8px 25px;
+        background-color: $primary-grey-transparent;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    
+        .best-of-legs {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            .match-mode {
+                font-size: 0.8rem;
+            }
+    
+            .sets-and-legs {
+                font-size: 1rem;
+
+                strong {
+                    font-weight: 800;
+                }
+            }
+    
+            .modus-in-out {
+                margin-top: 8px;
+                font-weight: 500;
+                font-size: 0.8rem;
+            }
+    
+            span {
+                margin: 4px 0;
+            }
+        }
+    }
+
+    .score-boards {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .statistics-board {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+}
+
+// ==========================
+//       Mobile Styles
+// ==========================
+@media only screen and (max-width: 600px) {
+    .game-content {
+        .score-boards {
+            width: 100%;
+        }
+
+        .modus-info {
+            margin: 0 auto 15px auto;
+        }
+    }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "darts-score-client",
+  "description": "WebUI for darts-score Application",
+  "version": "2023.3.1",
+  "license": "GPLv3",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "bootstrap": "^5.2.3",
+    "dayjs": "^1.11.7",
+    "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "react-avatar": "^5.0.3",
+    "react-bootstrap": "^2.7.2",
+    "react-dom": "^18.2.0",
+    "react-drag-drop-files": "^2.3.9",
+    "react-loader-spinner": "^5.3.4",
+    "react-router-dom": "^6.9.0",
+    "react-scripts": "^5.0.1",
+    "react-toastify": "^9.1.1",
+    "recharts": "^2.5.0",
+    "request": "^2.88.2",
+    "sass": "^1.59.3",
+    "web-vitals": "^3.3.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

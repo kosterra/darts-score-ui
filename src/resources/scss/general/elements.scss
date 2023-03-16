@@ -1,0 +1,339 @@
+// Bootstrap Form
+.form-floating {
+    label {
+        color: $primary-grey;
+    }
+}
+
+// Bootstrap Toast
+.Toastify {
+    .Toastify__toast {
+        border: none;
+        border-radius: 2px;
+        box-shadow: none;
+        font-size: 0.9rem;
+
+        .Toastify__close-button {
+            padding: 2px;
+
+            &:hover {
+                background-color: $tertiary-grey-transparent;
+            }
+        }
+    }
+}
+
+// Bootstrap nav-pills
+.nav-pills {
+
+    .nav-item {
+        padding: 0.4rem;
+
+        .nav-link {
+            background-color: $tertiary-grey;
+            color: $white;
+
+            &.active {
+                background-color: $dark-green;
+            }
+        }
+    }
+}
+
+// Bootstrap buttons
+.btn {
+    border-radius: 2px;
+    color: $white;
+    font-weight: 400;
+    font-size: 0.9rem;
+
+    &:hover {
+        color: $white;
+    }
+}
+
+.btn-toolbar {
+    border: 1px solid $primary-grey;
+    border-radius: 4px;
+
+    .btn {
+        min-width: 5rem;
+        font-size: 0.8rem;
+        font-weight: 500;
+        border: none;
+        border-radius: 16px;
+        margin: 0 6px;
+        padding: 4px 6px;
+        cursor: pointer;
+        color: $white;
+
+        &.btn-selected {
+            background-color: $dark-green;
+
+        }
+    }
+}
+
+// Bootstrap Modal
+.modal-dialog {
+    .modal-content {
+        background-color: $secondary-grey;
+        border-radius: 2px;
+        border: none;
+
+        .modal-header {
+            background-color: $dark-green;
+            border: none;
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        .modal-footer {
+            border-top: 1px solid $tertiary-grey;
+        }
+    }
+}
+
+// Bootstrap Progress Bar
+.progress {
+    height: 0.8rem;
+}
+
+// Input
+input.form-control {
+    color: $white;
+    background-color: $tertiary-grey-transparent;
+    border: none;
+    border-radius: 2px;
+
+    &:focus {
+        background-color: $tertiary-grey-transparent;
+        color: $white;
+        border: 1px solid $primary-grey-transparent;
+        box-shadow: none;
+    }
+
+    &:not(active){
+        color:$white;
+     }
+}
+
+// Select
+select {
+    background-color: $primary-grey-transparent;
+    color: $white;
+    padding: 8px;
+    border-radius: 3px;
+    border: none;
+
+    option {
+        background-color: $primary-grey-transparent;
+
+        &:hover {
+            background-color: $dark-green;
+        }
+    }
+}
+
+// Bootstrap Dropdown
+.dropdown {
+    .dropdown-toggle {
+        min-width: 6rem;
+        border: none;
+        border-radius: 2px;
+        font-size: 0.9rem;
+
+        &::after {
+            display: none;
+        }
+    }
+
+    .dropdown-menu {
+        background-color: $tertiary-grey;
+        padding: 0.4rem;
+        border-radius: 2px;
+        border: none;
+
+        .dropdown-item {
+            margin: 0.3rem 0;
+
+            &.active {
+                background-color: $dark-green;
+            }
+        }
+    }
+}
+
+// Multiselect
+.multiselect {
+    height: 3rem;
+    font-size: 0.9rem;
+
+    .multiselect__control {
+        height: 3rem;
+        border: none;
+        border-radius: 2px;
+        background-color: $tertiary-grey-transparent;
+
+        &.multiselect__control--is-focused {
+            border: none;
+            box-shadow: none;
+        }
+
+        .multiselect__value-container {
+            .multiselect__input-container {
+                color: $white;
+            }
+        }
+
+        .multiselect__placeholder {
+            color: $primary-grey;
+        }
+
+        .multiselect__single-value {
+            color: $white;
+        }
+
+        .multiselect__indicator {
+            color: $primary-grey;
+
+            &.multiselect__clear-indicator {
+                color: $red;
+            }
+
+            &.multiselect__dropdown-indicator {
+                display: none;
+            }
+        }
+
+        .multiselect__indicator-separator {
+            display: none;
+        }
+    }
+
+    .multiselect__menu {
+        background-color: $tertiary-grey;
+        font-size: 0.9rem;
+
+        .multiselect__menu-list {
+            padding: 0.4rem;
+
+            .multiselect__option {
+                border-radius: 3px;
+                margin: 0.3rem 0;
+                color: #dee2e6;
+
+                &--is-selected {
+                    background-color: $dark-green;
+                }
+
+                &--is-focused {
+                    background-color: #ffffff26;
+                }
+            }
+        }
+    }
+}
+
+
+
+// Links
+a {
+    &.button-link {
+        background-color: $dark-green;
+        color: $white;
+        border: none;
+        border-radius: 3px;
+        color: $white;
+        padding: 6px 8px;
+        margin: 5px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+}
+
+// Selectable Card List
+.selectable-card-list {
+    .selectable-card {
+        text-decoration: none;
+        cursor: pointer;
+        border: 2px solid $secondary-grey;
+
+        &.selected {
+            border: 2px solid $blue;
+        }
+
+        &.disabled {
+            cursor: not-allowed;
+        }
+
+        .card-body {
+            .card-text {
+                justify-content: center;
+                display: flex;
+                font-size: 0.9rem;
+            }
+        }
+
+        i {
+            position: absolute;
+            bottom: 0.2rem;
+            right: 0.2rem;
+        }
+    }
+}
+
+// Fileuploader
+.file-upload {
+    .delete-file {
+        cursor: pointer;
+        position: absolute;
+        top: 7rem;
+        right: 12rem;
+    }
+
+    .drop-zone {
+        cursor: pointer;
+    
+        &.is-dragging, &:hover {
+            background-color: $tertiary-grey;
+        }
+    }
+}
+
+// Navbar
+.navbar {
+    font-weight: 500;
+
+    .navbar-brand {
+        span {
+            margin-left: 1rem;
+        }
+    }
+
+    .navbar-nav {
+        font-size: 0.9rem;
+        gap: 10px;
+        margin: 0 1rem 0 0;
+
+        .dropdown-menu {
+            padding: 0;
+
+            .dropdown-item {
+                font-size: 0.9rem;
+                font-weight: 500;
+                margin: 0;
+
+                &:active {
+                    background-color: $dark-green;
+                }
+            }
+        }
+    }
+}

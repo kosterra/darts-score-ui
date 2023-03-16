@@ -1,0 +1,61 @@
+// ==========================
+//       Desktop Styles
+// ==========================
+.dartboard {
+    .dartboard-img {
+        width: 30em;
+        height: 30em;
+
+        .out {
+            fill: none;
+        }
+
+        .zero {
+            fill: $primary-grey-transparent;
+        }
+
+        .filler {
+            fill: $secondary-grey-transparent;
+        }
+
+        .item:hover {
+            opacity: 0.6;
+        }
+
+        .single.even {
+            fill: $primary-grey-transparent;
+        }
+
+        .double.even, .triple.even, .double-bull {
+            fill: $red;
+        }
+
+        .single.odd {
+            fill: $beige;
+        }
+
+        .double.odd, .triple.odd, .single-bull {
+            fill: $dark-green;
+        }
+
+        .number {
+            fill: $white;
+            font-weight: 400;
+            text-anchor: middle;
+            font-size: 1.2em;
+        }
+
+        .hit, .hit-pulse {
+            fill: $blue;
+        }
+    }
+}
+
+// ==========================
+//       Mobile Styles
+// ==========================
+@media only screen and (max-width: 600px) {
+    .dartboard {
+        margin: 15px 0;
+    }
+}

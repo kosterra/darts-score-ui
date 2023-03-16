@@ -1,0 +1,200 @@
+// ==========================
+//       Desktop Styles
+// ==========================
+.score-board {
+    border-top: 1px dotted $primary-grey;
+    border-bottom: 1px dotted $primary-grey;
+    border-right: 1px dotted $primary-grey;
+    width: 25%;
+
+    &:first-child {
+        border-left: none;
+    }
+    
+    &:last-child {
+        border-right: none;
+    }
+
+    &:nth-child(even) .points-legs-sets-won {
+        flex-direction: row-reverse;
+    }
+
+    /* Points and Legs / Sets info */
+    .points-legs-sets-won {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 15px 5px;
+
+        .points-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+        
+            .points {
+                font-size: 5rem;
+                font-weight: 600;
+            }
+        
+            .player {
+                font-size: 20px;
+                font-weight: 400;
+                text-align: center;
+                padding-top: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                gap: 8px;
+        
+                .player-icons {
+                    gap: 5px;
+                    display: flex;
+                    
+                    .player-name-icon {
+                        font-size: 14px;
+            
+                        &.active-start-leg {
+                            color: $blue;
+                        }
+            
+                        &.active-throwing {
+                            color: $light-green;
+                        }
+
+                        &.placeholder {
+                            color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+
+        .legs-sets-wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 15px;
+
+            .legs-sets-container {
+                display: flex;
+                flex-direction: column;
+    
+                .legs-sets {
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    text-align: center;
+                    padding-top: 10px;
+                }
+    
+                .value {
+                    display: flex;
+                    justify-content: center;
+                    gap: 3px;
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    text-align: center;
+                    padding-top: 10px;
+                    
+                    i {
+                        color: $gold;
+                    }
+
+                    .text-value {
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ==========================
+//       Mobile Styles
+// ==========================
+@media only screen and (max-width: 600px) {
+    .score-board {
+        padding: 0;
+        width: 50%;
+
+        &:nth-child(even) .points-legs-sets-won {
+            flex-direction: row-reverse;
+            justify-content: space-evenly;
+        }
+    
+        /* Points and Legs / Sets info */
+        .points-legs-sets-won {
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: row;
+    
+            .points-container {
+                width: 60%;
+                padding: 0;
+            
+                .points {
+                    font-size: 3.7rem;
+                }
+            
+                .player {
+                    font-size: 20px;
+                    font-weight: 400;
+                    text-align: center;
+                    padding-top: 15px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 8px;
+            
+                    .player-name-icon {
+                        font-size: 14px;
+            
+                        &.active-start-leg {
+                            color: $blue;
+                        }
+            
+                        &.active-throwing {
+                            color: $light-green;
+                        }
+                    }
+                }
+            }
+    
+            .legs-sets-wrapper {
+                flex-direction: column;
+                gap: 0;
+
+                .legs-sets-container {
+                    display: flex;
+                    flex-direction: column;
+        
+                    .legs-sets {
+                        font-size: 1.2rem;
+                        font-weight: 600;
+                        text-align: center;
+                        padding-top: 15px;
+                    }
+        
+                    .value {
+                        display: flex;
+                        justify-content: center;
+                        gap: 3px;
+                        font-size: 0.9rem;
+                        font-weight: 600;
+                        text-align: center;
+                        padding-top: 15px;
+                    
+                        i {
+                            color: $gold;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
