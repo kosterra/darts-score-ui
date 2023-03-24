@@ -1,6 +1,13 @@
+const {
+    REACT_APP_API_HOST,
+    REACT_APP_API_PORT
+} = process.env;
+
+const API_URL='http://' + REACT_APP_API_HOST + ':' + REACT_APP_API_PORT + '/api/';
+
 // Public methods to export
 const createX01 = (game) => {
-    return fetch(process.env.REACT_APP_API_URL + 'games/x01', {
+    return fetch(API_URL + 'games/x01', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -34,7 +41,7 @@ const loadFinishedX01Games = async () => {
 }
 
 const loadAllX01Games = () => {
-    return fetch(process.env.REACT_APP_API_URL + 'games/x01')
+    return fetch(API_URL + 'games/x01')
         .then(response => {
             if (!response.ok) {
                 throw Error(response.statusText);
@@ -48,7 +55,7 @@ const loadAllX01Games = () => {
 }
 
 const loadX01 = (id) => {
-    return fetch(process.env.REACT_APP_API_URL + 'games/x01/' + id)
+    return fetch(API_URL + 'games/x01/' + id)
         .then(response => {
             if (!response.ok) {
                 throw Error(response.statusText);
@@ -62,7 +69,7 @@ const loadX01 = (id) => {
 }
 
 const updateX01 = (game) => {
-    return fetch(process.env.REACT_APP_API_URL + 'games/x01/' + game.id, {
+    return fetch(API_URL + 'games/x01/' + game.id, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
