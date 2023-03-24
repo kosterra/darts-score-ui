@@ -1,7 +1,7 @@
 {
   "name": "darts-score-ui",
   "description": "WebUI for darts-score Application",
-  "version": "2023.3.1",
+  "version": "2023.3.2",
   "license": "GPLv3",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
