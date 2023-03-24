@@ -46,7 +46,7 @@ const RunningX01Games = () => {
                                         <div>
                                             { players.length > 0 && x01Game.players.map((playerId, idx) => (
                                                 <Row key={idx}>
-                                                    <Col className="text-white fs-8">{ players ? players.find(player => player.id === playerId).nickname : ''}</Col>
+                                                    <Col className="text-white fs-8">{ ((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A' }</Col>
                                                     <Col className="text-white text-center fs-8">{ x01Game.playerModels[playerId].setsWon }</Col>
                                                     <Col className="text-white text-center fs-8">{ x01Game.playerModels[playerId].currentSetLegsWon }</Col>
                                                 </Row>

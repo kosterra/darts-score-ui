@@ -60,7 +60,7 @@ const FinishedX01Games = () => {
                                             { players.length > 0 && x01Game.players.map((playerId, idx) => (
                                                 <Row key={idx}>
                                                     <Col className="text-white fs-8">
-                                                        { players ? players.find(player => player.id === playerId).nickname : ''}
+                                                        { ((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A' }
                                                         { x01Game.playerModels[playerId].hasWonGame &&
                                                             <i className="ms-1 text-gold fas fa-trophy"></i>
                                                         }
