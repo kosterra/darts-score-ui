@@ -14,8 +14,6 @@ const createPlayer = (player) => {
         method: 'POST',
         body: formData
     }).then(response => {
-        console.log(response);
-        console.log(response.ok);
         if (!response.ok) {
             throw Error(response.statusText);
         }

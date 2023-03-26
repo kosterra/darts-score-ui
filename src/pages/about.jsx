@@ -1,41 +1,82 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+
 
 const AboutPage = () => {
 	return (
-		<div className="main-container about">
-			<div className="title-container">
-				<span className="title">About</span>
-			</div>
-			<div className="content-container">
-				<div className="build-info-container">
-					<span className="section-title">Built using</span>
-					<div className="build-info">
-						<span className="build-icon">
-							<i className="fab fa-react"></i>
-							<span><a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer">React</a></span>
-						</span>
-						<span className="build-icon">
-							<i className="fab fa-font-awesome"></i>
-							<span><a href="https://fontawesome.com/" target="_blank" rel="noopener noreferrer">Font Awesome</a></span>
-						</span>
-						<span className="build-icon">
-							<i className="fab fa-google"></i>
-							<span><a href="https://fonts.google.com/" target="_blank" rel="noopener noreferrer">Google Fonts</a></span>
-						</span>
-					</div>
-				</div>
-				<div className="version-container">
-					<span className="section-title">Version</span>
-					<span>1.0.1-beta</span>
-				</div>
-				<span className="contact">
-					<a className="contact-link button-link" href="mailto:rkoster@gmx.ch">
-						<i className="fas fa-envelope"></i>
-						Contact
-					</a>
-				</span>
-			</div>
-		</div>
+		<>
+			<Container fluid className="bg-transparent border-0 m-4">
+				<Row className="justify-content-md-center align-items-center">
+					<Card bg="dark" className="rounded-0 border-0 p-0" style={{ width: "50rem" }}>
+						<Card.Body className="m-0 p-0 border-0 rounded-0">
+							<Card.Title className="bg-primary py-3 mb-0 text-light text-center span">
+								About
+							</Card.Title>
+							<Card.Text as="div" className="d-flex flex-column align-items-center justify-content-center py-2 text-light">
+								<Row>
+									<Col className="mt-3">
+										<span className="fs-6 fw-600">
+											Built using
+										</span>
+									</Col>
+								</Row>
+								<Row className="w-75 mb-3">
+									<Col className="mt-3">
+										<Row>
+											<Col className="d-flex flex-column justify-content-center align-items-center">
+												<i className="fab fa-react display-5"></i>
+												<span className="text-center">
+													<a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer">React</a>
+												</span>
+											</Col>
+										</Row>
+									</Col>
+									<Col className="mt-3">
+										<Row>
+											<Col className="d-flex flex-column justify-content-center align-items-center">
+												<i className="fab fa-google display-5"></i>
+												<span className="text-center">
+													<a href="https://fonts.google.com/" target="_blank" rel="noopener noreferrer">Google Fonts</a>
+												</span>
+											</Col>
+										</Row>
+									</Col>
+									<Col className="mt-3">
+										<Row>
+											<Col className="d-flex flex-column justify-content-center align-items-center">
+												<i className="fab fa-font-awesome display-5"></i>
+												<span className="text-center">
+													<a href="https://fontawesome.com/" target="_blank" rel="noopener noreferrer">Font Awesome</a>
+												</span>
+											</Col>
+										</Row>
+									</Col>
+								</Row>
+								<Row>
+									<Col className="mt-4">
+										<span className="fs-6 fw-600">
+											Contact
+										</span>
+									</Col>
+								</Row>
+								<Row>
+									<Col className="mt-4 mb-3">
+										<Button href="mailto:rkoster@gmx.ch">
+											<i className="fas fa-envelope me-2"></i>
+											Contact
+										</Button>
+									</Col>
+								</Row>
+							</Card.Text>
+						</Card.Body>               
+					</Card>
+				</Row>
+			</Container>
+		</>
 	);
 };
 

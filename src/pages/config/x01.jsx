@@ -9,7 +9,7 @@ const X01ConfigPage = () => {
 
     return (
         <>
-            <Container className="bg-transparent border-0 m-4">
+            <Container fluid className="bg-transparent border-0 m-4">
                 <Row className="justify-content-md-center align-items-center">
                     <Card bg="dark" className="m-0 p-0 border-0 rounded-0" style={{ width: "50rem" }}>
                         <Card.Body className="m-0 p-0 border-0 rounded-0">

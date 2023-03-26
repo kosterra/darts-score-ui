@@ -241,21 +241,7 @@ select {
 
 // Links
 a {
-    &.button-link {
-        background-color: $dark-green;
-        color: $white;
-        border: none;
-        border-radius: 3px;
-        color: $white;
-        padding: 6px 8px;
-        margin: 5px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        cursor: pointer;
-        display: flex;
-        gap: 8px;
-        align-items: center;
-    }
+    color: $light-green;
 }
 
 // Selectable Card List
