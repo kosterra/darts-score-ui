@@ -18,12 +18,12 @@ const SelectableCard = (props) => {
         <Col className="mb-3">
             <Card as='a'
                 onClick={handleCardSelect}
-                className={`h-100 m-0 p-0 rounded-0 selectable-card bg-tertiary ${isSelected ? 'selected' : ''} ${!selectable && !isSelected ? 'disabled' : ''}`}>
+                className={`h-100 m-0 p-0 rounded-0 selectable-card bg-tertiary-grey ${isSelected ? 'selected' : ''} ${!selectable && !isSelected ? 'disabled' : ''}`}>
                 <Card.Body className="m-0 p-0 border-0 rounded-0 bg-tertiary">
-                    <Card.Title as="h6" className="bg-primary p-2 mb-0 text-light text-center span">
+                    <Card.Title as="h6" className="bg-primary-green p-2 mb-0 text-white text-center span">
                         {item.nickname}
                     </Card.Title>
-                    <Card.Text as="div" className="p-2 text-light">
+                    <Card.Text as="div" className="p-2 text-white">
                         <div className="d-flex flex-column justify-content-center align-items-center">
                             <Avatar
                                 name={item.firstname + ' ' + item.lastname}
@@ -33,7 +33,7 @@ const SelectableCard = (props) => {
                                 textSizeRatio={0.2}
                                 className="align-self-center"
                             />
-                            <span className="mt-1 text-secondary">{item.firstname + ' ' + item.lastname}</span>
+                            <span className="mt-1 text-primary-grey">{item.firstname + ' ' + item.lastname}</span>
                         </div>
                     </Card.Text>
                 </Card.Body>
@@ -67,7 +67,7 @@ const SelectableCardList = (props) => {
     return (
         <Container className="selectable-card-list">
             <div className="d-flex justify-content-center mb-4">
-                <span className="empty-text text-secondary">
+                <span className="empty-text text-primary-grey">
                     {'Select ' + maxSelectable + ' ' + itemType}
                 </span>
             </div>
@@ -85,7 +85,7 @@ const SelectableCardList = (props) => {
             }
             {items.length === 0 &&
                 <div className="d-flex justify-content-center mb-4">
-                    <span className="empty-text text-secondary">{emptyText}</span>
+                    <span className="empty-text text-primary-grey">{emptyText}</span>
                 </div>
             }
         </Container>

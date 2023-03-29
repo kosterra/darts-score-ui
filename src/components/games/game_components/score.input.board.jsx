@@ -33,7 +33,7 @@ const ScoreInputBoard = () => {
 
     useEffect(() => {
 		const clickEnterSubmitForm = (e) => {
-			if(e.key === 'Enter') {
+			if (e.key === 'Enter') {
 				document.getElementById('submit-throws').click();
 			}
 		}
@@ -110,7 +110,7 @@ const ScoreInputBoard = () => {
                     <p className="fs-7">The inner BULLSEYE (50 points) = "D25"<br /> and the outer BULLSEYE (25 points) = "S25".</p>
                 </Modal.Body>
                 <Modal.Footer className="p-1">
-                    <Button variant="primary" onClick={() => setShowModal(false)} className="p-2">
+                    <Button variant="primary-green" onClick={() => setShowModal(false)} className="p-2">
                         <i className="fas fa-thumbs-up px-1"></i>
                         Got It
                     </Button>
@@ -143,7 +143,7 @@ const ScoreInputBoard = () => {
                                                     minLength={3}
                                                     maxLength={3}
                                                     />
-                                                <Button variant="danger" id="d1-input">
+                                                <Button variant="red" id="d1-input">
                                                     <i onClick={() => updateCurrentThrowManual(score, '', 0)} className="fas fa-minus-circle"></i>
                                                 </Button>
                                             </InputGroup>
@@ -164,7 +164,7 @@ const ScoreInputBoard = () => {
                                                             minLength={3}
                                                             maxLength={3}
                                                             />
-                                                        <Button variant="danger" id="d2-input">
+                                                        <Button variant="red" id="d2-input">
                                                             <i onClick={() => updateCurrentThrowManual(score, '', 1)} className="fas fa-minus-circle delete-dart-input"></i>
                                                         </Button>
                                                     </InputGroup>
@@ -184,7 +184,7 @@ const ScoreInputBoard = () => {
                                                         minLength={3}
                                                         maxLength={3}
                                                         />
-                                                    <Button variant="danger" id="d3-input">
+                                                    <Button variant="red" id="d3-input">
                                                         <i onClick={() => updateCurrentThrowManual(score, '', 2)} className="fas fa-minus-circle delete-dart-input"></i>
                                                     </Button>
                                                 </InputGroup>

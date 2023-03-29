@@ -34,7 +34,7 @@
             color: $white;
 
             &.active {
-                background-color: $dark-green;
+                background-color: $primary-green;
             }
         }
     }
@@ -68,7 +68,7 @@
         color: $white;
 
         &.btn-selected {
-            background-color: $dark-green;
+            background-color: $primary-green;
 
         }
     }
@@ -82,7 +82,7 @@
         border: none;
 
         .modal-header {
-            background-color: $dark-green;
+            background-color: $primary-green;
             border: none;
             border-top-left-radius: 2px;
             border-top-right-radius: 2px;
@@ -132,7 +132,7 @@ select {
         background-color: $primary-grey-transparent;
 
         &:hover {
-            background-color: $dark-green;
+            background-color: $primary-green;
         }
     }
 }
@@ -160,7 +160,7 @@ select {
             margin: 0.3rem 0;
 
             &.active {
-                background-color: $dark-green;
+                background-color: $primary-green;
             }
         }
     }
@@ -226,7 +226,7 @@ select {
                 color: #dee2e6;
 
                 &--is-selected {
-                    background-color: $dark-green;
+                    background-color: $primary-green;
                 }
 
                 &--is-focused {
@@ -241,7 +241,7 @@ select {
 
 // Links
 a {
-    color: $light-green;
+    color: $secondary-green;
 }
 
 // Selectable Card List
@@ -317,9 +317,37 @@ a {
                 margin: 0;
 
                 &:active {
-                    background-color: $dark-green;
+                    background-color: $primary-green;
                 }
             }
         }
+    }
+}
+
+// Sidebar
+.sidebar .ps-sidebar-root {
+    height: 100%;
+    border: none;
+
+    .ps-menuitem-root {
+        .ps-menu-button {
+            &:hover {
+                background-color: $primary-grey-transparent;
+            }
+        }
+
+        .ps-submenu-content {
+            .ps-menuitem-root {
+                .ps-menu-button {
+                    &:hover {
+                        background-color: $tertiary-grey-transparent;
+                    }
+                }
+            }
+        }
+    }
+
+    .ps-submenu-content {
+        background-color: $primary-grey;
     }
 }

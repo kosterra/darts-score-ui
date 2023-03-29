@@ -48,7 +48,7 @@ const PlayerConfig = (props) => {
             <div className="p-2 container">
                 <div className="justify-content-md-center align-items-center">
                     <p className="h6 text-center">Players</p>
-                    <div className="btn-toolbar justify-content-md-center align-items-center p-3 mb-3 text-light">
+                    <div className="btn-toolbar justify-content-md-center align-items-center p-3 mb-3 text-white">
                         {numberOfPlayerOptions.values.map((option, idx) => (
                             <ToggleButton
                                 key={idx}
@@ -56,14 +56,14 @@ const PlayerConfig = (props) => {
                                 type="radio"
                                 name="number-of-players-options"
                                 value={option}
-                                className={`btn btn-secondary btn-sm text-light ${Number(numberOfPlayers) === option ? 'btn-selected' : ''}`}
+                                className={`btn btn-primary-grey btn-sm text-white ${Number(numberOfPlayers) === option ? 'btn-selected' : ''}`}
                                 checked={Number(numberOfPlayers) === option}
                                 onChange={(e) => onNumberOfPlayersChange('numberOfPlayers', e.currentTarget.value)}>
                                 {Number(option) === 1 ? 'Solo' : option}
                             </ToggleButton>
                         ))}
                     </div>
-                    <div className="d-flex justify-content-md-center align-items-center p-2 text-light">
+                    <div className="d-flex justify-content-md-center align-items-center p-2 text-white">
                         <InputGroup className="mb-3">
                             <InputGroup.Text id="search-addon">
                                 <i className="fas fa-search"></i>

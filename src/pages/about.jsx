@@ -11,12 +11,12 @@ const AboutPage = () => {
 		<>
 			<Container fluid className="bg-transparent border-0 m-4">
 				<Row className="justify-content-md-center align-items-center">
-					<Card bg="dark" className="rounded-0 border-0 p-0" style={{ width: "50rem" }}>
+					<Card bg="secondary-grey" className="rounded-0 border-0 p-0" style={{ width: "50rem" }}>
 						<Card.Body className="m-0 p-0 border-0 rounded-0">
-							<Card.Title className="bg-primary py-3 mb-0 text-light text-center span">
+							<Card.Title className="bg-primary-green py-3 mb-0 text-white text-center span">
 								About
 							</Card.Title>
-							<Card.Text as="div" className="d-flex flex-column align-items-center justify-content-center py-2 text-light">
+							<Card.Text as="div" className="d-flex flex-column align-items-center justify-content-center py-2 text-white">
 								<Row>
 									<Col className="mt-3">
 										<span className="fs-6 fw-600">

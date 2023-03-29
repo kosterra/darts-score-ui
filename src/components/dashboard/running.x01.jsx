@@ -33,13 +33,13 @@ const RunningX01Games = () => {
     return (
         <Fragment>
             {x01Games.length > 0 &&
-                <Card className="rounded-0 border-0 bg-dark" style={{ width: '18rem' }}>
-                    <Card.Body className="m-0 p-0 border-0 rounded-0 bg-tertiary">
-                        <Card.Title className="bg-primary p-2 mb-0 text-light text-center span">
+                <Card className="rounded-0 border-0 bg-secondary-grey" style={{ width: '18rem' }}>
+                    <Card.Body className="m-0 p-0 border-0 rounded-0 bg-tertiary-grey">
+                        <Card.Title className="bg-primary-green p-2 mb-0 text-white text-center span">
                             <div className="fs-6 fw-600">X01</div>
                             <div className="fs-8 mt-1">Currently Running</div>
                         </Card.Title>
-                        <Card.Text as="div" className="p-2 text-light">
+                        <Card.Text as="div" className="p-2 text-white">
                             <ListGroup variant="flush">
                                 {x01Games.length > 0 && x01Games.map((x01Game, idx) => (
                                     <ListGroup.Item key={idx} className="bg-transparent mb-1 border-solid-grey">
