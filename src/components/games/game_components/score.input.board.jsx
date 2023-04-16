@@ -207,6 +207,7 @@ const ScoreInputBoard = () => {
                                         <Button
                                             id="submitThrows"
                                             type="submit"
+                                            variant="primary-green"
                                         >
                                             <i className="fas fa-paper-plane" title='Send'></i>
                                         </Button>

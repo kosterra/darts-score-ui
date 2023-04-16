@@ -54,7 +54,7 @@ const RunningX01Games = () => {
                                         </div>
                                         <div className="d-flex justify-content-between align-items-end mt-2">
                                             <span className="fs-9 text-grey">{ dayjs(x01Game.createdAt).format("DD.MM.YYYY HH:mm") }</span>
-                                            <Button href={'/x01/' + x01Game.id} className="py-1">
+                                            <Button variant="primary-green" href={'/x01/' + x01Game.id} className="py-1">
                                                 <i className="fas fa-external-link-alt"></i>
                                             </Button>
                                         </div>

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { ProSidebarProvider } from 'react-pro-sidebar';
 import { Container, Row } from 'react-bootstrap';
 import AdminSidebar from '../components/navigation/admin.sidebar';
+import PlayersEditList from '../components/elements/players.edit.list';
 
 const AdminPage = () => {
 
@@ -10,8 +11,8 @@ const AdminPage = () => {
 
     function AdminContent() {
         switch (id) {
-            case 'players': 
-                return <span>Players</span>;
+            case 'players':
+                return <PlayersEditList emptyText="No Players found. Please create new players first!"/>;
             case 'x01':
                 return <span>X01 Games</span>;
             case 'cricket':
@@ -21,8 +22,8 @@ const AdminPage = () => {
         }
     }
 
-	return (
-		<div className="d-flex">
+    return (
+        <div className="d-flex">
             <ProSidebarProvider>
                 <AdminSidebar />
                 <Container fluid className="bg-transparent border-0 m-4">
@@ -31,8 +32,8 @@ const AdminPage = () => {
                     </Row>
                 </Container>
             </ProSidebarProvider>
-		</div>
-	);
+        </div>
+    );
 };
 
 export default AdminPage;

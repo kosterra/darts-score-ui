@@ -55,7 +55,7 @@ const SetsLegsConfig = (props) => {
                                 id="dropdown-item-button"
                                 title={numberOfSetsOption + (numberOfSetsOption <=1 ? ' set' : ' sets')}
                                 variant="tertiary-grey"
-                                menuVariant="secondary-grey"
+                                menuVariant="dark"
                                 onSelect={(e) => onSetsLegsChange('numberOfSets', e)}>
                                 {setModeOption === 'First to' && ftSetNumberOptions.values.map((option, idx) => (
                                     <Dropdown.Item
@@ -113,7 +113,7 @@ const SetsLegsConfig = (props) => {
                                 id="dropdown-item-button"
                                 title={numberOfLegsOption + (numberOfLegsOption <=1 ? ' leg' : ' legs')}
                                 variant="tertiary-grey"
-                                menuVariant="secondary-grey"
+                                menuVariant="dark"
                                 onSelect={(e) => onSetsLegsChange('numberOfLegs', e)}>
                                 {legModeOption === 'First to' && ftLegNumberOptions.values.map((option, idx) => (
                                     <Dropdown.Item

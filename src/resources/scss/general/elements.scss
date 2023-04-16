@@ -52,6 +52,16 @@
     }
 }
 
+// Bootstrap Input Group
+.input-group {
+    .input-group-text {
+        background-color: $tertiary-grey;
+        border: 1px solid $tertiary-grey;
+        color: $primary-grey;
+        font-weight: 200;
+    }
+}
+
 .btn-toolbar {
     border: 1px solid $primary-grey;
     border-radius: 4px;
@@ -244,10 +254,24 @@ a {
     color: $secondary-green;
 }
 
-// Selectable Card List
+// Card List
+.card-list {
+    .card-list-card {
+        text-decoration: none;
+
+        .card-body {
+            .card-text {
+                justify-content: center;
+                display: flex;
+                font-size: 0.9rem;
+            }
+        }
+    }
+}
+
+// Selectable Card
 .selectable-card-list {
     .selectable-card {
-        text-decoration: none;
         cursor: pointer;
         border: 2px solid $secondary-grey;
 
@@ -259,19 +283,17 @@ a {
             cursor: not-allowed;
         }
 
-        .card-body {
-            .card-text {
-                justify-content: center;
-                display: flex;
-                font-size: 0.9rem;
-            }
-        }
-
         i {
             position: absolute;
             bottom: 0.2rem;
             right: 0.2rem;
         }
+    }
+}
+
+.editable-card-list {
+    .editable-card {
+        border: 0;
     }
 }
 

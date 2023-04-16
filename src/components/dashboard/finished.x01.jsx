@@ -71,19 +71,19 @@ const FinishedX01Games = () => {
                                         </div>
                                         <div className="d-flex justify-content-between align-items-end mt-2">
                                             <span className="fs-9 text-grey">{ dayjs(x01Game.createdAt).format("DD.MM.YYYY HH:mm") }</span>
-                                            <Button href={'/x01/' + x01Game.id} className="py-1">
+                                            <Button variant="primary-green" href={'/x01/' + x01Game.id} className="py-1">
                                                 <i className="fas fa-external-link-alt"></i>
                                             </Button>
                                         </div>
                                     </ListGroup.Item>
                                 ))}
-                                {initialX01Games.length < 1 &&
+                                { initialX01Games.length < 1 &&
                                     <span className="text-center fs-7">No finished games yet.</span>
                                 }
                             </ListGroup>
                             {!isCompleted &&
                                 <div className="d-flex justify-content-center mt-2">
-                                    <Button onClick={loadMore}>
+                                    <Button variant="primary-green" onClick={loadMore}>
                                         Load More +
                                     </Button>
                                 </div>

@@ -8,7 +8,7 @@ import Card from 'react-bootstrap/Card';
 const SelectableCard = (props) => {
     const { item, isSelected, selectable, onSelectCard } = props
 
-    const handleCardSelect=()=>{
+    const handleCardSelect = () => {
         if (selectable || (isSelected && !selectable)) {
             onSelectCard(item);
         }
@@ -18,7 +18,7 @@ const SelectableCard = (props) => {
         <Col className="mb-3">
             <Card as='a'
                 onClick={handleCardSelect}
-                className={`h-100 m-0 p-0 rounded-0 selectable-card bg-tertiary-grey ${isSelected ? 'selected' : ''} ${!selectable && !isSelected ? 'disabled' : ''}`}>
+                className={`h-100 m-0 p-0 rounded-0 selectable-card card-list-card bg-tertiary-grey ${isSelected ? 'selected' : ''} ${!selectable && !isSelected ? 'disabled' : ''}`}>
                 <Card.Body className="m-0 p-0 border-0 rounded-0 bg-tertiary">
                     <Card.Title as="h6" className="bg-primary-green p-2 mb-0 text-white text-center span">
                         {item.nickname}
@@ -45,7 +45,7 @@ const SelectableCard = (props) => {
     );
 }
 
-const SelectableCardList = (props) => {
+const PlayersSelectList = (props) => {
     const {
         itemType,
         items,
@@ -65,7 +65,7 @@ const SelectableCardList = (props) => {
     }
 
     return (
-        <Container className="selectable-card-list">
+        <Container className="selectable-card-list card-list">
             <div className="d-flex justify-content-center mb-4">
                 <span className="empty-text text-primary-grey">
                     {'Select ' + maxSelectable + ' ' + itemType}
@@ -92,4 +92,4 @@ const SelectableCardList = (props) => {
 	);
 }
 
-export default SelectableCardList;
+export default PlayersSelectList;

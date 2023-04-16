@@ -2,9 +2,9 @@ import React, { Fragment, useState, useEffect } from 'react';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import SelectableCardList from '../../elements/selectable.card.list';
+import PlayersSelectList from '../../elements/players.select.list';
 import PlayerConfigOptions from '../config_options/player.config.options';
-import PlayerForm from './player.form';
+import PlayerForm from '../../elements/player.form';
 
 import PlayerService from '../../../services/player.service';
 
@@ -78,7 +78,7 @@ const PlayerConfig = (props) => {
                         </InputGroup>
                         <PlayerForm onPlayerAdd={onPlayerAdd} />
                     </div>
-                    <SelectableCardList
+                    <PlayersSelectList
                         itemType={'Players'}
                         items={players}
                         selectedItems={selectedPlayers}
