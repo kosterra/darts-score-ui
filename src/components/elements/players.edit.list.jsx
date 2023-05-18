@@ -17,6 +17,7 @@ import PlayerForm from './player.form';
 
 const EditableCard = (props) => {
     const {
+        formId,
         item,
         deletePlayer,
         editPlayer
@@ -32,7 +33,7 @@ const EditableCard = (props) => {
 
     return (
         <Col className="mb-3">
-            <Card as='a'
+            <Card as='div'
                 className={`m-0 p-0 rounded-0 editable-card card-list-card bg-tertiary-grey`}>
                 <Card.Body className="m-0 p-0 border-0 rounded-0 bg-tertiary">
                     <Card.Title as="h6" className="bg-primary-green p-2 mb-0 text-white text-center span">
@@ -55,7 +56,7 @@ const EditableCard = (props) => {
                             </Row>
                             <Row className="mt-2">
                                 <div className="d-flex justify-content-end gap-2 mt-2">
-                                    <PlayerForm onPlayerEdit={handlePlayerEdit} edit={true} updatePlayer={item} />
+                                    <PlayerForm key={formId} onPlayerEdit={handlePlayerEdit} edit={true} updatePlayer={item} />
                                     <Button variant="red" onClick={handlePlayerDelete}>
                                         <i className="fas fa-trash-alt"></i>
                                     </Button>
@@ -144,6 +145,7 @@ const PlayersEditList = (props) => {
                         {players.map((item, idx) => (
                             <EditableCard
                                 key={idx}
+                                formId={'player-edit-form-' + idx}
                                 item={item}
                                 deletePlayer={handlePlayerDelete}
                                 editPlayer={handlePlayerEdit}

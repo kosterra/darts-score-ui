@@ -4,6 +4,7 @@ import { ProSidebarProvider } from 'react-pro-sidebar';
 import { Container, Row } from 'react-bootstrap';
 import AdminSidebar from '../components/navigation/admin.sidebar';
 import PlayersEditList from '../components/elements/players.edit.list';
+import X01EditList from '../components/elements/x01.edit.list';
 
 const AdminPage = () => {
 
@@ -14,7 +15,7 @@ const AdminPage = () => {
             case 'players':
                 return <PlayersEditList emptyText="No Players found. Please create new players first!"/>;
             case 'x01':
-                return <span>X01 Games</span>;
+                return <X01EditList emptyText="No X01 Games found. Please play any games first!"/>;
             case 'cricket':
                 return <span>Cricket Games</span>;
             default:
