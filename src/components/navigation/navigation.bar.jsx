@@ -5,8 +5,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import logo from '../../resources/img/logo.svg';
 
 export const NavigationBar = () => (
-    <Navbar bg="dark" variant="dark" className="p-0">
-        <Container fluid={true}>
+    <Navbar bg="secondary-grey" variant="dark" className="p-0">
+        <Container fluid>
             <Navbar.Brand href="/">
                 <img
                     alt="darts score logo"
@@ -21,14 +21,14 @@ export const NavigationBar = () => (
             <Navbar.Collapse id="navbarScroll" className="justify-content-end">
                 <Nav>
                     <NavDropdown title="Let's play darts" id="navbarScrollingDropdown" menuVariant="dark">
-                        <NavDropdown.Item href="x01-new">X01</NavDropdown.Item>
-                        <NavDropdown.Item href="cricket-new" disabled>Cricket</NavDropdown.Item>
+                        <NavDropdown.Item href="/x01">X01</NavDropdown.Item>
+                        <NavDropdown.Item href="/cricket" disabled>Cricket</NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link href="training">Training</Nav.Link>
-                    <Nav.Link href="statistics">Statistics</Nav.Link>
-                    <Nav.Link href="history">History</Nav.Link>
-                    <Nav.Link href="about">About</Nav.Link>
-                    <Nav.Link href="admin">Admin</Nav.Link>
+                    <Nav.Link href="/training">Training</Nav.Link>
+                    <Nav.Link href="/statistics">Statistics</Nav.Link>
+                    <Nav.Link href="/history">History</Nav.Link>
+                    <Nav.Link href="/about">About</Nav.Link>
+                    <Nav.Link href="/admin">Admin</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Container>

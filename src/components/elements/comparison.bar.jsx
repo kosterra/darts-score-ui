@@ -30,8 +30,8 @@ const ComparisonBar = (props) => {
                 </span>
             </div>
             <ProgressBar className="border-0 radius-0 bg-transparent">
-                <ProgressBar className="border-0 radius-0" variant="primary" now={ isNaN(barLValue) ? 0 : barLValue } max={barLValue + barRValue <= 100 ? barLValue + barRValue : 100} key={1}/>
-                <ProgressBar className="border-0 radius-0" variant="secondary" now={ isNaN(barRValue) ? 0 : barRValue } max={barLValue + barRValue <= 100 ? barLValue + barRValue : 100} key={2} />
+                <ProgressBar className="border-0 radius-0" variant="primary-green" now={ isNaN(barLValue) ? 0 : barLValue } max={barLValue + barRValue <= 100 ? barLValue + barRValue : 100} key={1}/>
+                <ProgressBar className="border-0 radius-0" variant="primary-grey" now={ isNaN(barRValue) ? 0 : barRValue } max={barLValue + barRValue <= 100 ? barLValue + barRValue : 100} key={2} />
             </ProgressBar>
         </div>
     )

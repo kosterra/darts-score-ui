@@ -4,16 +4,21 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
-import ImageUploader from '../../elements/image.uploader';
+import ImageUploader from './image.uploader';
 
-import PlayerService from '../../../services/player.service';
+import PlayerService from '../../services/player.service';
 
-import PlayerModel from '../../../models/player.model';
+import PlayerModel from '../../models/player.model';
 
 const PlayerForm = (props) => {
-    const {onPlayerAdd} = props;
+    const {
+        onPlayerAdd,
+        onPlayerEdit,
+        updatePlayer,
+        edit
+    } = props;
 
-    const initialState = PlayerModel;
+    const initialState = updatePlayer ? updatePlayer : PlayerModel;
 
     const [showModal, setShowModal] = useState(false);
     const [validated, setValidated] = useState(false);
@@ -22,7 +27,7 @@ const PlayerForm = (props) => {
     const handleShowModal = () => setShowModal(true);
 
     const [player, setPlayer] = useState(initialState);
-    const [previewUrl, setPreviewUrl] = useState("");
+    const [previewUrl, setPreviewUrl] = useState(edit ? updatePlayer.profileImg : '');
 
     const onFileChange = (file) => {
         setPreviewUrl(URL.createObjectURL(file));
@@ -32,7 +37,7 @@ const PlayerForm = (props) => {
         }));
     }
 
-    const onFileDelete = (file) => {
+    const onFileDelete = () => {
         setPreviewUrl("");
         setPlayer((player) => ({
             ...player,
@@ -54,16 +59,28 @@ const PlayerForm = (props) => {
             setValidated(true);
         } else {
             setValidated(true);
-            try {
-                if (await PlayerService.createPlayer(player)) {
-                    setPlayer(initialState);
-                    setPreviewUrl("");
-                    setValidated(false);
-                    onPlayerAdd();
-                };
-            } catch (error) {
-                toast.error('Failed to create new player: ' + error);
+            if (edit) {
+                try {
+                    if (await PlayerService.updatePlayer(player)) {
+                        setValidated(false);
+                        onPlayerEdit();
+                    };
+                } catch (error) {
+                    toast.error('Failed to update player: ' + error);
+                }
+            } else {
+                try {
+                    if (await PlayerService.createPlayer(player)) {
+                        setPlayer(PlayerModel);
+                        setPreviewUrl("");
+                        setValidated(false);
+                        onPlayerAdd();
+                    };
+                } catch (error) {
+                    toast.error('Failed to create new player: ' + error);
+                }
             }
+            setShowModal(false);
         }
     }
 
@@ -74,7 +91,7 @@ const PlayerForm = (props) => {
     }
 
     return (
-        <div className="m-2 mb-4 justify-content-md-center align-items-center">
+        <div className={`${edit ? '' : 'm-2 mb-4'} justify-content-md-center align-items-center`}>
             <Modal show={ showModal }
                 onHide={ handleCloseModal }
                 fullscreen={ false }
@@ -84,7 +101,9 @@ const PlayerForm = (props) => {
                     noValidate
                     validated={ validated }>
                     <Modal.Header closeButton closeVariant="white">
-                        <Modal.Title className="h6">Add New Player</Modal.Title>
+                        <Modal.Title className="h6">
+                            { edit ? 'Update Player' : 'Add New Player' }
+                        </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <ImageUploader
@@ -131,20 +150,20 @@ const PlayerForm = (props) => {
                         </FloatingLabel>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={handleCloseModal} className="p-2">
+                        <Button variant="primary-grey" onClick={handleCloseModal} className="p-2">
                             <i className="fas fa-times px-2"></i>
                             Close
                         </Button>
-                        <Button variant="primary" onClick={handleSubmit} className="p-2">
+                        <Button variant="primary-green" onClick={handleSubmit} className="p-2">
                             <i className="fas fa-save px-2"></i>
-                            Save
+                            { edit ? 'Update' : 'Create' }
                         </Button>
                     </Modal.Footer>
                 </Form>
             </Modal>
             <div className="d-flex justify-content-center">
-                <Button variant="primary" className="text-light m-0" onClick={handleShowModal}>
-                    <i className="fas fa-user-plus px-2"></i>
+                <Button variant="primary-green" className="text-white m-0" onClick={handleShowModal}>
+                    <i className={`fas ${edit ? 'fa-edit' : 'fa-user-plus px-2'}`}></i>
                 </Button>
             </div>
         </div>

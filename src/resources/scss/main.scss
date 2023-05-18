@@ -4,9 +4,6 @@
 @import 'variables/bootstrap.scss';
 @import 'variables/toastify.scss';
 
-// Reset Default CSS
-//@import 'general/reset_default';
-
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
 // Fonts and Icons
@@ -18,33 +15,10 @@
 // General Imports
 @import 'general/general';
 @import 'general/elements';
-@import 'general/fonts.scss';
-@import 'general/borders.scss';
-@import 'general/margins.scss';
-//@import 'general/recharts';
-
-// Pages
-//@import 'pages/x01';
-//@import 'pages/stats';
-//@import 'pages/about';
+@import 'general/fonts';
+@import 'general/borders';
+@import 'general/margins';
 
 // Components
-//@import 'components/navigation/navigation_bar';
 @import 'components/game_config/config_components/player.config';
-
-//@import 'components/games/checkout';
 @import 'components/games/dart_board';
-//@import 'components/games/score_input_board';
-//@import 'components/games/x01_score_board';
-//@import 'components/games/x01_statistics_board';
-
-//@import 'components/stats/stats_container';
-//@import 'components/stats/stats_object_data';
-
-//@import 'components/shared/navigation/main_header';
-//@import 'components/shared/navigation/nav_links';
-//@import 'components/shared/navigation/main_navigation';
-
-//@import 'components/shared/ui_element/modal';
-//@import 'components/shared/ui_element/page_error_message';
-//@import 'components/shared/ui_element/spinner';

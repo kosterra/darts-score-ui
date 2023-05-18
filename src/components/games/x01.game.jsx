@@ -27,7 +27,7 @@ const X01Game = () => {
     } = useContext(X01Context);
 
 	const onNewGame = () => {
-		navigate("/x01-new", { replace: true });
+		navigate("/x01", { replace: true });
 	};
 
 	const onFinishGame = () => {
@@ -85,7 +85,7 @@ const X01Game = () => {
       <Fragment>
         <div className="mx-4">
             <div className="d-flex justify-content-center mb-4">
-                <div className="d-flex flex-column align-items-center bbr-12 bg-tertiary p-2">
+                <div className="d-flex flex-column align-items-center bbr-12 bg-tertiary-grey p-2">
                     <div className="fs-7">{game.setMode} <strong>{game.numberOfSets}</strong> Set{game.numberOfSets > 1 && 's'} - {game.legMode} <strong>{game.numberOfLegs}</strong> Leg{game.numberOfLegs > 1 && 's'}</div>
                     <div className="fs-9 pt-1">{game.legInMode} / {game.legOutMode}</div>
                 </div>
@@ -107,15 +107,15 @@ const X01Game = () => {
                         <Col className="d-flex flex-column justify-content-center align-items-center gap-2">
                             <X01GameStatistics game={game} players={players} />
                             <div className="d-grid gap-2 col-2 mx-auto">
-                                <Button onClick={onRestartGame} variant="primary">
+                                <Button onClick={onRestartGame} variant="primary-green">
                                     <i className="fas fa-sync-alt pe-2" title='Send'></i>
                                     PLAY AGAIN
                                 </Button>
-                                <Button onClick={onNewGame} variant="outline-primary">
+                                <Button onClick={onNewGame} variant="outline-primary-green">
                                     <i className="fas fa-plus pe-2" title='Send'></i>
                                     NEW GAME
                                 </Button>
-                                <Button onClick={onFinishGame} variant="outline-primary">
+                                <Button onClick={onFinishGame} variant="outline-primary-green">
                                     <i className="fas fa-home pe-2" title='Send'></i>
                                     BACK HOME
                                 </Button>

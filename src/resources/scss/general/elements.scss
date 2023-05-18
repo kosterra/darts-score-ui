@@ -34,7 +34,7 @@
             color: $white;
 
             &.active {
-                background-color: $dark-green;
+                background-color: $primary-green;
             }
         }
     }
@@ -49,6 +49,28 @@
 
     &:hover {
         color: $white;
+    }
+}
+
+.btn-check{
+    &:checked + .btn {
+        color: $white;
+        background-color: var(--bs-btn-hover-bg);
+    }
+
+    &:hover + .btn {
+        color: $white;
+        background-color: var(--bs-btn-hover-bg);
+    }
+}
+
+// Bootstrap Input Group
+.input-group {
+    .input-group-text {
+        background-color: $tertiary-grey;
+        border: 1px solid $tertiary-grey;
+        color: $primary-grey;
+        font-weight: 200;
     }
 }
 
@@ -68,7 +90,7 @@
         color: $white;
 
         &.btn-selected {
-            background-color: $dark-green;
+            background-color: $primary-green;
 
         }
     }
@@ -82,7 +104,7 @@
         border: none;
 
         .modal-header {
-            background-color: $dark-green;
+            background-color: $primary-green;
             border: none;
             border-top-left-radius: 2px;
             border-top-right-radius: 2px;
@@ -132,7 +154,7 @@ select {
         background-color: $primary-grey-transparent;
 
         &:hover {
-            background-color: $dark-green;
+            background-color: $primary-green;
         }
     }
 }
@@ -160,7 +182,7 @@ select {
             margin: 0.3rem 0;
 
             &.active {
-                background-color: $dark-green;
+                background-color: $primary-green;
             }
         }
     }
@@ -226,7 +248,7 @@ select {
                 color: #dee2e6;
 
                 &--is-selected {
-                    background-color: $dark-green;
+                    background-color: $primary-green;
                 }
 
                 &--is-focused {
@@ -241,27 +263,27 @@ select {
 
 // Links
 a {
-    &.button-link {
-        background-color: $dark-green;
-        color: $white;
-        border: none;
-        border-radius: 3px;
-        color: $white;
-        padding: 6px 8px;
-        margin: 5px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        cursor: pointer;
-        display: flex;
-        gap: 8px;
-        align-items: center;
+    color: $secondary-green;
+}
+
+// Card List
+.card-list {
+    .card-list-card {
+        text-decoration: none;
+
+        .card-body {
+            .card-text {
+                justify-content: center;
+                display: flex;
+                font-size: 0.9rem;
+            }
+        }
     }
 }
 
-// Selectable Card List
+// Selectable Card
 .selectable-card-list {
     .selectable-card {
-        text-decoration: none;
         cursor: pointer;
         border: 2px solid $secondary-grey;
 
@@ -273,19 +295,17 @@ a {
             cursor: not-allowed;
         }
 
-        .card-body {
-            .card-text {
-                justify-content: center;
-                display: flex;
-                font-size: 0.9rem;
-            }
-        }
-
         i {
             position: absolute;
             bottom: 0.2rem;
             right: 0.2rem;
         }
+    }
+}
+
+.editable-card-list {
+    .editable-card {
+        border: 0;
     }
 }
 
@@ -331,9 +351,37 @@ a {
                 margin: 0;
 
                 &:active {
-                    background-color: $dark-green;
+                    background-color: $primary-green;
                 }
             }
         }
+    }
+}
+
+// Sidebar
+.sidebar .ps-sidebar-root {
+    height: 100%;
+    border: none;
+
+    .ps-menuitem-root {
+        .ps-menu-button {
+            &:hover {
+                background-color: $primary-grey-transparent;
+            }
+        }
+
+        .ps-submenu-content {
+            .ps-menuitem-root {
+                .ps-menu-button {
+                    &:hover {
+                        background-color: $tertiary-grey-transparent;
+                    }
+                }
+            }
+        }
+    }
+
+    .ps-submenu-content {
+        background-color: $primary-grey;
     }
 }

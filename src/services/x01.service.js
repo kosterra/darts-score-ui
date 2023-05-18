@@ -86,13 +86,28 @@ const updateX01 = (game) => {
     });
 }
 
+const deleteX01 = (x01Id) => {
+    return fetch(API_URL + 'games/x01/' + x01Id, {
+        method: 'DELETE'
+    }).then(response => {
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
+        return response.ok;
+    }).catch(error => {
+        throw Error(error);
+    });
+}
+
 // Export methods
 const X01Service = {
     createX01,
     loadRunningX01Games,
     loadFinishedX01Games,
+    loadAllX01Games,
     loadX01,
-    updateX01
+    updateX01,
+    deleteX01
 }
 
 export default X01Service;
