@@ -72,7 +72,7 @@ const X01ScoreBoard = (props) => {
                                             <i className="fas fa-circle text-blue m-02 mt-2"></i>
                                         )}
                                         { game.currentPlayerTurn === playerId && (
-                                            <i className="fas fa-circle text-light-green m-02 mt-2"></i>
+                                            <i className="fas fa-circle text-secondary-green m-02 mt-2"></i>
                                         )}
                                         { game.startingPlayerLeg !== playerId && game.currentPlayerTurn !== playerId && (
                                             <i className="fas fa-circle fc-transparent m-02 mt-2"></i>

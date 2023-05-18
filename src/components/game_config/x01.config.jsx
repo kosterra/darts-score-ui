@@ -92,7 +92,7 @@ const X01Config = () => {
                 onSelectedPlayersChange={handleConfigChange}
             />
             <div className="col-xs-1 p-3" align="center">
-                <Button variant="primary" className="text-light m-0 p-2" onClick={handleSubmit}>Start Game</Button>
+                <Button variant="primary-green" className="text-white m-0 p-2" onClick={handleSubmit}>Start Game</Button>
             </div>
         </div>
     );

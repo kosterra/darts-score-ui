@@ -14,8 +14,6 @@ const createPlayer = (player) => {
         method: 'POST',
         body: formData
     }).then(response => {
-        console.log(response);
-        console.log(response.ok);
         if (!response.ok) {
             throw Error(response.statusText);
         }
@@ -54,13 +52,12 @@ const loadPlayers = (searchTerm) => {
 }
 
 const updatePlayer = (player) => {
+    var formData = new FormData();
+    Object.keys(player).forEach(key => formData.append(key, player[key]));
+
     return fetch(API_URL + 'players/' + player.id, {
         method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            'accept': 'application/json'
-        },
-        body: JSON.stringify(player)
+        body: formData
     }).then(response => {
         if (!response.ok) {
             throw Error(response.statusText);

@@ -16,7 +16,7 @@ const X01InOutConfig = (props) => {
             <div className="justify-content-md-center align-items-center row">
                 <div className="col">
                     <p className="h6 text-center">Starting In</p>
-                    <div className="btn-toolbar justify-content-md-center align-items-center p-3 text-light">
+                    <div className="btn-toolbar justify-content-md-center align-items-center p-3 text-white">
                         {legInOptions.values.map((option, idx) => (
                         <ToggleButton
                             key={idx}
@@ -24,7 +24,7 @@ const X01InOutConfig = (props) => {
                             type="radio"
                             name="in-options"
                             value={option}
-                            className={`btn btn-secondary btn-sm text-light ${legInOption === option ? 'btn-selected' : ''}`}
+                            className={`btn btn-primary-grey btn-sm text-white ${legInOption === option ? 'btn-selected' : ''}`}
                             checked={legInOption === option}
                             onChange={(e) => onInOutChange('legInMode', e.currentTarget.value)}
                         >
@@ -35,7 +35,7 @@ const X01InOutConfig = (props) => {
                 </div>
                 <div className="col">
                     <p className="h6 text-center">Checkout</p>
-                    <div className="btn-toolbar justify-content-md-center align-items-center p-3 text-light">
+                    <div className="btn-toolbar justify-content-md-center align-items-center p-3 text-white">
                         {legOutOptions.values.map((option, idx) => (
                         <ToggleButton
                             key={idx}
@@ -43,7 +43,7 @@ const X01InOutConfig = (props) => {
                             type="radio"
                             name="out-options"
                             value={option}
-                            className={`btn btn-secondary btn-sm text-light ${legOutOption === option ? 'btn-selected' : ''}`}
+                            className={`btn btn-primary-grey btn-sm text-white ${legOutOption === option ? 'btn-selected' : ''}`}
                             checked={legOutOption === option}
                             onChange={(e) => onInOutChange('legOutMode', e.currentTarget.value)}
                         >

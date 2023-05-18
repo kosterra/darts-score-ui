@@ -1,7 +1,7 @@
 {
   "name": "darts-score-ui",
   "description": "WebUI for darts-score Application",
-  "version": "2023.3.2",
+  "version": "2023.5.1-unstable",
   "license": "GPLv3",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -15,9 +15,13 @@
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
     "react-drag-drop-files": "^2.3.9",
+    "react-icons": "^4.8.0",
     "react-loader-spinner": "^5.3.4",
+    "react-paginate": "^8.1.5",
+    "react-pro-sidebar": "^1.0.0",
     "react-router-dom": "^6.9.0",
     "react-scripts": "^5.0.1",
+    "react-table": "^7.8.0",
     "react-toastify": "^9.1.1",
     "recharts": "^2.5.0",
     "request": "^2.88.2",
