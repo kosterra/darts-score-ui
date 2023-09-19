@@ -14,7 +14,7 @@ const PlayerConfig = (props) => {
         selectedPlayers,
         onNumberOfPlayersChange,
         onSelectedPlayersChange
-    } = props
+    } = props;
 
     const {numberOfPlayerOptions} = PlayerConfigOptions;
     

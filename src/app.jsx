@@ -7,6 +7,8 @@ import { NavigationBar } from './components/navigation/navigation.bar';
 import Dashboard from './pages/dashboard';
 import X01ConfigPage from './pages/config/x01';
 import X01GamePage from './pages/games/x01';
+import CricketConfigPage from './pages/config/cricket';
+import CricketGamePage from './pages/games/cricket';
 import StatsPage from './pages/stats';
 import AboutPage from './pages/about';
 import AdminPage from './pages/admin';
@@ -23,8 +25,8 @@ function App() {
 				<Route path="/" element={<Dashboard/>} />
 				<Route path="/x01" element={<X01ConfigPage/>} />
 				<Route path="/x01/:id" element={<X01GamePage/>} />
-				<Route path="/cricket" element={<X01ConfigPage/>} />
-				<Route path="/cricket" element={<X01GamePage/>} />
+				<Route path="/cricket" element={<CricketConfigPage/>} />
+				<Route path="/cricket/:id" element={<CricketGamePage/>} />
 				<Route path="/stats" element={<StatsPage/>} />
 				<Route path="/about" element={<AboutPage/>} />
 				<Route path="/admin" element={<Navigate replace to="/admin/players" />} />
