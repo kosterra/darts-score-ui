@@ -218,7 +218,6 @@ import {
               }
             }
           }
-  
         };
       case UPDATE_SCORE_RANGES:
         return {

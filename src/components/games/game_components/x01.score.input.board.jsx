@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect, Fragment } from 'react';
 import X01Context from '../../../utils/x01.context';
 import X01Service from '../../../services/x01.service';
 
-import DartBoard from './dartboard';
+import X01DartBoard from './x01.dartboard';
 import Checkout from './x01.checkout';
 import checkout from '../../../utils/checkout';
 
@@ -17,7 +17,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 
-const ScoreInputBoard = () => {
+const X01ScoreInputBoard = () => {
     const {
         game,
         updateCurrentThrowManual,
@@ -121,7 +121,7 @@ const ScoreInputBoard = () => {
             <Container fluid className="mt-4">
                 <Row className="gap-5 justify-content-center">
                     <Col className="d-flex justify-content-end col-6">
-                        <DartBoard />
+                        <X01DartBoard />
                     </Col>
                     <Col className="col-4">
                         <Form className="mt-1" onSubmit={submitHandler}>
@@ -235,4 +235,4 @@ const ScoreInputBoard = () => {
   )
 }
 
-export default ScoreInputBoard
+export default X01ScoreInputBoard

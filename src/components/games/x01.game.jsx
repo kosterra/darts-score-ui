@@ -12,7 +12,7 @@ import X01Service from '../../services/x01.service';
 
 import X01ScoreBoard from './game_components/x01.scoreboard';
 import X01StatisticsBoard from './game_components/x01.statisticsboard';
-import ScoreInputBoard from './game_components/score.input.board';
+import X01ScoreInputBoard from './game_components/x01.score.input.board';
 import X01GameStatistics from './game_components/x01.game.statistics';
 
 import Button from 'react-bootstrap/Button';
@@ -102,21 +102,21 @@ const X01Game = () => {
                 </Container>
             )}
             {game.hasWinner && (
-                <Container>
+                <Container className="pb-4">
                     <Row>
                         <Col className="d-flex flex-column justify-content-center align-items-center gap-2">
                             <X01GameStatistics game={game} players={players} />
                             <div className="d-grid gap-2 col-2 mx-auto">
                                 <Button onClick={onRestartGame} variant="primary-green">
-                                    <i className="fas fa-sync-alt pe-2" title='Send'></i>
+                                    <i className="fas fa-sync-alt pe-2" title='Restart'></i>
                                     PLAY AGAIN
                                 </Button>
                                 <Button onClick={onNewGame} variant="outline-primary-green">
-                                    <i className="fas fa-plus pe-2" title='Send'></i>
+                                    <i className="fas fa-plus pe-2" title='Plus'></i>
                                     NEW GAME
                                 </Button>
                                 <Button onClick={onFinishGame} variant="outline-primary-green">
-                                    <i className="fas fa-home pe-2" title='Send'></i>
+                                    <i className="fas fa-home pe-2" title='Home'></i>
                                     BACK HOME
                                 </Button>
                             </div>
@@ -124,7 +124,7 @@ const X01Game = () => {
                     </Row>
                 </Container>
             )}
-            <ScoreInputBoard />
+            <X01ScoreInputBoard />
             {!game.hasWinner && (
                 <Container fluid className="mt-4">
                     <Row className="justify-content-md-center">

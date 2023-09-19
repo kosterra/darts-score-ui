@@ -1,6 +1,9 @@
 import React, { Fragment, useEffect, useReducer } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
+import {
+  validateDartValue
+} from './game.utils';
 
 import X01Context from './x01.context';
 import X01Reducer from './x01.reducer';
@@ -65,7 +68,7 @@ const X01State = props => {
     async function fetchX01() {
       try {
         let x01 = await X01Service.loadX01(id);
-        dispatch({type: FETCH_GAME_SUCCESS, payload: x01});
+        dispatch({ type: FETCH_GAME_SUCCESS, payload: x01 });
         return x01;
       } catch (error) {
         throw new Error(error);
@@ -79,7 +82,7 @@ const X01State = props => {
           let player = await PlayerService.getPlayer(playerId);
           players.push(player);
         }));
-        dispatch({type: FETCH_PLAYERS_SUCCESS, payload: players});
+        dispatch({ type: FETCH_PLAYERS_SUCCESS, payload: players });
       } catch (error) {
         throw new Error(error);
       }
@@ -97,6 +100,37 @@ const X01State = props => {
 
   const updateCurrentThrowManual = (score, value, index) => {
     if (state.game.gameType === score && value !== '' && validateDartValue(value)) {
+      if (state.game.legInMode === 'Double In') {
+        let startedInDouble = dartIsDouble(value);
+        if (!startedInDouble) {
+          value = '0'
+        }
+      } else if (state.game.legInMode === 'Master In') {
+        let startedInMaster = dartIsDouble(value) || dartIsTriple(value);
+        if (!startedInMaster) {
+          value = '0';
+        }
+      }
+    }
+
+    const newCurrentThrow = state.game.currentThrow.map((dart, i) => {
+      if (i === index) {
+        dart = value;
+      }
+      return dart
+    });
+
+    dispatch({
+      type: UPDATE_CURRENT_THROW,
+      payload: newCurrentThrow
+    })
+  }
+
+  const updateCurrentThrowDartBoard = (score, value) => {
+    const newCurrentThrow = [...state.game.currentThrow];
+
+    for (let index = 0; index < newCurrentThrow.length; index++) {
+      if (state.game.gameType === score && validateDartValue(value)) {
         if (state.game.legInMode === 'Double In') {
           let startedInDouble = dartIsDouble(value);
           if (!startedInDouble) {
@@ -108,37 +142,6 @@ const X01State = props => {
             value = '0';
           }
         }
-    }
-
-    const newCurrentThrow = state.game.currentThrow.map((dart, i) => {
-      if (i === index) {
-        dart = value;
-      }
-      return dart
-    });
-    
-    dispatch({
-      type: UPDATE_CURRENT_THROW,
-      payload: newCurrentThrow
-    })
-  }
-
-  const updateCurrentThrowDartBoard = (score, value) => {
-    const newCurrentThrow = [...state.game.currentThrow];
-
-    for(let index = 0; index < newCurrentThrow.length; index++) {
-      if (state.game.gameType === score && validateDartValue(value)) {
-          if (state.game.legInMode === 'Double In') {
-            let startedInDouble = dartIsDouble(value);
-            if (!startedInDouble) {
-              value = '0'
-            }
-          } else if (state.game.legInMode === 'Master In') {
-            let startedInMaster = dartIsDouble(value) || dartIsTriple(value);
-            if (!startedInMaster) {
-              value = '0';
-            }
-          }
       }
 
       if (newCurrentThrow[index] === '') {
@@ -159,8 +162,8 @@ const X01State = props => {
 
     let currentThrow = [...state.game.currentThrow];
 
-    for(let i = 0; i< currentThrow.length; i++) {
-      if(!validateDartValue(currentThrow[i])) {
+    for (let i = 0; i < currentThrow.length; i++) {
+      if (!validateDartValue(currentThrow[i])) {
         toast.error('One or more of your dart has an invalid value');
         setLoading('validateThrow', false);
         return
@@ -168,19 +171,19 @@ const X01State = props => {
     }
 
     let throwIsValid = validateWholeThrow(currentThrow, currentScore);
-    if(!throwIsValid) {
+    if (!throwIsValid) {
       setLoading('validateThrow', false);
       return
     };
 
     let roundScore = getCurrentThrowScore();
     let currentLegThrows = [...state.game.currentLegThrows,
-      { 
-        darts: currentThrow,
-        playerId: state.game.currentPlayerTurn,
-        roundScore: roundScore,
-        scoreLeft: currentScore
-      }];
+    {
+      darts: currentThrow,
+      playerId: state.game.currentPlayerTurn,
+      roundScore: roundScore,
+      scoreLeft: currentScore
+    }];
 
     let hasBusted = checkIfHasBusted(currentScore)
     let hasWonLeg = false;
@@ -193,7 +196,7 @@ const X01State = props => {
       saveCurrentLegThrows(currentLegThrows)
       saveCheckoutScore();
       playerUpdateStat(currentScore);
-      
+
       hasWonLeg = true;
       incrementLegsPlayed();
       incrementLegsWon();
@@ -213,7 +216,7 @@ const X01State = props => {
     } else {
       playerUpdateStat(currentScore);
     }
-    
+
     updateBestThreeDart();
     updateSectionHit();
     couldCheckout();
@@ -231,6 +234,25 @@ const X01State = props => {
     manageCurrentPlayerChange(hasWonLeg, hasWonSet);
 
     setLoading('validateThrow', false);
+  }
+
+  const validateWholeThrow = (values, currentScore) => {
+    let getWhiteSpaces = values.filter(value => value.trim() === '');
+
+    if (
+      (currentScore > 1 && getWhiteSpaces.length) ||
+      values[0] === '' ||
+      (values[1] === '' && values[2] !== '')
+    ) {
+      toast.error('You need to add a value for each dart');
+      return false;
+    }
+
+    if (currentScore === 1 || currentScore === 0) {
+      return true;
+    }
+
+    return true;
   }
 
   const checkIfHasBusted = (currentScore) => {
@@ -252,9 +274,8 @@ const X01State = props => {
     updateTotalThrowBegMidGame();
     updateTotalThrowEndGame();
     calculateAverage();
-    updateScoreRanges(); 
+    updateScoreRanges();
     updatePlayerScore(currentScore);
-
   }
 
   const playerBustedUpdateState = () => {
@@ -262,47 +283,11 @@ const X01State = props => {
     updateTotalThrowBegMidGame();
     updateTotalThrowEndGame();
     calculateAverage(true);
-    updateScoreRanges(true); 
-  }
-
-  const validateDartValue = dart => {
-
-    if(Number(dart) === 0 || dart === '') {
-      return true;
-    }
-
-    if(/^[SDT]\d{1,2}$/i.test(dart) ) {
-
-      let score = Number(dart.slice(1));
-      if((score >= 1 && score <= 20) || /[SD]25/i.test(dart)) {
-        return true
-      };
-      
-    }
-    return false;
-  }
-
-  const validateWholeThrow = (values, currentScore) => {
-    let getWhiteSpaces = values.filter(value => value.trim() === '');
-
-    if(
-      (currentScore >  1 && getWhiteSpaces.length) ||
-      values[0] === '' ||
-      (values[1] === '' && values[2] !== '')
-    ) {
-      toast.error('You need add a value for each dart');
-      return false;
-    }
-
-    if(currentScore === 1 || currentScore === 0) {
-      return true;
-    }
-
-    return true;
+    updateScoreRanges(true);
   }
 
   const dartIsDouble = (value) => {
-    if(/^d/i.test(value)) {
+    if (/^d/i.test(value)) {
       return true
     } else {
       return false
@@ -310,7 +295,7 @@ const X01State = props => {
   }
 
   const dartIsTriple = (value) => {
-    if(/^t/i.test(value)) {
+    if (/^t/i.test(value)) {
       return true
     } else {
       return false
@@ -321,7 +306,7 @@ const X01State = props => {
     let values = state.game.currentThrow;
 
     if (values[2].trim() === '' && values[1].trim() === '') {
-      
+
       if (/^d/i.test(values[0])) {
         return true
       } else {
@@ -336,7 +321,7 @@ const X01State = props => {
         return false
       }
     }
-    
+
     if (/^d/i.test(values[2])) {
       return true
     } else {
@@ -348,7 +333,7 @@ const X01State = props => {
     let values = state.game.currentThrow;
 
     if (values[2].trim() === '' && values[1].trim() === '') {
-      
+
       if (/^t/i.test(values[0])) {
         return true
       } else {
@@ -377,20 +362,19 @@ const X01State = props => {
 
       if (!dartIsValid) return total += 0;
 
-      if (Number(dart) === 0 || dart === '') return total +=0;
+      if (Number(dart) === 0 || dart === '') return total += 0;
 
       let score = Number(dart.slice(1));
-        if ((score >=1 && score <=20) || /[SD]25/i.test(dart)) {
-          if (/t/i.test(dart[0])) score *= 3;
-          if (/d/i.test(dart[0])) score *= 2;
-          return total +=score;
-
-        }
+      if ((score >= 1 && score <= 20) || /[SD]25/i.test(dart)) {
+        if (/t/i.test(dart[0])) score *= 3;
+        if (/d/i.test(dart[0])) score *= 2;
+        return total += score;
+      }
 
       return total += 0;
-    }, 0 );
+    }, 0);
 
-    return  totalScore;
+    return totalScore;
   }
 
   const pushCurrentThrowToCurrentLegThrow = () => {
@@ -406,7 +390,7 @@ const X01State = props => {
         darts: state.game.currentThrow.filter(dart => dart.trim() !== ''),
         roundScore: roundScore,
         scoreLeft: score - roundScore <= 1 ? score : score - roundScore
-      } 
+      }
     })
   }
 
@@ -430,14 +414,14 @@ const X01State = props => {
     })
   }
 
-  const resetCurrentThrow = () => dispatch({type: RESET_CURRENT_THROW});
+  const resetCurrentThrow = () => dispatch({ type: RESET_CURRENT_THROW });
 
-  const resetCurrentLegThrows = () => dispatch({type: RESET_CURRENT_LEG_THROWS});
+  const resetCurrentLegThrows = () => dispatch({ type: RESET_CURRENT_LEG_THROWS });
 
   const calculateAverage = (isBusted = false) => {
     let playerModel = state.game.playerModels[state.game.currentPlayerTurn];
     let playerId = state.game.currentPlayerTurn;
-    
+
     let averages = playerModel.averages;
 
     if (!averages.hasOwnProperty('game')) {
@@ -455,7 +439,7 @@ const X01State = props => {
         endSet: 0
       };
     }
-    
+
     if (!averages['set-' + state.game.currentSet].hasOwnProperty('leg-' + state.game.currentSetLeg)) {
       averages['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg] = {
         overall: 0,
@@ -473,11 +457,11 @@ const X01State = props => {
     let totalRoundsLeg = playerModel.totalThrow['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].rounds - 1;
 
     averages.game.overall = (gameOverallAvg * totalRoundsGame + totalCurrentScore) / (totalRoundsGame + 1);
-    averages['set-' + state.game.currentSet].overall = (setOverallAvg  * totalRoundsSet + totalCurrentScore) / (totalRoundsSet + 1);
+    averages['set-' + state.game.currentSet].overall = (setOverallAvg * totalRoundsSet + totalCurrentScore) / (totalRoundsSet + 1);
     averages['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].overall = (legOverallAvg * totalRoundsLeg + totalCurrentScore) / (totalRoundsLeg + 1);
 
     let gamePeriod = playerModel.score > 140 ? 'begMidGame' : 'endGame';
- 
+
     if (gamePeriod === 'begMidGame') {
       // New average for the game
       let totalRoundsGameBegMid = playerModel.totalThrowBegMidGame.game.rounds - 1;
@@ -565,7 +549,7 @@ const X01State = props => {
         rounds: 0
       };
     }
-    
+
     if (!totalThrow['set-' + state.game.currentSet].hasOwnProperty('leg-' + state.game.currentSetLeg)) {
       totalThrow['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg] = {
         darts: 0,
@@ -597,37 +581,37 @@ const X01State = props => {
     if (playerModel.score > 140) {
       let totalThrowBegMidGame = playerModel.totalThrowBegMidGame;
       let dartNumber = state.game.currentThrow.filter(dart => dart.trim() !== '').length;
-  
+
       if (!totalThrowBegMidGame.hasOwnProperty('game')) {
         totalThrowBegMidGame['game'] = {
           darts: 0,
           rounds: 0
         };
       }
-  
+
       if (!totalThrowBegMidGame.hasOwnProperty('set-' + state.game.currentSet)) {
         totalThrowBegMidGame['set-' + state.game.currentSet] = {
           darts: 0,
           rounds: 0
         };
       }
-      
+
       if (!totalThrowBegMidGame['set-' + state.game.currentSet].hasOwnProperty('leg-' + state.game.currentSetLeg)) {
         totalThrowBegMidGame['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg] = {
           darts: 0,
           rounds: 0
         };
       }
-  
+
       totalThrowBegMidGame.game.darts += dartNumber;
       totalThrowBegMidGame.game.rounds++;
       totalThrowBegMidGame['set-' + state.game.currentSet].darts += dartNumber;
       totalThrowBegMidGame['set-' + state.game.currentSet].rounds++;
       totalThrowBegMidGame['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].darts += dartNumber;
       totalThrowBegMidGame['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].rounds++;
-  
+
       let playerId = state.game.currentPlayerTurn;
-  
+
       dispatch({
         type: UPDATE_TOTAL_THROW_BEG_MID_GAME,
         payload: {
@@ -644,37 +628,37 @@ const X01State = props => {
     if (playerModel.score <= 140) {
       let totalThrowEndGame = playerModel.totalThrowEndGame;
       let dartNumber = state.game.currentThrow.filter(dart => dart.trim() !== '').length;
-  
+
       if (!totalThrowEndGame.hasOwnProperty('game')) {
         totalThrowEndGame['game'] = {
           darts: 0,
           rounds: 0
         };
       }
-  
+
       if (!totalThrowEndGame.hasOwnProperty('set-' + state.game.currentSet)) {
         totalThrowEndGame['set-' + state.game.currentSet] = {
           darts: 0,
           rounds: 0
         };
       }
-      
+
       if (!totalThrowEndGame['set-' + state.game.currentSet].hasOwnProperty('leg-' + state.game.currentSetLeg)) {
         totalThrowEndGame['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg] = {
           darts: 0,
           rounds: 0
         };
       }
-  
+
       totalThrowEndGame.game.darts += dartNumber;
       totalThrowEndGame.game.rounds++;
       totalThrowEndGame['set-' + state.game.currentSet].darts += dartNumber;
       totalThrowEndGame['set-' + state.game.currentSet].rounds++;
       totalThrowEndGame['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].darts += dartNumber;
       totalThrowEndGame['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].rounds++;
-  
+
       let playerId = state.game.currentPlayerTurn;
-  
+
       dispatch({
         type: UPDATE_TOTAL_THROW_END_GAME,
         payload: {
@@ -701,7 +685,7 @@ const X01State = props => {
         value: 0
       };
     }
-    
+
     if (!bestThreeDarts['set-' + state.game.currentSet].hasOwnProperty('leg-' + state.game.currentSetLeg)) {
       bestThreeDarts['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg] = {
         value: 0
@@ -732,7 +716,7 @@ const X01State = props => {
   const saveCheckoutScore = () => {
     let score = getCurrentThrowScore();
     let playerId = state.game.currentPlayerTurn;
-    let checkoutScores = {...state.game.playerModels[state.game.currentPlayerTurn].checkoutScores};
+    let checkoutScores = { ...state.game.playerModels[state.game.currentPlayerTurn].checkoutScores };
 
     if (!checkoutScores.hasOwnProperty('game')) {
       checkoutScores['game'] = {};
@@ -741,19 +725,19 @@ const X01State = props => {
     if (!checkoutScores.hasOwnProperty('set-' + state.game.currentSet)) {
       checkoutScores['set-' + state.game.currentSet] = {};
     }
-    
+
     if (!checkoutScores['set-' + state.game.currentSet].hasOwnProperty('leg-' + state.game.currentSetLeg)) {
       checkoutScores['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg] = {};
     }
 
     checkoutScores['game'].hasOwnProperty(score) ?
-            checkoutScores['game'][score]++ : checkoutScores['game'][score] = 1;
+      checkoutScores['game'][score]++ : checkoutScores['game'][score] = 1;
 
     checkoutScores['set-' + state.game.currentSet].hasOwnProperty(score) ?
-            checkoutScores['set-' + state.game.currentSet][score]++ : checkoutScores['set-' + state.game.currentSet][score] = 1;
-    
+      checkoutScores['set-' + state.game.currentSet][score]++ : checkoutScores['set-' + state.game.currentSet][score] = 1;
+
     checkoutScores['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].hasOwnProperty(score) ?
-            checkoutScores['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg][score]++ : checkoutScores['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg][score] = 1;
+      checkoutScores['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg][score]++ : checkoutScores['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg][score] = 1;
 
     dispatch({
       type: UPDATE_CHECKOUT_SCORE,
@@ -766,11 +750,11 @@ const X01State = props => {
 
   const updateSectionHit = () => {
     let playerId = state.game.currentPlayerTurn;
-    let hit = {...state.game.playerModels[state.game.currentPlayerTurn].hit};
+    let hit = { ...state.game.playerModels[state.game.currentPlayerTurn].hit };
 
     state.game.currentThrow.forEach(dart => {
       if (dart.trim() !== '') {
-        if (Number(dart) === 0 ) {
+        if (Number(dart) === 0) {
           if (hit.hasOwnProperty('Missed')) {
             hit.Missed++;
           } else {
@@ -798,7 +782,7 @@ const X01State = props => {
   const updateScoreRanges = (busted = false) => {
     let playerId = state.game.currentPlayerTurn;
     let score = getCurrentThrowScore();
-    let scoreRanges = {...state.game.playerModels[state.game.currentPlayerTurn].scoreRanges};
+    let scoreRanges = { ...state.game.playerModels[state.game.currentPlayerTurn].scoreRanges };
 
     function incrementRange(range) {
       !scoreRanges.hasOwnProperty('game') && (scoreRanges['game'] = {});
@@ -826,25 +810,25 @@ const X01State = props => {
 
     if (busted) {
       incrementRange('Busted');
-    } else if (score === 0){
+    } else if (score === 0) {
       incrementRange('ZERO');
-    } else if(score < 20) {
+    } else if (score < 20) {
       incrementRange('1-19');
     } else if (score < 40) {
       incrementRange('20-39');
-    } else if(score < 60) {
+    } else if (score < 60) {
       incrementRange('40-59');
-    } else if(score < 80) {
+    } else if (score < 80) {
       incrementRange('60-79');
     } else if (score < 100) {
       incrementRange('80-99');
-    } else if(score < 120) {
+    } else if (score < 120) {
       incrementRange('100-119');
-    } else if(score < 140) {
+    } else if (score < 140) {
       incrementRange('120-139');
-    } else if(score < 160) {
+    } else if (score < 160) {
       incrementRange('140-159');
-    } else if(score < 180) {
+    } else if (score < 180) {
       incrementRange('160-179');
     } else {
       incrementRange('180');
@@ -862,7 +846,7 @@ const X01State = props => {
   const couldCheckout = () => {
     let playerId = state.game.currentPlayerTurn;
     let darts = [...state.game.currentThrow].filter(dart => dart.trim() !== '');
-    let checkout = {...state.game.playerModels[state.game.currentPlayerTurn].checkout};
+    let checkout = { ...state.game.playerModels[state.game.currentPlayerTurn].checkout };
     let currentScore = state.game.playerModels[state.game.currentPlayerTurn].score;
     let scoreCurrentThrow = 0;
     let newCurrentScore = currentScore - scoreCurrentThrow;
@@ -873,10 +857,10 @@ const X01State = props => {
         dartScore = 0;
       } else {
         let score = Number(dart.slice(1));
-        if(/t/i.test(dart[0])) score *= 3;
-        if(/d/i.test(dart[0])) score *= 2;
+        if (/t/i.test(dart[0])) score *= 3;
+        if (/d/i.test(dart[0])) score *= 2;
         dartScore = score;
-    
+
       }
 
       if (!checkout.hasOwnProperty('game')) {
@@ -894,7 +878,7 @@ const X01State = props => {
           hit: 0
         };
       }
-      
+
       if (!checkout['set-' + state.game.currentSet].hasOwnProperty('leg-' + state.game.currentSetLeg)) {
         checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg] = {
           total: 0,
@@ -902,67 +886,67 @@ const X01State = props => {
           hit: 0
         };
       }
-      
+
       if (state.game.legOutMode === 'Double Out' && couldCheckoutInDouble(newCurrentScore)) {
-          let possibleDoubleOut = newCurrentScore / 2;
-          let hasDouble = newCurrentScore - dartScore === 0 && /d/i.test(dart[0]);
+        let possibleDoubleOut = newCurrentScore / 2;
+        let hasDouble = newCurrentScore - dartScore === 0 && /d/i.test(dart[0]);
 
 
-          if (!checkout.hasOwnProperty('sections')) {
-            checkout['sections'] = {
-              total: 0,
-              miss: 0,
-              hit: 0
-            };
+        if (!checkout.hasOwnProperty('sections')) {
+          checkout['sections'] = {
+            total: 0,
+            miss: 0,
+            hit: 0
+          };
+        }
+
+        if (checkout['sections'].hasOwnProperty(possibleDoubleOut)) {
+          checkout['sections'][possibleDoubleOut].total++;
+          !hasDouble && checkout['sections'][possibleDoubleOut].miss++
+          hasDouble && checkout['sections'][possibleDoubleOut].hit++
+        } else {
+          checkout['sections'][possibleDoubleOut] = {
+            total: 1,
+            miss: !hasDouble ? 1 : 0,
+            hit: hasDouble ? 1 : 0,
           }
+        }
 
-          if (checkout['sections'].hasOwnProperty(possibleDoubleOut)) {
-            checkout['sections'][possibleDoubleOut].total++;
-            !hasDouble && checkout['sections'][possibleDoubleOut].miss++
-            hasDouble && checkout['sections'][possibleDoubleOut].hit++
-          } else {
-            checkout['sections'][possibleDoubleOut] = {
-              total: 1,
-              miss: !hasDouble ? 1 : 0,
-              hit: hasDouble ? 1 : 0,
-            }
-          }
+        // Game checkout quote
+        checkout['game'].total++;
+        !hasDouble && checkout['game'].miss++;
+        hasDouble && checkout['game'].hit++;
+        checkout['set-' + state.game.currentSet].total++;
 
-          // Game checkout quote
-          checkout['game'].total++;
-          !hasDouble && checkout['game'].miss++;
-          hasDouble && checkout['game'].hit++;
-          checkout['set-' + state.game.currentSet].total++;
+        // Per set checkout quote 
+        !hasDouble && checkout['set-' + state.game.currentSet].miss++;
+        hasDouble && checkout['set-' + state.game.currentSet].hit++;
+        checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].total++;
 
-          // Per set checkout quote 
-          !hasDouble && checkout['set-' + state.game.currentSet].miss++;
-          hasDouble && checkout['set-' + state.game.currentSet].hit++;
-          checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].total++;
-
-          // Per leg checkout quote
-          !hasDouble && checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].miss++;
-          hasDouble && checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].hit++;
+        // Per leg checkout quote
+        !hasDouble && checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].miss++;
+        hasDouble && checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].hit++;
       } else if (state.game.legOutMode === 'Master Out'
-                    && (couldCheckoutInDouble(newCurrentScore) || couldCheckoutInTriple(newCurrentScore))) {
-          let hasMaster = newCurrentScore - dartScore === 0 && (/d/i.test(dart[0]) || /t/i.test(dart[0]));
+        && (couldCheckoutInDouble(newCurrentScore) || couldCheckoutInTriple(newCurrentScore))) {
+        let hasMaster = newCurrentScore - dartScore === 0 && (/d/i.test(dart[0]) || /t/i.test(dart[0]));
 
-          checkout['game'].total++;
-          !hasMaster && checkout['game'].miss++;
-          hasMaster && checkout['game'].hit++;
-          checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].total++;
-          !hasMaster && checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].miss++;
-          hasMaster && checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].hit++;
+        checkout['game'].total++;
+        !hasMaster && checkout['game'].miss++;
+        hasMaster && checkout['game'].hit++;
+        checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].total++;
+        !hasMaster && checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].miss++;
+        hasMaster && checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].hit++;
       } else if (state.game.legOutMode === 'Straight Out'
-                    && (couldCheckoutInSingle(newCurrentScore)
-                    || couldCheckoutInDouble(newCurrentScore)
-                    || couldCheckoutInTriple(newCurrentScore))) {
-          let hasCheckout = newCurrentScore - dartScore === 0
-          checkout['game'].total++;
-          !hasCheckout && checkout['game'].miss++;
-          hasCheckout && checkout['game'].hit++;
-          checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].total++;
-          !hasCheckout && checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].miss++;
-          hasCheckout && checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].hit++;
+        && (couldCheckoutInSingle(newCurrentScore)
+          || couldCheckoutInDouble(newCurrentScore)
+          || couldCheckoutInTriple(newCurrentScore))) {
+        let hasCheckout = newCurrentScore - dartScore === 0
+        checkout['game'].total++;
+        !hasCheckout && checkout['game'].miss++;
+        hasCheckout && checkout['game'].hit++;
+        checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].total++;
+        !hasCheckout && checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].miss++;
+        hasCheckout && checkout['set-' + state.game.currentSet]['leg-' + state.game.currentSetLeg].hit++;
       }
 
       dispatch({
@@ -996,7 +980,7 @@ const X01State = props => {
   }
 
   const incrementLegsWon = () => {
-    let legsWon = {...state.game.playerModels[state.game.currentPlayerTurn].legsWon};
+    let legsWon = { ...state.game.playerModels[state.game.currentPlayerTurn].legsWon };
     legsWon.game++;
     legsWon['set-' + state.game.currentSet] = legsWon['set-' + state.game.currentSet] ? legsWon['set-' + state.game.currentSet] + 1 : 1;
 
@@ -1006,7 +990,7 @@ const X01State = props => {
       payload: {
         playerId,
         legsWon
-      } 
+      }
     })
   }
 
@@ -1022,7 +1006,7 @@ const X01State = props => {
       type: INCREMENT_SETS_WON,
       payload: {
         playerId
-      } 
+      }
     })
   }
 
@@ -1070,24 +1054,24 @@ const X01State = props => {
     let currentPlayerIndex = state.game.players.indexOf(state.game.currentPlayerTurn);
     let startingPlayerSetIndex = state.game.players.indexOf(state.game.startingPlayerSet);
     let startingPlayerLegIndex = state.game.players.indexOf(state.game.startingPlayerLeg);
-    
-    if(!hasWonLeg) {
-      let nextPlayer = currentPlayerIndex < state.game.players.length -1 ?
-            state.game.players[currentPlayerIndex + 1] : state.game.players[0];
+
+    if (!hasWonLeg) {
+      let nextPlayer = currentPlayerIndex < state.game.players.length - 1 ?
+        state.game.players[currentPlayerIndex + 1] : state.game.players[0];
       dispatch({
         type: CHANGE_CURRENT_PLAYER,
         payload: nextPlayer
       });
     } else if (hasWonSet) {
-      let newStartingPlayerSet = startingPlayerSetIndex < state.game.players.length -1 ?
-            state.game.players[startingPlayerSetIndex + 1] : state.game.players[0];
+      let newStartingPlayerSet = startingPlayerSetIndex < state.game.players.length - 1 ?
+        state.game.players[startingPlayerSetIndex + 1] : state.game.players[0];
       dispatch({
         type: CHANGE_STARTING_PLAYER_SET,
         payload: newStartingPlayerSet
       });
     } else if (hasWonLeg) {
-      let newStartingPlayerLeg = startingPlayerLegIndex < state.game.players.length -1 ?
-            state.game.players[startingPlayerLegIndex + 1] : state.game.players[0];
+      let newStartingPlayerLeg = startingPlayerLegIndex < state.game.players.length - 1 ?
+        state.game.players[startingPlayerLegIndex + 1] : state.game.players[0];
       dispatch({
         type: CHANGE_STARTING_PLAYER_LEG,
         payload: newStartingPlayerLeg
@@ -1108,7 +1092,7 @@ const X01State = props => {
       return
     };
     let newMatchData = X01ReturnToPreviousPlayer(state.game);
-    
+
     dispatch({
       type: RETURN_PREV_PLAYER,
       payload: newMatchData
@@ -1125,22 +1109,21 @@ const X01State = props => {
 
   return (
     <Fragment>
-        <X01Context.Provider
-          value={{
-            game: state.game,
-            players: state.players,
-            loading: state.loading,
-            resetScores,
-            onClickValidateThrow,
-            updateCurrentThrowManual,
-            updateCurrentThrowDartBoard,
-            validateDartValue,
-            getCurrentThrowScore,
-            onClickReturnToPreviousPlayer
-          }}
-        >
-          {props.children}
-        </X01Context.Provider>
+      <X01Context.Provider
+        value={{
+          game: state.game,
+          players: state.players,
+          loading: state.loading,
+          resetScores,
+          onClickValidateThrow,
+          updateCurrentThrowManual,
+          updateCurrentThrowDartBoard,
+          getCurrentThrowScore,
+          onClickReturnToPreviousPlayer
+        }}
+      >
+        {props.children}
+      </X01Context.Provider>
     </Fragment>
   );
 };

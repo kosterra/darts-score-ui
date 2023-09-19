@@ -5,6 +5,7 @@ import { Container, Row } from 'react-bootstrap';
 import AdminSidebar from '../components/navigation/admin.sidebar';
 import PlayersEditList from '../components/elements/players.edit.list';
 import X01EditList from '../components/elements/x01.edit.list';
+import CricketEditList from '../components/elements/cricket.edit.list';
 
 const AdminPage = () => {
 
@@ -17,9 +18,9 @@ const AdminPage = () => {
             case 'x01':
                 return <X01EditList emptyText="No X01 Games found. Please play any games first!"/>;
             case 'cricket':
-                return <span>Cricket Games</span>;
+                return <CricketEditList emptyText="No Cricket Games found. Please play any games first!"/>;
             default:
-                return <span>Players</span>;
+                return <PlayersEditList emptyText="No Players found. Please create new players first!"/>;
         }
     }
 
