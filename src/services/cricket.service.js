@@ -6,9 +6,9 @@ const {
 const API_URL='http://' + REACT_APP_API_HOST + ':' + REACT_APP_API_PORT + '/api/';
 
 // Public methods to export
-const createX01 = async (game) => {
+const createCricket = async (game) => {
     try {
-        const response = await fetch(API_URL + 'games/x01', {
+        const response = await fetch(API_URL + 'games/cricket', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,23 +26,23 @@ const createX01 = async (game) => {
     }
 }
 
-const loadRunningX01Games = async () => {
-    let data = await loadAllX01Games();
+const loadRunningCricketGames = async () => {
+    let data = await loadAllCricketGames();
     return data.filter(game => game.gameIsRunning).sort((a,b)=>{
         return new Date(a.updatedAt) - new Date(b.updatedAt);
     });
 }
 
-const loadFinishedX01Games = async () => {
-    let data = await loadAllX01Games();
+const loadFinishedCricketGames = async () => {
+    let data = await loadAllCricketGames();
     return data.filter(game => !game.gameIsRunning).sort((a,b)=>{
         return new Date(b.updatedAt) - new Date(a.updatedAt);
     });
 }
 
-const loadAllX01Games = async () => {
+const loadAllCricketGames = async () => {
     try {
-        const response = await fetch(API_URL + 'games/x01');
+        const response = await fetch(API_URL + 'games/cricket');
         if (!response.ok) {
             throw Error(response.statusText);
         }
@@ -53,9 +53,9 @@ const loadAllX01Games = async () => {
     }
 }
 
-const loadX01 = async (id) => {
+const loadCricket = async (id) => {
     try {
-        const response = await fetch(API_URL + 'games/x01/' + id);
+        const response = await fetch(API_URL + 'games/cricket/' + id);
         if (!response.ok) {
             throw Error(response.statusText);
         }
@@ -66,9 +66,9 @@ const loadX01 = async (id) => {
     }
 }
 
-const updateX01 = async (game) => {
+const updateCricket = async (game) => {
     try {
-        const response = await fetch(API_URL + 'games/x01/' + game.id, {
+        const response = await fetch(API_URL + 'games/cricket/' + game.id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -85,9 +85,9 @@ const updateX01 = async (game) => {
     }
 }
 
-const deleteX01 = async (x01Id) => {
+const deleteCricket = async (cricketId) => {
     try {
-        const response = await fetch(API_URL + 'games/x01/' + x01Id, {
+        const response = await fetch(API_URL + 'games/cricket/' + cricketId, {
             method: 'DELETE'
         });
         if (!response.ok) {
@@ -100,14 +100,14 @@ const deleteX01 = async (x01Id) => {
 }
 
 // Export methods
-const X01Service = {
-    createX01,
-    loadRunningX01Games,
-    loadFinishedX01Games,
-    loadAllX01Games,
-    loadX01,
-    updateX01,
-    deleteX01
+const CricketService = {
+    createCricket,
+    loadRunningCricketGames,
+    loadFinishedCricketGames,
+    loadAllCricketGames,
+    loadCricket,
+    updateCricket,
+    deleteCricket
 }
 
-export default X01Service;
+export default CricketService;

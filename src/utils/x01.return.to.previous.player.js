@@ -1,3 +1,7 @@
+import {
+  changeCurrentPlayer
+} from './game.utils';
+
 const X01ReturnToPreviousPlayer = game => {
   let prevThrowInfo = game.currentLegThrows.pop();
   let prevScore = getCurrentThrowScore(prevThrowInfo.darts);
@@ -21,15 +25,6 @@ const X01ReturnToPreviousPlayer = game => {
   }
 
   return game;
-}
-
-const changeCurrentPlayer = game => {
-  let index = game.players.indexOf(game.currentPlayerTurn);
-  if (index === 0) {
-    game.currentPlayerTurn = game.players[game.players.length - 1];
-  } else {
-    game.currentPlayerTurn = game.players[index - 1];
-  }
 }
 
 const getCurrentThrowScore = darts => {

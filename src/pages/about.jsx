@@ -65,9 +65,9 @@ const AboutPage = () => {
 								</Row>
 								<Row>
 									<Col className="mt-4 mb-3">
-										<Button href="mailto:rkoster@gmx.ch">
+										<Button href="mailto:rkoster@gmx.ch" variant="primary-green">
 											<i className="fas fa-envelope me-2"></i>
-											Contact
+											E-Mail
 										</Button>
 									</Col>
 								</Row>
