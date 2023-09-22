@@ -1,19 +1,20 @@
 import React, { useContext, useState, useEffect, Fragment } from 'react';
 
-import CricketContext from '../../../utils/cricket.context';
-import CricketService from '../../../services/cricket.service';
+import CricketContext from '../../utils/cricket.context';
+import CricketService from '../../services/cricket.service';
 
 import CricketDartBoard from './cricket.dartboard';
 
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Spinner from 'react-bootstrap/Spinner';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-
+import {
+    Container,
+    Row,
+    Col,
+    Form,
+    InputGroup,
+    Spinner,
+    Modal,
+    Button
+} from 'react-bootstrap';
 
 const CricketScoreInputBoard = () => {
     const {

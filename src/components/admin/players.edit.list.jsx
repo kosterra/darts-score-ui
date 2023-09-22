@@ -13,7 +13,7 @@ import {
 } from 'react-bootstrap';
 
 import PlayerService from '../../services/player.service';
-import PlayerForm from './player.form';
+import PlayerForm from '../elements/player.form';
 
 const EditableCard = (props) => {
     const {

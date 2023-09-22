@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
-import Button from 'react-bootstrap/Button';
+import { Button } from 'react-bootstrap';
 
 import PlayerConfig from './config_components/player.config';
-
 import CricketModels from '../../models/cricket.models';
 import CricketService from '../../services/cricket.service';
 

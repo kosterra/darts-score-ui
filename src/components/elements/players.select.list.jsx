@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 
 const SelectableCard = (props) => {
-    const { item, isSelected, selectable, onSelectCard } = props
+    const { item, isSelected, selectable, onSelectCard, cssClass } = props
 
     const handleCardSelect = () => {
         if (selectable || (isSelected && !selectable)) {
@@ -18,7 +18,7 @@ const SelectableCard = (props) => {
         <Col className="mb-3">
             <Card as='a'
                 onClick={handleCardSelect}
-                className={`h-100 m-0 p-0 rounded-0 selectable-card card-list-card bg-tertiary-grey ${isSelected ? 'selected' : ''} ${!selectable && !isSelected ? 'disabled' : ''}`}>
+                className={`h-100 m-0 p-0 rounded-0 selectable-card card-list-card bg-tertiary-grey ${isSelected ? 'selected' : ''} ${!selectable && !isSelected ? 'disabled' : ''} ${cssClass}`}>
                 <Card.Body className="m-0 p-0 border-0 rounded-0 bg-tertiary">
                     <Card.Title as="h6" className="bg-primary-green p-2 mb-0 text-white text-center span">
                         {item.nickname}
@@ -52,7 +52,10 @@ const PlayersSelectList = (props) => {
         selectedItems,
         emptyText,
         maxSelectable,
-        setSelectedItems } = props
+        setSelectedItems,
+        listCssClass,
+        cardCssClass
+    } = props
 
     const onSelectCard=(item) => {
         if (!selectedItems.includes(item)) {
@@ -65,7 +68,7 @@ const PlayersSelectList = (props) => {
     }
 
     return (
-        <Container className="selectable-card-list card-list">
+        <Container className={`selectable-card-list card-list ${listCssClass}`}>
             <div className="d-flex justify-content-center mb-4">
                 <span className="empty-text text-primary-grey">
                     {'Select ' + maxSelectable + ' ' + itemType}
@@ -79,7 +82,8 @@ const PlayersSelectList = (props) => {
                             item={item}
                             isSelected={selectedItems.some(e => e.id === item.id)}
                             selectable={selectedItems.length < Number(maxSelectable)}
-                            onSelectCard={onSelectCard}/>
+                            onSelectCard={onSelectCard}
+                            cssClass={cardCssClass}/>
                     ))}
                 </Row>
             }

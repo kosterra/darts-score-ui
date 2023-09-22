@@ -1,5 +1,5 @@
 import React from 'react';
-import ToggleButton from 'react-bootstrap/ToggleButton';
+import { ToggleButton } from 'react-bootstrap';
 import X01ConfigOptions from '../config_options/score.config.options';
 
 const X01ScoreConfig = (props) => {

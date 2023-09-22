@@ -1,5 +1,9 @@
 import React from 'react';
-import ToggleButton from 'react-bootstrap/ToggleButton';
+
+import {
+    ToggleButton
+} from 'react-bootstrap';
+
 import SetsLegsConfigOptions from '../config_options/sets.legs.config.options';
 
 const X01InOutConfig = (props) => {

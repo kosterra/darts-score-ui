@@ -1,21 +1,23 @@
 import React, { Fragment, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Container from 'react-bootstrap/esm/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import {
+    Container,
+    Row,
+    Col,
+    Button
+} from 'react-bootstrap';
+
 import { Rings } from 'react-loader-spinner';
 
 import X01Context from '../../utils/x01.context';
 import X01Models from '../../models/x01.models';
 import X01Service from '../../services/x01.service';
 
-import X01ScoreBoard from './game_components/x01.scoreboard';
-import X01StatisticsBoard from './game_components/x01.statisticsboard';
-import X01ScoreInputBoard from './game_components/x01.score.input.board';
-import X01GameStatistics from './game_components/x01.game.statistics';
-
-import Button from 'react-bootstrap/Button';
+import X01ScoreBoard from './x01.scoreboard';
+import X01StatisticsBoard from './x01.statisticsboard';
+import X01ScoreInputBoard from './x01.score.input.board';
+import X01GameStatistics from './x01.game.statistics';
 
 const X01Game = () => {
     const navigate = useNavigate();

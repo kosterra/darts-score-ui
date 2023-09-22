@@ -1,11 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
 
 import Avatar from 'react-avatar';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import {
+    Container,
+    Row,
+    Col
+} from 'react-bootstrap';
 
-import CricketContext from '../../../utils/cricket.context';
+import CricketContext from '../../utils/cricket.context';
 
 const CricketScoreBoard = (props) => {
     const { playerId, idx } = props

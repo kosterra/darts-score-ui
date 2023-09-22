@@ -1,11 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
 
 import Avatar from 'react-avatar';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import {
+    Container,
+    Col,
+    Row
+} from 'react-bootstrap';
 
-import X01Context from '../../../utils/x01.context';
+import X01Context from '../../utils/x01.context';
 
 const X01ScoreBoard = (props) => {
     const { playerId, idx } = props

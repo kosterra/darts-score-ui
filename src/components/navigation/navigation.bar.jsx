@@ -1,7 +1,10 @@
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import {
+    Container,
+    Navbar,
+    Nav,
+    NavDropdown
+} from 'react-bootstrap';
+
 import logo from '../../resources/img/logo.svg';
 
 export const NavigationBar = () => (
@@ -25,7 +28,7 @@ export const NavigationBar = () => (
                         <NavDropdown.Item href="/cricket">Cricket</NavDropdown.Item>
                     </NavDropdown>
                     
-                    <Nav.Link href="/statistics">Statistics</Nav.Link>
+                    <Nav.Link href="/stats">Statistics</Nav.Link>
                     <Nav.Link href="/about">About</Nav.Link>
                     <Nav.Link href="/admin">Admin</Nav.Link>
                 </Nav>

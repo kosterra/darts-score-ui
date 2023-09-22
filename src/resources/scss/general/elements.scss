@@ -287,6 +287,10 @@ a {
         cursor: pointer;
         border: 2px solid $secondary-grey;
 
+        &.stats {
+            border: 2px solid transparent;
+        }
+
         &.selected {
             border: 2px solid $blue;
         }
