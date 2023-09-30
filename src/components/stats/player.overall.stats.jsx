@@ -47,7 +47,7 @@ const PlayerOverallStats = (props) => {
                         <StatsCard title="Won Games"
                                    subtitle="X01"
                                    value={ (((playerStats || {}).wonGames || {}).x01 || 0) }
-                                   subvalue={ '(' + ((((playerStats || {}).wonGames || {}).x01 || 0) * 100) / (((playerStats || {}).playedGames || {}).x01 || 0) + '%)' }
+                                   subvalue={ '(' + Math.round(((((playerStats || {}).wonGames || {}).x01 || 0) * 100) / (((playerStats || {}).playedGames || {}).x01 || 0), 0) + '%)' }
                         />
                     </Col>
                     <Col className="col-2 p-1 d-flex align-content-stretch">
@@ -61,7 +61,7 @@ const PlayerOverallStats = (props) => {
                         <StatsCard title="Won Games"
                                    subtitle="Cricket"
                                    value={ (((playerStats || {}).wonGames || {}).cricket || 0) }
-                                   subvalue={ '(' + ((((playerStats || {}).wonGames || {}).cricket || 0) * 100) / (((playerStats || {}).playedGames || {}).cricket || 0) + '%)' }
+                                   subvalue={ '(' + Math.round(((((playerStats || {}).wonGames || {}).cricket || 0) * 100) / (((playerStats || {}).playedGames || {}).cricket || 0), 0) + '%)' }
                         />
                     </Col>
                     <Col className="col-2 p-1 d-flex align-content-stretch">
@@ -96,7 +96,7 @@ const PlayerOverallStats = (props) => {
                         <StatsCard title="Checkout Rate"
                                    subtitle="X01"
                                    value={ (((playerStats || {}).checkouts || {}).hit || 0) + ' / ' + (((playerStats || {}).checkouts || {}).total || 0) }
-                                   subvalue={ '(' + Math.round(((((playerStats || {}).checkouts || {}).hit || 0) * 100) / (((playerStats || {}).checkouts || {}).total || 0), 2) + '%)' }
+                                   subvalue={ '(' + Math.round(((((playerStats || {}).checkouts || {}).hit || 0) * 100) / (((playerStats || {}).checkouts || {}).total || 0), 0) + '%)' }
                         />
                     </Col>
                     <Col className="col-2 p-1 d-flex align-content-stretch">
