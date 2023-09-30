@@ -1,4 +1,4 @@
-name: darts-score-api
+name: darts-score-ui
 
 on:
   pull_request:
