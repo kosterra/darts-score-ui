@@ -30,7 +30,7 @@ const StatsPage = () => {
       <div className="d-flex">
             <ProSidebarProvider>
                 <StatsSidebar />
-                <Container fluid className="bg-transparent border-0 m-4">
+                <Container className="bg-transparent border-0 m-4">
                     <Row className="justify-content-md-center align-items-center">
                         <StatsContent />
                     </Row>

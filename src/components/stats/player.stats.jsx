@@ -1,12 +1,11 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import {
     Container,
-    Row,
-    Col,
     InputGroup,
     Form
 } from 'react-bootstrap';
 
+import PlayerOverallStats from './player.overall.stats';
 import PlayersSelectList from '../elements/players.select.list';
 import PlayerService from '../../services/player.service';
 
@@ -57,21 +56,16 @@ const PlayerStats = () => {
                         items={players}
                         selectedItems={selectedPlayers}
                         emptyText={'No Players found. Please create new Players and play any games first.'}
-                        maxSelectable={Number(2)}
+                        maxSelectable={Number(1)}
                         setSelectedItems={onSelectPlayer}
                         listCssClass="stats"
-                        cardCssClass="stats" />
+                        cardCssClass="stats border-0" />
                 </div>
-                <Container fluid>
-                    <Row className="justify-content-md-center">
-                        {selectedPlayers.length > 0 && selectedPlayers.map((playerId, idx) => (
-                            <Col key={`score-board-col-${idx}`} className={`col-3 border-dotted-top-grey border-dotted-bottom-grey ${Number(idx) < players.length - 1 ? 'border-dotted-end-grey' : ''}`}>
-                                {/* <X01ScoreBoard key={`score-board-${idx}`} playerId={playerId} idx={idx} /> */}
-                                <div>{playerId}</div>
-                            </Col>
-                        ))}
-                    </Row>
-                </Container>
+                { selectedPlayers && selectedPlayers[0] &&
+                    <Container>
+                        <PlayerOverallStats player={selectedPlayers[0]} />
+                    </Container>
+                }
             </div>
         </Fragment>
     );

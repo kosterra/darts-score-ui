@@ -38,7 +38,7 @@ const SelectableCard = (props) => {
                     </Card.Text>
                 </Card.Body>
                 { isSelected &&
-                    <i className="fas fa-check-circle"/>
+                    <i className="fas fa-check-circle selected"/>
                 }
             </Card>
         </Col>

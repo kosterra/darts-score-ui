@@ -138,8 +138,12 @@ input.form-control {
     }
 
     &:not(active){
-        color:$white;
+        color:$white !important;
      }
+}
+
+input::placeholder {
+    color: $white !important;
 }
 
 // Select
@@ -303,6 +307,10 @@ a {
             position: absolute;
             bottom: 0.2rem;
             right: 0.2rem;
+
+            &.selected {
+                color: $blue;
+            }
         }
     }
 }
