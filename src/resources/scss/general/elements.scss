@@ -143,7 +143,7 @@ input.form-control {
 }
 
 input::placeholder {
-    color: $white !important;
+    color: $primary-grey !important;
 }
 
 // Select
@@ -262,8 +262,6 @@ select {
         }
     }
 }
-
-
 
 // Links
 a {
