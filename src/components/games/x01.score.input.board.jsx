@@ -1,21 +1,22 @@
 import React, { useContext, useState, useEffect, Fragment } from 'react';
 
-import X01Context from '../../../utils/x01.context';
-import X01Service from '../../../services/x01.service';
+import X01Context from '../../utils/x01.context';
+import X01Service from '../../services/x01.service';
 
 import X01DartBoard from './x01.dartboard';
 import Checkout from './x01.checkout';
-import checkout from '../../../utils/checkout';
+import checkout from '../../utils/checkout';
 
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Spinner from 'react-bootstrap/Spinner';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-
+import {
+    Container,
+    Row,
+    Col,
+    Form,
+    InputGroup,
+    Spinner,
+    Modal,
+    Button
+} from 'react-bootstrap';
 
 const X01ScoreInputBoard = () => {
     const {

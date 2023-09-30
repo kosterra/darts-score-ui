@@ -1,12 +1,16 @@
 import React, { Fragment } from 'react';
 
 import Avatar from 'react-avatar';
-import Container from 'react-bootstrap/Container';
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import ComparisonBar from '../../elements/comparison.bar';
+
+import {
+    Container,
+    Tab,
+    Tabs,
+    Row,
+    Col
+} from 'react-bootstrap';
+
+import ComparisonBar from '../elements/comparison.bar';
 
 import dayjs from "dayjs";
 

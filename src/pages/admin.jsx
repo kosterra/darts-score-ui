@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import { ProSidebarProvider } from 'react-pro-sidebar';
 import { Container, Row } from 'react-bootstrap';
 import AdminSidebar from '../components/navigation/admin.sidebar';
-import PlayersEditList from '../components/elements/players.edit.list';
-import X01EditList from '../components/elements/x01.edit.list';
-import CricketEditList from '../components/elements/cricket.edit.list';
+import PlayersEditList from '../components/admin/players.edit.list';
+import X01EditList from '../components/admin/x01.edit.list';
+import CricketEditList from '../components/admin/cricket.edit.list';
 
 const AdminPage = () => {
 

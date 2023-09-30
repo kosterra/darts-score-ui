@@ -1,11 +1,14 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import ToggleButton from 'react-bootstrap/ToggleButton';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
+
+import {
+    ToggleButton,
+    Form,
+    InputGroup
+} from 'react-bootstrap';
+
 import PlayersSelectList from '../../elements/players.select.list';
 import PlayerConfigOptions from '../config_options/player.config.options';
 import PlayerForm from '../../elements/player.form';
-
 import PlayerService from '../../../services/player.service';
 
 const PlayerConfig = (props) => {

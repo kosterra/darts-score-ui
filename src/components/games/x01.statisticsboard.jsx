@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 
-import X01Context from '../../../utils/x01.context';
+import X01Context from '../../utils/x01.context';
 
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import {
+    Container,
+    Row,
+    Col
+} from 'react-bootstrap';
 
 const X01StatisticsBoard = props => {
     const { playerId } = props

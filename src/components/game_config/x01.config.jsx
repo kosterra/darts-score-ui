@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
-import Button from 'react-bootstrap/Button';
+import { Button } from 'react-bootstrap';
 
 import X01ScoreConfig from './config_components/x01.score.config';
 import X01InOutConfig from './config_components/x01.inout.config';
 import SetsLegsConfig from './config_components/sets.legs.config';
 import PlayerConfig from './config_components/player.config';
-
 import X01Models from '../../models/x01.models';
 import X01Service from '../../services/x01.service';
 

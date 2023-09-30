@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import DartBoard from './dartboard';
-import CricketContext from '../../../utils/cricket.context';
+import CricketContext from '../../utils/cricket.context';
 
 const CricketDartBoard = () => {
   const { updateCurrentThrowDartBoard } = useContext(CricketContext);

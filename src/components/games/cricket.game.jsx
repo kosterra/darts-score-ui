@@ -1,19 +1,21 @@
 import React, { Fragment, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Container from 'react-bootstrap/esm/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import {
+    Container,
+    Row,
+    Col,
+    Button
+} from 'react-bootstrap';
+
 import { Rings } from 'react-loader-spinner';
 
 import CricketContext from '../../utils/cricket.context';
 import CricketModels from '../../models/cricket.models';
 import CricketService from '../../services/cricket.service';
 
-import CricketScoreBoard from './game_components/cricket.scoreboard';
-import CricketScoreInputBoard from './game_components/cricket.score.input.board';
-
-import Button from 'react-bootstrap/Button';
+import CricketScoreBoard from './cricket.scoreboard';
+import CricketScoreInputBoard from './cricket.score.input.board';
 
 const CricketGame = () => {
     const navigate = useNavigate();

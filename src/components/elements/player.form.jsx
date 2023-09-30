@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import Form from 'react-bootstrap/Form';
+
+import {
+    Modal,
+    Button,
+    FloatingLabel,
+    Form
+} from 'react-bootstrap';
+
 import ImageUploader from './image.uploader';
-
 import PlayerService from '../../services/player.service';
-
 import PlayerModel from '../../models/player.model';
 
 const PlayerForm = (props) => {

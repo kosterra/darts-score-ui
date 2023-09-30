@@ -27,7 +27,9 @@ function App() {
 				<Route path="/x01/:id" element={<X01GamePage/>} />
 				<Route path="/cricket" element={<CricketConfigPage/>} />
 				<Route path="/cricket/:id" element={<CricketGamePage/>} />
-				<Route path="/stats" element={<StatsPage/>} />
+				<Route path="/stats" element={<Navigate replace to="/stats/players" />} />
+				<Route path="/stats/:id" element={<StatsPage/>} />
+				<Route path="/stats/games/:id" element={<StatsPage/>} />
 				<Route path="/about" element={<AboutPage/>} />
 				<Route path="/admin" element={<Navigate replace to="/admin/players" />} />
 				<Route path="/admin/:id" element={<AdminPage/>} />

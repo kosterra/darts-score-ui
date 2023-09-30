@@ -1,9 +1,11 @@
 import React from 'react';
 
-import checkout from '../../../utils/checkout';
+import checkout from '../../utils/checkout';
 
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
+import {
+  Container,
+  Card
+} from 'react-bootstrap';
 
 const Checkout = props => {
   const { score } = props

@@ -20,5 +20,6 @@
 @import 'general/margins';
 
 // Components
-@import 'components/game_config/config_components/player.config';
-@import 'components/games/dart_board';
+@import 'components/player.config';
+@import 'components/dartboard';
+@import 'components/charts';

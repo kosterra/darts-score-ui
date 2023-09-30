@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import DartBoard from './dartboard';
-import X01Context from '../../../utils/x01.context';
+import X01Context from '../../utils/x01.context';
 
 import { toast } from 'react-toastify';
 

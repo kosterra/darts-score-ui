@@ -1,6 +1,10 @@
 import React from 'react';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+
+import {
+    Dropdown,
+    DropdownButton
+} from 'react-bootstrap';
+
 import SetsLegsConfigOptions from '../config_options/sets.legs.config.options';
 
 const SetsLegsConfig = (props) => {
