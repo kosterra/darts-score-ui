@@ -30,7 +30,7 @@ const StatsRadarChart = (props) => {
                 </Card.Title>
                 <Card.Text as="div" className="d-flex justify-content-center p-2 text-white">
                   <ResponsiveContainer width="100%" height={300}>
-                    <RadarChart outerRadius={130} data={data}>
+                    <RadarChart outerRadius={130} data={data} >
                       <PolarGrid  gridType="circle" />
                       <PolarAngleAxis dataKey="section" />
                       <Radar dataKey="hit"
