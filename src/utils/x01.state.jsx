@@ -893,11 +893,7 @@ const X01State = props => {
 
 
         if (!checkout.hasOwnProperty('sections')) {
-          checkout['sections'] = {
-            total: 0,
-            miss: 0,
-            hit: 0
-          };
+          checkout['sections'] = {};
         }
 
         if (checkout['sections'].hasOwnProperty(possibleDoubleOut)) {
