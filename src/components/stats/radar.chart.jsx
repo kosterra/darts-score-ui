@@ -9,7 +9,8 @@ import {
     PolarGrid,
     PolarAngleAxis,
     Radar,
-    Tooltip
+    Tooltip,
+    PolarRadiusAxis
 } from 'recharts';
 
 const StatsRadarChart = (props) => {
@@ -18,7 +19,7 @@ const StatsRadarChart = (props) => {
       title,
       subtitle,
       data
-    } = props
+    } = props;
 
     return (
       <Fragment>
@@ -31,8 +32,9 @@ const StatsRadarChart = (props) => {
                 <Card.Text as="div" className="d-flex justify-content-center p-2 text-white">
                   <ResponsiveContainer width="100%" height={300}>
                     <RadarChart outerRadius={130} data={data} >
-                      <PolarGrid  gridType="circle" />
+                      <PolarGrid gridType="circle" />
                       <PolarAngleAxis dataKey="section" />
+                      <PolarRadiusAxis scale='auto' axisLine={false} tick={false} domain={['0', 'auto']} />
                       <Radar dataKey="hit"
                              stroke="#d4c783"
                              strokeWidth={2}

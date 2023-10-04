@@ -10,6 +10,7 @@ import StatsAreaChart from './area.chart';
 import StatsService from '../../services/stats.service';
 import StatsRadarChart from './radar.chart';
 import StatsCard from './stats.card';
+import StatsScatterChart from './scatter.chart';
 
 const PlayerOverallStats = (props) => {
     const {
@@ -135,20 +136,22 @@ const PlayerOverallStats = (props) => {
                         />
                     </Col>
                 </Row>
-{/*                 <Row className="mt-3">
+                <Row className="mt-3">
                     <Col className="col-6 p-1">
-                        <StatsAreaChart title="Points per Dart"
-                                        subtitle="X01"
-                                        data={ ((playerStats || {}).avg || {}).perGameX01 || [] }
+                        <StatsScatterChart title="Checkouts"
+                                           subtitle="X01"
+                                           data={ ((playerStats || {}).checkouts || {}).rates || [] }
                         />
                     </Col>
+                    {/*
                     <Col className="col-6 p-1">
                         <StatsAreaChart title="Points 3 Darts"
                                         subtitle="X01"
                                         data={ ((playerStats || {}).avg || {}).perGameX01 || [] }
                         />
                     </Col>
-                </Row> */}
+                    */}
+                </Row>
             </Container>
         </Fragment>
     );
