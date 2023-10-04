@@ -11,6 +11,7 @@ import StatsService from '../../services/stats.service';
 import StatsRadarChart from './radar.chart';
 import StatsCard from './stats.card';
 import StatsScatterChart from './scatter.chart';
+import StatsBarChart from './bar.chart';
 
 const PlayerOverallStats = (props) => {
     const {
@@ -110,7 +111,7 @@ const PlayerOverallStats = (props) => {
                     <Col className="col-2 p-1 d-flex align-content-stretch">
                         <StatsCard title="Throwed Darts"
                                    subtitle="X01"
-                                   value={ (((playerStats || {}).throwedDarts || {}).x01 || 0) }
+                                   value={ (((playerStats || {}).throwedDarts || {}).x01 || 0).toLocaleString('de-CH') }
                                    subvalue=""
                         />
                     </Col>
@@ -143,14 +144,12 @@ const PlayerOverallStats = (props) => {
                                            data={ ((playerStats || {}).checkouts || {}).rates || [] }
                         />
                     </Col>
-                    {/*
                     <Col className="col-6 p-1">
-                        <StatsAreaChart title="Points 3 Darts"
+                        <StatsBarChart title="Score Ranges"
                                         subtitle="X01"
-                                        data={ ((playerStats || {}).avg || {}).perGameX01 || [] }
+                                        data={ (playerStats || {}).scoreRanges || [] }
                         />
                     </Col>
-                    */}
                 </Row>
             </Container>
         </Fragment>
