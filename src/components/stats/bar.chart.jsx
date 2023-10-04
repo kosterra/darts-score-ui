@@ -4,17 +4,15 @@ import {
 } from 'react-bootstrap';
 
 import {
-  LabelList,
+  Bar,
+  BarChart,
   ResponsiveContainer,
-  Scatter,
-  ScatterChart,
   Tooltip,
   XAxis,
-  YAxis,
-  ZAxis
+  YAxis
 } from 'recharts';
 
-const StatsScatterChart = (props) => {
+const StatsBarChart = (props) => {
 
     const {
       title,
@@ -32,27 +30,12 @@ const StatsScatterChart = (props) => {
                 </Card.Title>
                 <Card.Text as="div" className="d-flex justify-content-center p-2 text-white">
                   <ResponsiveContainer width="100%" height={400}>
-                    <ScatterChart
-                      margin={{
-                        top: 20,
-                        right: 20,
-                        bottom: 20,
-                        left: 20,
-                      }}
-                    >
-                      
-                      <XAxis type="number" dataKey="hit" label={{ value: "Hit", position: "bottom", dy: 0}} />
-                      <YAxis type="number" dataKey="rate" label={{ value: "Rate (%)", position: "center", angle: -90, dx: -20}} />
-                      <ZAxis type="number" dataKey="miss" range={[1500]} />
-                      <Scatter data={data}
-                               fill="#528b6e"
-                               opacity={0.5}
-                               line={false}        
-                      >
-                        <LabelList dataKey="section" position="top" />
-                      </Scatter>
+                    <BarChart data={data}>
+                      <XAxis dataKey="range" />
+                      <YAxis />
                       <Tooltip content={<CustomTooltip />} cursor={{ strokeDasharray: '3 3', fill: "transparent" }} />
-                    </ScatterChart>
+                      <Bar dataKey="count" fill="#528b6e" opacity={0.5} />
+                    </BarChart>
                   </ResponsiveContainer>
                 </Card.Text>
             </Card.Body>
@@ -65,10 +48,9 @@ const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
       <div className="d-flex flex-column align-items-center bg-primary-grey">
-        <span className="bg-primary-green text-center text-white fs-8 p-2 w-100">{`${payload[0].payload.section}`}</span>
+        <span className="bg-primary-green text-center text-white fs-8 p-2 w-100">{`${payload[0].payload.range}`}</span>
         <div className="d-flex flex-column align-items-center p-2">
-          <span className="text-white fs-8">{`${payload[0].payload.hit} / ` }{payload[0].payload.hit + payload[0].payload.miss}</span>
-          <span className="text-white fs-8">{`(${payload[0].payload.rate}%)`}</span>
+          <span className="text-white fs-8">{`${payload[0].payload.count}`}</span>
         </div>
       </div>
     );
@@ -77,4 +59,4 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 
-export default StatsScatterChart;
+export default StatsBarChart;

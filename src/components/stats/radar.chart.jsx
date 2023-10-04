@@ -39,7 +39,7 @@ const StatsRadarChart = (props) => {
                              stroke="#d4c783"
                              strokeWidth={2}
                              fill="#528b6e"
-                             fillOpacity={0.6}
+                             fillOpacity={0.5}
                              dot={{ stroke: '#d4c783', strokeWidth: 2 }}
                       />
                       <Tooltip content={<CustomTooltip />} cursor={{ fill: "transparent" }} />
