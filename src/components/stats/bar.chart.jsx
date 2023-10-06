@@ -30,9 +30,16 @@ const StatsBarChart = (props) => {
                 </Card.Title>
                 <Card.Text as="div" className="d-flex justify-content-center p-2 text-white">
                   <ResponsiveContainer width="100%" height={400}>
-                    <BarChart data={data}>
-                      <XAxis dataKey="range" />
-                      <YAxis />
+                    <BarChart margin={{
+                        top: 20,
+                        right: 20,
+                        bottom: 20,
+                        left: 20,
+                      }}
+                      data={data}
+                    >
+                      <XAxis type="category" dataKey="range" interval={0} tick={{fontSize: 1}} label={{ value: "Range", position: "bottom", dy: 0}}/>
+                      <YAxis label={{ value: "Count", position: "center", angle: -90, dx: -20}} />
                       <Tooltip content={<CustomTooltip />} cursor={{ strokeDasharray: '3 3', fill: "transparent" }} />
                       <Bar dataKey="count" fill="#528b6e" opacity={0.5} />
                     </BarChart>
