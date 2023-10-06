@@ -41,7 +41,10 @@ const StatsBarChart = (props) => {
                       <XAxis type="category" dataKey="range" interval={0} tick={{fontSize: 1}} label={{ value: "Range", position: "bottom", dy: 0}}/>
                       <YAxis label={{ value: "Count", position: "center", angle: -90, dx: -20}} />
                       <Tooltip content={<CustomTooltip />} cursor={{ strokeDasharray: '3 3', fill: "transparent" }} />
-                      <Bar dataKey="count" fill="#528b6e" opacity={0.5} />
+                      <Bar dataKey="count"
+                           fill="#528b6e"
+                           opacity={0.5}
+                      />
                     </BarChart>
                   </ResponsiveContainer>
                 </Card.Text>

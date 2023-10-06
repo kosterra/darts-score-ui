@@ -4,7 +4,6 @@ import {
 } from 'react-bootstrap';
 
 import {
-  LabelList,
   ResponsiveContainer,
   Scatter,
   ScatterChart,
@@ -46,10 +45,12 @@ const StatsScatterChart = (props) => {
                       <ZAxis type="number" dataKey="rate" range={[100, 1000]} />
                       <Scatter data={data}
                                fill="#528b6e"
+                               stroke="#d4c783"
+                               strokeWidth={2}
                                opacity={0.5}
                                line={false}        
                       >
-                        <LabelList dataKey="section" position="top" />
+                        {/* <LabelList dataKey="section" position="right" offset={5} /> */}
                       </Scatter>
                       <Tooltip content={<CustomTooltip />} cursor={{ strokeDasharray: '3 3', fill: "transparent" }} />
                     </ScatterChart>
