@@ -41,9 +41,9 @@ const StatsScatterChart = (props) => {
                       }}
                     >
                       
-                      <XAxis type="number" dataKey="hit" label={{ value: "Hit", position: "bottom", dy: 0}} />
-                      <YAxis type="number" dataKey="rate" label={{ value: "Rate (%)", position: "center", angle: -90, dx: -20}} />
-                      <ZAxis type="number" dataKey="miss" range={[1500]} />
+                      <XAxis type="number" dataKey="total" label={{ value: "Total Attempts", position: "bottom", dy: 0}} />
+                      <YAxis type="number" dataKey="hit" label={{ value: "Hit", position: "center", angle: -90, dx: -20}} />
+                      <ZAxis type="number" dataKey="rate" range={[100, 1000]} />
                       <Scatter data={data}
                                fill="#528b6e"
                                opacity={0.5}
