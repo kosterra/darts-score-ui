@@ -34,8 +34,8 @@ const EditableCard = (props) => {
     return (
         <Col className="mb-3">
             <Card as='div'
-                className={`m-0 p-0 rounded-0 editable-card card-list-card bg-tertiary-grey`}>
-                <Card.Body className="m-0 p-0 border-0 rounded-0 bg-tertiary">
+                className={`m-0 p-0 rounded-0 editable-card card-list-card bg-secondary-grey`}>
+                <Card.Body className="m-0 p-0 border-0 rounded-0">
                     <Card.Title as="h6" className="bg-primary-green p-2 mb-0 text-white text-center span">
                         {item.nickname}
                     </Card.Title>

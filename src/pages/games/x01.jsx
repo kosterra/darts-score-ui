@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+  Container,
+  Row
+} from 'react-bootstrap';
 
 import X01State from '../../utils/x01.state';
 import X01Game from '../../components/games/x01.game';
@@ -6,9 +10,13 @@ import X01Game from '../../components/games/x01.game';
 const X01GamePage = () => {
 
   return (
-    <X01State>
-      <X01Game/>
-    </X01State>
+      <Container fluid className="mx-4 bg-transparent border-0">
+          <Row className="justify-content-md-center align-items-center">
+            <X01State>
+                <X01Game/>
+            </X01State>
+          </Row>
+      </Container>
   )
 }
 

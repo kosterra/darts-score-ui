@@ -22,8 +22,8 @@ const StatsBarChart = (props) => {
 
     return (
       <Fragment>
-        <Card className={`d-flex justify-content-center h-100 m-0 p-0 rounded-0 bg-tertiary-grey border-0`}>
-            <Card.Body className="m-0 p-0 border-0 rounded-0 bg-tertiary">
+        <Card className={`d-flex justify-content-center h-100 m-0 p-0 rounded-0 bg-secondary-grey border-0`}>
+            <Card.Body className="m-0 p-0 border-0 rounded-0">
                 <Card.Title as="h6" className="bg-primary-green p-2 mb-0 text-white text-center span">
                   <div className="fs-6 fw-600">{ title }</div>
                   <div className="fs-8 mt-1">{ subtitle }</div>

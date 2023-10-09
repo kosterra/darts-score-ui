@@ -34,40 +34,42 @@ const RunningX01Games = () => {
     return (
         <Fragment>
             {x01Games.length > 0 &&
-                <Card className="rounded-0 border-0 bg-secondary-grey" style={{ width: '18rem' }}>
-                    <Card.Body className="m-0 p-0 border-0 rounded-0 bg-tertiary-grey">
-                        <Card.Title className="bg-primary-green p-2 mb-0 text-white text-center span">
-                            <div className="fs-6 fw-600">X01</div>
-                            <div className="fs-8 mt-1">Currently Running</div>
-                        </Card.Title>
-                        <Card.Text as="div" className="p-2 text-white">
-                            <ListGroup variant="flush">
-                                {x01Games.length > 0 && x01Games.map((x01Game, idx) => (
-                                    <ListGroup.Item key={idx} className="bg-transparent mb-1 border-solid-grey">
-                                        <div>
-                                            { players.length > 0 && x01Game.players.map((playerId, idx) => (
-                                                <Row key={idx}>
-                                                    <Col className="text-white fs-8">{ ((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A' }</Col>
-                                                    <Col className="text-white text-center fs-8">{ x01Game.playerModels[playerId].setsWon }</Col>
-                                                    <Col className="text-white text-center fs-8">{ x01Game.playerModels[playerId].currentSetLegsWon }</Col>
-                                                </Row>
-                                            ))}
-                                        </div>
-                                        <div className="d-flex justify-content-between align-items-end mt-2">
-                                            <span className="fs-9 text-grey">{ dayjs(x01Game.createdAt).format("DD.MM.YYYY HH:mm") }</span>
-                                            <Button variant="primary-green" href={'/x01/' + x01Game.id} className="py-1">
-                                                <i className="fas fa-external-link-alt"></i>
-                                            </Button>
-                                        </div>
-                                    </ListGroup.Item>
-                                ))}
-                                {x01Games.length === 0 &&
-                                    <span className="text-center fs-7">No running games yet.</span>
-                                }
-                            </ListGroup>
-                        </Card.Text>
-                    </Card.Body>               
-                </Card>
+                <Col className="col-3">
+                    <Card className="rounded-0 border-0 bg-secondary-grey">
+                        <Card.Body className="m-0 p-0 border-0 rounded-0">
+                            <Card.Title className="bg-primary-green p-2 mb-0 text-white text-center span">
+                                <div className="fs-6 fw-600">X01</div>
+                                <div className="fs-8 mt-1">Currently Running</div>
+                            </Card.Title>
+                            <Card.Text as="div" className="p-2 text-white">
+                                <ListGroup variant="flush">
+                                    {x01Games.length > 0 && x01Games.map((x01Game, idx) => (
+                                        <ListGroup.Item key={idx} className="bg-transparent mb-1 border-solid-grey">
+                                            <div>
+                                                { players.length > 0 && x01Game.players.map((playerId, idx) => (
+                                                    <Row key={idx}>
+                                                        <Col className="text-white fs-8">{ ((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A' }</Col>
+                                                        <Col className="text-white text-center fs-8">{ x01Game.playerModels[playerId].setsWon }</Col>
+                                                        <Col className="text-white text-center fs-8">{ x01Game.playerModels[playerId].currentSetLegsWon }</Col>
+                                                    </Row>
+                                                ))}
+                                            </div>
+                                            <div className="d-flex justify-content-between align-items-end mt-2">
+                                                <span className="fs-9 text-grey">{ dayjs(x01Game.createdAt).format("DD.MM.YYYY HH:mm") }</span>
+                                                <Button variant="primary-green" href={'/x01/' + x01Game.id} className="py-1">
+                                                    <i className="fas fa-external-link-alt"></i>
+                                                </Button>
+                                            </div>
+                                        </ListGroup.Item>
+                                    ))}
+                                    {x01Games.length === 0 &&
+                                        <span className="text-center fs-7">No running games yet.</span>
+                                    }
+                                </ListGroup>
+                            </Card.Text>
+                        </Card.Body>               
+                    </Card>
+                </Col>
             }
         </Fragment>
     )
