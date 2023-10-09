@@ -18,8 +18,8 @@ const SelectableCard = (props) => {
         <Col className="mb-3">
             <Card as='a'
                 onClick={handleCardSelect}
-                className={`h-100 m-0 p-0 rounded-0 selectable-card card-list-card bg-tertiary-grey ${isSelected ? 'selected' : ''} ${!selectable && !isSelected ? 'disabled' : ''} ${cssClass}`}>
-                <Card.Body className="m-0 p-0 border-0 rounded-0 bg-tertiary">
+                className={`h-100 m-0 p-0 rounded-0 selectable-card card-list-card bg-secondary-grey ${isSelected ? 'selected' : ''} ${!selectable && !isSelected ? 'disabled' : ''} ${cssClass}`}>
+                <Card.Body className="m-0 p-0 border-0 rounded-0">
                     <Card.Title as="h6" className="bg-primary-green p-2 mb-0 text-white text-center span">
                         {item.nickname}
                     </Card.Title>

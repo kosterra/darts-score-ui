@@ -1,7 +1,11 @@
 // Bootstrap Form
 .form-floating {
     label {
-        color: $primary-grey;
+        color: $primary-grey !important;
+
+        &::after {
+            background-color: transparent !important;
+        }
     }
 }
 
@@ -384,7 +388,7 @@ a {
             .ps-menuitem-root {
                 .ps-menu-button {
                     &:hover {
-                        background-color: $tertiary-grey-transparent;
+                        background-color: $primary-grey-transparent;
                     }
                 }
             }
@@ -392,6 +396,6 @@ a {
     }
 
     .ps-submenu-content {
-        background-color: $primary-grey;
+        background-color: $tertiary-grey;
     }
 }

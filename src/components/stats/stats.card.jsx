@@ -14,7 +14,7 @@ const StatsCard = (props) => {
 
     return (
         <Card className="rounded-0 border-0 bg-secondary-grey w-100">
-            <Card.Body className="m-0 p-0 border-0 rounded-0 bg-tertiary-grey">
+            <Card.Body className="m-0 p-0 border-0 rounded-0">
                 <Card.Title className="bg-primary-green p-2 mb-0 text-white text-center span">
                     <div className="fs-6 fw-600">{ title }</div>
                     <div className="fs-8 mt-1">{ subtitle }</div>

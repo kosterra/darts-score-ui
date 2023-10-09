@@ -33,7 +33,7 @@ const X01StatisticsBoard = props => {
                             <span className="col-2 text-center">{Math.round(((game.playerModels[playerId].averages || {}).game || {}).overall || 0)}</span>
                         </div>
                         <div className="d-flex justify-content-between text-grey fs-9">
-                            <span className="col-4">Begin / Mid</span>
+                            <span className="col-4">Beg / Mid</span>
                             <span className="col-2 text-center">{Math.round((((game.playerModels[playerId].averages || {})['set-' + game.currentSet] || {})['leg-' + game.currentSetLeg]|| {}).begMidLeg || 0)}</span>
                             <span className="col-2 text-center">{Math.round(((game.playerModels[playerId].averages || {})['set-' + game.currentSet] || {}).begMidSet || 0)}</span>
                             <span className="col-2 text-center">{Math.round(((game.playerModels[playerId].averages || {}).game || {}).begMidGame || 0)}</span>

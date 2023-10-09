@@ -85,7 +85,7 @@ const X01Game = () => {
 
     return (
       <Fragment>
-        <div className="mx-4">
+        <div>
             <div className="d-flex justify-content-center mb-4">
                 <div className="d-flex flex-column align-items-center bbr-12 bg-tertiary-grey p-2">
                     <div className="fs-7">{game.setMode} <strong>{game.numberOfSets}</strong> Set{game.numberOfSets > 1 && 's'} - {game.legMode} <strong>{game.numberOfLegs}</strong> Leg{game.numberOfLegs > 1 && 's'}</div>

@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
-import { Button } from 'react-bootstrap';
+import {
+    Button,
+    Card,
+    Col
+} from 'react-bootstrap';
 
 import PlayerConfig from './config_components/player.config';
 import CricketModels from '../../models/cricket.models';
@@ -50,17 +54,24 @@ const CricketConfig = () => {
     }
 
     return (
-        <div>
-            <PlayerConfig
-                numberOfPlayers={game.numberOfPlayers}
-                selectedPlayers={game.players}
-                onNumberOfPlayersChange={handleConfigChange}
-                onSelectedPlayersChange={handleConfigChange}
-            />
-            <div className="col-xs-1 p-3" align="center">
-                <Button variant="primary-green" className="text-white m-0 p-2" onClick={handleSubmit}>Start Game</Button>
-            </div>
-        </div>
+        <Col className="d-flex justify-content-center">
+            <Card bg="secondary-grey" className="m-0 p-0 border-0 rounded-0" style={{ width: "50rem" }}>
+                <Card.Body className="m-0 p-0 border-0 rounded-0">
+                    <Card.Title className="bg-primary-green p-3 text-white text-center">Cricket</Card.Title>
+                    <Card.Text as="div" className="p-2 text-white">
+                        <PlayerConfig
+                            numberOfPlayers={game.numberOfPlayers}
+                            selectedPlayers={game.players}
+                            onNumberOfPlayersChange={handleConfigChange}
+                            onSelectedPlayersChange={handleConfigChange}
+                        />
+                        <div className="col-xs-1 p-3" align="center">
+                            <Button variant="primary-green" className="text-white m-0 p-2" onClick={handleSubmit}>Start Game</Button>
+                        </div>
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+        </Col>
     );
 }
 

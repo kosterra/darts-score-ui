@@ -1,9 +1,6 @@
 import React from 'react';
 import { useParams } from "react-router-dom";
-import { ProSidebarProvider } from 'react-pro-sidebar';
 import { Container, Row } from 'react-bootstrap';
-
-import StatsSidebar from '../components/navigation/stats.sidebar';
 
 import PlayerStats from '../components/stats/player.stats';
 import X01Stats from '../components/stats/x01.stats';
@@ -27,16 +24,11 @@ const StatsPage = () => {
   }
 
   return (
-      <div className="d-flex">
-            <ProSidebarProvider>
-                <StatsSidebar />
-                <Container className="bg-transparent border-0 m-4">
-                    <Row className="justify-content-md-center align-items-center">
-                        <StatsContent />
-                    </Row>
-                </Container>
-            </ProSidebarProvider>
-        </div>
+    <Container className="m-4 bg-transparent border-0">
+        <Row className="justify-content-md-center align-items-center">
+            <StatsContent />
+        </Row>
+    </Container>
   )
 }
 

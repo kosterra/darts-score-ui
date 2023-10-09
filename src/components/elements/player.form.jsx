@@ -119,7 +119,6 @@ const PlayerForm = (props) => {
                                 name="firstname"
                                 required
                                 type="text"
-                                placeholder="Firstname"
                                 value={player.firstname}
                                 onChange={handleChange}
                                 minLength={3}
@@ -131,7 +130,6 @@ const PlayerForm = (props) => {
                                 name="lastname"
                                 required
                                 type="text"
-                                placeholder="Lastname"
                                 value={player.lastname}
                                 onChange={handleChange}
                                 minLength={3}
@@ -143,7 +141,6 @@ const PlayerForm = (props) => {
                                 name="nickname"
                                 required
                                 type="text"
-                                placeholder="Nickname"
                                 value={player.nickname}
                                 onChange={handleChange}
                                 minLength={3}
