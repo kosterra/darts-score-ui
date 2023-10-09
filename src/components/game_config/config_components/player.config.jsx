@@ -1,9 +1,12 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
     ToggleButton,
     Form,
-    InputGroup
+    InputGroup,
+    Row,
+    Col,
+    Container
 } from 'react-bootstrap';
 
 import PlayersSelectList from '../../elements/players.select.list';
@@ -47,50 +50,53 @@ const PlayerConfig = (props) => {
     }
 
 	return (
-        <Fragment>
-            <div className="p-2 container">
-                <div className="justify-content-md-center align-items-center">
-                    <p className="h6 text-center">Players</p>
-                    <div className="btn-toolbar justify-content-md-center align-items-center p-3 mb-3 text-white">
-                        {numberOfPlayerOptions.values.map((option, idx) => (
-                            <ToggleButton
-                                key={idx}
-                                id={`number-of-players-option-${idx}`}
-                                type="radio"
-                                name="number-of-players-options"
-                                value={option}
-                                className={`btn btn-primary-grey btn-sm text-white ${Number(numberOfPlayers) === option ? 'btn-selected' : ''}`}
-                                checked={Number(numberOfPlayers) === option}
-                                onChange={(e) => onNumberOfPlayersChange('numberOfPlayers', e.currentTarget.value)}>
-                                {Number(option) === 1 ? 'Solo' : option}
-                            </ToggleButton>
-                        ))}
-                    </div>
-                    <div className="d-flex justify-content-md-center align-items-center p-2 text-white">
-                        <InputGroup className="mb-3">
-                            <InputGroup.Text id="search-addon">
-                                <i className="fas fa-search"></i>
-                            </InputGroup.Text>
-                            <Form.Control
-                                placeholder="Search"
-                                value={searchTerm}
-                                aria-label="Search"
-                                aria-describedby="search-addon"
-                                onChange={onSearchTermChange}
-                            />
-                        </InputGroup>
-                        <PlayerForm onPlayerAdd={onPlayerAdd} />
-                    </div>
-                    <PlayersSelectList
-                        itemType={'Players'}
-                        items={players}
-                        selectedItems={selectedPlayers}
-                        emptyText={'No Players found. Please create new Players first.'}
-                        maxSelectable={Number(numberOfPlayers)}
-                        setSelectedItems={onSelectPlayer} />
-                </div>
-            </div>
-        </Fragment>
+        <Container className="justify-content-md-center align-items-center">
+            <p className="text-center text-primary-grey fs-7 fw-600">Players</p>
+            <Row className="d-flex justify-content-center align-items-center border-solid-grey rounded m-0 py-3 mb-3 text-white">
+                {numberOfPlayerOptions.values.map((option, idx) => (
+                    <Col key={idx} xs={6} sm={6} md={3} lg={3} className="d-flex justify-content-center align-items-center py-1">
+                        <ToggleButton
+                            key={idx}
+                            id={`number-of-players-option-${idx}`}
+                            type="radio"
+                            name="number-of-players-options"
+                            value={option}
+                            className={`w-100 btn btn-sm text-white btr-16 bbr-16 fs-8 fw-500 px-3 ${Number(numberOfPlayers) === option ? 'btn-primary-green' : 'btn-tertiary-grey'}`}
+                            checked={Number(numberOfPlayers) === option}
+                            onChange={(e) => onNumberOfPlayersChange('numberOfPlayers', e.currentTarget.value)}>
+                            {Number(option) === 1 ? 'Solo' : option}
+                        </ToggleButton>
+                    </Col>
+                ))}
+            </Row>
+            <Row className="d-flex justify-content-between align-items-center p-2 mb-3">
+                <Col className="col-10 p-0" >
+                    <InputGroup className="p-0">
+                        <InputGroup.Text id="search-addon">
+                            <i className="fas fa-search"></i>
+                        </InputGroup.Text>
+                        <Form.Control
+                            placeholder="Search"
+                            value={searchTerm}
+                            aria-label="Search"
+                            aria-describedby="search-addon"
+                            onChange={onSearchTermChange}
+                        />
+                    </InputGroup>
+                </Col>
+                <Col className="col-2 p-0" >
+                    <PlayerForm onPlayerAdd={onPlayerAdd} />
+                </Col>
+            </Row>
+            <PlayersSelectList
+                itemType={'Players'}
+                items={players}
+                selectedItems={selectedPlayers}
+                emptyText={'No Players found. Please create new Players first.'}
+                maxSelectable={Number(numberOfPlayers)}
+                setSelectedItems={onSelectPlayer}
+                cardCssClass="bg-tertiary-grey" />
+        </Container>
 	);
 };
 

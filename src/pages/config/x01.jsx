@@ -9,8 +9,8 @@ import X01Config from '../../components/game_config/x01.config'
 const X01ConfigPage = () => {
 
     return (
-        <Container className="m-4 bg-transparent border-0">
-            <Row className="justify-content-md-center align-items-center">
+        <Container fluid className="p-4 bg-transparent border-0">
+            <Row className="justify-content-center align-items-center">
                 <X01Config />
             </Row>
         </Container>

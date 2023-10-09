@@ -93,7 +93,7 @@ const PlayerForm = (props) => {
     }
 
     return (
-        <div className={`${edit ? '' : 'm-2 mb-4'} justify-content-md-center align-items-center`}>
+        <div className={`justify-content-md-center align-items-center`}>
             <Modal show={ showModal }
                 onHide={ handleCloseModal }
                 fullscreen={ false }
