@@ -9,7 +9,7 @@ import AboutCard from '../components/about/about.card';
 
 const AboutPage = () => {
 	return (
-		<Container className="m-4 bg-transparent border-0">
+		<Container fluid className="p-4 bg-transparent border-0">
 			<Row>
 				<AboutCard />
 			</Row>

@@ -24,7 +24,7 @@ const StatsPage = () => {
   }
 
   return (
-    <Container className="m-4 bg-transparent border-0">
+    <Container fluid className="p-4 bg-transparent border-0">
         <Row className="justify-content-md-center align-items-center">
             <StatsContent />
         </Row>

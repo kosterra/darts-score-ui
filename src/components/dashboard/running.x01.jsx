@@ -34,7 +34,7 @@ const RunningX01Games = () => {
     return (
         <Fragment>
             {x01Games.length > 0 &&
-                <Col className="col-3">
+                <Col className="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
                     <Card className="rounded-0 border-0 bg-secondary-grey">
                         <Card.Body className="m-0 p-0 border-0 rounded-0">
                             <Card.Title className="bg-primary-green p-2 mb-0 text-white text-center span">

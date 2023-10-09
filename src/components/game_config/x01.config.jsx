@@ -71,8 +71,8 @@ const X01Config = () => {
     }
 
     return (
-        <Col className="d-flex justify-content-center">
-            <Card bg="secondary-grey" className="m-0 p-0 border-0 rounded-0" style={{ width: "50rem" }}>
+        <Col className="d-flex justify-content-center col-12 mb-3">
+            <Card bg="secondary-grey" className="m-0 p-0 border-0 rounded-0">
                 <Card.Body className="m-0 p-0 border-0 rounded-0">
                     <Card.Title className="bg-primary-green p-3 text-white text-center">
                         X01
@@ -100,8 +100,8 @@ const X01Config = () => {
                             onNumberOfPlayersChange={handleConfigChange}
                             onSelectedPlayersChange={handleConfigChange}
                         />
-                        <div className="col-xs-1 p-3" align="center">
-                            <Button variant="primary-green" className="text-white m-0 p-2" onClick={handleSubmit}>Start Game</Button>
+                        <div className="col-xs-1 p-2" align="center">
+                            <Button variant="primary-green" className="m-0 px-2 py-2" onClick={handleSubmit}>Start Game</Button>
                         </div>
                     </Card.Text>
                 </Card.Body>

@@ -6,7 +6,13 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 
 const SelectableCard = (props) => {
-    const { item, isSelected, selectable, onSelectCard, cssClass } = props
+    const {
+        item,
+        isSelected,
+        selectable,
+        onSelectCard,
+        cssClass
+    } = props
 
     const handleCardSelect = () => {
         if (selectable || (isSelected && !selectable)) {
@@ -18,7 +24,7 @@ const SelectableCard = (props) => {
         <Col className="mb-3">
             <Card as='a'
                 onClick={handleCardSelect}
-                className={`h-100 m-0 p-0 rounded-0 selectable-card card-list-card bg-secondary-grey ${isSelected ? 'selected' : ''} ${!selectable && !isSelected ? 'disabled' : ''} ${cssClass}`}>
+                className={`h-100 m-0 p-0 rounded-0 selectable-card card-list-card bg-secondary-grey ${isSelected ? 'selected' : ''} ${!selectable && !isSelected ? 'disabled' : ''} ${cssClass ? cssClass : ''}`}>
                 <Card.Body className="m-0 p-0 border-0 rounded-0">
                     <Card.Title as="h6" className="bg-primary-green p-2 mb-0 text-white text-center span">
                         {item.nickname}
@@ -33,7 +39,7 @@ const SelectableCard = (props) => {
                                 textSizeRatio={0.2}
                                 className="align-self-center"
                             />
-                            <span className="mt-1 text-primary-grey">{item.firstname + ' ' + item.lastname}</span>
+                            <span className="mt-1 text-center text-primary-grey">{item.firstname + ' ' + item.lastname}</span>
                         </div>
                     </Card.Text>
                 </Card.Body>
@@ -68,14 +74,14 @@ const PlayersSelectList = (props) => {
     }
 
     return (
-        <Container className={`selectable-card-list card-list ${listCssClass}`}>
+        <Container className={`p-0 selectable-card-list card-list ${listCssClass ? listCssClass : ''}`}>
             <div className="d-flex justify-content-center mb-4">
                 <span className="empty-text text-primary-grey">
                     {'Select ' + maxSelectable + ' ' + itemType}
                 </span>
             </div>
             {items.length > 0 &&
-                <Row xs={1} md={4}>
+                <Row xs={1} sm={2} md={3} lg={4} xl={4}>
                     {items.map((item, idx) => (
                         <SelectableCard
                             key={idx}
