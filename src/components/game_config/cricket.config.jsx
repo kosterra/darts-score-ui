@@ -54,10 +54,12 @@ const CricketConfig = () => {
     }
 
     return (
-        <Col className="d-flex justify-content-center">
-            <Card bg="secondary-grey" className="m-0 p-0 border-0 rounded-0" style={{ width: "50rem" }}>
+        <Col className="d-flex justify-content-center col-12 mb-3">
+            <Card bg="secondary-grey" className="m-0 p-0 border-0 rounded-0">
                 <Card.Body className="m-0 p-0 border-0 rounded-0">
-                    <Card.Title className="bg-primary-green p-3 text-white text-center">Cricket</Card.Title>
+                    <Card.Title className="bg-primary-green p-3 text-white text-center">
+                        Cricket
+                    </Card.Title>
                     <Card.Text as="div" className="p-2 text-white">
                         <PlayerConfig
                             numberOfPlayers={game.numberOfPlayers}

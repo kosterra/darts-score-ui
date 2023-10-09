@@ -1,5 +1,12 @@
 import React from 'react';
-import { ToggleButton } from 'react-bootstrap';
+
+import {
+    Col,
+    Container,
+    Row,
+    ToggleButton
+} from 'react-bootstrap';
+
 import X01ConfigOptions from '../config_options/score.config.options';
 
 const X01ScoreConfig = (props) => {
@@ -11,27 +18,27 @@ const X01ScoreConfig = (props) => {
     const { gameScoreOptions } = X01ConfigOptions;
 
 	return (
-        <div className="p-2 container">
-            <div className="justify-content-md-center align-items-center">
-                <p className="h6 text-center">Starting Score</p>
-                <div className="btn-toolbar justify-content-md-center align-items-center p-3 text-white">
-                    {gameScoreOptions.values.map((option, idx) => (
-                    <ToggleButton
-                        key={idx}
-                        id={`score-option-${idx}`}
-                        type="radio"
-                        name="score-options"
-                        value={option}
-                        className={`btn btn-primary-grey btn-sm text-white ${Number(scoreOption) === option ? 'btn-selected' : ''}`}
-                        checked={Number(scoreOption) === option}
-                        onChange={(e) => onScoreChange('score', e.currentTarget.value)}
-                    >
-                        {option}
-                    </ToggleButton>
-                    ))}
-                </div>
-            </div>
-        </div>
+        <Container className="justify-content-md-center align-items-center">
+            <p className="text-center text-primary-grey fs-7 fw-600">Starting Score</p>
+            <Row xs={2} sm={3} md={5} className="d-flex justify-content-center align-items-center border-solid-grey rounded m-0 py-3 mb-3 text-white">
+                {gameScoreOptions.values.map((option, idx) => (
+                    <Col key={idx} className="py-1 d-flex justify-content-center align-items-center">
+                        <ToggleButton
+                            key={idx}
+                            id={`score-option-${idx}`}
+                            type="radio"
+                            name="score-options"
+                            value={option}
+                            className={`w-100 btn btn-sm text-white btr-16 bbr-16 fs-8 fw-500 px-3 ${Number(scoreOption) === option ? 'btn-primary-green' : 'btn-tertiary-grey'}`}
+                            checked={Number(scoreOption) === option}
+                            onChange={(e) => onScoreChange('score', e.currentTarget.value)}
+                        >
+                            {option}
+                        </ToggleButton>
+                    </Col>
+                ))}
+            </Row>
+        </Container>
 	);
 };
 

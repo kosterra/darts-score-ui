@@ -11,12 +11,12 @@ import FinishedCricketGames from '../components/dashboard/finished.cricket';
 
 const Dashboard = () => {
 	return (
-		<Container className="m-4 bg-transparent border-0">
+		<Container fluid className="p-4 bg-transparent border-0">
 			<Row>
-				<FinishedX01Games />
 				<RunningX01Games />
-				<FinishedCricketGames />
 				<RunningCricketGames />
+				<FinishedX01Games />
+				<FinishedCricketGames />
 			</Row>
 		</Container>
 	);

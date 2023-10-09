@@ -9,41 +9,6 @@
     }
 }
 
-// Bootstrap Toast
-.Toastify {
-    .Toastify__toast {
-        border: none;
-        border-radius: 2px;
-        box-shadow: none;
-        font-size: 0.9rem;
-
-        .Toastify__close-button {
-            padding: 2px;
-
-            &:hover {
-                background-color: $tertiary-grey-transparent;
-            }
-        }
-    }
-}
-
-// Bootstrap nav-pills
-.nav-pills {
-
-    .nav-item {
-        padding: 0.4rem;
-
-        .nav-link {
-            background-color: $tertiary-grey;
-            color: $white;
-
-            &.active {
-                background-color: $primary-green;
-            }
-        }
-    }
-}
-
 // Bootstrap buttons
 .btn {
     border-radius: 2px;
@@ -75,28 +40,6 @@
         border: 1px solid $tertiary-grey;
         color: $primary-grey;
         font-weight: 200;
-    }
-}
-
-.btn-toolbar {
-    border: 1px solid $primary-grey;
-    border-radius: 4px;
-
-    .btn {
-        min-width: 5rem;
-        font-size: 0.8rem;
-        font-weight: 500;
-        border: none;
-        border-radius: 16px;
-        margin: 0 6px;
-        padding: 4px 6px;
-        cursor: pointer;
-        color: $white;
-
-        &.btn-selected {
-            background-color: $primary-green;
-
-        }
     }
 }
 
@@ -170,14 +113,9 @@ select {
 // Bootstrap Dropdown
 .dropdown {
     .dropdown-toggle {
-        min-width: 6rem;
         border: none;
         border-radius: 2px;
         font-size: 0.9rem;
-
-        &::after {
-            display: none;
-        }
     }
 
     .dropdown-menu {
@@ -188,9 +126,16 @@ select {
 
         .dropdown-item {
             margin: 0.3rem 0;
+            color: $white;
+            font-size: 0.9rem;
+            font-weight: 500;
 
             &.active {
                 background-color: $primary-green;
+            }
+
+            &:hover {
+                background-color: $primary-grey !important;
             }
         }
     }
@@ -292,6 +237,7 @@ a {
     .selectable-card {
         cursor: pointer;
         border: 2px solid $secondary-grey;
+        min-width: 12rem;
 
         &.stats {
             border: 2px solid transparent;

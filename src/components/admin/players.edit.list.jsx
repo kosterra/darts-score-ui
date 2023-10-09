@@ -124,8 +124,8 @@ const PlayersEditList = (props) => {
 
     return (
         <Fragment>
-            <div className="d-flex justify-content-md-center align-items-center p-2 text-white">
-                <InputGroup className="mb-3">
+            <div className="mb-3 d-flex justify-content-md-center align-items-center p-2 text-white">
+                <InputGroup className="pe-2">
                     <InputGroup.Text id="search-addon">
                         <i className="fas fa-search"></i>
                     </InputGroup.Text>
