@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+
 import {
     Button,
     ButtonGroup,
@@ -12,6 +13,15 @@ import {
     ToggleButton
 } from 'react-bootstrap';
 
+import {
+    FaTrash,
+    FaChartBar
+} from "react-icons/fa";
+
+import {
+    GiBullseye
+} from "react-icons/gi";
+
 import dayjs from "dayjs";
 
 import PlayerService from '../../services/player.service';
@@ -21,7 +31,8 @@ const EditableCard = (props) => {
     const {
         x01Game,
         players,
-        deleteX01Game
+        deleteX01Game,
+        deleteActive
     } = props
 
     const handleX01GameDelete = () => {
@@ -57,12 +68,21 @@ const EditableCard = (props) => {
                                 <div className="d-flex justify-content-between align-items-end mt-2">
                                     <span className="fs-9 text-grey">{ dayjs(x01Game.createdAt).format("DD.MM.YYYY HH:mm") }</span>
                                     <div>
-                                        <Button variant="primary-green" href={'/x01/' + x01Game.id} className="me-1">
-                                            <i className="fas fa-external-link-alt"></i>
-                                        </Button>
-                                        <Button variant="red" onClick={handleX01GameDelete}>
-                                            <i className="fas fa-trash-alt"></i>
-                                        </Button>
+                                        { x01Game.gameIsRunning &&
+                                            <Button variant="primary-green" href={'/x01/' + x01Game.id} className="me-1">
+                                                <GiBullseye title="Continue Playing" />
+                                            </Button>
+                                        }
+                                        { !x01Game.gameIsRunning &&
+                                            <Button variant="primary-green" href={'/stats/games/x01/' + x01Game.id} className="me-1">
+                                                <FaChartBar title="Show Statistics" />
+                                            </Button>
+                                        }
+                                        { deleteActive &&
+                                            <Button variant="red" onClick={handleX01GameDelete}>
+                                                <FaTrash title="Delete Game" />
+                                            </Button>
+                                        }
                                     </div>
                                 </div>
                             </Row>
@@ -75,13 +95,18 @@ const EditableCard = (props) => {
 }
 
 const X01EditList = (props) => {
-    const { emptyText } = props
+    const {
+        emptyText,
+        showStatusFilter = true,
+        staticStatusValue = '1',
+        deleteActive = true
+    } = props
 
     const [x01Games, setX01Games] = useState([]);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [x01GameToDelete, setX01GameToDelete] = useState(null);
     const [players, setPlayers] = useState([]);
-    const [statusFilterValue, setStatusFilterValue] = useState('1');
+    const [statusFilterValue, setStatusFilterValue] = useState(staticStatusValue);
 
     const statusFilter = [
         { name: 'Running', value: '1' },
@@ -136,42 +161,45 @@ const X01EditList = (props) => {
 
     return (
         <Fragment>
-            <div className="d-flex justify-content-md-center align-items-center p-2 text-white">
-                <InputGroup className="mb-3">
-                    <ButtonGroup>
-                        {statusFilter.map((filter, idx) => (
-                            <ToggleButton
-                                key={idx}
-                                id={`status-filter-${idx}`}
-                                type="radio"
-                                variant="primary-green"
-                                name="radio"
-                                value={filter.value}
-                                checked={statusFilterValue === filter.value}
-                                onChange={(e) => setStatusFilterValue(e.currentTarget.value)}
-                            >
-                                {filter.name}
-                            </ToggleButton>
-                        ))}
-                    </ButtonGroup>
-                </InputGroup>
-            </div>
+            { showStatusFilter &&
+                <div className="d-flex justify-content-md-center align-items-center p-2 text-white">
+                    <InputGroup className="mb-3">
+                        <ButtonGroup>
+                            {statusFilter.map((filter, idx) => (
+                                <ToggleButton
+                                    key={idx}
+                                    id={`status-filter-${idx}`}
+                                    type="radio"
+                                    variant="primary-green"
+                                    name="radio"
+                                    value={filter.value}
+                                    checked={statusFilterValue === filter.value}
+                                    onChange={(e) => setStatusFilterValue(e.currentTarget.value)}
+                                >
+                                    {filter.name}
+                                </ToggleButton>
+                            ))}
+                        </ButtonGroup>
+                    </InputGroup>
+                </div>
+            }
             <Container className="editable-card-list card-list">
                 {x01Games.length > 0 &&
                     <Row xs={1} md={3}>
                         {x01Games.map((item, idx) => (
                             <EditableCard
-                                key={idx}
-                                x01Game={item}
-                                players={players}
-                                deleteX01Game={handleX01GameDelete}
+                                key={ idx }
+                                x01Game={ item }
+                                players={ players }
+                                deleteX01Game={ handleX01GameDelete }
+                                deleteActive={ deleteActive }
                             />
                         ))}
                     </Row>
                 }
                 {x01Games.length === 0 &&
                     <div className="d-flex justify-content-center mb-4">
-                        <span className="empty-text text-primary-grey">{emptyText}</span>
+                        <span className="empty-text text-primary-grey">{ emptyText }</span>
                     </div>
                 }
             </Container>

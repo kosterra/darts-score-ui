@@ -7,8 +7,10 @@ import NavigationSidebar from './components/navigation/navigation.sidebar';
 import Dashboard from './pages/dashboard';
 import X01ConfigPage from './pages/config/x01';
 import X01GamePage from './pages/games/x01';
+import X01GameStats from './components/stats/x01.game.stats';
 import CricketConfigPage from './pages/config/cricket';
 import CricketGamePage from './pages/games/cricket';
+import CricketGameStats from './components/stats/cricket.game.stats';
 import StatsPage from './pages/stats';
 import AboutPage from './pages/about';
 import AdminPage from './pages/admin';
@@ -17,7 +19,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './resources/scss/main.scss';
 
 function App() {
-
+	
 	return (
 		<Router>
 			<div className="d-flex">
@@ -31,6 +33,8 @@ function App() {
 					<Route path="/stats" element={<Navigate replace to="/stats/players" />} />
 					<Route path="/stats/:id" element={<StatsPage/>} />
 					<Route path="/stats/games/:id" element={<StatsPage/>} />
+					<Route path="/stats/games/x01/:id" element={<X01GameStats/>} />
+					<Route path="/stats/games/cricket/:id" element={<CricketGameStats/>} />
 					<Route path="/about" element={<AboutPage/>} />
 					<Route path="/admin" element={<Navigate replace to="/admin/players" />} />
 					<Route path="/admin/:id" element={<AdminPage/>} />
