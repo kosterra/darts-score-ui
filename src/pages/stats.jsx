@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { Container, Row } from 'react-bootstrap';
 
 import PlayerStats from '../components/stats/player.stats';
-import X01Stats from '../components/stats/x01.stats';
-import CricketStats from '../components/stats/cricket.stats';
+import X01EditList from '../components/admin/x01.edit.list';
+import CricketEditList from '../components/admin/cricket.edit.list';
 
 const StatsPage = () => {
 
@@ -15,11 +15,19 @@ const StatsPage = () => {
           case 'players':
               return <PlayerStats />;
           case 'x01':
-              return <X01Stats emptyText="No stats found. Not yet implemented!"/>;
+              return <X01EditList
+                        deleteActive={ false }
+                        showStatusFilter={ false }
+                        staticStatusValue="2"
+                    />;
           case 'cricket':
-              return <CricketStats emptyText="No stats found. Not yet implemented!"/>;
+              return <CricketEditList
+                        deleteActive={ false }
+                        showStatusFilter={ false }
+                        staticStatusValue="2"
+                    />;
           default:
-              return <X01Stats emptyText="No stats found. Not yet implemented!"/>;
+              return <PlayerStats />;
       }
   }
 

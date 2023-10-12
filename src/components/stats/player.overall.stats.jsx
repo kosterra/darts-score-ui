@@ -25,7 +25,6 @@ const PlayerOverallStats = (props) => {
         setPlayerStats(data);
     }
 
-    
     useEffect(() => {
 		loadPlayerStats();
     // eslint-disable-next-line

@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+
 import {
     Button,
     ButtonGroup,
@@ -12,6 +13,15 @@ import {
     ToggleButton
 } from 'react-bootstrap';
 
+import {
+    FaTrash,
+    FaChartBar
+} from "react-icons/fa";
+
+import {
+    GiBullseye
+} from "react-icons/gi";
+
 import dayjs from "dayjs";
 
 import PlayerService from '../../services/player.service';
@@ -21,7 +31,8 @@ const EditableCard = (props) => {
     const {
         cricketGame,
         players,
-        deleteCricketGame
+        deleteCricketGame,
+        deleteActive
     } = props
 
     const handleCricketGameDelete = () => {
@@ -57,12 +68,21 @@ const EditableCard = (props) => {
                                 <div className="d-flex justify-content-between align-items-end mt-2">
                                     <span className="fs-9 text-grey">{ dayjs(cricketGame.createdAt).format("DD.MM.YYYY HH:mm") }</span>
                                     <div>
-                                        <Button variant="primary-green" href={'/cricket/' + cricketGame.id} className="me-1">
-                                            <i className="fas fa-external-link-alt"></i>
-                                        </Button>
-                                        <Button variant="red" onClick={handleCricketGameDelete}>
-                                            <i className="fas fa-trash-alt"></i>
-                                        </Button>
+                                        { cricketGame.gameIsRunning &&
+                                            <Button variant="primary-green" href={'/cricket/' + cricketGame.id} className="me-1">
+                                                <GiBullseye title="Continue Playing" />
+                                            </Button>
+                                        }
+                                        { !cricketGame.gameIsRunning &&
+                                            <Button variant="primary-green" href={'/stats/games/cricket/' + cricketGame.id} className="me-1">
+                                                <FaChartBar title="Show Statistics" />
+                                            </Button>
+                                        }
+                                        { deleteActive &&
+                                            <Button variant="red" onClick={handleCricketGameDelete}>
+                                                <FaTrash title="Delete Game" />
+                                            </Button>
+                                        }
                                     </div>
                                 </div>
                             </Row>
@@ -75,13 +95,18 @@ const EditableCard = (props) => {
 }
 
 const CricketEditList = (props) => {
-    const { emptyText } = props
+    const {
+        emptyText,
+        showStatusFilter = true,
+        staticStatusValue = '1',
+        deleteActive = true
+    } = props
 
     const [cricketGames, setCricketGames] = useState([]);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [cricketGameToDelete, setCricketGameToDelete] = useState(null);
     const [players, setPlayers] = useState([]);
-    const [statusFilterValue, setStatusFilterValue] = useState('1');
+    const [statusFilterValue, setStatusFilterValue] = useState(staticStatusValue);
 
     const statusFilter = [
         { name: 'Running', value: '1' },
@@ -136,26 +161,28 @@ const CricketEditList = (props) => {
 
     return (
         <Fragment>
-            <div className="d-flex justify-content-md-center align-items-center p-2 text-white">
-                <InputGroup className="mb-3">
-                    <ButtonGroup>
-                        {statusFilter.map((filter, idx) => (
-                            <ToggleButton
-                                key={idx}
-                                id={`status-filter-${idx}`}
-                                type="radio"
-                                variant="primary-green"
-                                name="radio"
-                                value={filter.value}
-                                checked={statusFilterValue === filter.value}
-                                onChange={(e) => setStatusFilterValue(e.currentTarget.value)}
-                            >
-                                {filter.name}
-                            </ToggleButton>
-                        ))}
-                    </ButtonGroup>
-                </InputGroup>
-            </div>
+            { showStatusFilter &&
+                <div className="d-flex justify-content-md-center align-items-center p-2 text-white">
+                    <InputGroup className="mb-3">
+                        <ButtonGroup>
+                            {statusFilter.map((filter, idx) => (
+                                <ToggleButton
+                                    key={idx}
+                                    id={`status-filter-${idx}`}
+                                    type="radio"
+                                    variant="primary-green"
+                                    name="radio"
+                                    value={filter.value}
+                                    checked={statusFilterValue === filter.value}
+                                    onChange={(e) => setStatusFilterValue(e.currentTarget.value)}
+                                >
+                                    {filter.name}
+                                </ToggleButton>
+                            ))}
+                        </ButtonGroup>
+                    </InputGroup>
+                </div>
+            }
             <Container className="editable-card-list card-list">
                 {cricketGames.length > 0 &&
                     <Row xs={1} md={3}>
@@ -165,6 +192,7 @@ const CricketEditList = (props) => {
                                 cricketGame={item}
                                 players={players}
                                 deleteCricketGame={handleCricketGameDelete}
+                                deleteActive={ deleteActive }
                             />
                         ))}
                     </Row>
