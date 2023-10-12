@@ -13,15 +13,15 @@ const ComparisonBar = (props) => {
     } = props;
 
     return (
-        <div className={`mt-2 ${barLValue === 0 && barRValue === 0 ? 'd-none' : ''}`}>
-            <div className="d-flex justify-content-between align-items-baseline">
+        <div className={`mb-2 pt-2 ${barLValue === 0 && barRValue === 0 ? 'd-none' : ''}`}>
+            <div className="d-flex justify-content-between align-items-baseline mb-1">
                 <span className="d-flex flex-column">
                     <span className="me-1 fs-8 text-grey">{ isNaN(barLValue) ? 0 : barLValue } {unit}</span>
                     { barLSubvalue &&
                         <span className="me-1 fs-9 text-grey">{barLSubvalue}</span>
                     }
                 </span>
-                <span className="d-flex align-self-end fs-7">{title}</span>
+                <span className="d-flex align-self-end fs-8 fw-600 text-grey">{title}</span>
                 <span className="d-flex flex-column">
                     <span className="me-1 fs-8 text-grey text-end">{ isNaN(barRValue) ? 0 : barRValue } {unit}</span>
                     { barRSubvalue &&

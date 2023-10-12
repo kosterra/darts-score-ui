@@ -8,7 +8,9 @@ import {
     Button
 } from 'react-bootstrap';
 
-import { Rings } from 'react-loader-spinner';
+import {
+    FaChartBar
+} from "react-icons/fa";
 
 import X01Context from '../../utils/x01.context';
 import X01Models from '../../models/x01.models';
@@ -17,7 +19,9 @@ import X01Service from '../../services/x01.service';
 import X01ScoreBoard from './x01.scoreboard';
 import X01StatisticsBoard from './x01.statisticsboard';
 import X01ScoreInputBoard from './x01.score.input.board';
-import X01GameStatistics from './x01.game.statistics';
+import X01GameHeader from './x01.game.header';
+import PageLoader from '../elements/page.loader';
+import X01GameStats from '../stats/x01.game.stats';
 
 const X01Game = () => {
     const navigate = useNavigate();
@@ -27,6 +31,10 @@ const X01Game = () => {
         players,
         loading
     } = useContext(X01Context);
+
+	const onShowStatistics = () => {
+		navigate("/stats/games/x01/" + game.id, { replace: true });
+	};
 
 	const onNewGame = () => {
 		navigate("/x01", { replace: true });
@@ -64,62 +72,55 @@ const X01Game = () => {
 
     if (loading.initGameLoading) {
         return (
-            <Container fluid className="m-5">
-                <div className="d-flex justify-content-center align-items-center">
-                    <span className="display-2 me-2 fw-600 text-white">L</span>
-                    <Rings
-                        height="120"
-                        width="120"
-                        color="#528b6e"
-                        radius="12"
-                        wrapperStyle={{}}
-                        wrapperClass=""
-                        visible={true}
-                        ariaLabel="rings-loading"
-                    />
-                    <span className="display-2 ms-2 fw-600 text-white">ading</span>
-                </div>
-            </Container>
+            <PageLoader />
         )
     }
 
     return (
       <Fragment>
         <div>
-            <div className="d-flex justify-content-center mb-4">
-                <div className="d-flex flex-column align-items-center bbr-12 bg-tertiary-grey p-2">
-                    <div className="fs-7">{game.setMode} <strong>{game.numberOfSets}</strong> Set{game.numberOfSets > 1 && 's'} - {game.legMode} <strong>{game.numberOfLegs}</strong> Leg{game.numberOfLegs > 1 && 's'}</div>
-                    <div className="fs-9 pt-1">{game.legInMode} / {game.legOutMode}</div>
-                </div>
-            </div>
             {!game.hasWinner && (
-                <Container fluid>
-                    <Row className="justify-content-md-center">
-                        {game.players.length > 0 && game.players.map((playerId, idx) => (
-                            <Col key={`score-board-col-${idx}`} className={`col-3 border-dotted-top-grey border-dotted-bottom-grey ${Number(idx) < players.length - 1 ? 'border-dotted-end-grey' : ''}`}>
-                                <X01ScoreBoard key={`score-board-${idx}`} playerId={playerId} idx={idx} />
-                            </Col>
-                        ))}
-                    </Row>
-                </Container>
+                <Fragment>
+                    <X01GameHeader
+                        setMode={ game.setMode }
+                        numberOfSets={ game.numberOfSets }
+                        legMode={ game.legMode }
+                        numberOfLegs={ game.numberOfLegs }
+                        legInMode={ game.legInMode }
+                        legOutMode={ game.legOutMode }
+                    />
+                    <Container fluid>
+                        <Row className="justify-content-md-center">
+                            {game.players.length > 0 && game.players.map((playerId, idx) => (
+                                <Col key={`score-board-col-${idx}`} className={`col-3 border-dotted-top-grey border-dotted-bottom-grey ${Number(idx) < players.length - 1 ? 'border-dotted-end-grey' : ''}`}>
+                                    <X01ScoreBoard key={`score-board-${idx}`} playerId={playerId} idx={idx} />
+                                </Col>
+                            ))}
+                        </Row>
+                    </Container>
+                </Fragment>
             )}
             {game.hasWinner && (
                 <Container className="pb-4">
                     <Row>
                         <Col className="d-flex flex-column justify-content-center align-items-center gap-2">
-                            <X01GameStatistics game={game} players={players} />
+                            <X01GameStats game={game} players={players} />
                             <div className="d-grid gap-2 col-2 mx-auto">
-                                <Button onClick={onRestartGame} variant="primary-green">
+                                <Button onClick={onShowStatistics} variant="primary-green">
+                                    <FaChartBar className="pe-2 fs-4" />
+                                    All Statistics
+                                </Button>
+                                <Button onClick={onRestartGame} variant="outline-primary-green">
                                     <i className="fas fa-sync-alt pe-2" title='Restart'></i>
-                                    PLAY AGAIN
+                                    Play Again
                                 </Button>
                                 <Button onClick={onNewGame} variant="outline-primary-green">
                                     <i className="fas fa-plus pe-2" title='Plus'></i>
-                                    NEW GAME
+                                    New Game
                                 </Button>
                                 <Button onClick={onFinishGame} variant="outline-primary-green">
                                     <i className="fas fa-home pe-2" title='Home'></i>
-                                    BACK HOME
+                                    Back Home
                                 </Button>
                             </div>
                         </Col>
