@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { 
   Card
 } from 'react-bootstrap';
@@ -10,16 +10,77 @@ import {
     YAxis,
     CartesianGrid,
     Tooltip,
-    ResponsiveContainer
+    ResponsiveContainer,
+    Legend
 } from 'recharts';
 
 const StatsAreaChart = (props) => {
+  const {
+    title,
+    subtitle = '',
+    xLabel = '',
+    yLabel = '',
+    data,
+    players,
+    labels,
+    showLegend = false
+  } = props;
 
-    const {
-      title,
-      subtitle,
-      data
-    } = props
+  const [areaProps, setAreaProps] = useState(
+    labels.reduce(
+      (a, { areaKey }) => {
+        a[areaKey] = false;
+        return a;
+      },
+      { hover: null }
+    )
+  );
+
+  const handleLegendMouseEnter = (e) => {
+    if (!areaProps[e.dataKey]) {
+      setAreaProps({ ...areaProps, hover: e.dataKey });
+    }
+  };
+
+  const handleLegendMouseLeave = (e) => {
+    setAreaProps({ ...areaProps, hover: null });
+  };
+
+  const selectArea = (e) => {
+    setAreaProps({
+      ...areaProps,
+      [e.dataKey]: !areaProps[e.dataKey],
+      hover: null
+    });
+  };
+
+  const renderLegendText = (value, entry) => {
+    return(
+      <span className="d-flex justify-content-center align-items-center">
+        <span className="fs-8 text-grey pt-1">
+          <i className="fas fa-circle m-1" style={{color: areaProps[entry.dataKey] === true ? '#fff' : entry.payload.fill }}></i>
+        </span>
+        <span className="fs-8 text-grey pt-1">
+          {value}
+        </span>
+      </span>
+    );
+  };
+
+  const CustomTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="d-flex flex-column align-items-center bg-primary-grey">
+          <span className="bg-primary-green text-white text-center fs-8 p-2 w-100">{`${payload[0].payload.desc}`}</span>
+          <div className="d-flex flex-column align-items-center p-2">
+            <span className="text-white fs-8">{`${payload[0].payload.value}`}</span>
+          </div>
+        </div>
+      );
+    }
+  
+    return null;
+  };
 
     return (
       <Fragment>
@@ -41,16 +102,43 @@ const StatsAreaChart = (props) => {
                       }}
                     >
                       <CartesianGrid strokeDasharray="4 4" opacity={0.5} />
-                      <XAxis dataKey='label' dy={10} />
-                      <YAxis type="number" domain={[0, 180]} dx={-10} tickCount={10} />
+                      <YAxis type="number" domain={[0, 180]} label={{ value: yLabel, position: "center", angle: -90, dx: -20}} />
+
+                      {labels.map((label, index) => (
+                        <Fragment key={ 'fragment-' + index }>
+                          <XAxis dataKey={ label.xKey } dy={ 10 } tick={{fontSize: 1}} label={{ value: xLabel, position: "bottom", dy: 0}} />
+                          <Area key={ 'area-' + index }
+                                name={ players[index].nickname }
+                                type="monotone"
+                                dataKey={ label.areaKey }
+                                stroke={ label.stroke }
+                                strokeWidth={ 2 }
+                                fill={ label.fill }
+                                hide={ areaProps[label.areaKey] === true }
+                                strokeOpacity={
+                                  Number(areaProps.hover === label.areaKey || !areaProps.hover ? 0.8 : 0.2)
+                                }
+                                fillOpacity={
+                                  Number(areaProps.hover === label.areaKey || !areaProps.hover ? 0.8 : 0.2)
+                                }
+                                dot={{ stroke: label.stroke, strokeWidth: 2 }}
+                          />
+                        </Fragment>
+                      ))}
+
                       <Tooltip content={<CustomTooltip />} cursor={{ fill: "transparent" }} />
-                      <Area type="monotone"
-                            dataKey='value'
-                            stroke="#d4c783"
-                            strokeWidth={2}
-                            fill="#528b6e"
-                            dot={{ stroke: '#d4c783', strokeWidth: 2 }}
-                      />
+                      
+                      { showLegend &&
+                        <Legend
+                          onClick={selectArea}
+                          onMouseOver={handleLegendMouseEnter}
+                          onMouseOut={handleLegendMouseLeave}
+                          verticalAlign='bottom'
+                          formatter={renderLegendText}
+                          iconType='circle'
+                          iconSize={0}
+                        />
+                      }
                     </AreaChart>
                   </ResponsiveContainer>
                 </Card.Text>
@@ -58,21 +146,6 @@ const StatsAreaChart = (props) => {
         </Card>
       </Fragment>
     );
-};
-
-const CustomTooltip = ({ active, payload }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="d-flex flex-column align-items-center bg-primary-grey">
-        <p className="bg-primary-green text-white fs-8 p-2">{`${payload[0].payload.desc}`}</p>
-        <div>
-          <p className="text-white fs-8">{`${payload[0].payload.value}`}</p>
-        </div>
-      </div>
-    );
-  }
-
-  return null;
 };
 
 export default StatsAreaChart;

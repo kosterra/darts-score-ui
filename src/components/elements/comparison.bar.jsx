@@ -1,40 +1,88 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-import ProgressBar from 'react-bootstrap/ProgressBar';
+import {
+  Col,
+  Row
+} from 'react-bootstrap';
+
+import {
+  Bar,
+  BarChart,
+  LabelList,
+  ResponsiveContainer,
+  XAxis,
+  YAxis
+} from 'recharts';
+
+import ChartConfigOptions from '../stats/chart.config.options';
 
 const ComparisonBar = (props) => {
     const {
-        title,
-        barLValue,
-        barRValue,
-        unit,
-        barLSubvalue,
-        barRSubvalue
+      data
     } = props;
 
+    const { fillColors } = ChartConfigOptions;
+
+    const valueAccessor = attribute => ({ payload }) => {
+      return (payload[attribute] <= 0 ? '' :
+        payload[attribute]
+        + (data[0].unit ? data[0].unit : '')
+        + ' '
+        + (payload[attribute + 'sub'] ? payload[attribute + 'sub'] : ''));
+    };
+
     return (
-        <div className={`mb-2 pt-2 ${barLValue === 0 && barRValue === 0 ? 'd-none' : ''}`}>
-            <div className="d-flex justify-content-between align-items-baseline mb-1">
-                <span className="d-flex flex-column">
-                    <span className="me-1 fs-8 text-grey">{ isNaN(barLValue) ? 0 : barLValue } {unit}</span>
-                    { barLSubvalue &&
-                        <span className="me-1 fs-9 text-grey">{barLSubvalue}</span>
-                    }
-                </span>
-                <span className="d-flex align-self-end fs-8 fw-600 text-grey">{title}</span>
-                <span className="d-flex flex-column">
-                    <span className="me-1 fs-8 text-grey text-end">{ isNaN(barRValue) ? 0 : barRValue } {unit}</span>
-                    { barRSubvalue &&
-                        <span className="me-1 fs-9 text-grey text-end">{barRSubvalue}</span>
-                    }
-                </span>
-            </div>
-            <ProgressBar className="border-0 radius-0 bg-transparent">
-                <ProgressBar className="border-0 radius-0" variant="primary-green" now={ isNaN(barLValue) ? 0 : barLValue } max={barLValue + barRValue <= 100 ? barLValue + barRValue : 100} key={1}/>
-                <ProgressBar className="border-0 radius-0" variant="primary-grey" now={ isNaN(barRValue) ? 0 : barRValue } max={barLValue + barRValue <= 100 ? barLValue + barRValue : 100} key={2} />
-            </ProgressBar>
-        </div>
-    )
+      <Fragment>
+        { Object.values(data[0]).filter((value) => !isNaN(value) && value > 0).length > 0 &&
+          <Row>
+            <Col className="d-flex justify-content-center align-items-center">
+              <span className="fs-8 fw-600 text-grey">{data[0].name}</span>
+            </Col>
+            <Col className="col-12 d-flex justify-content-center align-items-center">
+              <ResponsiveContainer width="100%" height={45}>
+                <BarChart
+                  width={500}
+                  data={data}
+                  layout="vertical"
+                  stackOffset="expand"
+                  margin={{
+                    top: 5,
+                    right: 0,
+                    left: 0,
+                    bottom: 14,
+                  }}
+                  title={data[0].name}
+                >
+                  <XAxis type="number" hide={true} />
+                  <YAxis type="category" hide={true} dataKey="name" />
+                  
+                  { data[0].player1 &&
+                    <Bar dataKey="player1" stackId="a" fill={ fillColors.values[0] } animationDuration={2000}>
+                      <LabelList className="fs-8 fw-600" position="inside" fill="#fff" valueAccessor={valueAccessor("player1")} />
+                    </Bar>
+                  }
+                  { data[0].player2 &&
+                    <Bar dataKey="player2" stackId="a" fill={ fillColors.values[1] } animationDuration={2000}>
+                      <LabelList className="fs-8 fw-600" position="inside" fill="#fff" valueAccessor={valueAccessor("player2")} />
+                    </Bar>
+                  }
+                  { data[0].player3 &&
+                    <Bar dataKey="player3" stackId="a" fill={ fillColors.values[2] } animationDuration={2000}>
+                      <LabelList className="fs-8 fw-600" position="inside" fill="#fff" valueAccessor={valueAccessor("player3")} />
+                    </Bar>
+                  }
+                  { data[0].player4 &&
+                    <Bar dataKey="player4" stackId="a" fill={ fillColors.values[3] } animationDuration={2000}>
+                      <LabelList className="fs-8 fw-600" position="inside" fill="#fff" valueAccessor={valueAccessor("player4")} />
+                    </Bar>
+                  }
+                </BarChart>
+              </ResponsiveContainer>
+            </Col>
+          </Row>
+        }
+      </Fragment>
+    );
 }
     
 export default ComparisonBar;
