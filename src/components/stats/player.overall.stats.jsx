@@ -6,12 +6,8 @@ import {
     Row
 } from 'react-bootstrap';
 
-import StatsAreaChart from './area.chart';
 import StatsService from '../../services/stats.service';
-import StatsRadarChart from './radar.chart';
 import StatsCard from './stats.card';
-import StatsScatterChart from './scatter.chart';
-import StatsBarChart from './bar.chart';
 import PlayerStatsCharts from './player.stats.charts';
 
 const PlayerOverallStats = (props) => {

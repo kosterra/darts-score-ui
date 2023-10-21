@@ -7,7 +7,7 @@ import {
     Row
 } from 'react-bootstrap';
 
-import StatsService from '../../services/stats.service';
+//import StatsService from '../../services/stats.service';
 import PlayerService from '../../services/player.service';
 import PageLoader from '../elements/page.loader';
 import CricketService from '../../services/cricket.service';
@@ -16,28 +16,22 @@ const CricketGameStats = () => {
     const { id } = useParams();
 
     const [game, setGame] = useState();
-    const [gameStats, setGameStats] = useState({});
+    //const [gameStats, setGameStats] = useState({});
     const [players, setPlayers] = useState();
 
-    const loadCricketGame = async () => {
-        let data = await CricketService.loadCricket(id);
-        setGame(data);
-    }
-
-    const loadCricketGameStats = async () => {
-        let data = await StatsService.loadCricketGameStats(game.id);
-        setGameStats(data);
-    }
-
-    const loadPlayers = async () => {
-        let data = await PlayerService.loadPlayers();
-        setPlayers(data);
+    const loadData = async () => {
+        let game = await CricketService.loadCricket(id);
+        let players = await PlayerService.loadPlayers();
+        //let gameStats = await StatsService.loadCricketGameStats(game.id);
+        
+        setGame(game);
+        setPlayers(players);
+        //setGameStats(gameStats);
     }
 
     useEffect(() => {
-        loadCricketGame();
-        loadPlayers();
-		// loadCricketGameStats();
+        loadData();
+	// eslint-disable-next-line
 	}, []);
 
     if (!game || !players) {
