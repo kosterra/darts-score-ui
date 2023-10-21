@@ -12,6 +12,7 @@ import StatsRadarChart from './radar.chart';
 import StatsCard from './stats.card';
 import StatsScatterChart from './scatter.chart';
 import StatsBarChart from './bar.chart';
+import PlayerStatsCharts from './player.stats.charts';
 
 const PlayerOverallStats = (props) => {
     const {
@@ -122,34 +123,7 @@ const PlayerOverallStats = (props) => {
                         />
                     </Col>
                 </Row>
-                <Row className="mt-3">
-                    <Col className="col-6 p-1">
-                        <StatsAreaChart title="Average"
-                                        subtitle="X01"
-                                        data={ ((playerStats || {}).avg || {}).perGameX01 || [] }
-                        />
-                    </Col>
-                    <Col className="col-6 p-1">
-                        <StatsRadarChart title="Section Hits"
-                                         subtitle="X01"
-                                         data={ (playerStats || {}).sectionHits || [] }
-                        />
-                    </Col>
-                </Row>
-                <Row className="mt-3">
-                    <Col className="col-6 p-1">
-                        <StatsScatterChart title="Checkouts"
-                                           subtitle="X01"
-                                           data={ ((playerStats || {}).checkouts || {}).rates || [] }
-                        />
-                    </Col>
-                    <Col className="col-6 p-1">
-                        <StatsBarChart title="Score Ranges"
-                                        subtitle="X01"
-                                        data={ (playerStats || {}).scoreRanges || [] }
-                        />
-                    </Col>
-                </Row>
+                <PlayerStatsCharts playerStats={ playerStats } players={ [player] } />
             </Container>
         </Fragment>
     );

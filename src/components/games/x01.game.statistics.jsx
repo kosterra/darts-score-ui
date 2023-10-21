@@ -8,7 +8,6 @@ import {
     Col
 } from 'react-bootstrap';
 
-import X01GameHeader from './x01.game.header';
 import X01StatsScoreBoard from '../stats/x01.stats.scoreboard';
 import X01StatsScoreBoardMultiple from '../stats/x01.stats.scoreboard.multiple';
 import X01StatsTab from '../stats/x01.stats.tab';

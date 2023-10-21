@@ -143,7 +143,6 @@ const CricketState = props => {
     resetCurrentThrow();
 
     if (checkIfHasWonGame(sectionHit, currentScore)) {
-      console.log('game has winner');
       gameHasWinner();
       setLoading('validateThrow', false);
       return
@@ -270,9 +269,6 @@ const CricketState = props => {
   const getCurrentThrowScore = () => {
     let playerModel = Object.assign({}, state.game.playerModels[state.game.currentPlayerTurn]);
     let sectionHit = Object.assign({}, playerModel.sectionHit);
-
-    console.log(sectionHit);
-    console.log(state.game.currentThrow);
 
     state.game.currentThrow.forEach(dart => {
       if (validateDartValue(dart) && dart.trim() !== '') {

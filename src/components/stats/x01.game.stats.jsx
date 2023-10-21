@@ -17,6 +17,7 @@ import X01GameHeader from '../games/x01.game.header';
 import PageLoader from '../elements/page.loader';
 import X01StatsScoreBoardMultiple from './x01.stats.scoreboard.multiple';
 import X01StatsTab from './x01.stats.tab';
+import X01StatsCharts from './x01.stats.charts';
 
 const X01GameStats = () => {
     const { id } = useParams();
@@ -25,25 +26,21 @@ const X01GameStats = () => {
     const [gameStats, setGameStats] = useState({});
     const [players, setPlayers] = useState();
 
-    const loadX01Game = async () => {
-        let data = await X01Service.loadX01(id);
-        setGame(data);
-    }
+    const loadData = async () => {
+        let game = await X01Service.loadX01(id);
+        let players = await PlayerService.loadPlayers();
+        let gameStats = await StatsService.loadX01GameStats(game.id);
+        
+        players = players.filter(player => game.players.includes(player.id));
 
-    const loadX01GameStats = async () => {
-        let data = await StatsService.loadX01GameStats(game.id);
-        setGameStats(data);
-    }
-
-    const loadPlayers = async () => {
-        let data = await PlayerService.loadPlayers();
-        setPlayers(data);
+        setGame(game);
+        setPlayers(players);
+        setGameStats(gameStats);
     }
 
     useEffect(() => {
-        loadX01Game();
-        loadPlayers();
-		// loadX01GameStats();
+        loadData();
+        // eslint-disable-next-line
 	}, []);
 
     if (!game || !players) {
@@ -62,8 +59,8 @@ const X01GameStats = () => {
                 legInMode={ game.legInMode }
                 legOutMode={ game.legOutMode }
             />
-            <Row>
-                <Col md={{ span: 6, offset: 3 }}>
+            <Row className="d-flex justify-content-center align-items-center">
+                <Col className="col-xs-12 col-sm-12 col-md-10 col-lg-8" >
                     { game.players.length === 2 &&
                         <X01StatsScoreBoard players={ players } game={ game } />
                     }
@@ -72,14 +69,14 @@ const X01GameStats = () => {
                     }
                 </Col>
             </Row>
-            <Row>
-                <Col md={{ span: 6, offset: 3 }} className="px-0 rounded-2">
+            <Row xs={1} sm={1} md={1} className="d-flex justify-content-center align-items-center">
+                <Col className="col-xs-12 col-sm-12 col-md-10 col-lg-8 px-0 rounded-2">
                     <Tabs
                         defaultActiveKey="overall"
                         justify
                     >
                         <Tab eventKey="overall" title="Overall" className="p-4 bg-secondary-grey">
-                            <X01StatsTab valueKey="game" game={ game }/>
+                            <X01StatsTab valueKey="game" game={ game } gameStats={ gameStats } players={ players } />
                         </Tab>
 
                         {[...Array(game.setsPlayed)].map((e, i) => (
@@ -88,6 +85,9 @@ const X01GameStats = () => {
                             </Tab>
                         ))}
                     </Tabs>
+                </Col>
+                <Col className="col-12">
+                    <X01StatsCharts gameStats={ gameStats } players={ players } />
                 </Col>
             </Row>
         </Container>

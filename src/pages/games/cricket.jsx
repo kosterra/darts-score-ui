@@ -10,7 +10,7 @@ import CricketGame from '../../components/games/cricket.game';
 const CricketGamePage = () => {
 
   return (
-      <Container fluid className="p-4 bg-transparent border-0">
+      <Container fluid className="p-4 pt-0 bg-transparent border-0">
           <Row className="justify-content-md-center align-items-center">
             <CricketState>
               <CricketGame/>
