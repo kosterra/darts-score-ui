@@ -41,7 +41,7 @@ const StatsBarChart = (props) => {
     }
   };
 
-  const handleLegendMouseLeave = (e) => {
+  const handleLegendMouseLeave = () => {
     setBarProps({ ...barProps, hover: null });
   };
 

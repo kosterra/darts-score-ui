@@ -61,7 +61,7 @@ const PlayerConfig = (props) => {
                             type="radio"
                             name="number-of-players-options"
                             value={option}
-                            className={`w-100 btn btn-sm text-white btr-16 bbr-16 fs-8 fw-500 px-3 ${Number(numberOfPlayers) === option ? 'btn-primary-green' : 'btn-tertiary-grey'}`}
+                            className={`w-100 btn btn-sm text-white btr-16 bbr-16 fs-8 fw-500 ${Number(numberOfPlayers) === option ? 'btn-primary-green' : 'btn-tertiary-grey'}`}
                             checked={Number(numberOfPlayers) === option}
                             onChange={(e) => onNumberOfPlayersChange('numberOfPlayers', e.currentTarget.value)}>
                             {Number(option) === 1 ? 'Solo' : option}

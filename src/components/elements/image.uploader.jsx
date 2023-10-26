@@ -29,7 +29,7 @@ const ImageUploader = (props) => {
         event.stopPropagation(); 
         //let's grab the image file
         let imageFile = event.dataTransfer.files[0];
-        handleOnFileDelete(imageFile);
+        onFileChange(imageFile);
         setIsDragging(false);
     }
 

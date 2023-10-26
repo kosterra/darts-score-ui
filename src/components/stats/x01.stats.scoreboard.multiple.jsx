@@ -30,30 +30,16 @@ const X01StatsScoreBoardMultiple = (props) => {
                 </Col>
             </Row>
             <Row className="mb-3 p-3 border-dotted-bottom-grey">
-                <Col className="d-flex justify-content-center align-items-center">
-                    <div className="d-flex flex-column justify-content-center">
-                        <X01StatsScoreBoardPlayer player={ players.find(player => player.id === game.players[0]) } />
-                        <div className="align-self-center fs-1 fw-400">
-                            { game.playerModels[game.players[0]].setsWon }
+                {players.map((player, idx) => (
+                    <Col key={ 'player' + idx } className="d-flex justify-content-center align-items-center">
+                        <div className="d-flex flex-column justify-content-center">
+                            <X01StatsScoreBoardPlayer player={ player } />
+                            <div className="align-self-center fs-1 fw-400">
+                                { game.playerModels[player.id].setsWon }
+                            </div>
                         </div>
-                    </div>
-                </Col>
-                <Col className="d-flex justify-content-center align-items-center">
-                    <div className="d-flex flex-column justify-content-center">
-                        <X01StatsScoreBoardPlayer player={ players.find(player => player.id === game.players[1]) } />
-                        <div className="align-self-center fs-1 fw-400">
-                            { game.playerModels[game.players[1]].setsWon }
-                        </div>
-                    </div>
-                </Col>
-                <Col className="d-flex justify-content-center align-items-center">
-                    <div className="d-flex flex-column justify-content-center">
-                        <X01StatsScoreBoardPlayer player={ players.find(player => player.id === game.players[2]) } />
-                        <div className="align-self-center fs-1 fw-400">
-                            { game.playerModels[game.players[2]].setsWon }
-                        </div>
-                    </div>
-                </Col>
+                    </Col>
+                ))}
             </Row>
         </Fragment>
     );

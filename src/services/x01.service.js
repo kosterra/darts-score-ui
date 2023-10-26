@@ -47,7 +47,9 @@ const loadAllX01Games = async () => {
             throw Error(response.statusText);
         }
         const data = await response.json();
-        return data;
+        return data.filter(game => !game.gameIsRunning).sort((a,b)=>{
+            return new Date(b.updatedAt) - new Date(a.updatedAt);
+        });
     } catch (error) {
         throw new Error(error);
     }

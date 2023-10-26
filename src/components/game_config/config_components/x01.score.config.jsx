@@ -29,7 +29,7 @@ const X01ScoreConfig = (props) => {
                             type="radio"
                             name="score-options"
                             value={option}
-                            className={`w-100 btn btn-sm text-white btr-16 bbr-16 fs-8 fw-500 px-3 ${Number(scoreOption) === option ? 'btn-primary-green' : 'btn-tertiary-grey'}`}
+                            className={`w-100 btn btn-sm text-white btr-16 bbr-16 fs-8 fw-500 ${Number(scoreOption) === option ? 'btn-primary-green' : 'btn-tertiary-grey'}`}
                             checked={Number(scoreOption) === option}
                             onChange={(e) => onScoreChange('score', e.currentTarget.value)}
                         >

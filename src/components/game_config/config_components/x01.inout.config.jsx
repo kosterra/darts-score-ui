@@ -32,7 +32,7 @@ const X01InOutConfig = (props) => {
                                     type="radio"
                                     name="in-options"
                                     value={option}
-                                    className={`text-nowrap w-100 btn btn-sm text-white btr-16 bbr-16 fs-8 fw-500 px-2 ${legInOption === option ? 'btn-primary-green' : 'btn-tertiary-grey'}`}
+                                    className={`text-nowrap w-100 btn btn-sm text-white btr-16 bbr-16 fs-8 fw-500 ${legInOption === option ? 'btn-primary-green' : 'btn-tertiary-grey'}`}
                                     checked={legInOption === option}
                                     onChange={(e) => onInOutChange('legInMode', e.currentTarget.value)}
                                 >
@@ -53,7 +53,7 @@ const X01InOutConfig = (props) => {
                                     type="radio"
                                     name="out-options"
                                     value={option}
-                                    className={`text-nowrap w-100 btn btn-sm text-white btr-16 bbr-16 fs-8 fw-500 px-3 ${legOutOption === option ? 'btn-primary-green' : 'btn-tertiary-grey'}`}
+                                    className={`text-nowrap w-100 btn btn-sm text-white btr-16 bbr-16 fs-8 fw-500 ${legOutOption === option ? 'btn-primary-green' : 'btn-tertiary-grey'}`}
                                     checked={legOutOption === option}
                                     onChange={(e) => onInOutChange('legOutMode', e.currentTarget.value)}
                                 >

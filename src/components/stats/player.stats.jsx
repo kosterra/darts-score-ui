@@ -59,7 +59,7 @@ const PlayerStats = () => {
                         maxSelectable={Number(1)}
                         setSelectedItems={onSelectPlayer}
                         listCssClass="stats"
-                        cardCssClass="stats border-0" />
+                        cardCssClass="stats border-0 bg-secondary-grey" />
                 </div>
                 { selectedPlayers && selectedPlayers[0] &&
                     <Container>

@@ -9,7 +9,7 @@ const validateDartValue = dart => {
       let score = Number(dart.slice(1));
       if((score >= 1 && score <= 20) || /[SD]25/i.test(dart)) {
         return true
-      };
+      }
       
     }
     return false;

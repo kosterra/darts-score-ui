@@ -66,7 +66,7 @@ const PlayerForm = (props) => {
                     if (await PlayerService.updatePlayer(player)) {
                         setValidated(false);
                         onPlayerEdit();
-                    };
+                    }
                 } catch (error) {
                     toast.error('Failed to update player: ' + error);
                 }
@@ -77,7 +77,7 @@ const PlayerForm = (props) => {
                         setPreviewUrl("");
                         setValidated(false);
                         onPlayerAdd();
-                    };
+                    }
                 } catch (error) {
                     toast.error('Failed to create new player: ' + error);
                 }

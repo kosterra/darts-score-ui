@@ -44,12 +44,17 @@ const EditableCard = (props) => {
             <Card as='div'
                 className={`m-0 p-0 rounded-0 editable-card card-list-card bg-secondary-grey`}>
                 <Card.Body className="m-0 p-0 border-0 rounded-0">
+                    <Card.Title as="h6" className="bg-primary-green p-2 mb-0 text-white text-center span">
+                        <div className="fs-5 fw-600">{ x01Game.startingScore }</div>
+                        <span className="fw-500 fs-8">
+                            { x01Game.gameIsRunning ? 'Running' : 'Finished' }
+                        </span>
+                    </Card.Title>
                     <Card.Text as="div" className="pt-3 pb-2 text-white">
                         <Container>
                             <Row className="mb-3">
-                                <span className="fw-600 fs-7">
-                                    { x01Game.gameIsRunning ? 'Running' : 'Finished' }
-                                </span>
+                                <span className="fs-8 text-grey">{ x01Game.setMode } { x01Game.numberOfSets } Set{ x01Game.numberOfSets > 1 && 's' } - { x01Game.legMode } { x01Game.numberOfLegs } Leg{ x01Game.numberOfLegs > 1 && 's'}</span>
+                                <span className="fs-9 pt-1 text-grey">({ x01Game.legInMode } / { x01Game.legOutMode })</span>
                             </Row>
                             <Row>
                                 { players.length > 0 && x01Game.players.map((playerId, idx) => (
@@ -209,8 +214,8 @@ const X01EditList = (props) => {
                 </Modal.Header>
                 <Modal.Body>Are you sure you want to delete x01 game {x01GameToDelete ? x01GameToDelete.id : 'unknown'} ?</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary-green" onClick={cancelDeleteX01Game}>
-                        No
+                    <Button variant="primary-grey" onClick={cancelDeleteX01Game}>
+                        Cancel
                     </Button>
                     <Button variant="red" onClick={deleteX01Game}>
                         Sure!
