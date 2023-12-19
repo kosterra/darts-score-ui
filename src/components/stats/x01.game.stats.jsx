@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import {
+    Button,
     Col,
     Container,
     Row,
@@ -11,6 +12,7 @@ import {
 
 import StatsService from '../../services/stats.service';
 import PlayerService from '../../services/player.service';
+import X01Models from '../../models/x01.models';
 import X01Service from '../../services/x01.service';
 import X01StatsScoreBoard from './x01.stats.scoreboard';
 import X01GameHeader from '../games/x01.game.header';
@@ -25,6 +27,8 @@ const X01GameStats = () => {
     const [game, setGame] = useState();
     const [gameStats, setGameStats] = useState({});
     const [players, setPlayers] = useState();
+
+    const navigate = useNavigate();
 
     const loadData = async () => {
         let game = await X01Service.loadX01(id);
@@ -42,6 +46,40 @@ const X01GameStats = () => {
         loadData();
         // eslint-disable-next-line
 	}, []);
+
+	const onNewGame = () => {
+		navigate("/x01", { replace: true });
+	};
+
+	const onFinishGame = () => {
+		navigate("/", { replace: true });
+	};
+
+	const onRestartGame = async () => {
+        let newMatchSetup = {...X01Models.X01Model};
+        newMatchSetup.isSoloGame = game.players.length === 1;
+        newMatchSetup.startingScore = game.startingScore;
+        newMatchSetup.setMode = game.setMode;
+        newMatchSetup.legMode = game.legMode;
+        newMatchSetup.legInMode = game.legInMode;
+        newMatchSetup.legOutMode = game.legOutMode;
+        newMatchSetup.numberOfSets = game.numberOfSets;
+        newMatchSetup.numberOfLegs = game.numberOfLegs;
+        newMatchSetup.numberOfPlayers = game.players.length;
+        newMatchSetup.startingPlayerLeg = game.players[0];
+        newMatchSetup.startingPlayerSet = game.players[0];
+        newMatchSetup.currentPlayerTurn = game.players[0];
+        newMatchSetup.players = game.players;
+        newMatchSetup.playerModels = {};
+		game.players.forEach(player => {
+			let x01PlayerModel = {...X01Models.X01PlayerModel};
+			x01PlayerModel.score = Number(game.startingScore);
+			newMatchSetup.playerModels[player] = x01PlayerModel;
+		});
+
+		let newGame = await X01Service.createX01(newMatchSetup)
+        navigate('/x01/' + newGame.id);
+	};
 
     if (!game || !players) {
         return (
@@ -89,6 +127,20 @@ const X01GameStats = () => {
                 <Col className="col-12">
                     <X01StatsCharts gameStats={ gameStats } players={ players } />
                 </Col>
+            </Row>
+            <Row className="d-grid gap-2 col-2 mx-auto mt-4">
+                <Button onClick={onRestartGame} variant="primary-green">
+                    <i className="fas fa-sync-alt pe-2" title='Restart'></i>
+                    Play Again
+                </Button>
+                <Button onClick={onNewGame} variant="outline-primary-green">
+                    <i className="fas fa-plus pe-2" title='Plus'></i>
+                    New Game
+                </Button>
+                <Button onClick={onFinishGame} variant="outline-primary-green">
+                    <i className="fas fa-home pe-2" title='Home'></i>
+                    Back Home
+                </Button>
             </Row>
         </Container>
     );
