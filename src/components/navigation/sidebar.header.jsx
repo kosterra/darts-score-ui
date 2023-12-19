@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import logo from '../../resources/img/logo.svg';
 
-const SidebarHeader = (props) => {
+const SidebarHeader = () => {
 
   return (
     <Fragment>

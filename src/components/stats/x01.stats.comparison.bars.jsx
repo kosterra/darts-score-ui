@@ -35,7 +35,7 @@ const X01StatsComparisonBars = (props) => {
         average.name = "Average";
 
         game.players.forEach((playerId, idx) => {
-            average['player' + (idx + 1)] = (((((game || {}).playerModels[playerId] || {}).averages || {})[valueKey] || {}).begMidGame || 0).toFixed(1)
+            average['player' + (idx + 1)] = (((((game || {}).playerModels[playerId] || {}).averages || {})[valueKey] || {})[valueKey === 'game' ? 'begMidGame' : 'begMidSet'] || 0).toFixed(1)
         });
 
         return [average];

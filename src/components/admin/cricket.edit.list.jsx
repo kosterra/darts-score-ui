@@ -44,13 +44,14 @@ const EditableCard = (props) => {
             <Card as='div'
                 className={`m-0 p-0 rounded-0 editable-card card-list-card bg-secondary-grey`}>
                 <Card.Body className="m-0 p-0 border-0 rounded-0">
+                    <Card.Title as="h6" className="bg-primary-green p-2 mb-0 text-white text-center span">
+                        <div className="fs-5 fw-600">Cricket</div>
+                        <span className="fw-500 fs-8">
+                            { cricketGame.gameIsRunning ? 'Running' : 'Finished' }
+                        </span>
+                    </Card.Title>
                     <Card.Text as="div" className="pt-3 pb-2 text-white">
                         <Container>
-                            <Row className="mb-3">
-                                <span className="fw-600 fs-7">
-                                    { cricketGame.gameIsRunning ? 'Running' : 'Finished' }
-                                </span>
-                            </Row>
                             <Row>
                                 { players.length > 0 && cricketGame.players.map((playerId, idx) => (
                                     <Row key={idx}>
@@ -209,8 +210,8 @@ const CricketEditList = (props) => {
                 </Modal.Header>
                 <Modal.Body>Are you sure you want to delete cricket game {cricketGameToDelete ? cricketGameToDelete.id : 'unknown'} ?</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary-green" onClick={cancelDeleteCricketGame}>
-                        No
+                    <Button variant="primary-grey" onClick={cancelDeleteCricketGame}>
+                        Cancel
                     </Button>
                     <Button variant="red" onClick={deleteCricketGame}>
                         Sure!

@@ -165,8 +165,8 @@ const PlayersEditList = (props) => {
                 </Modal.Header>
                 <Modal.Body>Are you sure you want to delete player {playerToDelete ? playerToDelete.nickname : 'unknown'} ?</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary-green" onClick={cancelDeletePlayer}>
-                        No
+                    <Button variant="primary-grey" onClick={cancelDeletePlayer}>
+                        Cancel
                     </Button>
                     <Button variant="red" onClick={deletePlayer}>
                         Sure!

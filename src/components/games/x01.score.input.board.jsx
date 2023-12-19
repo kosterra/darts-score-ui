@@ -144,8 +144,8 @@ const X01ScoreInputBoard = () => {
                                                     minLength={3}
                                                     maxLength={3}
                                                     />
-                                                <Button variant="red" id="d1-input">
-                                                    <i onClick={() => updateCurrentThrowManual(score, '', 0)} className="fas fa-minus-circle"></i>
+                                                <Button variant="red" id="d1-input" onClick={() => updateCurrentThrowManual(score, '', 0)}>
+                                                    <i className="fas fa-minus-circle"></i>
                                                 </Button>
                                             </InputGroup>
                                         </Fragment>
@@ -165,8 +165,8 @@ const X01ScoreInputBoard = () => {
                                                             minLength={3}
                                                             maxLength={3}
                                                             />
-                                                        <Button variant="red" id="d2-input">
-                                                            <i onClick={() => updateCurrentThrowManual(score, '', 1)} className="fas fa-minus-circle delete-dart-input"></i>
+                                                        <Button variant="red" id="d2-input" onClick={() => updateCurrentThrowManual(score, '', 1)}>
+                                                            <i className="fas fa-minus-circle delete-dart-input"></i>
                                                         </Button>
                                                     </InputGroup>
                                                 </Fragment>
@@ -185,8 +185,8 @@ const X01ScoreInputBoard = () => {
                                                         minLength={3}
                                                         maxLength={3}
                                                         />
-                                                    <Button variant="red" id="d3-input">
-                                                        <i onClick={() => updateCurrentThrowManual(score, '', 2)} className="fas fa-minus-circle delete-dart-input"></i>
+                                                    <Button variant="red" id="d3-input" onClick={() => updateCurrentThrowManual(score, '', 2)}>
+                                                        <i className="fas fa-minus-circle delete-dart-input"></i>
                                                     </Button>
                                                 </InputGroup>
                                             </Fragment>

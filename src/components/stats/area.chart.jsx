@@ -42,7 +42,7 @@ const StatsAreaChart = (props) => {
     }
   };
 
-  const handleLegendMouseLeave = (e) => {
+  const handleLegendMouseLeave = () => {
     setAreaProps({ ...areaProps, hover: null });
   };
 

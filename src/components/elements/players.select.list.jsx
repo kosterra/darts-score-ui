@@ -2,7 +2,6 @@ import React from 'react';
 import Avatar from 'react-avatar';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 
 const SelectableCard = (props) => {
@@ -21,10 +20,10 @@ const SelectableCard = (props) => {
     }
 
     return (
-        <Col className="mb-3">
+        <Container className="p-1">
             <Card as='a'
                 onClick={handleCardSelect}
-                className={`h-100 m-0 p-0 rounded-0 selectable-card card-list-card bg-secondary-grey ${isSelected ? 'selected' : ''} ${!selectable && !isSelected ? 'disabled' : ''} ${cssClass ? cssClass : ''}`}>
+                className={`rounded-0 selectable-card card-list-card ${isSelected ? 'selected' : ''} ${!selectable && !isSelected ? 'disabled' : ''} ${cssClass ? cssClass : ''}`}>
                 <Card.Body className="m-0 p-0 border-0 rounded-0">
                     <Card.Title as="h6" className="bg-primary-green p-2 mb-0 text-white text-center span">
                         {item.nickname}
@@ -47,7 +46,7 @@ const SelectableCard = (props) => {
                     <i className="fas fa-check-circle selected"/>
                 }
             </Card>
-        </Col>
+        </Container>
     );
 }
 
@@ -74,14 +73,14 @@ const PlayersSelectList = (props) => {
     }
 
     return (
-        <Container className={`p-0 selectable-card-list card-list ${listCssClass ? listCssClass : ''}`}>
+        <Container className={`px-1 p-0 selectable-card-list card-list ${listCssClass ? listCssClass : ''}`}>
             <div className="d-flex justify-content-center mb-4">
-                <span className="empty-text text-primary-grey">
+                <span className="empty-text text-primary-grey fs-7 fw-600">
                     {'Select ' + maxSelectable + ' ' + itemType}
                 </span>
             </div>
             {items.length > 0 &&
-                <Row xs={1} sm={2} md={3} lg={4} xl={4}>
+                <Row xs={1} sm={2} md={3} lg={4} xl={4} className="mb-2">
                     {items.map((item, idx) => (
                         <SelectableCard
                             key={idx}

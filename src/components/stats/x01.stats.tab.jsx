@@ -17,7 +17,7 @@ const X01StatsTab = (props) => {
         <Fragment>
             <Row>
                 <Col>
-                    <X01StatsComparisonBars game={ game } valueKey={ valueKey} />
+                    <X01StatsComparisonBars game={ game } valueKey={ valueKey } />
                 </Col>
             </Row>
         </Fragment>

@@ -41,7 +41,7 @@ const StatsRadarChart = (props) => {
       }
     };
   
-    const handleLegendMouseLeave = (e) => {
+    const handleLegendMouseLeave = () => {
       setRadarProps({ ...radarProps, hover: null });
     };
 

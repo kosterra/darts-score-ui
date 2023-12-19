@@ -45,7 +45,7 @@ const StatsScatterChart = (props) => {
       }
     };
 
-    const handleLegendMouseLeave = (e) => {
+    const handleLegendMouseLeave = () => {
       setScatterProps({ ...scatterProps, hover: null });
     };
 
