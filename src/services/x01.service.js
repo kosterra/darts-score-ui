@@ -1,9 +1,9 @@
 const {
-    REACT_APP_API_HOST,
-    REACT_APP_API_PORT
-} = process.env;
+    VITE_API_HOST,
+    VITE_API_PORT
+} = import.meta.env;
 
-const API_URL='http://' + REACT_APP_API_HOST + ':' + REACT_APP_API_PORT + '/api/';
+const API_URL = 'http://' + VITE_API_HOST + ':' + VITE_API_PORT + '/api/';
 
 // Public methods to export
 const createX01 = async (game) => {

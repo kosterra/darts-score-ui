@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
-    Sidebar,
-    useProSidebar
+    Sidebar
 } from 'react-pro-sidebar';
 
 import {
@@ -28,14 +27,13 @@ import SidebarDashboard from './sidebar.dashboard';
 
 
 const NavigationSidebar = () => {
-    const { collapseSidebar } = useProSidebar();
     const [ collapsed, setCollapsed ] = useState(true);
 
 	return (
 		<div className="sidebar min-vh-100">
             <Sidebar
                 breakPoint="md"
-                defaultCollapsed={true}
+                collapsed={collapsed}
             >
                 <div className="h-100 bg-secondary-grey">
                     <Row className="d-flex">
@@ -45,7 +43,6 @@ const NavigationSidebar = () => {
                         <Col className={`${collapsed ? 'col-12' : 'col-3'} p-0 pt-2 pe-1 d-flex align-items-center justify-content-center`}>
                             <Button
                                 onClick={() => {
-                                    collapseSidebar();
                                     setCollapsed(!collapsed);
                                 }}
                             >

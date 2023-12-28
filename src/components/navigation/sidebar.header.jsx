@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import logo from '../../resources/img/logo.svg';
+import logo from '/logo.svg';
 
 const SidebarHeader = () => {
 

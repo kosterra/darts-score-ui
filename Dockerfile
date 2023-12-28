@@ -1,35 +1,53 @@
-FROM node:20.8.0-alpine AS base
+FROM node:21.5.0-alpine AS builder
+
+WORKDIR /app
+
+# Update NPM version
+RUN npm install -g npm@10.2.5
+RUN npm install -g vite
+
+COPY ./package.json ./package.json
+COPY ./package-lock.json ./package-lock.json
+RUN npm install --loglevel warn
+COPY . ./
+RUN npm run build
+
+# ==================================
+#        Development Build
+# ==================================
+FROM node:21.5.0-alpine AS development
 
 # Create the app directory and set owner and permissions
 RUN mkdir -p /app
 RUN chown -R node:node /app && chmod -R 770 /app
 WORKDIR /app
 
-# Update NPM version
-RUN npm install -g npm@10.2.1
+COPY --chown=node:node --from=builder /app ./
 
-# builds image for development
-FROM base AS development
-WORKDIR /app
-COPY --chown=node:node . ./
 USER node
-RUN npm install --loglevel warn
+
 EXPOSE 3000
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "test"]
 
-# builds image for production
-FROM base AS production
+# ==================================
+#        Production Build
+# ==================================
+FROM node:21.5.0-alpine AS production
 
-ARG NODE_ENV=production
-ENV NODE_ENV $NODE_ENV
-
+# Create the app directory and set owner and permissions
+RUN mkdir -p /app
+RUN chown -R node:node /app && chmod -R 770 /app
 WORKDIR /app
-COPY --chown=node:node ./package.json ./package.json
-COPY --chown=node:node ./package-lock.json ./package-lock.json
+
+RUN npm install -g serve
+
+COPY --chown=node:node --from=builder /app/dist ./dist
+COPY --chown=node:node --from=builder /app/package.json ./package.json
+COPY --chown=node:node --from=builder /app/package-lock.json ./package-lock.json
+COPY --chown=node:node --from=builder /app/LICENSE ./LICENSE
+COPY --chown=node:node --from=builder /app/*.md ./
+
 USER node
-RUN npm install --loglevel warn --omit=dev
-COPY --chown=node:node . ./
-RUN npm run build
-RUN rm -r $(ls -A | grep -v dist)
-EXPOSE 3001
-CMD ["node", "dist/bundle.js"]
+
+EXPOSE 3000
+CMD ["npm", "run", "prod"]
