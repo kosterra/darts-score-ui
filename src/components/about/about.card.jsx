@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 const AboutCard = () => {
-	return (
+    return (
         <Col className="d-flex justify-content-center">
             <Card bg="secondary-grey" className="rounded-0 border-0 p-0" style={{ width: "50rem" }}>
                 <Card.Body className="m-0 p-0 border-0 rounded-0">
@@ -68,10 +68,10 @@ const AboutCard = () => {
                             </Col>
                         </Row>
                     </Card.Text>
-                </Card.Body>               
+                </Card.Body>
             </Card>
         </Col>
-	);
+    );
 };
 
 export default AboutCard;

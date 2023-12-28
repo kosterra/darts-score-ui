@@ -8,6 +8,10 @@ import {
     Button
 } from 'react-bootstrap';
 
+import {
+    FaChartBar
+} from "react-icons/fa";
+
 import CricketService from '../../services/cricket.service';
 import PlayerService from '../../services/player.service';
 import dayjs from "dayjs";
@@ -55,7 +59,7 @@ const RunningCricketGames = () => {
                                             <div className="d-flex justify-content-between align-items-end mt-2">
                                                 <span className="fs-9 text-grey">{ dayjs(cricketGame.createdAt).format("DD.MM.YYYY HH:mm") }</span>
                                                 <Button variant="primary-green" href={'/cricket/' + cricketGame.id} className="py-1">
-                                                    <i className="fas fa-external-link-alt"></i>
+                                                    <FaChartBar title="Show Statistics" />
                                                 </Button>
                                             </div>
                                         </ListGroup.Item>
