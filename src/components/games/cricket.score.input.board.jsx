@@ -4,6 +4,7 @@ import CricketContext from '../../utils/cricket.context';
 import CricketService from '../../services/cricket.service';
 
 import CricketDartBoard from './cricket.dartboard';
+import ScoreInputBoardModal from './score.input.board.modal';
 
 import {
     Container,
@@ -31,7 +32,6 @@ const CricketScoreInputBoard = () => {
 
     const [score, setScore] = useState(game.startingScore);
     const [sectionHit, setSectionHit] = useState(game.playerModels[game.currentPlayerTurn].sectionHit);
-    const [showModal, setShowModal] = useState(false);
     const [submit, setSubmit] = useState(false);
 
     useEffect(() => {
@@ -94,41 +94,14 @@ const CricketScoreInputBoard = () => {
     return (
         <Fragment>
             {!game.hasWinner && (
-                <Modal show={showModal}
-                    onHide={() => setShowModal(false)}
-                    fullscreen={false}
-                    aria-labelledby="contained-modal-title-vcenter"
-                    centered>
-                    <Modal.Header closeButton closeVariant="white">
-                        <Modal.Title className="h6">How to manually add a dart score?</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <p className="fs-7">If you missed, simply enter 0.</p>
-                        <p className="fs-7">For any other scores add:</p>
-                        <p className="fs-7">"S" (for a single), "D" (for a double)<br />or "T" (for a treble) before your score.<br />So "D10" scores 20 points, "T20" scores 60 ...</p>
-                        <p className="fs-7"><strong>Note that:</strong></p>
-                        <p className="fs-7">The inner BULLSEYE (50 points) = "D25"<br /> and the outer BULLSEYE (25 points) = "S25".</p>
-                    </Modal.Body>
-                    <Modal.Footer className="p-1">
-                        <Button variant="primary-green" onClick={() => setShowModal(false)} className="p-2">
-                            <i className="fas fa-thumbs-up px-1"></i>
-                            Got It
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            )}
-            {!game.hasWinner && (
                 <Container fluid className="mt-3">
                     <Row className="gap-5 justify-content-center">
                         <Col className="d-flex justify-content-end col-6">
                             <CricketDartBoard />
                         </Col>
                         <Col className="col-4">
+                            <ScoreInputBoardModal />
                             <Form className="mt-1" onSubmit={submitHandler}>
-                                <div className="mb-2">
-                                    <span>Click the dartboard or enter score{` `}</span>
-                                    <i onClick={() => setShowModal(true)} className="fas fa-question-circle" style={{ cursor: "pointer" }}></i>
-                                </div>
                                 <div>
                                     <div>
                                         <div>
