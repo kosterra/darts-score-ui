@@ -1,32 +1,32 @@
 version: '3.4'
 services:
-  darts_score:
-    container_name: darts_score_client
-    build:
-      context: .
-      target: development
-    ports:
-     - "3000:3000"
-    volumes:
-     - ./public:/app/public
-     - ./src:/app/src
-     - ./package.json:/app/package.json
-    env_file:
-      - ./.env
-    tty: true
-    environment:
-      NODE_ENV: "development"
   # darts_score:
   #   container_name: darts_score_client
   #   build:
   #     context: .
-  #     target: production
+  #     target: development
   #   ports:
   #    - "3000:3000"
+  #   volumes:
+  #    - ./public:/app/public
+  #    - ./src:/app/src
+  #    - ./package.json:/app/package.json
+  #   env_file:
+  #     - ./.env
   #   tty: true
   #   environment:
-  #     NODE_ENV: "production"
-  #     LOG_LEVEL: "debug"
+  #     NODE_ENV: "development"
+  darts_score:
+    container_name: darts_score_client
+    build:
+      context: .
+      target: production
+    ports:
+     - "3000:80"
+    tty: true
+    environment:
+      - DARTS_SCORE_API_HOST=${VITE_API_HOST}
+      - DARTS_SCORE_API_PORT=${VITE_API_PORT}
   # darts_score:
   #   image: darts_score_ui:v2023.10.1
   #   container_name: darts_score_client
