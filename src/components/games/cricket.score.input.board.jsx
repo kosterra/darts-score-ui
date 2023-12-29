@@ -100,8 +100,8 @@ const CricketScoreInputBoard = () => {
                             <CricketDartBoard />
                         </Col>
                         <Col className="col-4">
+                            <ScoreInputBoardModal />
                             <Form className="mt-1" onSubmit={submitHandler}>
-                                <ScoreInputBoardModal />
                                 <div>
                                     <div>
                                         <div>
