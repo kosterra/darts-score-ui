@@ -5,23 +5,8 @@ import dotenv from 'dotenv'
 dotenv.config() // load env vars from .env
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
-  const env = loadEnv('mock', process.cwd(), '')
-
-  const processEnvValues = {
-    'process.env': Object.entries(env).reduce(
-      (prev, [key, val]) => {
-        return {
-          ...prev,
-          [key]: val,
-        }
-      },
-      {},
-    )
-  }
-
+export default defineConfig(() => {
   return {
-    define: processEnvValues,
     server: {
       port: 3000,
       host: true,

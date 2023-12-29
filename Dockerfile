@@ -32,22 +32,10 @@ CMD ["npm", "run", "test"]
 # ==================================
 #        Production Build
 # ==================================
-FROM node:21.5.0-alpine AS production
+FROM nginx:1.25.3-alpine AS production
 
-# Create the app directory and set owner and permissions
-RUN mkdir -p /app
-RUN chown -R node:node /app && chmod -R 770 /app
-WORKDIR /app
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
+COPY env.sh /docker-entrypoint.d/env.sh
 
-RUN npm install -g serve
-
-COPY --chown=node:node --from=builder /app/dist ./dist
-COPY --chown=node:node --from=builder /app/package.json ./package.json
-COPY --chown=node:node --from=builder /app/package-lock.json ./package-lock.json
-COPY --chown=node:node --from=builder /app/LICENSE ./LICENSE
-COPY --chown=node:node --from=builder /app/*.md ./
-
-USER node
-
-EXPOSE 3000
-CMD ["npm", "run", "prod"]
+RUN chmod +x /docker-entrypoint.d/env.sh
