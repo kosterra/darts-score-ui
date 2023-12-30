@@ -36,7 +36,9 @@ const X01GameStats = () => {
         let gameStats = await StatsService.loadX01GameStats(game.id);
         
         players = players.filter(player => game.players.includes(player.id));
-        players.sort((a, b) => game.players.indexOf(a) - game.players.indexOf(b));
+        players.sort(function (a, b) {
+            return game.players.indexOf(a.id) - game.players.indexOf(b.id);
+        });
 
         setGame(game);
         setPlayers(players);
@@ -115,7 +117,7 @@ const X01GameStats = () => {
                         justify
                     >
                         <Tab eventKey="overall" title="Overall" className="p-4 bg-secondary-grey">
-                            <X01StatsTab valueKey="game" game={ game } gameStats={ gameStats } players={ players } />
+                            <X01StatsTab valueKey="game" game={ game } gameStats={ gameStats } />
                         </Tab>
 
                         {[...Array(game.setsPlayed)].map((e, i) => (
