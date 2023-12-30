@@ -9,6 +9,7 @@ import ChartConfigOptions from './chart.config.options';
 
 const X01StatsCharts = (props) => {
     const {
+        game,
         gameStats,
         players
     } = props;
