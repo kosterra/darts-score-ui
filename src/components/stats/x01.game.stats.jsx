@@ -36,6 +36,7 @@ const X01GameStats = () => {
         let gameStats = await StatsService.loadX01GameStats(game.id);
         
         players = players.filter(player => game.players.includes(player.id));
+        players.sort((a, b) => game.players.indexOf(a) - game.players.indexOf(b));
 
         setGame(game);
         setPlayers(players);
