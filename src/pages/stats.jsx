@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Container, Row } from 'react-bootstrap';
 
 import PlayerStats from '../components/stats/player.stats';
+import PlayerVSStats from '../components/stats/player.vs.stats';
 import X01EditList from '../components/admin/x01.edit.list';
 import CricketEditList from '../components/admin/cricket.edit.list';
 
@@ -14,6 +15,8 @@ const StatsPage = () => {
       switch (id) {
           case 'players':
               return <PlayerStats />;
+          case 'vs':
+              return <PlayerVSStats />;
           case 'x01':
               return <X01EditList
                         deleteActive={ false }

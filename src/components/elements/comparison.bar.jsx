@@ -57,22 +57,22 @@ const ComparisonBar = (props) => {
                   <YAxis type="category" hide={true} dataKey="name" />
                   
                   { data[0].player1 &&
-                    <Bar dataKey="player1" stackId="a" fill={ fillColors.values[0] } animationDuration={2000}>
+                    <Bar key={Math.random()} dataKey="player1" stackId="a" fill={ fillColors.values[0] } animationDuration={2000}>
                       <LabelList className="fs-8 fw-600" position="inside" fill="#fff" valueAccessor={valueAccessor("player1")} />
                     </Bar>
                   }
                   { data[0].player2 &&
-                    <Bar dataKey="player2" stackId="a" fill={ fillColors.values[1] } animationDuration={2000}>
+                    <Bar key={Math.random()} dataKey="player2" stackId="a" fill={ fillColors.values[1] } animationDuration={2000}>
                       <LabelList className="fs-8 fw-600" position="inside" fill="#fff" valueAccessor={valueAccessor("player2")} />
                     </Bar>
                   }
                   { data[0].player3 &&
-                    <Bar dataKey="player3" stackId="a" fill={ fillColors.values[2] } animationDuration={2000}>
+                    <Bar key={Math.random()} dataKey="player3" stackId="a" fill={ fillColors.values[2] } animationDuration={2000}>
                       <LabelList className="fs-8 fw-600" position="inside" fill="#fff" valueAccessor={valueAccessor("player3")} />
                     </Bar>
                   }
                   { data[0].player4 &&
-                    <Bar dataKey="player4" stackId="a" fill={ fillColors.values[3] } animationDuration={2000}>
+                    <Bar key={Math.random()} dataKey="player4" stackId="a" fill={ fillColors.values[3] } animationDuration={2000}>
                       <LabelList className="fs-8 fw-600" position="inside" fill="#fff" valueAccessor={valueAccessor("player4")} />
                     </Bar>
                   }

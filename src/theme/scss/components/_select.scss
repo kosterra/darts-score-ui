@@ -1,0 +1,84 @@
+// Select
+select {
+    background-color: $primary-grey-transparent;
+    color: $white;
+    padding: 8px;
+    border-radius: 3px;
+    border: none;
+
+    option {
+        background-color: $primary-grey-transparent;
+
+        &:hover {
+            background-color: $primary-green;
+        }
+    }
+}
+
+// Multiselect react-bootstrap-typeahead
+.rbt {
+    .rbt-input {
+        background-color: $tertiary-grey-transparent;
+        border-color: $primary-grey-transparent;
+        height: 60px;
+        display: flex;
+        align-items: center;
+
+        .rbt-input-wrapper {
+            display: flex;
+            align-items: center;
+
+            .rbt-token {
+                display: flex;
+                align-items: center;
+                color: $white;
+                background-color: $primary-green;
+                border-radius: 20px;
+                padding: 8px;
+                margin-right: 5px;
+
+                .rbt-token-remove-button.btn-close {
+                    color: $white !important;
+                    background-color: $white;
+                    border: 1px solid $white;
+                    padding: 3px;
+                    margin-left: 8px;
+                    font-size: 0.7rem;
+                    border-radius: 16px;
+
+                    .rbt-close-content {
+                        display: none;
+                    }
+                }
+            }
+
+            .rbt-input-main {
+                color: $white;
+            }
+
+            .rbt-input-hint {
+                color: rgba(255, 255, 255, 0.5) !important;
+            }
+        }
+    }
+
+    .rbt-menu {
+        background-color: $tertiary-grey;
+
+        .dropdown-item {
+            color: $white;
+            font-size: 0.9rem;
+            font-weight: 600;
+
+            &:hover {
+                background-color: $primary-green;
+            }
+
+            .dropdown-item-img {
+                height: 60px;
+                width: 60px;
+                border-radius: 50%;
+            }
+        }
+    }
+}

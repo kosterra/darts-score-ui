@@ -1,0 +1,44 @@
+// Bootstrap
+$theme-colors: (
+    "white": $white,
+    "gold": $gold,
+    "blue": $blue,
+    "red": $red,
+    "grey": $grey,
+    "primary-grey": $primary-grey,
+    "primary-grey-transparent": $primary-grey-transparent,
+    "secondary-grey": $secondary-grey,
+    "secondary-grey-transparent": $secondary-grey-transparent,
+    "tertiary-grey": $tertiary-grey,
+    "tertiary-grey-transparent": $tertiary-grey-transparent,
+    "primary-green": $primary-green,
+    "secondary-green": $secondary-green
+
+);
+
+$border-widths: (
+  1: 1px,
+  2: 2px,
+  3: 3px,
+  4: 4px,
+  5: 5px,
+  6: 6px,
+  7: 7px,
+  8: 8px
+);
+
+$border-radius: .25rem;
+$border-radius-sm: .2rem;
+$border-radius-lg: .3rem;
+$border-radius-pill: 50rem;
+
+
+$spacer: 1.2rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+);

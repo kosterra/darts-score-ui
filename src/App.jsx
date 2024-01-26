@@ -15,7 +15,7 @@ import AboutPage from './pages/about';
 import AdminPage from './pages/admin';
 
 import 'react-toastify/dist/ReactToastify.css';
-import './resources/scss/main.scss';
+import './theme/scss/main.scss';
 
 function App() {
 

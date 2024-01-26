@@ -1,0 +1,17 @@
+// Fileuploader
+.file-upload {
+    .delete-file {
+        cursor: pointer;
+        position: absolute;
+        top: 7rem;
+        right: 12rem;
+    }
+
+    .drop-zone {
+        cursor: pointer;
+    
+        &.is-dragging, &:hover {
+            background-color: $tertiary-grey;
+        }
+    }
+}

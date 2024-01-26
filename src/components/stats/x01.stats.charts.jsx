@@ -9,7 +9,6 @@ import ChartConfigOptions from './chart.config.options';
 
 const X01StatsCharts = (props) => {
     const {
-        game,
         gameStats,
         players
     } = props;
@@ -81,8 +80,8 @@ const X01StatsCharts = (props) => {
 
     return (
         <Fragment>
-            <Row xs={1} sm={1} md={2} className="d-flex justify-content-center align-items-center mt-3">
-                <Col className="col-xs-12 col-md-6 col-lg-4 p-1">
+            <Row xs={1} sm={1} md={1} lg={2} className="d-flex justify-content-center align-items-center mt-3">
+                <Col className="col-xs-12 col-md-12 col-lg-5 p-1">
                     <StatsLineChart title="Averages"
                                     data={ (gameStats || {}).avg || [] }
                                     players={ players }
@@ -90,7 +89,7 @@ const X01StatsCharts = (props) => {
                                     showLegend={ true }
                     />
                 </Col>
-                <Col className="col-xs-12 col-md-6 col-lg-4 p-1">
+                <Col className="col-xs-12 col-md-12 col-lg-5 p-1">
                     <StatsRadarChart title="Section Hits"
                                      data={ (gameStats || {}).sectionHits || {} }
                                      players={ players }
@@ -100,8 +99,8 @@ const X01StatsCharts = (props) => {
                     />
                 </Col>
             </Row>
-            <Row xs={1} sm={1} md={2} className="d-flex justify-content-center align-items-center mt-3">
-                <Col className="col-xs-12 col-md-6 col-lg-4  p-1">
+            <Row xs={1} sm={1} md={1} lg={2} className="d-flex justify-content-center align-items-center mt-3">
+                <Col className="col-xs-12 col-md-12 col-lg-5 p-1">
                     <StatsScatterChart title="Checkouts"
                                         data={ (gameStats || {}).checkouts || {} }
                                         players={ players }
@@ -114,7 +113,7 @@ const X01StatsCharts = (props) => {
                                         showLegend={ true }
                     />
                 </Col>
-                <Col className="col-xs-12 col-md-6 col-lg-4  p-1">
+                <Col className="col-xs-12 col-md-12 col-lg-5 p-1">
                     <StatsBarChart title="Score Ranges"
                                    data={ (gameStats || {}).scoreRanges || {} }
                                    players={ players }

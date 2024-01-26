@@ -1,0 +1,33 @@
+// Input Group
+.input-group {
+
+    .input-group-text {
+        background-color: $tertiary-grey;
+        border: 1px solid $tertiary-grey;
+        color: $primary-grey;
+        font-weight: 200;
+    }
+}
+
+// Input
+input.form-control {
+    color: $white;
+    background-color: $tertiary-grey-transparent;
+    border: none;
+    border-radius: 2px;
+
+    &:focus {
+        background-color: $tertiary-grey-transparent;
+        color: $white;
+        border: 1px solid $primary-grey-transparent;
+        box-shadow: none;
+    }
+
+    &:not(active){
+        color:$white !important;
+     }
+}
+
+input::placeholder {
+    color: $primary-grey !important;
+}

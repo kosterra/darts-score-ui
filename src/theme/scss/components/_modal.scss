@@ -1,0 +1,21 @@
+// Bootstrap Modal
+.modal-dialog {
+    .modal-content {
+        background-color: $secondary-grey;
+        border-radius: 2px;
+        border: none;
+
+        .modal-header {
+            background-color: $primary-green;
+            border: none;
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        .modal-footer {
+            border-top: 1px solid $tertiary-grey;
+        }
+    }
+}
