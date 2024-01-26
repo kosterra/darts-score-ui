@@ -14,7 +14,7 @@ const PlayerStatsCharts = (props) => {
 
     return (
         <Fragment>
-            <Row xs={1} sm={1} md={2} className="mt-3">
+            <Row xs={1} sm={1} md={2} className="d-flex justify-content-center align-items-center mt-3">
                 <Col className="col-6 p-1">
                     <StatsAreaChart title="Average"
                                     subtitle="X01"
@@ -37,7 +37,7 @@ const PlayerStatsCharts = (props) => {
                     />
                 </Col>
             </Row>
-            <Row xs={1} sm={1} md={2} className="mt-3">
+            <Row xs={1} sm={1} md={2} className="d-flex justify-content-center align-items-center mt-3">
                 <Col className="col-6 p-1">
                     <StatsScatterChart title="Checkouts"
                                         subtitle="X01"

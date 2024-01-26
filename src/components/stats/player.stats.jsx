@@ -1,36 +1,42 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react'
 import {
     Container,
     InputGroup,
     Form
-} from 'react-bootstrap';
+} from 'react-bootstrap'
 
-import PlayerOverallStats from './player.overall.stats';
-import PlayersSelectList from '../elements/players.select.list';
-import PlayerService from '../../services/player.service';
+import PlayerOverallStats from './player.overall.stats'
+import PlayersSelectList from '../elements/players.select.list'
+import PlayerService from '../../services/player.service'
+import StatsService from '../../services/stats.service'
+import PlayerStatsCharts from './player.stats.charts'
 
 const PlayerStats = () => {
 
-    const [players, setPlayers] = useState([]);
+    const [players, setPlayers] = useState([])
     const [selectedPlayers, setSelectedPlayers] = useState([])
-    const [searchTerm, setSearchTerm] = useState('');
+    const [playerStats, setPlayerStats] = useState({})
+    const [searchTerm, setSearchTerm] = useState('')
 
     useEffect(() => {
-		loadPlayers('');
+		loadPlayers('')
 	}, [])
 
-    const onSelectPlayer=(players) => {
-        setSelectedPlayers(players);
+    const onSelectPlayer= async (players) => {
+        setSelectedPlayers(players)
+
+        let data = await StatsService.loadPlayerStats(players[0].id)
+        setPlayerStats(data)
     }
 
     const onSearchTermChange=(event) => {
-        setSearchTerm(event.target.value);
-        loadPlayers(event.target.value);
+        setSearchTerm(event.target.value)
+        loadPlayers(event.target.value)
     }
 
     const loadPlayers = async searchTerm => {
-        let data = await PlayerService.loadPlayers(searchTerm);
-        setPlayers(data);
+        let data = await PlayerService.loadPlayers(searchTerm)
+        setPlayers(data)
     }
 
     return (
@@ -63,7 +69,8 @@ const PlayerStats = () => {
                 </div>
                 { selectedPlayers && selectedPlayers[0] &&
                     <Container>
-                        <PlayerOverallStats player={selectedPlayers[0]} />
+                        <PlayerOverallStats player={selectedPlayers[0]} playerStats={playerStats} />
+                        <PlayerStatsCharts playerStats={playerStats} players={selectedPlayers} />
                     </Container>
                 }
             </div>
@@ -71,4 +78,4 @@ const PlayerStats = () => {
     );
 }
 
-export default PlayerStats;
+export default PlayerStats

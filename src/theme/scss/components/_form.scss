@@ -1,0 +1,10 @@
+// Bootstrap Form
+.form-floating {
+    label {
+        color: $primary-grey !important;
+
+        &::after {
+            background-color: transparent !important;
+        }
+    }
+}

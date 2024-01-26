@@ -26,16 +26,21 @@ const SidebarStats = (props) => {
             </div>
         }
         <Menu>
-            <MenuItem icon={<FaChartLine />} component={<Link to="/stats/players" />} className="fs-8 fw-500">
-                Players
-            </MenuItem>
-            <SubMenu
-                label="Games"
-                icon={<FaTrophy />}
-                className="fs-8 fw-500"
-            >
-                <MenuItem component={<Link to="/stats/games/x01" />} className="fs-8 fw-500"> X01</MenuItem>
-                <MenuItem component={<Link to="/stats/games/cricket" />} className="fs-8 fw-500"> Cricket</MenuItem>
+              <SubMenu
+                  label="Players"
+                  icon={<FaChartLine />}
+                  className="fs-8 fw-500"
+              >
+                  <MenuItem component={<Link to="/stats/players" />} className="fs-8 fw-500"> Players</MenuItem>
+                  <MenuItem component={<Link to="/stats/vs" />} className="fs-8 fw-500"> Player vs. Player</MenuItem>
+              </SubMenu>
+              <SubMenu
+                  label="Games"
+                  icon={<FaTrophy />}
+                  className="fs-8 fw-500"
+              >
+                  <MenuItem component={<Link to="/stats/games/x01" />} className="fs-8 fw-500"> X01</MenuItem>
+                  <MenuItem component={<Link to="/stats/games/cricket" />} className="fs-8 fw-500"> Cricket</MenuItem>
             </SubMenu>
         </Menu>
     </Fragment>

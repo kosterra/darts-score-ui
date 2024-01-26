@@ -1,0 +1,30 @@
+// Bootstrap Dropdown
+.dropdown {
+    .dropdown-toggle {
+        border: none;
+        border-radius: 2px;
+        font-size: 0.9rem;
+    }
+
+    .dropdown-menu {
+        background-color: $tertiary-grey;
+        padding: 0.4rem;
+        border-radius: 2px;
+        border: none;
+
+        .dropdown-item {
+            margin: 0.3rem 0;
+            color: $white;
+            font-size: 0.9rem;
+            font-weight: 500;
+
+            &.active {
+                background-color: $primary-green;
+            }
+
+            &:hover {
+                background-color: $primary-grey !important;
+            }
+        }
+    }
+}

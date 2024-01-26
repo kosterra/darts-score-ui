@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import { Fragment } from 'react';
 
 import {
     Col,
@@ -6,26 +6,14 @@ import {
     Row
 } from 'react-bootstrap';
 
-import StatsService from '../../services/stats.service';
 import StatsCard from './stats.card';
 import PlayerStatsCharts from './player.stats.charts';
 
 const PlayerOverallStats = (props) => {
     const {
-        player
+        player,
+        playerStats
     } = props
-
-    const [playerStats, setPlayerStats] = useState({});
-
-    const loadPlayerStats = async () => {
-        let data = await StatsService.loadPlayerStats(player.id);
-        setPlayerStats(data);
-    }
-
-    useEffect(() => {
-		loadPlayerStats();
-    // eslint-disable-next-line
-	}, []);
 
     return (
         <Fragment>
@@ -119,7 +107,6 @@ const PlayerOverallStats = (props) => {
                         />
                     </Col>
                 </Row>
-                <PlayerStatsCharts playerStats={ playerStats } players={ [player] } />
             </Container>
         </Fragment>
     );
