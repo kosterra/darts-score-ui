@@ -130,9 +130,9 @@ const X01GameStats = () => {
                 <Col className="col-12">
                     <X01StatsCharts
                         avg={(gameStats || {}).avg || []}
-                        sectionHits={(x01Stats || {}).sectionHits || {}}
-                        checkouts={(x01Stats || {}).checkouts || {}}
-                        scoreRanges={(x01Stats || {}).scoreRanges || {}}
+                        sectionHits={(gameStats || {}).sectionHits || {}}
+                        checkouts={(gameStats || {}).checkouts || {}}
+                        scoreRanges={(gameStats || {}).scoreRanges || {}}
                         players={players} />
                 </Col>
             </Row>
