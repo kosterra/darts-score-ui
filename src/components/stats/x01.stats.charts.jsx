@@ -9,7 +9,10 @@ import ChartConfigOptions from './chart.config.options';
 
 const X01StatsCharts = (props) => {
     const {
-        gameStats,
+        avg,
+        sectionHits,
+        checkouts,
+        scoreRanges,
         players
     } = props;
 
@@ -83,43 +86,43 @@ const X01StatsCharts = (props) => {
             <Row xs={1} sm={1} md={1} lg={2} className="d-flex justify-content-center align-items-center mt-3">
                 <Col className="col-xs-12 col-md-12 col-lg-5 p-1">
                     <StatsLineChart title="Averages"
-                                    data={ (gameStats || {}).avg || [] }
-                                    players={ players }
-                                    labels={ getLineChartLabels() }
-                                    showLegend={ true }
+                        data={ avg }
+                        players={ players }
+                        labels={ getLineChartLabels() }
+                        showLegend={ true }
                     />
                 </Col>
                 <Col className="col-xs-12 col-md-12 col-lg-5 p-1">
                     <StatsRadarChart title="Section Hits"
-                                     data={ (gameStats || {}).sectionHits || {} }
-                                     players={ players }
-                                     axisKey="section"
-                                     labels={ getRadarChartLabels() }
-                                     showLegend={ true }
+                        data={ sectionHits }
+                        players={ players }
+                        axisKey="section"
+                        labels={ getRadarChartLabels() }
+                        showLegend={ true }
                     />
                 </Col>
             </Row>
             <Row xs={1} sm={1} md={1} lg={2} className="d-flex justify-content-center align-items-center mt-3">
                 <Col className="col-xs-12 col-md-12 col-lg-5 p-1">
                     <StatsScatterChart title="Checkouts"
-                                        data={ (gameStats || {}).checkouts || {} }
-                                        players={ players }
-                                        xKey="total"
-                                        yKey="hit"
-                                        zKey="rate"
-                                        xLabel="Total Attempts"
-                                        yLabel="Hit"
-                                        labels={ getScatterChartLabels() }
-                                        showLegend={ true }
+                        data={ checkouts }
+                        players={ players }
+                        xKey="total"
+                        yKey="hit"
+                        zKey="rate"
+                        xLabel="Total Attempts"
+                        yLabel="Hit"
+                        labels={ getScatterChartLabels() }
+                        showLegend={ true }
                     />
                 </Col>
                 <Col className="col-xs-12 col-md-12 col-lg-5 p-1">
                     <StatsBarChart title="Score Ranges"
-                                   data={ (gameStats || {}).scoreRanges || {} }
-                                   players={ players }
-                                   yLabel="Count"
-                                   labels={ getBarChartLabels() }
-                                   showLegend={ true }
+                        data={ scoreRanges }
+                        players={ players }
+                        yLabel="Count"
+                        labels={ getBarChartLabels() }
+                        showLegend={ true }
                     />
                 </Col>
             </Row>

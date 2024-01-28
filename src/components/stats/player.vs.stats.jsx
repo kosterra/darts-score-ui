@@ -143,10 +143,15 @@ const PlayerVSStats = (props) => {
                                 <span className="d-flex justify-content-center align-items-center fs-4 fw-600 mb-4 mt-4">X01 Statistics</span>
                                 <PlayersX01StatsComparisonBars playersX01Stats={playerStats} />
                             </Col>
-                            {/* <Col className="px-0 rounded-2 mb-4">
+                            <Col className="px-0 rounded-2 mb-4">
                                 <span className="d-flex justify-content-center align-items-center fs-4 fw-600 mb-4 mt-4">X01 Statistics Charts</span>
-                                <X01StatsCharts playerStats={playerStats} players={players} />
-                            </Col> */}
+                                <X01StatsCharts
+                                    avg={((playerStats || {}).avg || []).perGame || []}
+                                    sectionHits={(playerStats || {}).sectionHits || {}}
+                                    checkouts={((playerStats || {}).checkouts || {}).rates || {}}
+                                    scoreRanges={(playerStats || {}).scoreRanges || {}}
+                                    players={players} />
+                            </Col>
                         </Row>
                     }
                 </Fragment>
