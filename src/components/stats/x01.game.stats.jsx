@@ -128,7 +128,12 @@ const X01GameStats = () => {
                     </Tabs>
                 </Col>
                 <Col className="col-12">
-                    <X01StatsCharts gameStats={ gameStats } players={ players } />
+                    <X01StatsCharts
+                        avg={(gameStats || {}).avg || []}
+                        sectionHits={(x01Stats || {}).sectionHits || {}}
+                        checkouts={(x01Stats || {}).checkouts || {}}
+                        scoreRanges={(x01Stats || {}).scoreRanges || {}}
+                        players={players} />
                 </Col>
             </Row>
             <Row className="d-grid gap-2 col-2 mx-auto mt-4">
