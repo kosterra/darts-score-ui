@@ -23,7 +23,7 @@ const StatsLineChart = (props) => {
       yLabel = '',
       players,
       labels,
-      showLegend
+      showLegend = false
     } = props;
 
     const [lineProps, setLineProps] = useState(
