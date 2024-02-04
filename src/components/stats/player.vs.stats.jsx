@@ -3,15 +3,12 @@ import {
     ButtonGroup,
     Col,
     Container,
-    InputGroup,
     Form,
     Row,
     ToggleButton
 } from 'react-bootstrap';
 
 import PlayerSelect from '../elements/player.select';
-import PlayerOverallStats from './player.overall.stats';
-import PlayerStatsCharts from './player.stats.charts';
 import StatsService from '../../services/stats.service';
 import PlayersX01StatsComparisonBars from './players.x01.stats.comparison.bars';
 import X01StatsCharts from './x01.stats.charts';

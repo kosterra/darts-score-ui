@@ -22,7 +22,7 @@ const StatsRadarChart = (props) => {
       players,
       axisKey,
       labels,
-      showLegend
+      showLegend = false
     } = props;
 
     const [radarProps, setRadarProps] = useState(

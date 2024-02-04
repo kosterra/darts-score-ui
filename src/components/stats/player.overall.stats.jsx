@@ -7,20 +7,15 @@ import {
 } from 'react-bootstrap';
 
 import StatsCard from './stats.card';
-import PlayerStatsCharts from './player.stats.charts';
 
 const PlayerOverallStats = (props) => {
     const {
-        player,
         playerStats
     } = props
 
     return (
         <Fragment>
             <Container className="px-1">
-                <div className="mt-4 d-flex justify-content-center">
-                    <span className="fs-2">Statistics for {player.nickname}</span>
-                </div>
                 <Row className="mt-4 d-flex space-between">
                     <Col className="col-2 p-1 d-flex align-content-stretch">
                         <StatsCard title="Played Games"

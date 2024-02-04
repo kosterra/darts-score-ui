@@ -91,14 +91,14 @@ const StatsAreaChart = (props) => {
                   <div className="fs-8 mt-1">{ subtitle }</div>
                 </Card.Title>
                 <Card.Text as="div" className="d-flex justify-content-center p-2 text-white">
-                  <ResponsiveContainer width="100%" height={300}>
+                  <ResponsiveContainer width="100%" height={330}>
                     <AreaChart
                       data={ data }
                       margin={{
                         top: 30,
                         right: 60,
                         left: 0,
-                        bottom: 10,
+                        bottom: 20,
                       }}
                     >
                       <CartesianGrid strokeDasharray="4 4" opacity={0.5} />
