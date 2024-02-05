@@ -18,25 +18,31 @@ import {
     FaChartBar
 } from "react-icons/fa";
 
-import {
-    GiBullseye
-} from "react-icons/gi";
+import { GiBullseye } from "react-icons/gi";
+import { VscJson } from "react-icons/vsc";
 
 import dayjs from "dayjs";
 
 import PlayerService from '../../services/player.service';
 import X01Service from '../../services/x01.service';
+import JSONViewer from '../elements/json.viewer';
 
 const EditableCard = (props) => {
     const {
         x01Game,
         players,
         deleteX01Game,
-        deleteActive
+        showRAWX01Game,
+        deleteActive = false,
+        rawActive = false,
     } = props
 
     const handleX01GameDelete = () => {
         deleteX01Game(x01Game);
+    }
+
+    const handleX01GameRAW = () => {
+        showRAWX01Game(x01Game);
     }
 
     return (
@@ -79,13 +85,18 @@ const EditableCard = (props) => {
                                             </Button>
                                         }
                                         { !x01Game.gameIsRunning &&
-                                            <Button variant="primary-green" href={'/stats/games/x01/' + x01Game.id} className="me-1">
-                                                <FaChartBar title="Show Statistics" />
+                                            <Button variant="primary-green" title="Show Statistics"  href={'/stats/games/x01/' + x01Game.id} className="me-1">
+                                                <FaChartBar />
+                                            </Button>
+                                        }
+                                        {!x01Game.gameIsRunning && rawActive &&
+                                            <Button variant="primary-grey" title="Show _raw data" onClick={handleX01GameRAW} className="me-1">
+                                                <VscJson />
                                             </Button>
                                         }
                                         { deleteActive &&
-                                            <Button variant="red" onClick={handleX01GameDelete}>
-                                                <FaTrash title="Delete Game" />
+                                            <Button variant="red" title="Delete Game" onClick={handleX01GameDelete}>
+                                                <FaTrash />
                                             </Button>
                                         }
                                     </div>
@@ -104,12 +115,15 @@ const X01EditList = (props) => {
         emptyText,
         showStatusFilter = true,
         staticStatusValue = '1',
-        deleteActive = true
+        deleteActive = false,
+        rawActive = false
     } = props
 
     const [x01Games, setX01Games] = useState([]);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showRAWModal, setShowRAWModal] = useState(false);
     const [x01GameToDelete, setX01GameToDelete] = useState(null);
+    const [x01GameRAW, setX01GameRAW] = useState({});
     const [players, setPlayers] = useState([]);
     const [statusFilterValue, setStatusFilterValue] = useState(staticStatusValue);
 
@@ -132,6 +146,11 @@ const X01EditList = (props) => {
     const handleX01GameDelete = (x01Game) => {
         setX01GameToDelete(x01Game);
         setShowDeleteModal(true);
+    };
+
+    const handleShowRAWX01Game = (x01Game) => {
+        setX01GameRAW(x01Game);
+        setShowRAWModal(true);
     };
 
     const deleteX01Game = async () => {
@@ -196,8 +215,10 @@ const X01EditList = (props) => {
                                 key={ idx }
                                 x01Game={ item }
                                 players={ players }
-                                deleteX01Game={ handleX01GameDelete }
-                                deleteActive={ deleteActive }
+                                deleteX01Game={handleX01GameDelete}
+                                showRAWX01Game={handleShowRAWX01Game}
+                                deleteActive={deleteActive}
+                                rawActive={rawActive}
                             />
                         ))}
                     </Row>
@@ -221,6 +242,14 @@ const X01EditList = (props) => {
                         Sure!
                     </Button>
                 </Modal.Footer>
+            </Modal>
+            <Modal show={showRAWModal} fullscreen={true} onHide={() => setShowRAWModal(false)} dialogClassName="modal-90w">
+                <Modal.Header closeButton closeVariant="white">
+                    <Modal.Title className="h6">X01 Game _RAW Data</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <JSONViewer data={x01GameRAW} />
+                </Modal.Body>
             </Modal>
         </Fragment>
     );
