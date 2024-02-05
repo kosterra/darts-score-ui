@@ -12,13 +12,13 @@ const AdminPage = () => {
     function AdminContent() {
         switch (id) {
             case 'players':
-                return <PlayersEditList emptyText="No Players found. Please create new players first!"/>;
+                return <PlayersEditList deleteActive={true} rawActive={true} emptyText="No Players found. Please create new players first!"/>;
             case 'x01':
-                return <X01EditList emptyText="No X01 Games found. Please play any games first!"/>;
+                return <X01EditList deleteActive={true} rawActive={true} emptyText="No X01 Games found. Please play any games first!"/>;
             case 'cricket':
-                return <CricketEditList emptyText="No Cricket Games found. Please play any games first!"/>;
+                return <CricketEditList deleteActive={true} rawActive={true} emptyText="No Cricket Games found. Please play any games first!"/>;
             default:
-                return <PlayersEditList emptyText="No Players found. Please create new players first!"/>;
+                return <PlayersEditList deleteActive={true} rawActive={true} emptyText="No Players found. Please create new players first!"/>;
         }
     }
 

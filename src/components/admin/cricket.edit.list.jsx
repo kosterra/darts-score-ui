@@ -18,25 +18,31 @@ import {
     FaChartBar
 } from "react-icons/fa";
 
-import {
-    GiBullseye
-} from "react-icons/gi";
+import { GiBullseye } from "react-icons/gi";
+import { VscJson } from "react-icons/vsc";
 
 import dayjs from "dayjs";
 
 import PlayerService from '../../services/player.service';
 import CricketService from '../../services/cricket.service';
+import JSONViewer from '../elements/json.viewer';
 
 const EditableCard = (props) => {
     const {
         cricketGame,
         players,
         deleteCricketGame,
-        deleteActive
+        showRAWCricketGame,
+        deleteActive = false,
+        rawActive = false
     } = props
 
     const handleCricketGameDelete = () => {
         deleteCricketGame(cricketGame);
+    }
+
+    const handleCricketGameRAW = () => {
+        showRAWCricketGame(cricketGame);
     }
 
     return (
@@ -79,6 +85,11 @@ const EditableCard = (props) => {
                                                 <FaChartBar title="Show Statistics" />
                                             </Button>
                                         }
+                                        {!cricketGame.gameIsRunning && rawActive &&
+                                            <Button variant="primary-grey" title="Show _raw data" onClick={handleCricketGameRAW} className="me-1">
+                                                <VscJson />
+                                            </Button>
+                                        }
                                         { deleteActive &&
                                             <Button variant="red" onClick={handleCricketGameDelete}>
                                                 <FaTrash title="Delete Game" />
@@ -100,12 +111,15 @@ const CricketEditList = (props) => {
         emptyText,
         showStatusFilter = true,
         staticStatusValue = '1',
-        deleteActive = true
+        deleteActive = false,
+        rawActive = false
     } = props
 
     const [cricketGames, setCricketGames] = useState([]);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showRAWModal, setShowRAWModal] = useState(false);
     const [cricketGameToDelete, setCricketGameToDelete] = useState(null);
+    const [cricketGameRAW, setCricketGameRAW] = useState({});
     const [players, setPlayers] = useState([]);
     const [statusFilterValue, setStatusFilterValue] = useState(staticStatusValue);
 
@@ -128,6 +142,11 @@ const CricketEditList = (props) => {
     const handleCricketGameDelete = (cricketGame) => {
         setCricketGameToDelete(cricketGame);
         setShowDeleteModal(true);
+    };
+
+    const handleShowRAWCricketGame = (cricketGame) => {
+        setCricketGameRAW(cricketGame);
+        setShowRAWModal(true);
     };
 
     const deleteCricketGame = async () => {
@@ -193,7 +212,9 @@ const CricketEditList = (props) => {
                                 cricketGame={item}
                                 players={players}
                                 deleteCricketGame={handleCricketGameDelete}
-                                deleteActive={ deleteActive }
+                                showRAWCricketGame={handleShowRAWCricketGame}
+                                deleteActive={deleteActive}
+                                rawActive={rawActive}
                             />
                         ))}
                     </Row>
@@ -217,6 +238,14 @@ const CricketEditList = (props) => {
                         Sure!
                     </Button>
                 </Modal.Footer>
+            </Modal>
+            <Modal show={showRAWModal} fullscreen={true} onHide={() => setShowRAWModal(false)} dialogClassName="modal-90w">
+                <Modal.Header closeButton closeVariant="white">
+                    <Modal.Title className="h6">Cricket Game _RAW Data</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <JSONViewer data={cricketGameRAW} />
+                </Modal.Body>
             </Modal>
         </Fragment>
     );

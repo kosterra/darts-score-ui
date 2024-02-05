@@ -12,15 +12,20 @@ import {
     Row
 } from 'react-bootstrap';
 
+import { VscJson } from "react-icons/vsc";
+
 import PlayerService from '../../services/player.service';
 import PlayerForm from '../elements/player.form';
+import JSONViewer from '../elements/json.viewer';
 
 const EditableCard = (props) => {
     const {
         formId,
         item,
         deletePlayer,
-        editPlayer
+        editPlayer,
+        showRAWPlayer,
+        rawActive = false,
     } = props
 
     const handlePlayerDelete = () => {
@@ -29,6 +34,10 @@ const EditableCard = (props) => {
 
     const handlePlayerEdit = () => {
         editPlayer();
+    }
+
+    const handlePlayerRAW = () => {
+        showRAWPlayer(item);
     }
 
     return (
@@ -57,6 +66,11 @@ const EditableCard = (props) => {
                             <Row className="mt-2">
                                 <div className="d-flex justify-content-end gap-2 mt-2">
                                     <PlayerForm key={formId} onPlayerEdit={handlePlayerEdit} edit={true} updatePlayer={item} />
+                                    {rawActive &&
+                                        <Button variant="primary-grey" title="Show _raw data" onClick={handlePlayerRAW}>
+                                            <VscJson />
+                                        </Button>
+                                    }
                                     <Button variant="red" onClick={handlePlayerDelete}>
                                         <i className="fas fa-trash-alt"></i>
                                     </Button>
@@ -71,12 +85,17 @@ const EditableCard = (props) => {
 }
 
 const PlayersEditList = (props) => {
-    const { emptyText } = props
+    const {
+        emptyText,
+        rawActive = false
+    } = props;
 
     const [players, setPlayers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showRAWModal, setShowRAWModal] = useState(false);
     const [playerToDelete, setPlayerToDelete] = useState(null);
+    const [playerRAW, setPlayerRAW] = useState({});
 
     const cancelDeletePlayer = () => {
         setShowDeleteModal(false);
@@ -85,6 +104,11 @@ const PlayersEditList = (props) => {
     const handlePlayerDelete = (player) => {
         setPlayerToDelete(player);
         setShowDeleteModal(true);
+    };
+
+    const handleShowRAWPlayer = (player) => {
+        setPlayerRAW(player);
+        setShowRAWModal(true);
     };
 
     const deletePlayer = async () => {
@@ -149,6 +173,8 @@ const PlayersEditList = (props) => {
                                 item={item}
                                 deletePlayer={handlePlayerDelete}
                                 editPlayer={handlePlayerEdit}
+                                showRAWPlayer={handleShowRAWPlayer}
+                                rawActive={rawActive}
                             />
                         ))}
                     </Row>
@@ -172,6 +198,14 @@ const PlayersEditList = (props) => {
                         Sure!
                     </Button>
                 </Modal.Footer>
+            </Modal>
+            <Modal show={showRAWModal} fullscreen={true} onHide={() => setShowRAWModal(false)} dialogClassName="modal-90w">
+                <Modal.Header closeButton closeVariant="white">
+                    <Modal.Title className="h6">Player _RAW Data</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <JSONViewer data={playerRAW} />
+                </Modal.Body>
             </Modal>
         </Fragment>
     );
