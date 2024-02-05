@@ -243,7 +243,7 @@ const X01EditList = (props) => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-            <Modal show={showRAWModal} fullscreen={true} onHide={() => setShowRAWModal(false)} dialogClassName="modal-90w">
+            <Modal show={showRAWModal} fullscreen={true} onHide={() => setShowRAWModal(false)} dialogClassName="p-4">
                 <Modal.Header closeButton closeVariant="white">
                     <Modal.Title className="h6">X01 Game _RAW Data</Modal.Title>
                 </Modal.Header>
