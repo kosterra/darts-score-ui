@@ -46,11 +46,11 @@ const PlayerStats = () => {
                     {players && players[0] &&
                         <Container>
                             <Col>
-                                <span className="d-flex justify-content-center align-items-center fs-4 fw-600 mb-4 mt-4">Game Statistics</span>
+                                <span className="d-flex justify-content-center align-items-center fs-4 fw-semibold mb-4 mt-4">Game Statistics</span>
                                 <PlayerOverallStats playerStats={playerStats} />
                             </Col>
                             <Col>
-                                <span className="d-flex justify-content-center align-items-center fs-4 fw-600 mb-4 mt-4">X01 Statistics Charts</span>
+                                <span className="d-flex justify-content-center align-items-center fs-4 fw-semibold mb-4 mt-4">X01 Statistics Charts</span>
                                 <PlayerStatsCharts playerStats={playerStats} players={players} />
                             </Col>
                         </Container>
@@ -59,7 +59,7 @@ const PlayerStats = () => {
             }
             {players && (players.filter(player => player != null).length != 1) &&
                 <div className="d-flex justify-content-center mt-4">
-                    <span className="empty-text text-primary-grey">Please select a player to show the statistics</span>
+                    <span className="empty-text text-gray-700">Please select a player to show the statistics</span>
                 </div>
             }
         </Fragment>

@@ -23,13 +23,13 @@ const X01StatsScoreBoard = (props) => {
               </Col>
               <Col className="d-flex justify-content-center align-items-center">
                   <div className="d-flex flex-column justify-content-center">
-                      <div className="align-self-center fs-8 fw-400 text-white">
+                        <div className="align-self-center fs-8 font-weight-normal text-white">
                           { dayjs(game.createdAt).format("DD.MM.YYYY HH:mm") }
                       </div>
-                      <div className="align-self-center fs-1 fw-400">
+                        <div className="align-self-center fs-1 font-weight-normal">
                           { game.playerModels[game.players[0]].setsWon + ' - ' + game.playerModels[game.players[1]].setsWon }
                       </div>
-                      <div className="align-self-center fs-8 fw-400">
+                        <div className="align-self-center fs-8 font-weight-normal">
                           { game.gameIsRunning ? 'Running' : 'Finished' }
                       </div>
                   </div>

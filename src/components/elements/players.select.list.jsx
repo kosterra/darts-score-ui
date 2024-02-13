@@ -25,7 +25,7 @@ const SelectableCard = (props) => {
                 onClick={handleCardSelect}
                 className={`rounded-0 selectable-card card-list-card ${isSelected ? 'selected' : ''} ${!selectable && !isSelected ? 'disabled' : ''} ${cssClass ? cssClass : ''}`}>
                 <Card.Body className="m-0 p-0 border-0 rounded-0">
-                    <Card.Title as="h6" className="bg-primary-green p-2 mb-0 text-white text-center span">
+                    <Card.Title as="h6" className="bg-primary p-2 mb-0 text-white text-center span">
                         {item.nickname}
                     </Card.Title>
                     <Card.Text as="div" className="p-2 text-white">
@@ -38,12 +38,12 @@ const SelectableCard = (props) => {
                                 textSizeRatio={0.2}
                                 className="align-self-center"
                             />
-                            <span className="mt-1 text-center text-primary-grey">{item.firstname + ' ' + item.lastname}</span>
+                            <span className="mt-1 text-center text-gray-700">{item.firstname + ' ' + item.lastname}</span>
                         </div>
                     </Card.Text>
                 </Card.Body>
-                { isSelected &&
-                    <i className="fas fa-check-circle selected"/>
+                {isSelected &&
+                    <i className="fas fa-check-circle selected" />
                 }
             </Card>
         </Container>
@@ -62,7 +62,7 @@ const PlayersSelectList = (props) => {
         cardCssClass
     } = props
 
-    const onSelectCard=(item) => {
+    const onSelectCard = (item) => {
         if (!selectedItems.includes(item)) {
             if (selectedItems.length < maxSelectable) {
                 setSelectedItems([...selectedItems, item]);
@@ -75,7 +75,7 @@ const PlayersSelectList = (props) => {
     return (
         <Container className={`px-1 p-0 selectable-card-list card-list ${listCssClass ? listCssClass : ''}`}>
             <div className="d-flex justify-content-center mb-4">
-                <span className="empty-text text-primary-grey fs-7 fw-600">
+                <span className="empty-text text-gray-600 fs-7">
                     {'Select ' + maxSelectable + ' ' + itemType}
                 </span>
             </div>
@@ -88,17 +88,17 @@ const PlayersSelectList = (props) => {
                             isSelected={selectedItems.some(e => e.id === item.id)}
                             selectable={selectedItems.length < Number(maxSelectable)}
                             onSelectCard={onSelectCard}
-                            cssClass={cardCssClass}/>
+                            cssClass={cardCssClass} />
                     ))}
                 </Row>
             }
             {items.length === 0 &&
                 <div className="d-flex justify-content-center mb-4">
-                    <span className="empty-text text-primary-grey">{emptyText}</span>
+                    <span className="empty-text text-gray-600">{emptyText}</span>
                 </div>
             }
         </Container>
-	);
+    );
 }
 
 export default PlayersSelectList;

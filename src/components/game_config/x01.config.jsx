@@ -18,29 +18,30 @@ import X01Service from '../../services/x01.service';
 const X01Config = () => {
     const initialState = X01Models.X01Model;
 
-    const [ game, setGame ] = useState(initialState);
+    const [game, setGame] = useState(initialState);
 
     const navigate = useNavigate();
 
-	const handleConfigChange = (name, value) => {
-		if (name === 'numberOfPlayers') {
-			setGame({...game,
-				numberOfPlayers: Number(value),
-				setMode: value > 2 ? 'First to' : game.setMode,
-				legMode: value > 2 ? 'First to' : game.legMode
-			})
+    const handleConfigChange = (name, value) => {
+        if (name === 'numberOfPlayers') {
+            setGame({
+                ...game,
+                numberOfPlayers: Number(value),
+                setMode: value > 2 ? 'First to' : game.setMode,
+                legMode: value > 2 ? 'First to' : game.legMode
+            })
 
             if (game.players.length > Number(value)) {
-                setGame({...game, players: game.players.slice(0, Number(value))});
+                setGame({ ...game, players: game.players.slice(0, Number(value)) });
             }
-		} else if (['setMode', 'legMode', 'legInMode', 'legOutMode'].includes(name)) {
-			setGame({...game, [name]: value});
+        } else if (['setMode', 'legMode', 'legInMode', 'legOutMode'].includes(name)) {
+            setGame({ ...game, [name]: value });
         } else if (name === 'players') {
-            setGame({...game, players: value})
-		} else {
-			setGame({...game, [name]: Number(value)});
-		}
-	}
+            setGame({ ...game, players: value })
+        } else {
+            setGame({ ...game, [name]: Number(value) });
+        }
+    }
 
     const handleSubmit = async (event) => {
         if (!validate()) {
@@ -56,7 +57,7 @@ const X01Config = () => {
             game.startingPlayerLeg = game.players[0];
 
             game.players.forEach(player => {
-                let x01PlayerModel = {...X01Models.X01PlayerModel};
+                let x01PlayerModel = { ...X01Models.X01PlayerModel };
                 x01PlayerModel.score = Number(game.startingScore);
                 game.playerModels[player] = x01PlayerModel;
             })
@@ -66,15 +67,15 @@ const X01Config = () => {
         }
     }
 
-    const validate = () =>{
+    const validate = () => {
         return Number(game.numberOfPlayers) === game.players.length;
     }
 
     return (
         <Col className="d-flex justify-content-center col-12 mb-3">
-            <Card bg="secondary-grey" className="m-0 p-0 border-0 rounded-0">
+            <Card bg="secondary" className="m-0 p-0 border-0 rounded-0">
                 <Card.Body className="m-0 p-0 border-0 rounded-0">
-                    <Card.Title className="bg-primary-green p-3 text-white text-center">
+                    <Card.Title className="bg-primary p-3 text-white text-center">
                         X01
                     </Card.Title>
                     <Card.Text as="div" className="p-2 text-white">
@@ -101,7 +102,7 @@ const X01Config = () => {
                             onSelectedPlayersChange={handleConfigChange}
                         />
                         <div className="col-xs-1 p-2" align="center">
-                            <Button variant="primary-green" className="m-0 px-2 py-2" onClick={handleSubmit}>Start Game</Button>
+                            <Button variant="primary" className="m-0 px-2 py-2" onClick={handleSubmit}>Start Game</Button>
                         </div>
                     </Card.Text>
                 </Card.Body>

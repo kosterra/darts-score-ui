@@ -19,9 +19,9 @@ const RunningCricketGames = () => {
     const [players, setPlayers] = useState([]);
 
     useEffect(() => {
-		loadRunningCricketGames();
+        loadRunningCricketGames();
         loadPlayers();
-	}, []);
+    }, []);
 
     const loadRunningCricketGames = async () => {
         let data = await CricketService.loadRunningCricketGames();
@@ -37,10 +37,10 @@ const RunningCricketGames = () => {
         <Fragment>
             {cricketGames.length > 0 &&
                 <Col className="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
-                    <Card className="rounded-0 border-0 bg-secondary-grey">
+                    <Card className="rounded-0 border-0 bg-secondary">
                         <Card.Body className="m-0 p-0 border-0 rounded-0">
-                            <Card.Title className="bg-primary-green p-2 mb-0 text-white text-center span">
-                                <div className="fs-6 fw-600">Cricket</div>
+                            <Card.Title className="bg-primary p-2 mb-0 text-white text-center span">
+                                <div className="fs-6 fw-semibold">Cricket</div>
                                 <div className="fs-8 mt-1">Currently Running</div>
                             </Card.Title>
                             <Card.Text as="div" className="p-2 text-white">
@@ -48,15 +48,15 @@ const RunningCricketGames = () => {
                                     {cricketGames.length > 0 && cricketGames.map((cricketGame, idx) => (
                                         <ListGroup.Item key={idx} className="bg-transparent mb-1 border-solid-grey">
                                             <div>
-                                                { players.length > 0 && cricketGame.players.map((playerId, idx) => (
+                                                {players.length > 0 && cricketGame.players.map((playerId, idx) => (
                                                     <Row key={idx}>
-                                                        <Col className="text-white fs-8">{ ((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A' }</Col>
+                                                        <Col className="text-white fs-8">{((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A'}</Col>
                                                     </Row>
                                                 ))}
                                             </div>
                                             <div className="d-flex justify-content-between align-items-end mt-2">
-                                                <span className="fs-9 text-grey">{dayjs(cricketGame.createdAt).format("DD.MM.YYYY HH:mm")}</span>
-                                                <Button variant="primary-green" href={'/cricket/' + cricketGame.id} className="py-1">
+                                                <span className="fs-9 text-gray">{dayjs(cricketGame.createdAt).format("DD.MM.YYYY HH:mm")}</span>
+                                                <Button variant="primary" href={'/cricket/' + cricketGame.id} className="py-1">
                                                     <GiDart title="Continue Playing" />
                                                 </Button>
                                             </div>
@@ -67,12 +67,12 @@ const RunningCricketGames = () => {
                                     }
                                 </ListGroup>
                             </Card.Text>
-                        </Card.Body>               
+                        </Card.Body>
                     </Card>
                 </Col>
             }
         </Fragment>
     )
 }
-  
+
 export default RunningCricketGames;

@@ -6,7 +6,11 @@
     .ps-menuitem-root {
         .ps-menu-button {
             &:hover {
-                background-color: $primary-grey-transparent;
+                background-color: $gray-701;
+            }
+
+            .ps-submenu-expand-icon {
+                color: $gray-700;
             }
         }
 
@@ -14,7 +18,7 @@
             .ps-menuitem-root {
                 .ps-menu-button {
                     &:hover {
-                        background-color: $primary-grey-transparent;
+                        background-color: $gray-701;
                     }
                 }
             }
@@ -22,6 +26,6 @@
     }
 
     .ps-submenu-content {
-        background-color: $tertiary-grey;
+        background-color: $gray-800;
     }
 }

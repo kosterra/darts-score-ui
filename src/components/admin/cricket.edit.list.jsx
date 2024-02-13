@@ -36,7 +36,7 @@ const EditableCard = (props) => {
         deleteActive = false,
         rawActive = false
     } = props
-
+    
     const handleCricketGameDelete = () => {
         deleteCricketGame(cricketGame);
     }
@@ -48,49 +48,49 @@ const EditableCard = (props) => {
     return (
         <Col className="mb-3">
             <Card as='div'
-                className={`m-0 p-0 rounded-0 editable-card card-list-card bg-secondary-grey`}>
+                className={`m-0 p-0 rounded-0 editable-card card-list-card bg-secondary`}>
                 <Card.Body className="m-0 p-0 border-0 rounded-0">
-                    <Card.Title as="h6" className="bg-primary-green p-2 mb-0 text-white text-center span">
-                        <div className="fs-5 fw-600">Cricket</div>
-                        <span className="fw-500 fs-8">
-                            { cricketGame.gameIsRunning ? 'Running' : 'Finished' }
+                    <Card.Title as="h6" className="bg-primary p-2 mb-0 text-white text-center span">
+                        <div className="fs-5 fw-semibold">Cricket</div>
+                        <span className="fw-semibold fs-8">
+                            {cricketGame.gameIsRunning ? 'Running' : 'Finished'}
                         </span>
                     </Card.Title>
                     <Card.Text as="div" className="pt-3 pb-2 text-white">
                         <Container>
                             <Row>
-                                { players.length > 0 && cricketGame.players.map((playerId, idx) => (
+                                {players.length > 0 && cricketGame.players.map((playerId, idx) => (
                                     <Row key={idx}>
                                         <Col className="text-white fs-8">
-                                            { ((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A' }
-                                            { cricketGame.playerModels[playerId].hasWonGame &&
+                                            {((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A'}
+                                            {cricketGame.playerModels[playerId].hasWonGame &&
                                                 <i className="ms-1 text-gold fas fa-trophy"></i>
                                             }
                                         </Col>
-                                        <Col className="text-white text-center fs-8">{ cricketGame.playerModels[playerId].setsWon }</Col>
+                                        <Col className="text-white text-center fs-8">{cricketGame.playerModels[playerId].setsWon}</Col>
                                     </Row>
                                 ))}
                             </Row>
                             <Row>
                                 <div className="d-flex justify-content-between align-items-end mt-2">
-                                    <span className="fs-9 text-grey">{ dayjs(cricketGame.createdAt).format("DD.MM.YYYY HH:mm") }</span>
+                                    <span className="fs-9 text-gray">{dayjs(cricketGame.createdAt).format("DD.MM.YYYY HH:mm")}</span>
                                     <div>
-                                        { cricketGame.gameIsRunning &&
-                                            <Button variant="primary-green" href={'/cricket/' + cricketGame.id} className="me-1">
+                                        {cricketGame.gameIsRunning &&
+                                            <Button variant="primary" href={'/cricket/' + cricketGame.id} className="me-1">
                                                 <GiBullseye title="Continue Playing" />
                                             </Button>
                                         }
-                                        { !cricketGame.gameIsRunning &&
-                                            <Button variant="primary-green" href={'/stats/games/cricket/' + cricketGame.id} className="me-1">
+                                        {!cricketGame.gameIsRunning &&
+                                            <Button variant="primary" href={'/stats/games/cricket/' + cricketGame.id} className="me-1">
                                                 <FaChartBar title="Show Statistics" />
                                             </Button>
                                         }
                                         {!cricketGame.gameIsRunning && rawActive &&
-                                            <Button variant="primary-grey" title="Show _raw data" onClick={handleCricketGameRAW} className="me-1">
+                                            <Button variant="tertiary" title="Show _raw data" onClick={handleCricketGameRAW} className="me-1">
                                                 <VscJson />
                                             </Button>
                                         }
-                                        { deleteActive &&
+                                        {deleteActive &&
                                             <Button variant="red" onClick={handleCricketGameDelete}>
                                                 <FaTrash title="Delete Game" />
                                             </Button>
@@ -133,7 +133,7 @@ const CricketEditList = (props) => {
         loadPlayers();
         loadCricketGames();
         // eslint-disable-next-line
-    }, [ statusFilterValue ]);
+    }, [statusFilterValue]);
 
     const cancelDeleteCricketGame = () => {
         setShowDeleteModal(false);
@@ -181,7 +181,7 @@ const CricketEditList = (props) => {
 
     return (
         <Fragment>
-            { showStatusFilter &&
+            {showStatusFilter &&
                 <div className="d-flex justify-content-md-center align-items-center p-2 text-white">
                     <InputGroup className="mb-3">
                         <ButtonGroup>
@@ -190,7 +190,7 @@ const CricketEditList = (props) => {
                                     key={idx}
                                     id={`status-filter-${idx}`}
                                     type="radio"
-                                    variant="primary-green"
+                                    variant="primary"
                                     name="radio"
                                     value={filter.value}
                                     checked={statusFilterValue === filter.value}
@@ -221,7 +221,7 @@ const CricketEditList = (props) => {
                 }
                 {cricketGames.length === 0 &&
                     <div className="d-flex justify-content-center mb-4">
-                        <span className="empty-text text-primary-grey">{emptyText}</span>
+                        <span className="empty-text text-gray-700">{emptyText}</span>
                     </div>
                 }
             </Container>
@@ -231,7 +231,7 @@ const CricketEditList = (props) => {
                 </Modal.Header>
                 <Modal.Body>Are you sure you want to delete cricket game {cricketGameToDelete ? cricketGameToDelete.id : 'unknown'} ?</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary-grey" onClick={cancelDeleteCricketGame}>
+                    <Button variant="tertiary" onClick={cancelDeleteCricketGame}>
                         Cancel
                     </Button>
                     <Button variant="red" onClick={deleteCricketGame}>

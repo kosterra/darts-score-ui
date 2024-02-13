@@ -1,44 +1,126 @@
-// Bootstrap
-$theme-colors: (
-    "white": $white,
-    "gold": $gold,
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../../../../node_modules/bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here
+$white:    #fff;
+$gray-100: #ececec;
+$gray-101: #ececec86;
+$gray-200: #dfdfdf;
+$gray-201: #dfdfdf86;
+$gray-300: #cacaca;
+$gray-301: #cacaca86;
+$gray-400: #afafaf;
+$gray-401: #afafaf86;
+$gray-500: #929292;
+$gray-501: #92929286;
+$gray-600: #757575;
+$gray-601: #75757586;
+$gray-700: #565656;
+$gray-701: #56565686;
+$gray-800: #383838;
+$gray-801: #38383886;
+$gray-900: #222121;
+$gray-901: #22212186;
+$black:    #000;
+
+$red: #d95652;
+$blue: #418cad;
+$beige: #fde1d0;
+$gold: #d4c783;
+$yellow: #ffc107;
+$green: #528b6e;
+
+$primary:       $green;
+$secondary:     $gray-900;
+$tertiary:      $gray-800;
+$success:       $green;
+$info:          $blue;
+$warning:       $yellow;
+$danger:        $red;
+$light:         $gray-100;
+$dark:          $gray-900;
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import "../../../../node_modules/bootstrap/scss/variables";
+@import "../../../../node_modules/bootstrap/scss/variables-dark";
+
+// 4. Include any default map overrides here
+$custom-colors: (
+    "beige": $beige,
     "blue": $blue,
+    "gold": $gold,
+    "gray": $gray-500,
+    "gray-100": $gray-100,
+    "gray-101": $gray-101,
+    "gray-200": $gray-200,
+    "gray-201": $gray-201,
+    "gray-300": $gray-300,
+    "gray-301": $gray-301,
+    "gray-400": $gray-400,
+    "gray-401": $gray-401,
+    "gray-500": $gray-500,
+    "gray-501": $gray-501,
+    "gray-600": $gray-600,
+    "gray-601": $gray-601,
+    "gray-700": $gray-700,
+    "gray-701": $gray-701,
+    "gray-800": $gray-800,
+    "gray-801": $gray-801,
+    "gray-900": $gray-900,
+    "gray-901": $gray-901,
     "red": $red,
-    "grey": $grey,
-    "primary-grey": $primary-grey,
-    "primary-grey-transparent": $primary-grey-transparent,
-    "secondary-grey": $secondary-grey,
-    "secondary-grey-transparent": $secondary-grey-transparent,
-    "tertiary-grey": $tertiary-grey,
-    "tertiary-grey-transparent": $tertiary-grey-transparent,
-    "primary-green": $primary-green,
-    "secondary-green": $secondary-green
-
+    "tertiary": $tertiary
 );
 
-$border-widths: (
-  1: 1px,
-  2: 2px,
-  3: 3px,
-  4: 4px,
-  5: 5px,
-  6: 6px,
-  7: 7px,
-  8: 8px
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+// Font sizes
+$custom-font-sizes: (
+  7: 0.9rem,
+  8: 0.8rem,
+  9: 0.7rem
 );
+$font-sizes: map-merge($font-sizes, $custom-font-sizes);
 
-$border-radius: .25rem;
-$border-radius-sm: .2rem;
-$border-radius-lg: .3rem;
-$border-radius-pill: 50rem;
+// 5. Include remainder of required parts
+@import "../../../../node_modules/bootstrap/scss/maps";
+@import "../../../../node_modules/bootstrap/scss/mixins";
+@import "../../../../node_modules/bootstrap/scss/root";
 
+// 6. Optionally include any other parts as needed
+@import "../../../../node_modules/bootstrap/scss/utilities";
+@import "../../../../node_modules/bootstrap/scss/reboot";
+@import "../../../../node_modules/bootstrap/scss/type";
+@import "../../../../node_modules/bootstrap/scss/images";
+@import "../../../../node_modules/bootstrap/scss/containers";
+@import "../../../../node_modules/bootstrap/scss/grid";
+@import "../../../../node_modules/bootstrap/scss/helpers";
+@import "../../../../node_modules/bootstrap/scss/tables";
+@import "../../../../node_modules/bootstrap/scss/forms";
+@import "../../../../node_modules/bootstrap/scss/buttons";
+@import "../../../../node_modules/bootstrap/scss/transitions";
+@import "../../../../node_modules/bootstrap/scss/dropdown";
+@import "../../../../node_modules/bootstrap/scss/button-group";
+@import "../../../../node_modules/bootstrap/scss/nav";
+@import "../../../../node_modules/bootstrap/scss/navbar";
+@import "../../../../node_modules/bootstrap/scss/card";
+@import "../../../../node_modules/bootstrap/scss/accordion";
+@import "../../../../node_modules/bootstrap/scss/breadcrumb";
+@import "../../../../node_modules/bootstrap/scss/pagination";
+@import "../../../../node_modules/bootstrap/scss/badge";
+@import "../../../../node_modules/bootstrap/scss/alert";
+@import "../../../../node_modules/bootstrap/scss/progress";
+@import "../../../../node_modules/bootstrap/scss/list-group";
+@import "../../../../node_modules/bootstrap/scss/close";
+@import "../../../../node_modules/bootstrap/scss/toasts";
+@import "../../../../node_modules/bootstrap/scss/modal";
+@import "../../../../node_modules/bootstrap/scss/tooltip";
+@import "../../../../node_modules/bootstrap/scss/popover";
+@import "../../../../node_modules/bootstrap/scss/carousel";
+@import "../../../../node_modules/bootstrap/scss/spinners";
+@import "../../../../node_modules/bootstrap/scss/offcanvas";
+@import "../../../../node_modules/bootstrap/scss/placeholders";
 
-$spacer: 1.2rem;
-$spacers: (
-  0: 0,
-  1: $spacer * .25,
-  2: $spacer * .5,
-  3: $spacer,
-  4: $spacer * 1.5,
-  5: $spacer * 3,
-);
+// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "../../../../node_modules/bootstrap/scss/utilities/api";
+

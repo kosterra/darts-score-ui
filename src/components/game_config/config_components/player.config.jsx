@@ -22,24 +22,24 @@ const PlayerConfig = (props) => {
         onSelectedPlayersChange
     } = props;
 
-    const {numberOfPlayerOptions} = PlayerConfigOptions;
-    
+    const { numberOfPlayerOptions } = PlayerConfigOptions;
+
     const [players, setPlayers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
-		loadPlayers('');
-	}, [])
+        loadPlayers('');
+    }, [])
 
-    const onPlayerAdd=() => {
+    const onPlayerAdd = () => {
         loadPlayers('');
     }
 
-    const onSelectPlayer=(players) => {
+    const onSelectPlayer = (players) => {
         onSelectedPlayersChange('players', players);
     }
 
-    const onSearchTermChange=(event) => {
+    const onSearchTermChange = (event) => {
         setSearchTerm(event.target.value);
         loadPlayers(event.target.value);
     }
@@ -49,9 +49,9 @@ const PlayerConfig = (props) => {
         setPlayers(data);
     }
 
-	return (
+    return (
         <Container className="justify-content-md-center align-items-center">
-            <p className="text-center text-primary-grey fs-7 fw-600">Players</p>
+            <p className="text-center text-gray-600 fs-7 fw-semibold">Players</p>
             <Row className="d-flex justify-content-center align-items-center border-solid-grey rounded m-0 py-3 mb-3 text-white">
                 {numberOfPlayerOptions.values.map((option, idx) => (
                     <Col key={idx} xs={6} sm={6} md={3} lg={3} className="d-flex justify-content-center align-items-center py-1">
@@ -61,7 +61,7 @@ const PlayerConfig = (props) => {
                             type="radio"
                             name="number-of-players-options"
                             value={option}
-                            className={`w-100 btn btn-sm text-white btr-16 bbr-16 fs-8 fw-500 ${Number(numberOfPlayers) === option ? 'btn-primary-green' : 'btn-tertiary-grey'}`}
+                            className={`w-100 btn btn-sm text-white btr-16 bbr-16 fs-8 fw-semibold ${Number(numberOfPlayers) === option ? 'btn-primary' : 'btn-tertiary'}`}
                             checked={Number(numberOfPlayers) === option}
                             onChange={(e) => onNumberOfPlayersChange('numberOfPlayers', e.currentTarget.value)}>
                             {Number(option) === 1 ? 'Solo' : option}
@@ -95,9 +95,9 @@ const PlayerConfig = (props) => {
                 emptyText={'No Players found. Please create new Players first.'}
                 maxSelectable={Number(numberOfPlayers)}
                 setSelectedItems={onSelectPlayer}
-                cardCssClass="bg-tertiary-grey" />
+                cardCssClass="bg-tertiary" />
         </Container>
-	);
+    );
 };
 
 export default PlayerConfig;

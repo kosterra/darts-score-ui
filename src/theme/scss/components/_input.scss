@@ -2,32 +2,28 @@
 .input-group {
 
     .input-group-text {
-        background-color: $tertiary-grey;
-        border: 1px solid $tertiary-grey;
-        color: $primary-grey;
+        background-color: $gray-701;
+        border: none;
+        color: $gray-200;
         font-weight: 200;
     }
 }
 
 // Input
 input.form-control {
-    color: $white;
-    background-color: $tertiary-grey-transparent;
-    border: none;
+    color: $white !important;
+    background-color: $gray-801;
+    border: 1px solid $gray-801;
     border-radius: 2px;
 
     &:focus {
-        background-color: $tertiary-grey-transparent;
         color: $white;
-        border: 1px solid $primary-grey-transparent;
+        background-color: $gray-800;
+        border: 1px solid $gray-800;
         box-shadow: none;
     }
-
-    &:not(active){
-        color:$white !important;
-     }
 }
 
 input::placeholder {
-    color: $primary-grey !important;
+    color: $gray-600 !important;
 }
