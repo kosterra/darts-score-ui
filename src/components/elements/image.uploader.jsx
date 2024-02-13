@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react";
+import React, { useState, useRef } from "react";
 import Avatar from 'react-avatar';
 
 const ImageUploader = (props) => {
@@ -10,7 +10,7 @@ const ImageUploader = (props) => {
         onFileDelete
     } = props;
 
-    const[isDragging, setIsDragging] = useState(false);
+    const [isDragging, setIsDragging] = useState(false);
     const fileInput = useRef(null);
 
     const handleOnDragOver = event => {
@@ -25,8 +25,8 @@ const ImageUploader = (props) => {
 
     const handleOnDrop = event => {
         //prevent the browser from opening the image
-        event.preventDefault(); 
-        event.stopPropagation(); 
+        event.preventDefault();
+        event.stopPropagation();
         //let's grab the image file
         let imageFile = event.dataTransfer.files[0];
         onFileChange(imageFile);
@@ -47,37 +47,37 @@ const ImageUploader = (props) => {
         <div className="file-upload d-flex flex-column justify-content-center align-items-center">
             <div>
                 <Avatar
-                    name={ name }
-                    src={ previewUrl }
+                    name={name}
+                    src={previewUrl}
                     size="120"
-                    round={ true }
+                    round={true}
                     color="#565656"
-                    textSizeRatio={ 2 }
+                    textSizeRatio={2}
                 />
-                { previewUrl &&
+                {previewUrl &&
                     <span
-                        className="delete-file text-primary-grey py-1 px-2 bg-tertiary-grey rounded-circle"
-                        onClick={ handleOnFileDelete }>
+                        className="delete-file text-gray-700 py-1 px-2 bg-tertiary rounded-circle"
+                        onClick={handleOnFileDelete}>
                         <i className="fas fa-trash fs-8"></i>
                     </span>
                 }
             </div>
             <div
                 className={`drop-zone mt-3 p-3 border-dotted-grey pe-auto ${isDragging ? 'is-dragging' : ''}`}
-                onDragOver = { handleOnDragOver }
-                onDragLeave={ handleOnDragLeave }
-                onDrop = { handleOnDrop }
-                onClick = { () => fileInput.current.click() }
+                onDragOver={handleOnDragOver}
+                onDragLeave={handleOnDragLeave}
+                onDrop={handleOnDrop}
+                onClick={() => fileInput.current.click()}
             >
-                <span className="fs-8 text-primary-grey"><ins>Upload</ins> or Drag and drop image</span>
-                <input 
-                    type="file" 
+                <span className="fs-8 text-gray-700"><ins>Upload</ins> or Drag and drop image</span>
+                <input
+                    type="file"
                     accept="image/png, image/jpg, image/jpeg"
-                    ref={fileInput} hidden 
-                    onChange={ handleOnFileChange }
+                    ref={fileInput} hidden
+                    onChange={handleOnFileChange}
                 />
             </div>
-       </div>
+        </div>
     )
 }
 

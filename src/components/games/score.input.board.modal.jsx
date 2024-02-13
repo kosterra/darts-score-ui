@@ -13,8 +13,8 @@ const ScoreInputBoardModal = () => {
     return (
         <Fragment>
             <div className="mb-2 ms-1 d-flex align-items-center gap-2">
-                <span className="fs-8 fw-600">Click the dartboard or enter score</span>
-                <i onClick={handleShow} className="fas fa-question-circle" style={{cursor: "pointer"}}></i>
+                <span className="fs-8 fw-semibold">Click the dartboard or enter score</span>
+                <i onClick={handleShow} className="fas fa-question-circle" style={{ cursor: "pointer" }}></i>
             </div>
 
             <Modal show={show}
@@ -33,7 +33,7 @@ const ScoreInputBoardModal = () => {
                     <p className="fs-7">The inner BULLSEYE (50 points) = "D25"<br /> and the outer BULLSEYE (25 points) = "S25".</p>
                 </Modal.Body>
                 <Modal.Footer className="p-1">
-                    <Button variant="primary-green" onClick={handleClose} className="p-2">
+                    <Button variant="primary" onClick={handleClose} className="p-2">
                         <i className="fas fa-thumbs-up px-1"></i>
                         Got It
                     </Button>

@@ -18,7 +18,7 @@ const JSONViewer = (props) => {
             }
             {!data &&
                 <div className="d-flex justify-content-center mt-4">
-                    <span className="empty-text text-primary-grey">No JSON data found</span>
+                    <span className="empty-text text-gray-700">No JSON data found</span>
                 </div>
             }
         </Fragment>

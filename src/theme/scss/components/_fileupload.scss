@@ -11,7 +11,7 @@
         cursor: pointer;
     
         &.is-dragging, &:hover {
-            background-color: $tertiary-grey;
+            background-color: $gray-800;
         }
     }
 }

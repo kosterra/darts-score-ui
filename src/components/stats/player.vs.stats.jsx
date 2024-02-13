@@ -93,7 +93,7 @@ const PlayerVSStats = (props) => {
                                                 key={idx}
                                                 id={`stats-filter-${idx}`}
                                                 type="radio"
-                                                variant="primary-green"
+                                                variant="primary"
                                                 name="radio"
                                                 value={filter.value}
                                                 checked={statsFilterValue === filter.value}
@@ -113,7 +113,7 @@ const PlayerVSStats = (props) => {
                                                         type="radio"
                                                         name="date-filter"
                                                         value={option}
-                                                        className={`w-100 btn btn-sm text-white btr-16 bbr-16 fs-8 fw-500 ${dateFilter === option ? 'btn-primary-green' : 'btn-tertiary-grey'}`}
+                                                        className={`w-100 btn btn-sm text-white btr-16 bbr-16 fs-8 fw-semibold ${dateFilter === option ? 'btn-primary' : 'btn-tertiary'}`}
                                                         checked={dateFilter === option}
                                                         onChange={(e) => setDateFilter(e.currentTarget.value)}
                                                     >
@@ -137,11 +137,11 @@ const PlayerVSStats = (props) => {
                     {playerStats && playerStats.playedGames > 0 &&
                         <Row xs={1} sm={1} md={1} className="d-flex justify-content-center align-items-center">
                             <Col className="px-0 rounded-2 mt-4 mb-4">
-                                <span className="d-flex justify-content-center align-items-center fs-4 fw-600 mb-4 mt-4">X01 Statistics</span>
+                                <span className="d-flex justify-content-center align-items-center fs-4 fw-semibold mb-4 mt-4">X01 Statistics</span>
                                 <PlayersX01StatsComparisonBars playersX01Stats={playerStats} />
                             </Col>
                             <Col className="px-0 rounded-2 mb-4">
-                                <span className="d-flex justify-content-center align-items-center fs-4 fw-600 mb-4 mt-4">X01 Statistics Charts</span>
+                                <span className="d-flex justify-content-center align-items-center fs-4 fw-semibold mb-4 mt-4">X01 Statistics Charts</span>
                                 <X01StatsCharts
                                     avg={((playerStats || {}).avg || []).perGame || []}
                                     sectionHits={(playerStats || {}).sectionHits || {}}
@@ -155,12 +155,12 @@ const PlayerVSStats = (props) => {
             }
             {players && (players.filter(player => player != null).length != 2) &&
                 <div className="d-flex justify-content-center mt-4">
-                    <span className="empty-text text-primary-grey">Please select 2 players to compare statistics</span>
+                    <span className="empty-text text-gray-700">Please select 2 players to compare statistics</span>
                 </div>
             }
             {playerStats && playerStats.playedGames == 0 &&
                 <div className="d-flex justify-content-center mt-4">
-                    <span className="empty-text text-primary-grey">No games found. Check the filters</span>
+                    <span className="empty-text text-gray-700">No games found. Check the filters</span>
                 </div>
             }
         </Fragment>

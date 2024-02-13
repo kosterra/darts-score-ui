@@ -7,7 +7,7 @@
     }
 
     .dropdown-menu {
-        background-color: $tertiary-grey;
+        background-color: $gray-800;
         padding: 0.4rem;
         border-radius: 2px;
         border: none;
@@ -19,11 +19,11 @@
             font-weight: 500;
 
             &.active {
-                background-color: $primary-green;
+                background-color: $green;
             }
 
             &:hover {
-                background-color: $primary-grey !important;
+                background-color: $gray-700 !important;
             }
         }
     }

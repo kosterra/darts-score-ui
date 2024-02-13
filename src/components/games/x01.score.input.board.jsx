@@ -184,7 +184,7 @@ const X01ScoreInputBoard = () => {
                                             <Button
                                                 id="submitThrows"
                                                 type="submit"
-                                                variant="primary-green"
+                                                variant="primary"
                                             >
                                                 <i className="fas fa-paper-plane" title='Send'></i>
                                             </Button>

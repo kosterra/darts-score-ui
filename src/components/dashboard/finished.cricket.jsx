@@ -37,25 +37,25 @@ const FinishedCricketGames = () => {
     const loadMore = () => {
         setIndex(index + 2)
         if (index >= cricketGames.length) {
-          setIsCompleted(true);
+            setIsCompleted(true);
         } else {
-          setIsCompleted(false);
+            setIsCompleted(false);
         }
     }
 
     useEffect(() => {
-		loadFinishedCricketGames();
+        loadFinishedCricketGames();
         loadPlayers();
-	}, []);
+    }, []);
 
     return (
         <Fragment>
             {cricketGames.length > 0 &&
                 <Col className="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
-                    <Card className="rounded-0 border-0 bg-secondary-grey">
+                    <Card className="rounded-0 border-0 bg-secondary">
                         <Card.Body className="m-0 p-0 border-0 rounded-0">
-                            <Card.Title className="bg-primary-green p-2 mb-0 text-white text-center span">
-                                <div className="fs-6 fw-600">Cricket</div>
+                            <Card.Title className="bg-primary p-2 mb-0 text-white text-center span">
+                                <div className="fs-6 fw-semibold">Cricket</div>
                                 <div className="fs-8 mt-1">Recently Finished</div>
                             </Card.Title>
                             <Card.Text as="div" className="p-2 text-white">
@@ -63,11 +63,11 @@ const FinishedCricketGames = () => {
                                     {initialCricketGames.length > 0 && initialCricketGames.map((cricketGame, idx) => (
                                         <ListGroup.Item key={idx} className="bg-transparent mb-1 border-solid-grey">
                                             <div>
-                                                { players.length > 0 && cricketGame.players.map((playerId, idx) => (
+                                                {players.length > 0 && cricketGame.players.map((playerId, idx) => (
                                                     <Row key={idx}>
                                                         <Col className="text-white fs-8">
-                                                            { ((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A' }
-                                                            { cricketGame.playerModels[playerId].hasWonGame &&
+                                                            {((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A'}
+                                                            {cricketGame.playerModels[playerId].hasWonGame &&
                                                                 <i className="ms-1 text-gold fas fa-trophy"></i>
                                                             }
                                                         </Col>
@@ -75,31 +75,31 @@ const FinishedCricketGames = () => {
                                                 ))}
                                             </div>
                                             <div className="d-flex justify-content-between align-items-end mt-2">
-                                                <span className="fs-9 text-grey">{ dayjs(cricketGame.createdAt).format("DD.MM.YYYY HH:mm") }</span>
-                                                <Button variant="primary-green" href={'/cricket/' + cricketGame.id} className="py-1">
+                                                <span className="fs-9 text-gray">{dayjs(cricketGame.createdAt).format("DD.MM.YYYY HH:mm")}</span>
+                                                <Button variant="primary" href={'/cricket/' + cricketGame.id} className="py-1">
                                                     <FaChartBar title="Show Statistics" />
                                                 </Button>
                                             </div>
                                         </ListGroup.Item>
                                     ))}
-                                    { initialCricketGames.length < 1 &&
+                                    {initialCricketGames.length < 1 &&
                                         <span className="text-center fs-7">No finished games yet.</span>
                                     }
                                 </ListGroup>
                                 {!isCompleted &&
                                     <div className="d-flex justify-content-center mt-2">
-                                        <Button variant="primary-green" onClick={loadMore}>
+                                        <Button variant="primary" onClick={loadMore}>
                                             Load More +
                                         </Button>
                                     </div>
                                 }
                             </Card.Text>
-                        </Card.Body>               
+                        </Card.Body>
                     </Card>
                 </Col>
             }
         </Fragment>
     )
 }
-  
+
 export default FinishedCricketGames;

@@ -149,11 +149,11 @@ const PlayerForm = (props) => {
                         </FloatingLabel>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary-grey" onClick={handleCloseModal} className="p-2">
+                        <Button variant="tertiary" onClick={handleCloseModal} className="p-2">
                             <i className="fas fa-times px-2"></i>
                             Close
                         </Button>
-                        <Button variant="primary-green" onClick={handleSubmit} className="p-2">
+                        <Button variant="primary" onClick={handleSubmit} className="p-2">
                             <i className="fas fa-save px-2"></i>
                             { edit ? 'Update' : 'Create' }
                         </Button>
@@ -161,7 +161,7 @@ const PlayerForm = (props) => {
                 </Form>
             </Modal>
             <div className="d-flex justify-content-center">
-                <Button variant="primary-green" className="text-white m-0" onClick={handleShowModal}>
+                <Button variant="primary" className="text-white m-0" onClick={handleShowModal}>
                     <i className={`fas ${edit ? 'fa-edit' : 'fa-user-plus px-2'}`}></i>
                 </Button>
             </div>

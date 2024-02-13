@@ -34,7 +34,7 @@ const X01GameStats = () => {
         let game = await X01Service.loadX01(id);
         let players = await PlayerService.loadPlayers();
         let gameStats = await StatsService.loadX01GameStats(game.id);
-        
+
         players = players.filter(player => game.players.includes(player.id));
         players.sort(function (a, b) {
             return game.players.indexOf(a.id) - game.players.indexOf(b.id);
@@ -48,18 +48,18 @@ const X01GameStats = () => {
     useEffect(() => {
         loadData();
         // eslint-disable-next-line
-	}, []);
+    }, []);
 
-	const onNewGame = () => {
-		navigate("/x01", { replace: true });
-	};
+    const onNewGame = () => {
+        navigate("/x01", { replace: true });
+    };
 
-	const onFinishGame = () => {
-		navigate("/", { replace: true });
-	};
+    const onFinishGame = () => {
+        navigate("/", { replace: true });
+    };
 
-	const onRestartGame = async () => {
-        let newMatchSetup = {...X01Models.X01Model};
+    const onRestartGame = async () => {
+        let newMatchSetup = { ...X01Models.X01Model };
         newMatchSetup.isSoloGame = game.players.length === 1;
         newMatchSetup.startingScore = game.startingScore;
         newMatchSetup.setMode = game.setMode;
@@ -74,15 +74,15 @@ const X01GameStats = () => {
         newMatchSetup.currentPlayerTurn = game.players[0];
         newMatchSetup.players = game.players;
         newMatchSetup.playerModels = {};
-		game.players.forEach(player => {
-			let x01PlayerModel = {...X01Models.X01PlayerModel};
-			x01PlayerModel.score = Number(game.startingScore);
-			newMatchSetup.playerModels[player] = x01PlayerModel;
-		});
+        game.players.forEach(player => {
+            let x01PlayerModel = { ...X01Models.X01PlayerModel };
+            x01PlayerModel.score = Number(game.startingScore);
+            newMatchSetup.playerModels[player] = x01PlayerModel;
+        });
 
-		let newGame = await X01Service.createX01(newMatchSetup)
+        let newGame = await X01Service.createX01(newMatchSetup)
         navigate('/x01/' + newGame.id);
-	};
+    };
 
     if (!game || !players) {
         return (
@@ -93,20 +93,20 @@ const X01GameStats = () => {
     return (
         <Container fluid className="p-4 pt-0 bg-transparent border-0">
             <X01GameHeader
-                setMode={ game.setMode }
-                numberOfSets={ game.numberOfSets }
-                legMode={ game.legMode }
-                numberOfLegs={ game.numberOfLegs }
-                legInMode={ game.legInMode }
-                legOutMode={ game.legOutMode }
+                setMode={game.setMode}
+                numberOfSets={game.numberOfSets}
+                legMode={game.legMode}
+                numberOfLegs={game.numberOfLegs}
+                legInMode={game.legInMode}
+                legOutMode={game.legOutMode}
             />
             <Row className="d-flex justify-content-center align-items-center">
                 <Col className="col-xs-12 col-sm-12 col-md-10 col-lg-8" >
-                    { game.players.length === 2 &&
-                        <X01StatsScoreBoard players={ players } game={ game } />
+                    {game.players.length === 2 &&
+                        <X01StatsScoreBoard players={players} game={game} />
                     }
-                    { game.players.length > 2 &&
-                        <X01StatsScoreBoardMultiple players={ players } game={ game } />
+                    {game.players.length > 2 &&
+                        <X01StatsScoreBoardMultiple players={players} game={game} />
                     }
                 </Col>
             </Row>
@@ -116,13 +116,13 @@ const X01GameStats = () => {
                         defaultActiveKey="overall"
                         justify
                     >
-                        <Tab eventKey="overall" title="Overall" className="p-4 bg-secondary-grey">
-                            <X01StatsTab valueKey="game" game={ game } gameStats={ gameStats } />
+                        <Tab eventKey="overall" title="Overall" className="p-4 bg-secondary">
+                            <X01StatsTab valueKey="game" game={game} gameStats={gameStats} />
                         </Tab>
 
                         {[...Array(game.setsPlayed)].map((e, i) => (
-                            <Tab key={`set-tab-${i}`} eventKey={`set-${i}`} title={`Set ${i+1}`} className="p-4 bg-secondary-grey">
-                                <X01StatsTab valueKey={`set-${i+1}`} game={ game } />
+                            <Tab key={`set-tab-${i}`} eventKey={`set-${i}`} title={`Set ${i + 1}`} className="p-4 bg-secondary">
+                                <X01StatsTab valueKey={`set-${i + 1}`} game={game} />
                             </Tab>
                         ))}
                     </Tabs>
@@ -137,15 +137,15 @@ const X01GameStats = () => {
                 </Col>
             </Row>
             <Row className="d-grid gap-2 col-2 mx-auto mt-4">
-                <Button onClick={onRestartGame} variant="primary-green">
+                <Button onClick={onRestartGame} variant="primary">
                     <i className="fas fa-sync-alt pe-2" title='Restart'></i>
                     Play Again
                 </Button>
-                <Button onClick={onNewGame} variant="outline-primary-green">
+                <Button onClick={onNewGame} variant="outline-primary">
                     <i className="fas fa-plus pe-2" title='Plus'></i>
                     New Game
                 </Button>
-                <Button onClick={onFinishGame} variant="outline-primary-green">
+                <Button onClick={onFinishGame} variant="outline-primary">
                     <i className="fas fa-home pe-2" title='Home'></i>
                     Back Home
                 </Button>

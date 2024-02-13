@@ -1,10 +1,8 @@
 // Variables Imports
-@import 'variables/_colors';
+//@import 'variables/_colors';
 @import 'variables/_fonts';
 @import 'variables/_bootstrap';
 @import 'variables/_toastify';
-
-@import "../../../node_modules/bootstrap/scss/bootstrap";
 
 // Fonts and Icons
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
@@ -17,7 +15,6 @@
 
 // General Imports
 @import 'general/_general';
-@import 'general/_fonts';
 @import 'general/_borders';
 @import 'general/_margins';
 @import 'general/_misc';

@@ -43,9 +43,9 @@ const EditableCard = (props) => {
     return (
         <Col className="mb-3">
             <Card as='div'
-                className={`m-0 p-0 rounded-0 editable-card card-list-card bg-secondary-grey`}>
+                className={`m-0 p-0 rounded-0 editable-card card-list-card bg-secondary`}>
                 <Card.Body className="m-0 p-0 border-0 rounded-0">
-                    <Card.Title as="h6" className="bg-primary-green p-2 mb-0 text-white text-center span">
+                    <Card.Title as="h6" className="bg-primary p-2 mb-0 text-white text-center span">
                         {item.nickname}
                     </Card.Title>
                     <Card.Text as="div" className="pt-4 pb-2 text-white">
@@ -60,14 +60,14 @@ const EditableCard = (props) => {
                                         textSizeRatio={0.2}
                                         className="align-self-center"
                                     />
-                                    <span className="mt-1 text-primary-grey">{item.firstname + ' ' + item.lastname}</span>
+                                    <span className="mt-1 text-gray-700">{item.firstname + ' ' + item.lastname}</span>
                                 </div>
                             </Row>
                             <Row className="mt-2">
                                 <div className="d-flex justify-content-end gap-2 mt-2">
                                     <PlayerForm key={formId} onPlayerEdit={handlePlayerEdit} edit={true} updatePlayer={item} />
                                     {rawActive &&
-                                        <Button variant="primary-grey" title="Show _raw data" onClick={handlePlayerRAW}>
+                                        <Button variant="tertiary" title="Show _raw data" onClick={handlePlayerRAW}>
                                             <VscJson />
                                         </Button>
                                     }
@@ -181,7 +181,7 @@ const PlayersEditList = (props) => {
                 }
                 {players.length === 0 &&
                     <div className="d-flex justify-content-center mb-4">
-                        <span className="empty-text text-primary-grey">{emptyText}</span>
+                        <span className="empty-text text-gray-700">{emptyText}</span>
                     </div>
                 }
             </Container>
@@ -191,7 +191,7 @@ const PlayersEditList = (props) => {
                 </Modal.Header>
                 <Modal.Body>Are you sure you want to delete player {playerToDelete ? playerToDelete.nickname : 'unknown'} ?</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary-grey" onClick={cancelDeletePlayer}>
+                    <Button variant="tertiary" onClick={cancelDeletePlayer}>
                         Cancel
                     </Button>
                     <Button variant="red" onClick={deletePlayer}>

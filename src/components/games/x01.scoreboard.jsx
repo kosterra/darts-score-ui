@@ -17,32 +17,32 @@ const X01ScoreBoard = (props) => {
         getCurrentThrowScore
     } = useContext(X01Context);
 
-    const [ player ] = useState(players.find(player => player.id === playerId));
-    const [ playerModel, setPlayerModel] = useState(game.playerModels[playerId]);
-    const [ score, setScore ] = useState(game.playerModels[playerId].score);
+    const [player] = useState(players.find(player => player.id === playerId));
+    const [playerModel, setPlayerModel] = useState(game.playerModels[playerId]);
+    const [score, setScore] = useState(game.playerModels[playerId].score);
 
     useEffect(() => {
-		const clickEnterSubmitForm = (e) => {
-			if(e.key === 'Enter') {
-				document.getElementById('submit-throws').click();
-			}
-		}
+        const clickEnterSubmitForm = (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('submit-throws').click();
+            }
+        }
 
-		document.addEventListener('keyup', clickEnterSubmitForm);
+        document.addEventListener('keyup', clickEnterSubmitForm);
 
-		return () => {
-			document.removeEventListener('keyup', clickEnterSubmitForm);
-		}
-	}, [])
+        return () => {
+            document.removeEventListener('keyup', clickEnterSubmitForm);
+        }
+    }, [])
 
-	useEffect(() => {
+    useEffect(() => {
         let totalScore = getCurrentThrowScore();
         let currentPlayerScore = game.playerModels[game.currentPlayerTurn].score;
         let newCurrentScore = currentPlayerScore - totalScore;
         setScore(newCurrentScore);
         setPlayerModel(game.playerModels[playerId])
-    // eslint-disable-next-line
-	},[ game.currentThrow ]);
+        // eslint-disable-next-line
+    }, [game.currentThrow]);
 
     return (
         <Container>
@@ -52,32 +52,32 @@ const X01ScoreBoard = (props) => {
                         <Row className="align-items-center h-100">
                             <Col className="d-flex justify-content-center">
                                 <div>
-                                    <div className="d-flex justify-content-center display-3 fw-600 mb-2">
+                                    <div className="d-flex justify-content-center display-3 fw-semibold mb-2">
                                         <Avatar
-                                            name={ player.firstname + ' ' + player.lastname }
-                                            src={ player.profileImg }
+                                            name={player.firstname + ' ' + player.lastname}
+                                            src={player.profileImg}
                                             size="80"
-                                            round={ true }
+                                            round={true}
                                             color="#565656"
-                                            textSizeRatio={ 0.2 }
+                                            textSizeRatio={0.2}
                                             className="align-self-center"
                                         />
                                     </div>
                                     <div className="d-flex justify-content-center">
-                                        <span className="fs-5 fw-600">{ player.nickname }</span>
+                                        <span className="fs-5 fw-semibold">{player.nickname}</span>
                                     </div>
                                     <div className="d-flex justify-content-center">
                                         <span className="fs-7">{player.firstname + ' ' + player.lastname}</span>
                                     </div>
-                                    <div  className="d-flex justify-content-center">
-                                        { game.startingPlayerLeg === playerId && (
+                                    <div className="d-flex justify-content-center">
+                                        {game.startingPlayerLeg === playerId && (
                                             <i className="fas fa-circle text-blue m-02 mt-2"></i>
                                         )}
-                                        { game.currentPlayerTurn === playerId && (
-                                            <i className="fas fa-circle text-secondary-green m-02 mt-2"></i>
+                                        {game.currentPlayerTurn === playerId && (
+                                            <i className="fas fa-circle text-primary m-02 mt-2"></i>
                                         )}
-                                        { game.startingPlayerLeg !== playerId && game.currentPlayerTurn !== playerId && (
-                                            <i className="fas fa-circle fc-transparent m-02 mt-2"></i>
+                                        {game.startingPlayerLeg !== playerId && game.currentPlayerTurn !== playerId && (
+                                            <i className="fas fa-circle opacity-0 m-02 mt-2"></i>
                                         )}
                                     </div>
                                 </div>
@@ -86,15 +86,15 @@ const X01ScoreBoard = (props) => {
                     </Col>
                     <Col className="p-0">
                         <div className="d-flex justify-content-center align-items-center h-50">
-                            <div className="display-3 fw-600 mt-3" >
-                                { game.currentPlayerTurn === playerId ?
+                            <div className="display-3 fw-semibold mt-3" >
+                                {game.currentPlayerTurn === playerId ?
                                     score === 1 || score < 0 ? 'BUST' : score : playerModel.score
                                 }
                             </div>
                         </div>
                         <div className="d-flex align-items-center justify-content-center gap-3 h-50">
                             <div>
-                                <div className="d-flex justify-content-center fw-600 mb-02">
+                                <div className="d-flex justify-content-center fw-semibold mb-02">
                                     LEGS
                                 </div>
                                 {game.numberOfLegs <= 5 && game.legMode === 'Best of' &&
@@ -124,7 +124,7 @@ const X01ScoreBoard = (props) => {
                                 }
                             </div>
                             <div>
-                                <div className="d-flex justify-content-center fw-600 mb-02">
+                                <div className="d-flex justify-content-center fw-semibold mb-02">
                                     SETS
                                 </div>
                                 {game.numberOfSets <= 5 && game.setMode === 'Best of' &&
@@ -147,7 +147,7 @@ const X01ScoreBoard = (props) => {
                                         ))}
                                     </div>
                                 }
-                                {((game.numberOfSets > 4 && game.setMode === 'First to') || (game.numberOfSets > 5 && game.setMode === 'Best of')) && 
+                                {((game.numberOfSets > 4 && game.setMode === 'First to') || (game.numberOfSets > 5 && game.setMode === 'Best of')) &&
                                     <div className="d-flex justify-content-center">
                                         <span className="text-value">{game.playerModels[playerId].setsWon}</span>
                                     </div>

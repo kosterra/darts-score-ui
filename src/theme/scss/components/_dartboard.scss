@@ -1,6 +1,8 @@
 // ==========================
 //       Desktop Styles
 // ==========================
+$dartboard-opacity: 0.4;
+
 .dartboard {
     .dartboard-img {
         width: 30em;
@@ -11,19 +13,25 @@
         }
 
         .zero {
-            fill: $primary-grey-transparent;
+            fill: $gray-801;
         }
 
         .filler {
-            fill: $secondary-grey-transparent;
-        }
-
-        .item:hover {
+            fill: $gray-800;
             opacity: 0.6;
         }
 
+        .item:hover {
+            opacity: 0.5;
+        }
+
         .single.even {
-            fill: $primary-grey-transparent;
+            fill: $gray-800;
+
+            &:hover {
+                opacity: 0.2;
+            }
+            //opacity: $dartboard-opacity;
         }
 
         .double.even, .triple.even, .double-bull {
@@ -35,14 +43,14 @@
         }
 
         .double.odd, .triple.odd, .single-bull {
-            fill: $primary-green;
+            fill: $green;
         }
 
         .number {
-            fill: $white;
-            font-weight: 400;
+            fill: $gray-500;
+            font-weight: 600;
             text-anchor: middle;
-            font-size: 1.2em;
+            font-size: 1rem;
         }
 
         .hit, .hit-pulse {

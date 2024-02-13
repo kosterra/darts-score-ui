@@ -45,7 +45,7 @@ const PlayerSelect = (props) => {
                 item={selectedPlayers[0]}
                 isSelected={false}
                 selectable={false}
-                cssClass='bg-tertiary-grey' />
+                cssClass='bg-gray-900' />
             <Form.Group className="mt-3">
                 <AsyncTypeahead
                     multiple
@@ -70,7 +70,7 @@ const PlayerSelect = (props) => {
                             </span>
                             <span className="d-flex flex-column justify-content-center ms-4">
                                 <span className="fs-6">{player.nickname}</span>
-                                <span className="text-white fs-8 fw-400">{player.firstname + ' ' + player.lastname}</span>
+                                <span className="text-white fs-8 font-weight-normal">{player.firstname + ' ' + player.lastname}</span>
                             </span>
                         </div>
                     )}

@@ -48,53 +48,53 @@ const EditableCard = (props) => {
     return (
         <Col className="mb-3">
             <Card as='div'
-                className={`m-0 p-0 rounded-0 editable-card card-list-card bg-secondary-grey`}>
+                className={`m-0 p-0 rounded-0 editable-card card-list-card bg-secondary`}>
                 <Card.Body className="m-0 p-0 border-0 rounded-0">
-                    <Card.Title as="h6" className="bg-primary-green p-2 mb-0 text-white text-center span">
-                        <div className="fs-5 fw-600">{ x01Game.startingScore }</div>
-                        <span className="fw-500 fs-8">
-                            { x01Game.gameIsRunning ? 'Running' : 'Finished' }
+                    <Card.Title as="h6" className="bg-primary p-2 mb-0 text-white text-center span">
+                        <div className="fs-5 fw-semibold">{x01Game.startingScore}</div>
+                        <span className="fw-semibold fs-8">
+                            {x01Game.gameIsRunning ? 'Running' : 'Finished'}
                         </span>
                     </Card.Title>
                     <Card.Text as="div" className="pt-3 pb-2 text-white">
                         <Container>
                             <Row className="mb-3">
-                                <span className="fs-8 text-grey">{ x01Game.setMode } { x01Game.numberOfSets } Set{ x01Game.numberOfSets > 1 && 's' } - { x01Game.legMode } { x01Game.numberOfLegs } Leg{ x01Game.numberOfLegs > 1 && 's'}</span>
-                                <span className="fs-9 pt-1 text-grey">({ x01Game.legInMode } / { x01Game.legOutMode })</span>
+                                <span className="fs-8 text-gray">{x01Game.setMode} {x01Game.numberOfSets} Set{x01Game.numberOfSets > 1 && 's'} - {x01Game.legMode} {x01Game.numberOfLegs} Leg{x01Game.numberOfLegs > 1 && 's'}</span>
+                                <span className="fs-9 pt-1 text-gray">({x01Game.legInMode} / {x01Game.legOutMode})</span>
                             </Row>
                             <Row>
-                                { players.length > 0 && x01Game.players.map((playerId, idx) => (
+                                {players.length > 0 && x01Game.players.map((playerId, idx) => (
                                     <Row key={idx}>
                                         <Col className="text-white fs-8">
-                                            { ((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A' }
-                                            { x01Game.playerModels[playerId].hasWonGame &&
+                                            {((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A'}
+                                            {x01Game.playerModels[playerId].hasWonGame &&
                                                 <i className="ms-1 text-gold fas fa-trophy"></i>
                                             }
                                         </Col>
-                                        <Col className="text-white text-center fs-8">{ x01Game.playerModels[playerId].setsWon }</Col>
+                                        <Col className="text-white text-center fs-8">{x01Game.playerModels[playerId].setsWon}</Col>
                                     </Row>
                                 ))}
                             </Row>
                             <Row>
                                 <div className="d-flex justify-content-between align-items-end mt-2">
-                                    <span className="fs-9 text-grey">{ dayjs(x01Game.createdAt).format("DD.MM.YYYY HH:mm") }</span>
+                                    <span className="fs-9 text-gray">{dayjs(x01Game.createdAt).format("DD.MM.YYYY HH:mm")}</span>
                                     <div>
-                                        { x01Game.gameIsRunning &&
-                                            <Button variant="primary-green" href={'/x01/' + x01Game.id} className="me-1">
+                                        {x01Game.gameIsRunning &&
+                                            <Button variant="primary" href={'/x01/' + x01Game.id} className="me-1">
                                                 <GiBullseye title="Continue Playing" />
                                             </Button>
                                         }
-                                        { !x01Game.gameIsRunning &&
-                                            <Button variant="primary-green" title="Show Statistics"  href={'/stats/games/x01/' + x01Game.id} className="me-1">
+                                        {!x01Game.gameIsRunning &&
+                                            <Button variant="primary" title="Show Statistics" href={'/stats/games/x01/' + x01Game.id} className="me-1">
                                                 <FaChartBar />
                                             </Button>
                                         }
                                         {!x01Game.gameIsRunning && rawActive &&
-                                            <Button variant="primary-grey" title="Show _raw data" onClick={handleX01GameRAW} className="me-1">
+                                            <Button variant="tertiary" title="Show _raw data" onClick={handleX01GameRAW} className="me-1">
                                                 <VscJson />
                                             </Button>
                                         }
-                                        { deleteActive &&
+                                        {deleteActive &&
                                             <Button variant="red" title="Delete Game" onClick={handleX01GameDelete}>
                                                 <FaTrash />
                                             </Button>
@@ -137,7 +137,7 @@ const X01EditList = (props) => {
         loadPlayers();
         loadX01Games();
         // eslint-disable-next-line
-    }, [ statusFilterValue ]);
+    }, [statusFilterValue]);
 
     const cancelDeleteX01Game = () => {
         setShowDeleteModal(false);
@@ -185,7 +185,7 @@ const X01EditList = (props) => {
 
     return (
         <Fragment>
-            { showStatusFilter &&
+            {showStatusFilter &&
                 <div className="d-flex justify-content-md-center align-items-center p-2 text-white">
                     <InputGroup className="mb-3">
                         <ButtonGroup>
@@ -194,7 +194,7 @@ const X01EditList = (props) => {
                                     key={idx}
                                     id={`status-filter-${idx}`}
                                     type="radio"
-                                    variant="primary-green"
+                                    variant="primary"
                                     name="radio"
                                     value={filter.value}
                                     checked={statusFilterValue === filter.value}
@@ -212,9 +212,9 @@ const X01EditList = (props) => {
                     <Row xs={1} md={3}>
                         {x01Games.map((item, idx) => (
                             <EditableCard
-                                key={ idx }
-                                x01Game={ item }
-                                players={ players }
+                                key={idx}
+                                x01Game={item}
+                                players={players}
                                 deleteX01Game={handleX01GameDelete}
                                 showRAWX01Game={handleShowRAWX01Game}
                                 deleteActive={deleteActive}
@@ -225,7 +225,7 @@ const X01EditList = (props) => {
                 }
                 {x01Games.length === 0 &&
                     <div className="d-flex justify-content-center mb-4">
-                        <span className="empty-text text-primary-grey">{ emptyText }</span>
+                        <span className="empty-text text-gray-700">{emptyText}</span>
                     </div>
                 }
             </Container>

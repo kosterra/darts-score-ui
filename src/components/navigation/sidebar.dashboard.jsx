@@ -13,18 +13,18 @@ import {
 const SidebarDashboard = (props) => {
     const { collapsed } = props;
 
-  return (
-    <Fragment>
-        { collapsed &&
-            <hr className="text-primary-grey my-1" />
-        }
-        <Menu>
-            <MenuItem icon={<MdDashboard />} component={<Link to="/" />} className="fs-8 fw-500">
-                Dashboard
-            </MenuItem>
-        </Menu>
-    </Fragment>
-  );
+    return (
+        <Fragment>
+            {collapsed &&
+                <hr className="text-gray-600 my-1" />
+            }
+            <Menu>
+                <MenuItem icon={<MdDashboard />} component={<Link to="/" />} className="fs-8 fw-semibold">
+                    Dashboard
+                </MenuItem>
+            </Menu>
+        </Fragment>
+    );
 };
 
 export default SidebarDashboard;

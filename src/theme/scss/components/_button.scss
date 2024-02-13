@@ -1,6 +1,6 @@
 // Bootstrap buttons
 .btn {
-    border-radius: 2px;
+    border-radius: $border-radius-sm;
     color: $white;
     font-weight: 400;
     font-size: 0.9rem;
@@ -17,7 +17,7 @@
 .btn-check{
     &:checked + .btn {
         color: $white;
-        background-color: var(--bs-btn-hover-bg);
+        background-color: $green;
     }
 
     &:hover + .btn {

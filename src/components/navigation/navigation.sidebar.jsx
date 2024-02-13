@@ -10,7 +10,7 @@ import {
 } from 'react-bootstrap';
 
 import {
-    MdClose 
+    MdClose
 } from "react-icons/md";
 
 import {
@@ -27,44 +27,46 @@ import SidebarDashboard from './sidebar.dashboard';
 
 
 const NavigationSidebar = () => {
-    const [ collapsed, setCollapsed ] = useState(true);
+    const [collapsed, setCollapsed] = useState(true);
 
-	return (
-		<div className="sidebar min-vh-100">
+    return (
+        <div className="sidebar min-vh-100">
             <Sidebar
                 breakPoint="md"
                 collapsed={collapsed}
             >
-                <div className="h-100 bg-secondary-grey">
-                    <Row className="d-flex">
-                        <Col className={`${collapsed ? 'col-12' : 'col-9'} p-0 ps-2 pt-2`}>
-                            <SidebarHeader />
-                        </Col>
-                        <Col className={`${collapsed ? 'col-12' : 'col-3'} p-0 pt-2 pe-1 d-flex align-items-center justify-content-center`}>
+                <div className="h-100 bg-secondary">
+                    <div className="row pt-2 pb-3">
+                        <div className={`${collapsed ? 'col-12' : 'col-9'} p-0`}>
+                            <SidebarHeader collapsed={collapsed} />
+                        </div>
+                        <div className={`${collapsed ? 'col-12 justify-content-center pt-2' : 'col-3'} p-0 d-flex align-items-center`}>
                             <Button
+                                variant="tertiary"
+                                className=""
                                 onClick={() => {
                                     setCollapsed(!collapsed);
                                 }}
                             >
-                                { collapsed &&
+                                {collapsed &&
                                     <FaBars />
                                 }
-                                { !collapsed &&
+                                {!collapsed &&
                                     <MdClose />
                                 }
                             </Button>
-                        </Col>
-                    </Row>
-                    <SidebarDashboard collapsed={ collapsed } />
-                    <SidebarPlay collapsed={ collapsed } />
+                        </div>
+                    </div>
+                    <SidebarDashboard collapsed={collapsed} />
+                    <SidebarPlay collapsed={collapsed} />
                     {/* <SidebarTraining collapsed={ collapsed } /> */}
-                    <SidebarStats collapsed={ collapsed } />
-                    <SidebarAdmin collapsed={ collapsed } />
+                    <SidebarStats collapsed={collapsed} />
+                    <SidebarAdmin collapsed={collapsed} />
                     <SidebarMisc />
                 </div>
             </Sidebar>
-		</div>
-	);
+        </div>
+    );
 };
 
 export default NavigationSidebar;
