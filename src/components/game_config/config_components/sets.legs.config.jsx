@@ -131,12 +131,12 @@ const SetsLegsConfig = (props) => {
                                 title={numberOfLegsOption + (numberOfLegsOption <= 1 ? ' leg' : ' legs')}
                                 variant="tertiary"
                                 onSelect={(e) => onSetsLegsChange('numberOfLegs', e)}
-                                className="w-100"
+                                className="w-100 fs-8 fw-semibold"
                             >
                                 <Dropdown.Toggle
                                     id="dropdown-number-of-legs"
                                     variant="tertiary"
-                                    className="w-100"
+                                    className="w-100 fs-8 fw-semibold"
                                 >
                                     {numberOfLegsOption + (numberOfLegsOption <= 1 ? ' leg' : ' legs')}
                                 </Dropdown.Toggle>
