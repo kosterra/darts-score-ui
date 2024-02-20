@@ -56,7 +56,7 @@ const ImageUploader = (props) => {
                 />
                 {previewUrl &&
                     <span
-                        className="delete-file text-gray-700 py-1 px-2 bg-tertiary rounded-circle"
+                        className="delete-file text-shade700 py-1 px-2 bg-tertiary rounded-circle"
                         onClick={handleOnFileDelete}>
                         <i className="fas fa-trash fs-8"></i>
                     </span>
@@ -69,7 +69,7 @@ const ImageUploader = (props) => {
                 onDrop={handleOnDrop}
                 onClick={() => fileInput.current.click()}
             >
-                <span className="fs-8 text-gray-700"><ins>Upload</ins> or Drag and drop image</span>
+                <span className="fs-8 text-shade700"><ins>Upload</ins> or Drag and drop image</span>
                 <input
                     type="file"
                     accept="image/png, image/jpg, image/jpeg"

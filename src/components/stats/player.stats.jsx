@@ -59,7 +59,7 @@ const PlayerStats = () => {
             }
             {players && (players.filter(player => player != null).length != 1) &&
                 <div className="d-flex justify-content-center mt-4">
-                    <span className="empty-text text-gray-700">Please select a player to show the statistics</span>
+                    <span className="empty-text text-shade700">Please select a player to show the statistics</span>
                 </div>
             }
         </Fragment>

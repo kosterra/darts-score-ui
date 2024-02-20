@@ -15,7 +15,7 @@ const SidebarMisc = () => {
 
     return (
         <Fragment>
-            <hr className="text-gray-600 my-1" />
+            <hr className="text-shade600 my-1" />
             <Menu>
                 <MenuItem icon={<FaGear />} component={<Link to="/" />} className="fs-8 fw-semibold">
                     Settings

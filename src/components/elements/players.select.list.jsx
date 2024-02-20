@@ -38,7 +38,7 @@ const SelectableCard = (props) => {
                                 textSizeRatio={0.2}
                                 className="align-self-center"
                             />
-                            <span className="mt-1 text-center text-gray-700">{item.firstname + ' ' + item.lastname}</span>
+                            <span className="mt-1 text-center text-shade700">{item.firstname + ' ' + item.lastname}</span>
                         </div>
                     </Card.Text>
                 </Card.Body>
@@ -75,7 +75,7 @@ const PlayersSelectList = (props) => {
     return (
         <Container className={`px-1 p-0 selectable-card-list card-list ${listCssClass ? listCssClass : ''}`}>
             <div className="d-flex justify-content-center mb-4">
-                <span className="empty-text text-gray-600 fs-7">
+                <span className="empty-text text-shade600 fs-7">
                     {'Select ' + maxSelectable + ' ' + itemType}
                 </span>
             </div>
@@ -94,7 +94,7 @@ const PlayersSelectList = (props) => {
             }
             {items.length === 0 &&
                 <div className="d-flex justify-content-center mb-4">
-                    <span className="empty-text text-gray-600">{emptyText}</span>
+                    <span className="empty-text text-shade600">{emptyText}</span>
                 </div>
             }
         </Container>

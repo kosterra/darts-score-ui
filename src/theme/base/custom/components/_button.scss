@@ -1,0 +1,27 @@
+// Bootstrap buttons
+.btn {
+    border-radius: $border-radius-sm;
+    color: $white;
+    font-weight: 400;
+    font-size: 0.9rem;
+
+    &:hover {
+        color: $white;
+    }
+}
+
+.btn-primary {
+  color: $white;
+}
+
+.btn-check{
+    &:checked + .btn {
+        color: $white;
+        background-color: $primaryColor;
+    }
+
+    &:hover + .btn {
+        color: $white;
+        background-color: var(--bs-btn-hover-bg);
+    }
+}

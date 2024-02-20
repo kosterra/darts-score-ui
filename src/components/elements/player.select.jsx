@@ -45,7 +45,7 @@ const PlayerSelect = (props) => {
                 item={selectedPlayers[0]}
                 isSelected={false}
                 selectable={false}
-                cssClass='bg-gray-900' />
+                cssClass='bg-shade900' />
             <Form.Group className="mt-3">
                 <AsyncTypeahead
                     multiple

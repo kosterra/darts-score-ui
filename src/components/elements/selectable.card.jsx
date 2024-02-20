@@ -39,7 +39,7 @@ const SelectableCard = (props) => {
                                 textSizeRatio={0.2}
                                 className="align-self-center"
                             />
-                            <span className="mt-1 text-center text-gray-700">
+                            <span className="mt-1 text-center text-shade700">
                                 {(item ? item.firstname : '') + ' ' + (item ? item.lastname : '')}
                             </span>
                         </div>

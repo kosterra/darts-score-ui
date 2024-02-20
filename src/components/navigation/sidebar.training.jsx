@@ -16,10 +16,10 @@ const SidebarTraining = (props) => {
     return (
         <Fragment>
             {collapsed &&
-                <hr className="text-gray-600 my-1" />
+                <hr className="text-shade600 my-1" />
             }
             {!collapsed &&
-                <div className="text-gray-600 fw-semibold fs-8 ps-4 pt-2">
+                <div className="text-shade600 fw-semibold fs-8 ps-4 pt-2">
                     Training
                 </div>
             }

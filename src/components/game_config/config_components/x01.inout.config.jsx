@@ -22,7 +22,7 @@ const X01InOutConfig = (props) => {
         <Container className="justify-content-md-center align-items-center">
             <Row>
                 <Col>
-                    <p className="text-center text-gray-600 fs-7 fw-semibold">Starting In</p>
+                    <p className="text-center text-shade600 fs-7 fw-semibold">Starting In</p>
                     <Row xs={1} sm={1} md={1} lg={3} className="d-flex justify-content-center align-items-center border-solid-grey rounded m-0 py-3 mb-3 text-white">
                         {legInOptions.values.map((option, idx) => (
                             <Col key={idx} className="py-1 d-flex justify-content-center align-items-center">
@@ -43,7 +43,7 @@ const X01InOutConfig = (props) => {
                     </Row>
                 </Col>
                 <Col>
-                    <p className="text-center text-gray-600 fs-7 fw-semibold">Checkout</p>
+                    <p className="text-center text-shade600 fs-7 fw-semibold">Checkout</p>
                     <Row xs={1} sm={1} md={1} lg={3} className="d-flex justify-content-center align-items-center border-solid-grey rounded m-0 py-3 mb-3 text-white">
                         {legOutOptions.values.map((option, idx) => (
                             <Col key={idx} className="py-1 d-flex justify-content-center align-items-center">

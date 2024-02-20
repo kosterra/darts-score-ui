@@ -24,7 +24,7 @@ const StatsCard = (props) => {
                         <span className="text-white fs-1">
                             {value}
                         </span>
-                        <span className="text-gray-700 text-center fs-7">
+                        <span className="text-shade700 text-center fs-7">
                             {subvalue}
                         </span>
                     </div>

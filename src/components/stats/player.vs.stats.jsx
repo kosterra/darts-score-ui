@@ -155,12 +155,12 @@ const PlayerVSStats = (props) => {
             }
             {players && (players.filter(player => player != null).length != 2) &&
                 <div className="d-flex justify-content-center mt-4">
-                    <span className="empty-text text-gray-700">Please select 2 players to compare statistics</span>
+                    <span className="empty-text text-shade700">Please select 2 players to compare statistics</span>
                 </div>
             }
             {playerStats && playerStats.playedGames == 0 &&
                 <div className="d-flex justify-content-center mt-4">
-                    <span className="empty-text text-gray-700">No games found. Check the filters</span>
+                    <span className="empty-text text-shade700">No games found. Check the filters</span>
                 </div>
             }
         </Fragment>

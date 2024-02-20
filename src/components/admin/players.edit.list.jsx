@@ -60,7 +60,7 @@ const EditableCard = (props) => {
                                         textSizeRatio={0.2}
                                         className="align-self-center"
                                     />
-                                    <span className="mt-1 text-gray-700">{item.firstname + ' ' + item.lastname}</span>
+                                    <span className="mt-1 text-shade700">{item.firstname + ' ' + item.lastname}</span>
                                 </div>
                             </Row>
                             <Row className="mt-2">
@@ -181,7 +181,7 @@ const PlayersEditList = (props) => {
                 }
                 {players.length === 0 &&
                     <div className="d-flex justify-content-center mb-4">
-                        <span className="empty-text text-gray-700">{emptyText}</span>
+                        <span className="empty-text text-shade700">{emptyText}</span>
                     </div>
                 }
             </Container>

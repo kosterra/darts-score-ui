@@ -225,7 +225,7 @@ const X01EditList = (props) => {
                 }
                 {x01Games.length === 0 &&
                     <div className="d-flex justify-content-center mb-4">
-                        <span className="empty-text text-gray-700">{emptyText}</span>
+                        <span className="empty-text text-shade700">{emptyText}</span>
                     </div>
                 }
             </Container>

@@ -13,11 +13,11 @@ $dartboard-opacity: 0.4;
         }
 
         .zero {
-            fill: $gray-801;
+            fill: $shade801;
         }
 
         .filler {
-            fill: $gray-800;
+            fill: $shade800;
             opacity: 0.6;
         }
 
@@ -26,7 +26,7 @@ $dartboard-opacity: 0.4;
         }
 
         .single.even {
-            fill: $gray-800;
+            fill: $shade800;
 
             &:hover {
                 opacity: 0.2;
@@ -47,7 +47,7 @@ $dartboard-opacity: 0.4;
         }
 
         .number {
-            fill: $gray-500;
+            fill: $shade500;
             font-weight: 600;
             text-anchor: middle;
             font-size: 1rem;

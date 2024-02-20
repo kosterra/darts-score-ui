@@ -3,24 +3,24 @@
 
 // 2. Include any default variable overrides here
 $white:    #fff;
-$gray-100: #ececec;
-$gray-101: #ececec86;
-$gray-200: #dfdfdf;
-$gray-201: #dfdfdf86;
-$gray-300: #cacaca;
-$gray-301: #cacaca86;
-$gray-400: #afafaf;
-$gray-401: #afafaf86;
-$gray-500: #929292;
-$gray-501: #92929286;
-$gray-600: #757575;
-$gray-601: #75757586;
-$gray-700: #565656;
-$gray-701: #56565686;
-$gray-800: #383838;
-$gray-801: #38383886;
-$gray-900: #222121;
-$gray-901: #22212186;
+$shade100: #ececec;
+$shade101: #ececec86;
+$shade200: #dfdfdf;
+$shade201: #dfdfdf86;
+$shade300: #cacaca;
+$shade301: #cacaca86;
+$shade400: #afafaf;
+$shade401: #afafaf86;
+$shade500: #929292;
+$shade501: #92929286;
+$shade600: #757575;
+$shade601: #75757586;
+$shade700: #565656;
+$shade701: #56565686;
+$shade800: #383838;
+$shade801: #38383886;
+$shade900: #222121;
+$shade901: #22212186;
 $black:    #000;
 
 $red: #d95652;
@@ -31,14 +31,14 @@ $yellow: #ffc107;
 $green: #528b6e;
 
 $primary:       $green;
-$secondary:     $gray-900;
-$tertiary:      $gray-800;
+$secondary:     $shade900;
+$tertiary:      $shade800;
 $success:       $green;
 $info:          $blue;
 $warning:       $yellow;
 $danger:        $red;
-$light:         $gray-100;
-$dark:          $gray-900;
+$light:         $shade100;
+$dark:          $shade900;
 
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../../../../node_modules/bootstrap/scss/variables";
@@ -49,25 +49,25 @@ $custom-colors: (
     "beige": $beige,
     "blue": $blue,
     "gold": $gold,
-    "gray": $gray-500,
-    "gray-100": $gray-100,
-    "gray-101": $gray-101,
-    "gray-200": $gray-200,
-    "gray-201": $gray-201,
-    "gray-300": $gray-300,
-    "gray-301": $gray-301,
-    "gray-400": $gray-400,
-    "gray-401": $gray-401,
-    "gray-500": $gray-500,
-    "gray-501": $gray-501,
-    "gray-600": $gray-600,
-    "gray-601": $gray-601,
-    "gray-700": $gray-700,
-    "gray-701": $gray-701,
-    "gray-800": $gray-800,
-    "gray-801": $gray-801,
-    "gray-900": $gray-900,
-    "gray-901": $gray-901,
+    "gray": $shade500,
+    "shade100": $shade100,
+    "shade101": $shade101,
+    "shade200": $shade200,
+    "shade201": $shade201,
+    "shade300": $shade300,
+    "shade301": $shade301,
+    "shade400": $shade400,
+    "shade401": $shade401,
+    "shade500": $shade500,
+    "shade501": $shade501,
+    "shade600": $shade600,
+    "shade601": $shade601,
+    "shade700": $shade700,
+    "shade701": $shade701,
+    "shade800": $shade800,
+    "shade801": $shade801,
+    "shade900": $shade900,
+    "shade901": $shade901,
     "red": $red,
     "tertiary": $tertiary
 );
@@ -89,8 +89,8 @@ $font-sizes: map-merge($font-sizes, $custom-font-sizes);
 
 // 6. Optionally include any other parts as needed
 @import "../../../../node_modules/bootstrap/scss/utilities";
-@import "../../../../node_modules/bootstrap/scss/reboot";
-@import "../../../../node_modules/bootstrap/scss/type";
+//@import "../../../../node_modules/bootstrap/scss/reboot";
+//@import "../../../../node_modules/bootstrap/scss/type";
 @import "../../../../node_modules/bootstrap/scss/images";
 @import "../../../../node_modules/bootstrap/scss/containers";
 @import "../../../../node_modules/bootstrap/scss/grid";
@@ -122,5 +122,11 @@ $font-sizes: map-merge($font-sizes, $custom-font-sizes);
 @import "../../../../node_modules/bootstrap/scss/placeholders";
 
 // 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+$utilities: map-merge( 
+  $utilities, ("width": map-merge( 
+    map-get( $utilities, "width"), ( responsive: true ),),
+  )
+);
+
 @import "../../../../node_modules/bootstrap/scss/utilities/api";
 

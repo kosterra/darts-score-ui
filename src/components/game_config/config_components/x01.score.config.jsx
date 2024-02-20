@@ -19,7 +19,7 @@ const X01ScoreConfig = (props) => {
 
     return (
         <Container className="justify-content-md-center align-items-center">
-            <p className="text-center text-gray-600 fs-7 fw-semibold">Starting Score</p>
+            <p className="text-center text-shade600 fs-7 fw-semibold">Starting Score</p>
             <Row xs={2} sm={3} md={5} className="d-flex justify-content-center align-items-center border-solid-grey rounded m-0 py-3 mb-3 text-white">
                 {gameScoreOptions.values.map((option, idx) => (
                     <Col key={idx} className="py-1 d-flex justify-content-center align-items-center">

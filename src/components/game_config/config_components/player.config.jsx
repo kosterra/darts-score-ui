@@ -51,7 +51,7 @@ const PlayerConfig = (props) => {
 
     return (
         <Container className="justify-content-md-center align-items-center">
-            <p className="text-center text-gray-600 fs-7 fw-semibold">Players</p>
+            <p className="text-center text-shade600 fs-7 fw-semibold">Players</p>
             <Row className="d-flex justify-content-center align-items-center border-solid-grey rounded m-0 py-3 mb-3 text-white">
                 {numberOfPlayerOptions.values.map((option, idx) => (
                     <Col key={idx} xs={6} sm={6} md={3} lg={3} className="d-flex justify-content-center align-items-center py-1">

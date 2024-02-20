@@ -30,7 +30,7 @@ const SetsLegsConfig = (props) => {
         <Container className="justify-content-md-center align-items-center">
             <Row className="mb-3">
                 <Col>
-                    <p className="text-center text-gray-600 fs-7 fw-semibold">Sets</p>
+                    <p className="text-center text-shade600 fs-7 fw-semibold">Sets</p>
                     <Row xs={1} sm={1} md={2} lg={2} className="d-flex justify-content-center align-items-center border-solid-grey rounded m-0 py-3">
                         <Col className="py-1 d-flex justify-content-center align-items-center">
                             <Dropdown className="w-100" onSelect={(e) => onSetsLegsChange('setMode', e)}>
@@ -100,7 +100,7 @@ const SetsLegsConfig = (props) => {
                     </Row>
                 </Col>
                 <Col>
-                    <p className="text-center text-gray-600 fs-7 fw-semibold">Legs</p>
+                    <p className="text-center text-shade600 fs-7 fw-semibold">Legs</p>
                     <Row xs={1} sm={1} md={2} lg={2} className="d-flex justify-content-center align-items-center border-solid-grey rounded m-0 py-3">
                         <Col className="py-1 d-flex justify-content-center align-items-center">
                             <Dropdown className="w-100" onSelect={(e) => onSetsLegsChange('legMode', e)}>
