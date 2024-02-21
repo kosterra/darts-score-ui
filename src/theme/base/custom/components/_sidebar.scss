@@ -3,29 +3,44 @@
     height: 100%;
     border: none;
 
-    .ps-menuitem-root {
-        .ps-menu-button {
-            &:hover {
-                background-color: $shade701;
-            }
-
-            .ps-submenu-expand-icon {
-                color: $shade700;
-            }
+    .sidebar-container {
+        background: $sidebarContainerBg;
+        color: $sidebarTextColor;
+        font-family: $fontFamily;
+        
+        .menu-subtitle {
+            color: $sidebarMenuSubtitleColor;
         }
 
-        .ps-submenu-content {
-            .ps-menuitem-root {
-                .ps-menu-button {
-                    &:hover {
-                        background-color: $shade701;
+        .menu-divider {
+            color: $sidebarMenuDividerColor;
+        }
+
+        .ps-menuitem-root {
+
+            .ps-menu-button {
+                &:hover {
+                    background-color: $sidebarMenuitemHoverBg;
+                }
+
+                .ps-submenu-expand-icon {
+                    color: $sidebarExpandIconColor;
+                }
+            }
+
+            .ps-submenu-content {
+                .ps-menuitem-root {
+                    .ps-menu-button {
+                        &:hover {
+                            background-color: $sidebarSubmenuitemHoverBg;
+                        }
                     }
                 }
             }
         }
-    }
 
-    .ps-submenu-content {
-        background-color: $shade800;
+        .ps-submenu-content {
+            background-color: $sidebarSubmenuContentBg;
+        }
     }
 }

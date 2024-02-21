@@ -5,16 +5,16 @@ import { PrimeReactProvider } from 'primereact/api';
 
 import NavigationSidebar from './components/navigation/navigation.sidebar';
 
-import Dashboard from './pages/dashboard';
-import X01ConfigPage from './pages/config/x01';
-import X01GamePage from './pages/games/x01';
-import X01GameStats from './components/stats/x01.game.stats';
-import CricketConfigPage from './pages/config/cricket';
-import CricketGamePage from './pages/games/cricket';
-import CricketGameStats from './components/stats/cricket.game.stats';
-import StatsPage from './pages/stats';
-import AboutPage from './pages/about';
-import AdminPage from './pages/admin';
+import Dashboard from './components/dashboard/_dashboard.page';
+import X01ConfigPage from './components/game_config/x01/_x01.config.page';
+import X01GamePage from './components/games/x01/_x01.game.page';
+import X01GameStats from './components/stats/x01/x01.game.stats';
+import CricketConfigPage from './components/game_config/cricket/_cricket.config.page';
+import CricketGamePage from './components/games/cricket/_cricket.game.page';
+import CricketGameStats from './components/stats/common/cricket.game.stats';
+import StatsPage from './components/stats/_stats.page';
+import AboutPage from './components/about/_about.page';
+import AdminPage from './components/admin/_admin.page';
 
 import 'react-toastify/dist/ReactToastify.css';
 import 'primeicons/primeicons.css';

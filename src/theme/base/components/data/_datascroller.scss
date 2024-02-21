@@ -19,10 +19,20 @@
     }
 
     .p-datascroller-content {
-        background: $tableBodyRowBg;
+        //background: $tableBodyRowBg;
         color: $tableBodyRowTextColor;
         border: $dataViewContentBorder;
-        padding: $dataViewContentPadding;
+        padding: 0 !important;
+
+        .p-datascroller-list {
+            > li {
+                font-size: 0.9rem;
+                text-align: center;
+                background-color: $tableBodyRowBg;
+                padding: 0.8rem;
+                margin: 0 0 0.8rem 0;
+            }
+        }
     }
 
     &.p-datascroller-inline {
@@ -30,18 +40,19 @@
             > li {
                 border: $dataViewListItemBorder;
                 border-width: $dataViewListItemBorderWidth;
+                font-size: 0.4rem !important;
             }
         }
     }
 
     .p-datascroller-footer {
-        background: $tableFooterBg;
+        //background: $tableFooterBg;
         color: $tableFooterTextColor;
-        border: $tableFooterBorder;
-        border-width: $tableFooterBorderWidth;
+        //border: $tableFooterBorder;
+        //border-width: $tableFooterBorderWidth;
         padding: $tableFooterPadding;
         font-weight: $tableFooterFontWeight;
-        border-bottom-left-radius: $borderRadius;
-        border-bottom-right-radius: $borderRadius;
+        //border-bottom-left-radius: $borderRadius;
+        //border-bottom-right-radius: $borderRadius;
     }
 }

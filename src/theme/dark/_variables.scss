@@ -25,7 +25,7 @@ $shade901: #22212191 !default;
 $hoverBg: rgba(255, 255, 255, 0.03) !default;
 
 //global
-$fontFamily: "Inter var", sans-serif !default;
+$fontFamily: "Exo", sans-serif !default;
 $fontSize: 1rem !default;
 $fontWeight: normal !default;
 $textColor: $shade000 !default;
@@ -146,17 +146,16 @@ $plainButtonTextColor: $textSecondaryColor !default;
 $plainButtonHoverBgColor: $hoverBg !default;
 $plainButtonActiveBgColor: rgba(255, 255, 255, 0.16) !default;
 
-$secondaryButtonBg: #94a3b8 !default;
-$secondaryButtonTextColor: #020617 !default;
-$secondaryButtonBorder: 1px solid #94a3b8 !default;
-$secondaryButtonHoverBg: #cbd5e1 !default;
+$secondaryButtonBg: $shade700 !default;
+$secondaryButtonTextColor: $shade000 !default;
+$secondaryButtonBorder: 0 !default;
+$secondaryButtonHoverBg: $shade701 !default;
 $secondaryButtonTextHoverColor: $secondaryButtonTextColor !default;
 $secondaryButtonHoverBorderColor: #cbd5e1 !default;
-$secondaryButtonActiveBg: #e2e8f0 !default;
+$secondaryButtonActiveBg: $shade701 !default;
 $secondaryButtonTextActiveColor: $secondaryButtonTextColor !default;
 $secondaryButtonActiveBorderColor: #e2e8f0 !default;
-$secondaryButtonFocusShadow: 0 0 0 1px
-	scale-color($secondaryButtonBg, $lightness: 30%) !default;
+$secondaryButtonFocusShadow: none;
 
 $infoButtonBg: #38bdf8 !default;
 $infoButtonTextColor: #082f49 !default;
@@ -354,8 +353,9 @@ $panelHeaderBorder: 0 !default;
 $panelHeaderBg: $primaryColor !default;
 $panelHeaderTextColor: $shade000 !default;
 $panelHeaderFontWeight: 500 !default;
-$panelHeaderFontSize: 1.4rem !default;
-$panelHeaderPadding: 1.25rem !default;
+$panelHeaderFontSize: 1rem !default;
+$panelHeaderPadding: 0.4rem !default;
+$panelHeaderMinHeight: 3rem !default;
 $panelToggleableHeaderPadding: 0.75rem 1.25rem !default;
 
 $panelHeaderHoverBg: $hoverBg !default;
@@ -608,10 +608,19 @@ $errorMessageTextColor: #fca5a5 !default;
 $errorMessageIconColor: #fca5a5 !default;
 
 //overlays
-$overlayContentBorder: 1px solid $shade600 !default;
-$overlayContentBg: $panelContentBg !default;
-$overlayContainerShadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2),
-	0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12) !default;
+$overlayContentBorder: 0 none !default;
+$overlayContentBg: $shade900 !default;
+$overlayContainerShadow: 0 !default;
+
+//sidebar
+$sidebarTextColor: $shade000 !default;
+$sidebarMenuSubtitleColor: $shade600 !default;
+$sidebarMenuDividerColor: $shade600 !default;
+$sidebarContainerBg: $shade900 !default;
+$sidebarSubmenuContentBg: $shade700 !default;
+$sidebarMenuitemHoverBg: $shade701 !default;
+$sidebarSubmenuitemHoverBg: $shade801 !default;
+$sidebarExpandIconColor: $shade700 !default;
 
 //dialog
 $dialogHeaderBg: $shade800 !default;
@@ -694,8 +703,8 @@ $breadcrumbLastItemIconColor: $menuitemIconColor !default;
 $breadcrumbSeparatorColor: $menuitemTextColor !default;
 
 $horizontalMenuPadding: 0.5rem !default;
-$horizontalMenuBg: $shade700 !default;
-$horizontalMenuBorder: $menuBorder !default;
+$horizontalMenuBg: $shade900 !default;
+$horizontalMenuBorder: 0 !default;
 $horizontalMenuTextColor: $menuTextColor !default;
 $horizontalMenuRootMenuitemPadding: $menuitemPadding !default;
 $horizontalMenuRootMenuitemBorderRadius: $borderRadius !default;
@@ -847,10 +856,10 @@ $imagePreviewActionIconFontSize: 1.5rem !default;
 $imagePreviewActionIconBorderRadius: 50% !default;
 
 :root {
-	font-family: "Inter var", sans-serif;
+	font-family: "Exo", sans-serif;
 	font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 	font-variation-settings: normal;
-	--font-family: "Inter var", sans-serif;
+	--font-family: "Exo", sans-serif;
 	--font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 	--surface-a: #{$shade800};
 	--surface-b: #{$shade900};

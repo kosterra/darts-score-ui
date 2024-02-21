@@ -20,18 +20,18 @@ const SidebarPlay = (props) => {
     return (
         <Fragment>
             {collapsed &&
-                <hr className="text-shade600 my-1" />
+                <hr className="menu-divider my-1" />
             }
             {!collapsed &&
-                <div className="text-shade600 fw-semibold fs-8 ps-4 py-2 pt-4">
+                <div className="menu-subtitle fw-semibold fs-8 ps-4 py-2 pt-4">
                     Let's Play Darts
                 </div>
             }
             <Menu>
-                <MenuItem icon={<FaBullseye />} component={<Link to="/x01" />} className="fs-8 fw-semibold">
+                <MenuItem icon={<FaBullseye className="fs-6" />} component={<Link to="/x01" />} className="fs-8 fw-semibold">
                     X01
                 </MenuItem>
-                <MenuItem icon={<MdSportsCricket />} component={<Link to="/cricket" />} className="fs-8 fw-semibold">
+                <MenuItem icon={<MdSportsCricket className="fs-6" />} component={<Link to="/cricket" />} className="fs-8 fw-semibold">
                     Cricket
                 </MenuItem>
             </Menu>

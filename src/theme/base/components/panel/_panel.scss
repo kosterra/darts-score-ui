@@ -9,6 +9,7 @@
         color: $panelHeaderTextColor;
         border-top-right-radius: 0;
         border-top-left-radius: 0;
+        min-height: $panelHeaderMinHeight;
 
         .p-panel-title {
             font-weight: $panelHeaderFontWeight;

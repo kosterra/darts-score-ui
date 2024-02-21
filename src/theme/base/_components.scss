@@ -1,10 +1,14 @@
 @layer bootstrap, primereact;
 
+@import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap');
+
 @import '_mixins';
 @import '_colors';
-@import '_fonts';
 
 @import './components/input/_editor';
+
+// Custom Components
+@import 'custom/components/_sidebar';
 
 @layer bootstrap {
     @import '_bootstrap';
@@ -24,7 +28,6 @@
     @import 'custom/components/_navigation';
     @import 'custom/components/_progressbar';
     @import 'custom/components/_select';
-    @import 'custom/components/_sidebar';
     // end custom components - to be deleted later
 }
 

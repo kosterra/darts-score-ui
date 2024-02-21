@@ -1,0 +1,20 @@
+import React from 'react';
+import {
+    Container,
+    Row
+} from 'react-bootstrap';
+
+import CricketConfig from './cricket.config';
+
+const CricketConfigPage = () => {
+
+    return (
+        <Container fluid className="p-4 bg-transparent border-0">
+            <Row className="justify-content-md-center align-items-center">
+                <CricketConfig />
+            </Row>
+        </Container>
+    );
+};
+
+export default CricketConfigPage;

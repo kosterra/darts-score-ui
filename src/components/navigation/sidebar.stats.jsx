@@ -18,17 +18,17 @@ const SidebarStats = (props) => {
     return (
         <Fragment>
             {collapsed &&
-                <hr className="text-shade600 my-1" />
+                <hr className="menu-divider my-1" />
             }
             {!collapsed &&
-                <div className="text-shade600 fw-semibold fs-8 ps-4 py-2 pt-4">
+                <div className="menu-subtitle fw-semibold fs-8 ps-4 py-2 pt-4">
                     Statistics
                 </div>
             }
             <Menu>
                 <SubMenu
                     label="Players"
-                    icon={<FaChartLine />}
+                    icon={<FaChartLine className="fs-6" />}
                     className="fs-8 fw-semibold"
                 >
                     <MenuItem component={<Link to="/stats/players" />} className="fs-8 fw-semibold"> Players</MenuItem>
@@ -36,7 +36,7 @@ const SidebarStats = (props) => {
                 </SubMenu>
                 <SubMenu
                     label="Games"
-                    icon={<FaTrophy />}
+                    icon={<FaTrophy className="fs-6" />}
                     className="fs-8 fw-semibold"
                 >
                     <MenuItem component={<Link to="/stats/games/x01" />} className="fs-8 fw-semibold"> X01</MenuItem>

@@ -22,7 +22,7 @@ const X01Model = {
   legsPlayed: 0,
   currentSet: 1,
   currentSetLeg: 1,
-  currentThrow: ['','',''], 
+  currentThrow: ['', '', ''],
   currentLegThrows: [],
   allSetsThrows: {},
   playerModels: {}

@@ -16,10 +16,10 @@ const SidebarDashboard = (props) => {
     return (
         <Fragment>
             {collapsed &&
-                <hr className="text-shade600 my-1" />
+                <hr className="menu-divider my-1" />
             }
             <Menu>
-                <MenuItem icon={<MdDashboard />} component={<Link to="/" />} className="fs-8 fw-semibold">
+                <MenuItem icon={<MdDashboard className="fs-6" />} component={<Link to="/" />} className="fs-8 fw-semibold">
                     Dashboard
                 </MenuItem>
             </Menu>

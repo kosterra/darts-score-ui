@@ -14,7 +14,7 @@ import {
   YAxis
 } from 'recharts';
 
-import ChartConfigOptions from '../stats/chart.config.options';
+import ChartConfigOptions from '../stats/common/chart.config.options';
 
 const ComparisonBar = (props) => {
   const {
