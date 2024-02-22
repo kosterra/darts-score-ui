@@ -36,9 +36,16 @@ const DashboardGameList = (props) => {
                         <>
                             {gamesType == 'x01' &&
                                 <div className="row mb-2">
-                                    <div className="col-6 text-white text-start align-middle fs-8">{((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A'}</div>
+                                    <div className={`text-white text-start align-middle fs-8 ${game.gameIsRunning ? 'col-6' : 'col-9'}`}>
+                                        {((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A'}
+                                        {game.playerModels[playerId].hasWonGame &&
+                                            <FaTrophy className="fs-6 ms-2 text-gold" />
+                                        }
+                                    </div>
                                     <div className="col-3 text-white text-center align-middle fs-8">{game.playerModels[playerId].setsWon}</div>
-                                    <div className="col-3 text-white text-center align-middle fs-8">{game.playerModels[playerId].currentSetLegsWon}</div>
+                                    {game.gameIsRunning &&
+                                        <div className="col-3 text-white text-center align-middle fs-8">{game.playerModels[playerId].currentSetLegsWon}</div>
+                                    }
                                 </div>
                             }
                             {gamesType == 'cricket' &&
@@ -46,7 +53,7 @@ const DashboardGameList = (props) => {
                                     <div className="col-6 text-white text-start align-middle fs-8">
                                         {((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A'}
                                         {game.playerModels[playerId].hasWonGame &&
-                                            <FaTrophy className="ms-2 text-gold" />
+                                            <FaTrophy className="fs-6 ms-2 text-gold" />
                                         }
                                     </div>
                                 </div>
@@ -55,7 +62,7 @@ const DashboardGameList = (props) => {
                     ))}
                 </div>
                 <div className="d-flex justify-content-between align-items-end mt-4">
-                    <span className="fs-9 text-gray">{dayjs(game.createdAt).format("DD.MM.YYYY HH:mm")}</span>
+                    <span className="fs-9 text-shade500">{dayjs(game.createdAt).format("DD.MM.YYYY HH:mm")}</span>
                     <Button href={'/' + gamesType + '/' + game.id} className="py-2 px-3">
                         <FaChartBar title="Show Statistics" />
                     </Button>
