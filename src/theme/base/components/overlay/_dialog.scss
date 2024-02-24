@@ -8,8 +8,9 @@
         background: $dialogHeaderBg;
         color: $dialogHeaderTextColor;
         padding: $dialogHeaderPadding;
-        border-top-right-radius: $borderRadius;
-        border-top-left-radius: $borderRadius;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        text-align: center;
 
         .p-dialog-title {
             font-weight: $dialogHeaderFontWeight;

@@ -32,7 +32,7 @@ const DashboardGameList = (props) => {
         return (
             <div>
                 <div>
-                    {players.length > 0 && game.players.map((playerId, idx) => (
+                    {players.length > 0 && game.players.map((playerId) => (
                         <>
                             {gamesType == 'x01' &&
                                 <div className="row mb-2">

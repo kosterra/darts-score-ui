@@ -3,7 +3,8 @@
     background: $buttonBg;
     border: $buttonBorder;
     padding: $buttonPadding;
-    font-size: $fontSize;
+    font-size: $buttonFontSize;
+    font-weight: $buttonFontWeight;
     transition: $formElementTransition;
     border-radius: $borderRadius;
 

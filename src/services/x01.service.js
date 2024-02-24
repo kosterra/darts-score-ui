@@ -29,7 +29,7 @@ const createX01 = async (game) => {
 const loadRunningX01Games = async () => {
     let data = await loadAllX01Games();
     return data.filter(game => game.gameIsRunning).sort((a,b)=>{
-        return new Date(a.updatedAt) - new Date(b.updatedAt);
+        return new Date(b.updatedAt) - new Date(a.updatedAt);
     });
 }
 

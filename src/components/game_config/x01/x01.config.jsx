@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
-import {
-    Button,
-    Card,
-    Col
-} from 'react-bootstrap';
+import { Panel } from 'primereact/panel';
+import { Button } from 'primereact/button';
 
 import X01ScoreConfig from '../config_components/x01.score.config';
 import X01InOutConfig from '../config_components/x01.inout.config';
@@ -72,42 +69,35 @@ const X01Config = () => {
     }
 
     return (
-        <Col className="d-flex justify-content-center col-12 mb-3">
-            <Card bg="secondary" className="m-0 p-0 border-0 rounded-0">
-                <Card.Body className="m-0 p-0 border-0 rounded-0">
-                    <Card.Title className="bg-primary p-3 text-white text-center">
-                        X01
-                    </Card.Title>
-                    <Card.Text as="div" className="p-2 text-white">
-                        <X01ScoreConfig
-                            scoreOption={game.startingScore}
-                            onScoreChange={handleConfigChange}
-                        />
-                        <X01InOutConfig
-                            legInOption={game.legInMode}
-                            legOutOption={game.legOutMode}
-                            onInOutChange={handleConfigChange}
-                        />
-                        <SetsLegsConfig
-                            setModeOption={game.setMode}
-                            legModeOption={game.legMode}
-                            numberOfSetsOption={game.numberOfSets}
-                            numberOfLegsOption={game.numberOfLegs}
-                            onSetsLegsChange={handleConfigChange}
-                        />
-                        <PlayerConfig
-                            numberOfPlayers={game.numberOfPlayers}
-                            selectedPlayers={game.players}
-                            onNumberOfPlayersChange={handleConfigChange}
-                            onSelectedPlayersChange={handleConfigChange}
-                        />
-                        <div className="col-xs-1 p-2" align="center">
-                            <Button variant="primary" className="m-0 px-2 py-2" onClick={handleSubmit}>Start Game</Button>
-                        </div>
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-        </Col>
+        <Panel header="X01" className="w-100 w-md-75 w-xxl-50 mx-auto" >
+            <div className="container">
+                <X01ScoreConfig
+                    scoreOption={game.startingScore}
+                    onScoreChange={handleConfigChange}
+                />
+                <X01InOutConfig
+                    legInOption={game.legInMode}
+                    legOutOption={game.legOutMode}
+                    onInOutChange={handleConfigChange}
+                />
+                <SetsLegsConfig
+                    setModeOption={game.setMode}
+                    legModeOption={game.legMode}
+                    numberOfSetsOption={game.numberOfSets}
+                    numberOfLegsOption={game.numberOfLegs}
+                    onSetsLegsChange={handleConfigChange}
+                />
+                <PlayerConfig
+                    numberOfPlayersOption={game.numberOfPlayers}
+                    selectedPlayers={game.players}
+                    onNumberOfPlayersChange={handleConfigChange}
+                    onSelectedPlayersChange={handleConfigChange}
+                />
+                <div className="container" align="center">
+                    <Button variant="primary" className="m-0 px-2 py-2" onClick={handleSubmit}>Start Game</Button>
+                </div>
+            </div>
+        </Panel>
     );
 }
 
