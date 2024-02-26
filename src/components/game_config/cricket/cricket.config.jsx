@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
-import {
-    Button,
-    Card,
-    Col
-} from 'react-bootstrap';
+import { Panel } from 'primereact/panel';
+import { Button } from 'primereact/button';
 
 import PlayerConfig from '../config_components/player.config';
 import CricketModels from '../../../models/cricket.models';
@@ -54,26 +51,19 @@ const CricketConfig = () => {
     }
 
     return (
-        <Col className="d-flex justify-content-center col-12 mb-3">
-            <Card bg="secondary" className="m-0 p-0 border-0 rounded-0">
-                <Card.Body className="m-0 p-0 border-0 rounded-0">
-                    <Card.Title className="bg-primary p-3 text-white text-center">
-                        Cricket
-                    </Card.Title>
-                    <Card.Text as="div" className="p-2 text-white">
-                        <PlayerConfig
-                            numberOfPlayers={game.numberOfPlayers}
-                            selectedPlayers={game.players}
-                            onNumberOfPlayersChange={handleConfigChange}
-                            onSelectedPlayersChange={handleConfigChange}
-                        />
-                        <div className="col-xs-1 p-3" align="center">
-                            <Button variant="primary" className="text-white m-0 p-2" onClick={handleSubmit}>Start Game</Button>
-                        </div>
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-        </Col>
+        <Panel header="Cricket" className="w-100 w-md-75 w-xxl-50 mx-auto" >
+            <div className="container">
+                <PlayerConfig
+                    numberOfPlayersOption={game.numberOfPlayers}
+                    selectedPlayers={game.players}
+                    onNumberOfPlayersChange={handleConfigChange}
+                    onSelectedPlayersChange={handleConfigChange}
+                />
+                <div className="container" align="center">
+                    <Button variant="primary" className="m-0" onClick={handleSubmit}>Start Game</Button>
+                </div>
+            </div>
+        </Panel>
     );
 }
 

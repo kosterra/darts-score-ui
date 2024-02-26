@@ -1,5 +1,3 @@
-import React from 'react';
-
 import X01Config from './x01.config'
 
 const X01ConfigPage = () => {

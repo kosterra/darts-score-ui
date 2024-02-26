@@ -3,6 +3,7 @@ import { Panel } from 'primereact/panel';
 import { Button } from 'primereact/button';
 import { DataScroller } from 'primereact/datascroller';
 import { FaChartBar, FaTrophy } from "react-icons/fa";
+import { GiDart } from "react-icons/gi";
 
 import dayjs from "dayjs";
 
@@ -11,6 +12,7 @@ const DashboardGameList = (props) => {
         title = '',
         subtitle = '',
         gamesType = 'x01',
+        emptyMessage= 'No records found',
         games = [],
         players = []
     } = props;
@@ -32,8 +34,8 @@ const DashboardGameList = (props) => {
         return (
             <div>
                 <div>
-                    {players.length > 0 && game.players.map((playerId) => (
-                        <>
+                    {players.length > 0 && game.players.map((playerId, idx) => (
+                        <div key={idx}>
                             {gamesType == 'x01' &&
                                 <div className="row mb-2">
                                     <div className={`text-white text-start align-middle fs-8 ${game.gameIsRunning ? 'col-6' : 'col-9'}`}>
@@ -58,14 +60,22 @@ const DashboardGameList = (props) => {
                                     </div>
                                 </div>
                             }
-                        </>
+                        </div>
                     ))}
                 </div>
                 <div className="d-flex justify-content-between align-items-end mt-4">
                     <span className="fs-9 text-shade500">{dayjs(game.createdAt).format("DD.MM.YYYY HH:mm")}</span>
-                    <Button href={'/' + gamesType + '/' + game.id} className="py-2 px-3">
-                        <FaChartBar title="Show Statistics" />
-                    </Button>
+                    {!game.gameIsRunning &&
+                        <a href={'/' + gamesType + '/' + game.id} rel="noopener noreferrer" className="p-button font-bold py-2 px-3">
+                            <FaChartBar title="Show Statistics" />
+                        </a>
+                    }
+
+                    {game.gameIsRunning &&
+                        <a href={'/' + gamesType + '/' + game.id} rel="noopener noreferrer" className="p-button font-bold py-2 px-3">
+                            <GiDart title="Continue Playing" />
+                        </a>
+                    }
                 </div>
             </div>
         );
@@ -87,7 +97,7 @@ const DashboardGameList = (props) => {
     return (
         <div className="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
             <Panel headerTemplate={headerTemplate} className="mx-auto" >
-                <DataScroller ref={ds} value={games} itemTemplate={itemTemplate} rows={5} loader footer={footerTemplate()} />
+                <DataScroller ref={ds} value={games} itemTemplate={itemTemplate} emptyMessage={emptyMessage} rows={5} loader footer={footerTemplate()} />
             </Panel>
         </div>
     );

@@ -49,10 +49,38 @@ const Dashboard = () => {
 	return (
 		<div className="container-fluid p-4 border-0">
 			<div className="row" data-masonry='{"percentPosition": true }'>
-				<DashboardGameList title="X01" subtitle="Currently Running" games={runningX01Games} players={players} gamesType="x01" />
-				<DashboardGameList title="X01" subtitle="Recently Finished" games={finishedX01Games} players={players} gamesType="x01" />
-				<DashboardGameList title="Cricket" subtitle="Currently Running" games={runningCricketGames} players={players} gamesType="cricket" />
-				<DashboardGameList title="Cricket" subtitle="Recently Finished" games={finishedCricketGames} players={players} gamesType="cricket" />
+				<DashboardGameList
+					title="X01"
+					subtitle="Currently Running"
+					games={runningX01Games}
+					players={players}
+					gamesType="x01"
+					emptyMessage="Currently no running X01 games"
+				/>
+				<DashboardGameList
+					title="X01"
+					subtitle="Recently Finished"
+					games={finishedX01Games}
+					players={players}
+					gamesType="x01"
+					emptyMessage="Not yet any X01 games played"
+				/>
+				<DashboardGameList
+					title="Cricket"
+					subtitle="Currently Running"
+					games={runningCricketGames}
+					players={players}
+					gamesType="cricket"
+					emptyMessage="Currently no running Cricket games"
+				/>
+				<DashboardGameList
+					title="Cricket"
+					subtitle="Recently Finished"
+					games={finishedCricketGames}
+					players={players}
+					gamesType="cricket"
+					emptyMessage="Not yet any Cricket games played"
+				/>
 			</div>
 		</div>
 	);
