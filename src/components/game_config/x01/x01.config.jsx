@@ -94,7 +94,7 @@ const X01Config = () => {
                     onSelectedPlayersChange={handleConfigChange}
                 />
                 <div className="container" align="center">
-                    <Button variant="primary" className="m-0 px-2 py-2" onClick={handleSubmit}>Start Game</Button>
+                    <Button variant="primary" className="m-0" onClick={handleSubmit}>Start Game</Button>
                 </div>
             </div>
         </Panel>

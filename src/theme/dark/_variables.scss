@@ -3,6 +3,7 @@ $green: #528b6e;
 $yellow: #eab308;
 $orange: #f97316;
 $red: #d95652;
+$purple: #c084fc;
 $beige: #fde1d0;
 $gold: #d4c783;
 
@@ -12,15 +13,19 @@ $colors: (
 	"yellow": $yellow,
 	"orange": $orange,
 	"red": $red,
+	"purple": $purple,
 	"beige": $beige,
 	"gold": $gold,
 	"primary": $primaryColor
 );
 
 //shades
-$shade000: rgba(255, 255, 255, 0.87) !default; //text color
-$shade100: rgba(255, 255, 255, 0.6) !default; //text secondary color
-$shade200: #a0a0a0 !default;
+$shade000: #fff !default; //text color
+$shade50: #e4e4e4 !default;
+$shade100: #d4d4d4 !default; //text secondary color
+$shade200: #c0bebe !default;
+$shade300: #b6b6b6 !default;
+$shade400: #a3a3a3 !default;
 $shade500: #7a7a7a !default;
 $shade600: #5c5c5c !default; //input bg, border, divider
 $shade700: #3f3f3f !default; //menu bg
@@ -79,7 +84,7 @@ $actionIconBorderRadius: 50% !default;
 $inputPadding: 0.8rem 0.75rem !default;
 $inputTextFontSize: 0.9rem !default;
 $inputTextFontWeight: 600 !default;
-$inputBg: $shade701 !default;
+$inputBg: $shade800 !default;
 $inputTextColor: $shade000 !default;
 $inputIconColor: $shade100 !default;
 $inputBorder: 1px solid $shade800 !default;
@@ -127,14 +132,14 @@ $inputOverlayShadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
 
 //password
 $passwordMeterBg: $shade600 !default;
-$passwordWeakBg: #eb9a9c !default;
-$passwordMediumBg: #ffcf91 !default;
-$passwordStrongBg: #93deac !default;
+$passwordWeakBg: $red !default;
+$passwordMediumBg: $yellow !default;
+$passwordStrongBg: $green !default;
 
 //button
 $buttonFontSize: 1rem !default;
 $buttonFontWeight: 500 !default;
-$buttonPadding: 0.6rem 1.2rem !default;
+$buttonPadding: 0.8rem 0.8rem !default;
 $buttonIconOnlyWidth: 3rem !default;
 $buttonIconOnlyPadding: 0.75rem 0 !default;
 $buttonBg: $primaryColor !default;
@@ -159,18 +164,18 @@ $plainButtonActiveBgColor: rgba(255, 255, 255, 0.16) !default;
 
 $secondaryButtonBg: $shade700 !default;
 $secondaryButtonTextColor: $shade000 !default;
-$secondaryButtonBorder: 0 !default;
+$secondaryButtonBorder: 1px solid $shade700 !default;
 $secondaryButtonHoverBg: $shade701 !default;
 $secondaryButtonTextHoverColor: $secondaryButtonTextColor !default;
-$secondaryButtonHoverBorderColor: #cbd5e1 !default;
+$secondaryButtonHoverBorderColor: $shade701 !default;
 $secondaryButtonActiveBg: $shade701 !default;
 $secondaryButtonTextActiveColor: $secondaryButtonTextColor !default;
 $secondaryButtonActiveBorderColor: #e2e8f0 !default;
 $secondaryButtonFocusShadow: none;
 
-$infoButtonBg: #38bdf8 !default;
-$infoButtonTextColor: #082f49 !default;
-$infoButtonBorder: 1px solid #38bdf8 !default;
+$infoButtonBg: $blue !default;
+$infoButtonTextColor: $shade000 !default;
+$infoButtonBorder: 1px solid $blue !default;
 $infoButtonHoverBg: #7dd3fc !default;
 $infoButtonTextHoverColor: $infoButtonTextColor !default;
 $infoButtonHoverBorderColor: #7dd3fc !default;
@@ -179,9 +184,9 @@ $infoButtonTextActiveColor: $infoButtonTextColor !default;
 $infoButtonActiveBorderColor: #bae6fd !default;
 $infoButtonFocusShadow: 0 0 0 1px scale-color($infoButtonBg, $lightness: 30%) !default;
 
-$successButtonBg: #4ade80 !default;
-$successButtonTextColor: #052e16 !default;
-$successButtonBorder: 1px solid #4ade80 !default;
+$successButtonBg: $green !default;
+$successButtonTextColor: $shade000 !default;
+$successButtonBorder: 1px solid $green !default;
 $successButtonHoverBg: #86efac !default;
 $successButtonTextHoverColor: $successButtonTextColor !default;
 $successButtonHoverBorderColor: #86efac !default;
@@ -191,9 +196,9 @@ $successButtonActiveBorderColor: #bbf7d0 !default;
 $successButtonFocusShadow: 0 0 0 1px
 	scale-color($successButtonBg, $lightness: 30%) !default;
 
-$warningButtonBg: #fb923c !default;
-$warningButtonTextColor: #431407 !default;
-$warningButtonBorder: 1px solid #fb923c !default;
+$warningButtonBg: $orange !default;
+$warningButtonTextColor: $shade000 !default;
+$warningButtonBorder: 1px solid $orange !default;
 $warningButtonHoverBg: #fdba74 !default;
 $warningButtonTextHoverColor: $warningButtonTextColor !default;
 $warningButtonHoverBorderColor: #fdba74 !default;
@@ -203,9 +208,9 @@ $warningButtonActiveBorderColor: #fed7aa !default;
 $warningButtonFocusShadow: 0 0 0 1px
 	scale-color($warningButtonBg, $lightness: 30%) !default;
 
-$helpButtonBg: #c084fc !default;
-$helpButtonTextColor: #3b0764 !default;
-$helpButtonBorder: 1px solid #c084fc !default;
+$helpButtonBg: $purple !default;
+$helpButtonTextColor: $shade000 !default;
+$helpButtonBorder: 1px solid $purple !default;
 $helpButtonHoverBg: #d8b4fe !default;
 $helpButtonTextHoverColor: $helpButtonTextColor !default;
 $helpButtonHoverBorderColor: #d8b4fe !default;
@@ -214,12 +219,12 @@ $helpButtonTextActiveColor: $helpButtonTextColor !default;
 $helpButtonActiveBorderColor: #e9d5ff !default;
 $helpButtonFocusShadow: 0 0 0 1px scale-color($helpButtonBg, $lightness: 30%) !default;
 
-$dangerButtonBg: #f87171 !default;
-$dangerButtonTextColor: #450a0a !default;
-$dangerButtonBorder: 1px solid #f87171 !default;
-$dangerButtonHoverBg: #fca5a5 !default;
+$dangerButtonBg: $red !default;
+$dangerButtonTextColor: $shade000 !default;
+$dangerButtonBorder: 1px solid $red !default;
+$dangerButtonHoverBg: #ff6762 !default;
 $dangerButtonTextHoverColor: $dangerButtonTextColor !default;
-$dangerButtonHoverBorderColor: #fca5a5 !default;
+$dangerButtonHoverBorderColor: #ff6762 !default;
 $dangerButtonActiveBg: #fecaca !default;
 $dangerButtonTextActiveColor: $dangerButtonTextColor !default;
 $dangerButtonActiveBorderColor: #fecaca !default;
@@ -263,7 +268,7 @@ $colorPickerBorder: 1px solid $shade600 !default;
 $colorPickerHandleColor: $shade000 !default;
 
 //togglebutton
-$toggleButtonBg: $shade701 !default;
+$toggleButtonBg: $shade800 !default;
 $toggleButtonBorder: 0 !default;
 $toggleButtonTextColor: $shade000 !default;
 $toggleButtonIconColor: $shade100 !default;
@@ -280,7 +285,7 @@ $toggleButtonActiveHoverBorderColor: $primaryLightColor !default;
 $toggleButtonTextActiveHoverColor: $primaryTextColor !default;
 $toggleButtonIconActiveHoverColor: $primaryTextColor !default;
 
-$toggleButtonPillsBg: $shade701 !default;
+$toggleButtonPillsBg: $shade800 !default;
 $toggleButtonPillsBorder: 0 !default;
 $toggleButtonPillsBorderRadius: 1rem !default;
 
@@ -904,16 +909,16 @@ $imagePreviewActionIconBorderRadius: 50% !default;
 	--surface-700: #f3f4f6;
 	--surface-800: #f9fafb;
 	--surface-900: #ffffff;
-	--shade50: #f9fafb;
-	--shade100: #f3f4f6;
-	--shade200: #e5e7eb;
-	--shade300: #d1d5db;
-	--shade400: #9ca3af;
-	--shade500: #6b7280;
-	--shade600: #4b5563;
-	--shade700: #374151;
-	--shade800: #1f2937;
-	--shade900: #111827;
+	--shade50: $shade50;
+	--shade100: $shade100;
+	--shade200: $shade200;
+	--shade300: $shade300;
+	--shade400: $shade400;
+	--shade500: $shade500;
+	--shade600: $shade600;
+	--shade700: $shade700;
+	--shade800: $shade800;
+	--shade900: $shade900;
 	--content-padding: #{$panelContentPadding};
 	--inline-spacing: #{$inlineSpacing};
 	--border-radius: #{$borderRadius};

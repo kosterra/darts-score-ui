@@ -101,12 +101,12 @@ const PlayerForm = (props) => {
 
 
     const footerContent = (
-        <div>
-            <Button type="button" severity="secondary" onClick={cancelForm} className="p-2">
+        <div className="d-flex justify-content-end align-items-end gap-3">
+            <Button type="button" severity="secondary" onClick={cancelForm}>
                 <FaTimes className="pe-2 fs-5" />
                 Close
             </Button>
-            <Button type="submit" className="p-2">
+            <Button type="submit">
                 <FaSave className="pe-2 fs-5" />
                 {edit ? 'Update' : 'Create'}
             </Button>
@@ -132,44 +132,44 @@ const PlayerForm = (props) => {
                                 onFileDelete={onFileDelete}
                             />
                         </div>
-                        <div className="col d-flex flex-column justify-content-center align-items-center p-2 pt-4">
-                            <div className="py-1">
-                                <span className="p-float-label">
+                        <div className="col d-flex flex-column justify-content-center align-items-center p-2 pt-4 gap-4">
+                            <div className="py-1 w-100 w-sm-50">
+                                <span className="p-float-label w-100">
                                     <InputText
                                         id="firstname"
                                         value={formik.values.firstname}
                                         onChange={(e) => {
                                             formik.setFieldValue('firstname', e.target.value);
                                         }}
-                                        className={classNames({ 'p-invalid': isFormFieldInvalid('firstname') })}
+                                        className={classNames('w-100', { 'p-invalid': isFormFieldInvalid('firstname') })}
                                     />
                                     <label htmlFor="firstname">Firstname</label>
                                 </span>
                                 {getFormErrorMessage('firstname')}
                             </div>
-                            <div className="py-1">
-                                <span className="p-float-label">
+                            <div className="py-1 w-100 w-sm-50">
+                                <span className="p-float-label w-100">
                                     <InputText
                                         id="lastname"
                                         value={formik.values.lastname}
                                         onChange={(e) => {
                                             formik.setFieldValue('lastname', e.target.value);
                                         }}
-                                        className={classNames({ 'p-invalid': isFormFieldInvalid('lastname') })}
+                                        className={classNames('w-100', { 'p-invalid': isFormFieldInvalid('lastname') })}
                                     />
                                     <label htmlFor="lastname">Lastname</label>
                                 </span>
                                 {getFormErrorMessage('lastname')}
                             </div>
-                            <div className="py-1">
-                                <span className="p-float-label">
+                            <div className="py-1 w-100 w-sm-50">
+                                <span className="p-float-label w-100">
                                     <InputText
                                         id="nickname"
                                         value={formik.values.nickname}
                                         onChange={(e) => {
                                             formik.setFieldValue('nickname', e.target.value);
                                         }}
-                                        className={classNames({ 'p-invalid': isFormFieldInvalid('nickname') })}
+                                        className={classNames('w-100', { 'p-invalid': isFormFieldInvalid('nickname') })}
                                     />
                                     <label htmlFor="nickname">Nickname</label>
                                 </span>

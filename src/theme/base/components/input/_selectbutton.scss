@@ -1,6 +1,9 @@
 .p-selectbutton {
     &.p-selectbutton-pills {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
         gap: 1rem;
         width: 100%;
 
@@ -8,14 +11,15 @@
             background: $toggleButtonPillsBg;
             border: $toggleButtonPillsBorder;
             border-radius: $toggleButtonPillsBorderRadius !important;
-            flex: 1;
-            //flex-basis: 100%;
+            flex-basis: 6rem;
+            flex-grow: 1;
             flex-flow: wrap;
             padding: 0.4rem;
 
             .p-button-label {
                 font-size: 0.8rem;
                 font-weight: 700;
+                white-space: nowrap;
             }
         }
     }
