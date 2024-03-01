@@ -7,16 +7,23 @@
     background: $inputBg;
     padding: $inputPadding;
     border: $inputBorder;
-    transition: $formElementTransition;
     appearance: none;
     border-radius: $borderRadius;
+
+    &.focused-bg-only {
+        &:enabled:focus {
+            @include focused-input-bg-only();
+        }
+    }
 
     &:enabled:hover {
         border-color: $inputHoverBorderColor;
     }
 
-    &:enabled:focus {
-        @include focused-input();
+    &:not(.focused-bg-only) {
+        &:enabled:focus {
+            @include focused-input();
+        }
     }
 
     &.p-invalid.p-component {

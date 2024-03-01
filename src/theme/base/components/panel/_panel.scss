@@ -1,4 +1,10 @@
 .p-panel {
+    &.panel-brighter-bg {
+        .p-panel-content {
+            background: $panelBrighterContentBg;
+        }
+    }
+
     .p-panel-header {
         display: flex;
         align-items: center;

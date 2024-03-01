@@ -28,12 +28,12 @@ $shade300: #b6b6b6 !default;
 $shade400: #a3a3a3 !default;
 $shade500: #7a7a7a !default;
 $shade600: #5c5c5c !default; //input bg, border, divider
-$shade700: #3f3f3f !default; //menu bg
-$shade701: #3f3f3f91 !default;
+$shade700: #313131 !default; //menu bg
+$shade701: #313131ad !default;
 $shade800: #292929 !default; //elevated surface
-$shade801: #29292991 !default;
+$shade801: #292929ad !default;
 $shade900: #222121 !default; //ground surface
-$shade901: #22212191 !default;
+$shade901: #222121ad !default;
 
 $hoverBg: rgba(255, 255, 255, 0.03) !default;
 
@@ -64,7 +64,7 @@ $scaleSM: 0.875 !default;
 $scaleLG: 1.25 !default;
 
 //focus
-$focusOutlineColor: $shade600 !default;
+$focusOutlineColor: $shade701 !default;
 $focusOutline: 0 none !default;
 $focusOutlineOffset: 0 !default;
 $focusShadow: 0 0 0 0.2rem $focusOutlineColor !default;
@@ -90,6 +90,7 @@ $inputIconColor: $shade100 !default;
 $inputBorder: 1px solid $shade800 !default;
 $inputHoverBorderColor: none !default;
 $inputFocusBorderColor: $shade800 !default;
+$inputFocusBgColor: $shade700 !default;
 $inputErrorBorderColor: $errorColor !default;
 $inputPlaceholderTextColor: $shade100 !default;
 $inputFilledBg: $shade600 !default;
@@ -385,6 +386,7 @@ $panelHeaderTextHoverColor: $shade000 !default;
 $panelContentBorderColor: $shade600 !default;
 $panelContentBorder: 0 !default;
 $panelContentBg: $shade900 !default;
+$panelBrighterContentBg: $shade800 !default;
 $panelContentEvenRowBg: #1c2532 !default;
 $panelContentTextColor: $shade000 !default;
 $panelContentPadding: 1.25rem !default;

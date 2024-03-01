@@ -93,11 +93,19 @@ const DashboardGameList = (props) => {
         );
     };
 
+    const emptyMessageTemplate = () => {
+        return (
+            <div>
+                <span className="text-shade400 fs-8 fw-normal">{ emptyMessage }</span>
+            </div>
+        );
+    };
+
 
     return (
         <div className="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
             <Panel headerTemplate={headerTemplate} className="mx-auto" >
-                <DataScroller ref={ds} value={games} itemTemplate={itemTemplate} emptyMessage={emptyMessage} rows={5} loader footer={footerTemplate()} />
+                <DataScroller ref={ds} value={games} itemTemplate={itemTemplate} emptyMessage={emptyMessageTemplate()} rows={5} loader footer={footerTemplate()} />
             </Panel>
         </div>
     );
