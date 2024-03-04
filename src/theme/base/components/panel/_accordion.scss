@@ -9,7 +9,7 @@
             color: $accordionHeaderTextColor;
             background: $accordionHeaderBg;
             font-weight: $accordionHeaderFontWeight;
-            border-radius: $borderRadius;
+            border-radius: 0;
             transition: $listItemTransition;
 
             .p-accordion-toggle-icon {

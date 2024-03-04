@@ -122,7 +122,7 @@ const X01ScoreBoard = (props) => {
                                 }
                                 {((game.numberOfLegs > 4 && game.legMode === 'First to') || (game.numberOfLegs > 5 && game.legMode === 'Best of')) &&
                                     <div className="d-flex justify-content-center">
-                                        <span className="text-value">{game.playerModels[playerId].currentSetLegsWon}</span>
+                                        <span className="text-shade100">{game.playerModels[playerId].currentSetLegsWon}</span>
                                     </div>
                                 }
                             </div>
@@ -152,7 +152,7 @@ const X01ScoreBoard = (props) => {
                                 }
                                 {((game.numberOfSets > 4 && game.setMode === 'First to') || (game.numberOfSets > 5 && game.setMode === 'Best of')) &&
                                     <div className="d-flex justify-content-center">
-                                        <span className="text-value text-shade100">{game.playerModels[playerId].setsWon}</span>
+                                        <span className="text-shade100">{game.playerModels[playerId].setsWon}</span>
                                     </div>
                                 }
                             </div>

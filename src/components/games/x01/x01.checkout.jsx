@@ -8,7 +8,7 @@ const Checkout = props => {
   return (
     <Panel header="Checkout" className="w-100 mx-auto panel-brighter-bg" >
         {checkout[score].map((c, i) => {
-          return <div className="text-center fs-8" key={i}>{c}</div>
+          return <div className="text-center text-shade400 fs-8" key={i}>{c}</div>
         })}
     </Panel>
   )

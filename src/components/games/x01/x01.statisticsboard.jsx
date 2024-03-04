@@ -3,14 +3,23 @@ import { Accordion, AccordionTab } from 'primereact/accordion';
 import X01Context from '../../../utils/x01.context';
 
 const X01StatisticsBoard = props => {
-    const { playerId } = props
     const {
-        game
+        playerId
+    } = props;
+
+    const {
+        game,
+        players
     } = useContext(X01Context);
 
     return (
         <div className="container-fluid">
             <div className="row justify-content-md-center">
+                <div className="d-flex justify-content-center align-items-center">
+                    <span className="text-shade100 fs-6 fw-semibold text-center pb-2">
+                        {players.filter(player => player.id === playerId)[0].nickname}
+                    </span>
+                </div>
                 <div className="col-12 col-xxl-6 p-0 px-1 px-md-2 pb-0">
                     <Accordion multiple activeIndex={[0]}>
                         <AccordionTab header="Averages">
@@ -178,12 +187,12 @@ const X01StatisticsBoard = props => {
                                 </div>
                                 {game.currentLegThrows.filter(e => e.playerId === playerId).map((throws, index) => (
                                     <div className="row align-items-baseline mb-1" key={index}>
-                                        <span className="col-1 p-0 fs-8 text-shade100 fw-semibold">R{index + 1}</span>
+                                        <span className="col-2 p-0 fs-8 text-shade100 fw-semibold">R{index + 1}</span>
                                         <span className="col-2 p-0 fs-9 text-shade500 fst-italic text-end">{throws.darts[0]}</span>
                                         <span className="col-2 p-0 fs-9 text-shade500 fst-italic text-end">{throws.darts[1]}</span>
                                         <span className="col-2 p-0 fs-9 text-shade500 fst-italic text-end">{throws.darts[2]}</span>
                                         <span className='col-2 p-0 fs-9 text-shade500 fw-semibold text-end'>{throws.roundScore}</span>
-                                        <span className="col-3 p-0 fs-8 text-shade100 fw-semibold text-end">{throws.scoreLeft}</span>
+                                        <span className="col-2 p-0 fs-8 text-shade100 fw-semibold text-end">{throws.scoreLeft}</span>
                                     </div>
                                 ))}
                             </div>
