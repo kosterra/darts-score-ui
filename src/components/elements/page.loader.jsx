@@ -1,11 +1,10 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
 import { Rings } from 'react-loader-spinner';
 
 const PageLoader = () => {
 
     return (
-        <Container fluid className="m-5">
+        <div className="container-fluid m-5">
             <div className="d-flex justify-content-center align-items-center">
                 <span className="display-2 me-2 fw-semibold text-white">L</span>
                 <Rings
@@ -20,7 +19,7 @@ const PageLoader = () => {
                 />
                 <span className="display-2 ms-2 fw-semibold text-white">ading</span>
             </div>
-        </Container>
+        </div>
     )
 }
 

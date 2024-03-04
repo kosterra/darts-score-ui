@@ -103,20 +103,20 @@ const X01ScoreBoard = (props) => {
                                 {game.numberOfLegs <= 5 && game.legMode === 'Best of' &&
                                     <div className="d-flex justify-content-center gap-1 fs-7 mt-1">
                                         {[...Array(game.playerModels[playerId].currentSetLegsWon)].map((e, i) => (
-                                            <FaCircle key={`leg-filled-${i}`} className="fas fa-circle m-01 text-gold" />
+                                            <FaCircle key={`leg-filled-${i}`} className="m-01 text-gold" />
                                         ))}
                                         {[...Array(Math.round(game.numberOfLegs / 2) - game.playerModels[playerId].currentSetLegsWon)].map((e, i) => (
-                                            <FaRegCircle key={`leg-unfilled-${i}`} className="far fa-circle m-01 text-gold" />
+                                            <FaRegCircle key={`leg-unfilled-${i}`} className="m-01 text-gold" />
                                         ))}
                                     </div>
                                 }
                                 {game.numberOfLegs <= 4 && game.legMode === 'First to' &&
                                     <div className="d-flex justify-content-center gap-1 fs-7 mt-1">
                                         {[...Array(game.playerModels[playerId].currentSetLegsWon)].map((e, i) => (
-                                            <FaCircle key={`set-filled-${i}`} className="fas fa-circle m-01 text-gold" />
+                                            <FaCircle key={`set-filled-${i}`} className="m-01 text-gold" />
                                         ))}
                                         {[...Array(game.numberOfLegs - game.playerModels[playerId].currentSetLegsWon)].map((e, i) => (
-                                            <FaRegCircle key={`leg-unfilled-${i}`} className="far fa-circle m-01 text-gold" />
+                                            <FaRegCircle key={`leg-unfilled-${i}`} className="m-01 text-gold" />
                                         ))}
                                     </div>
                                 }
@@ -133,20 +133,20 @@ const X01ScoreBoard = (props) => {
                                 {game.numberOfSets <= 5 && game.setMode === 'Best of' &&
                                     <div className="d-flex justify-content-center gap-1 fs-7 mt-1">
                                         {[...Array(game.playerModels[playerId].setsWon)].map((e, i) => (
-                                            <FaCircle key={`set-filled-${i}`} className="fas fa-circle m-01 text-gold" />
+                                            <FaCircle key={`set-filled-${i}`} className="m-01 text-gold" />
                                         ))}
                                         {[...Array(Math.round(game.numberOfSets / 2) - game.playerModels[playerId].setsWon)].map((e, i) => (
-                                            <FaRegCircle key={`set-unfilled-${i}`} className="far fa-circle m-01 text-gold" />
+                                            <FaRegCircle key={`set-unfilled-${i}`} className="m-01 text-gold" />
                                         ))}
                                     </div>
                                 }
                                 {game.numberOfSets <= 4 && game.setMode === 'First to' &&
                                     <div className="d-flex justify-content-center gap-1 fs-7 mt-1">
                                         {[...Array(game.playerModels[playerId].setsWon)].map((e, i) => (
-                                            <FaCircle key={`set-filled-${i}`} className="fas fa-circle m-01 text-gold" />
+                                            <FaCircle key={`set-filled-${i}`} className="m-01 text-gold" />
                                         ))}
                                         {[...Array(game.numberOfSets - game.playerModels[playerId].setsWon)].map((e, i) => (
-                                            <FaRegCircle key={`set-unfilled-${i}`} className="far fa-circle m-01 text-gold" />
+                                            <FaRegCircle key={`set-unfilled-${i}`} className="m-01 text-gold" />
                                         ))}
                                     </div>
                                 }

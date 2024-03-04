@@ -28,7 +28,7 @@
         &:not(:disabled):hover {
             background: rgba($buttonBg, $textButtonHoverBgOpacity);
             color: $buttonBg;
-            border: $outlinedButtonBorder;
+            //border: $outlinedButtonBorder;
         }
 
         &:not(:disabled):active {

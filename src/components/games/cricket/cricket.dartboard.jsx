@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import DartBoard from '../common/dartboard';
 import CricketContext from '../../../utils/cricket.context';
 

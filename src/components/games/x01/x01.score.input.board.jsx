@@ -7,7 +7,6 @@ import { FaPaperPlane } from "react-icons/fa6";
 
 import X01Context from '../../../utils/x01.context';
 import X01Service from '../../../services/x01.service';
-
 import X01DartBoard from './x01.dartboard';
 import Checkout from './x01.checkout';
 import checkout from '../../../utils/checkout';
@@ -53,14 +52,8 @@ const X01ScoreInputBoard = () => {
         e.target.reset();
     }
 
-    const onChange = (e) => {
-        let throwIndex = Number(e.target.name.split('-')[1]) - 1;
-        updateCurrentThrowManual(score, e.target.value, throwIndex);
-    };
-
     const validateInput = (event, validatePattern) => {
         const target = event.target;
-        console.log(validatePattern)
         // validatePattern is the result of the regex against the whole input string
         if (validatePattern) {
             let throwIndex = Number(target.name.split('-')[1]) - 1;
