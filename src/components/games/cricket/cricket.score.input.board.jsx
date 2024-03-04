@@ -4,7 +4,7 @@ import CricketContext from '../../../utils/cricket.context';
 import CricketService from '../../../services/cricket.service';
 
 import CricketDartBoard from './cricket.dartboard';
-import ScoreInputBoardModal from '../common/score.input.board.modal';
+import ScoreInputBoardHelp from '../common/score.input.board.help';
 
 import {
     Container,
@@ -100,7 +100,7 @@ const CricketScoreInputBoard = () => {
                             <CricketDartBoard />
                         </Col>
                         <Col className="col-4">
-                            <ScoreInputBoardModal />
+                            <ScoreInputBoardHelp />
                             <Form className="mt-1" onSubmit={submitHandler}>
                                 <div>
                                     <div>

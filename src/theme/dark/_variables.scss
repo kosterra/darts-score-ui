@@ -373,7 +373,7 @@ $panelHeaderBorderColor: $shade600 !default;
 $panelHeaderBorder: 0 !default;
 $panelHeaderBg: $primaryColor !default;
 $panelHeaderTextColor: $shade000 !default;
-$panelHeaderFontWeight: 500 !default;
+$panelHeaderFontWeight: 600 !default;
 $panelHeaderFontSize: 1rem !default;
 $panelHeaderPadding: 0.4rem !default;
 $panelHeaderMinHeight: 3rem !default;
@@ -385,9 +385,9 @@ $panelHeaderTextHoverColor: $shade000 !default;
 
 $panelContentBorderColor: $shade600 !default;
 $panelContentBorder: 0 !default;
-$panelContentBg: $shade900 !default;
+$panelContentBg: $shade800 !default;
 $panelBrighterContentBg: $shade800 !default;
-$panelContentEvenRowBg: #1c2532 !default;
+$panelContentEvenRowBg: $shade900 !default;
 $panelContentTextColor: $shade000 !default;
 $panelContentPadding: 1.25rem !default;
 
@@ -408,10 +408,11 @@ $accordionSpacing: 4px !default;
 $accordionHeaderBorder: $panelHeaderBorder !default;
 $accordionHeaderBg: $panelHeaderBg !default;
 $accordionHeaderTextColor: $panelHeaderTextColor !default;
+$accordionHeaderFontSize: 0.8rem !default;
 $accordionHeaderFontWeight: $panelHeaderFontWeight !default;
 $accordionHeaderPadding: $panelHeaderPadding !default;
 
-$accordionHeaderHoverBg: $hoverBg !default;
+$accordionHeaderHoverBg: $primaryLightColor !default;
 $accordionHeaderHoverBorderColor: $shade600 !default;
 $accordionHeaderTextHoverColor: $shade000 !default;
 
@@ -419,14 +420,14 @@ $accordionHeaderActiveBg: $panelHeaderBg !default;
 $accordionHeaderActiveBorderColor: $shade600 !default;
 $accordionHeaderTextActiveColor: $shade000 !default;
 
-$accordionHeaderActiveHoverBg: $hoverBg !default;
+$accordionHeaderActiveHoverBg: $primaryLightColor !default;
 $accordionHeaderActiveHoverBorderColor: $shade600 !default;
 $accordionHeaderTextActiveHoverColor: $shade000 !default;
 
 $accordionContentBorder: $panelContentBorder !default;
 $accordionContentBg: $panelContentBg !default;
 $accordionContentTextColor: $panelContentTextColor !default;
-$accordionContentPadding: $panelContentPadding !default;
+$accordionContentPadding: 1rem 0.8rem !default;
 
 //tabview
 $tabviewNavBorder: 1px solid $shade600 !default;

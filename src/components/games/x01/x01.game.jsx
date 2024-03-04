@@ -56,7 +56,7 @@ const X01Game = () => {
                     {game.players.length > 0 && game.players.map((playerId, idx) => (
                         <div
                             key={`statistics-board-col-${idx}`}
-                            className={`col-3 border-top border-bottom border-opacity-50 ${Number(idx) < players.length - 1 ? 'border-end' : ''}`}
+                            className={`col-6 col-xxl-3 p-0 py-2 border-top border-bottom border-opacity-50 ${Number(idx) < players.length - 1 ? 'border-end-md' : ''}`}
                         >
                             <X01StatisticsBoard key={`statistics-board-${idx}`} playerId={playerId} />
                         </div>

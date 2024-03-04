@@ -1,6 +1,9 @@
 .p-accordion {
     .p-accordion-header {
         .p-accordion-header-link {
+            display: flex;
+            justify-content: center;
+            font-size: $accordionHeaderFontSize;
             padding: $accordionHeaderPadding;
             border: $accordionHeaderBorder;
             color: $accordionHeaderTextColor;
