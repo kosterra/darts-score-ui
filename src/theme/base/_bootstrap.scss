@@ -17,6 +17,8 @@ $info:          $blue;
 $warning:       $yellow;
 $danger:        $red;
 
+$border-color:  $shade600;
+
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../../../node_modules/bootstrap/scss/variables";
 @import "../../../node_modules/bootstrap/scss/variables-dark";
@@ -97,6 +99,12 @@ $font-sizes: map-merge($font-sizes, $custom-font-sizes);
 $utilities: map-merge( 
   $utilities, ("width": map-merge( 
     map-get( $utilities, "width"), ( responsive: true ),),
+  )
+);
+
+$utilities: map-merge( 
+  $utilities, ("border-end": map-merge( 
+    map-get( $utilities, "border-end"), ( responsive: true ),),
   )
 );
 

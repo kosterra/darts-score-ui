@@ -1,4 +1,4 @@
-$blue: #3b82f6;
+$blue: #418cad;
 $green: #528b6e;
 $yellow: #eab308;
 $orange: #f97316;
@@ -20,19 +20,19 @@ $colors: (
 );
 
 //shades
-$shade000: #fff !default; //text color
+$shade000: #fff !default;
 $shade50: #e4e4e4 !default;
-$shade100: #d4d4d4 !default; //text secondary color
+$shade100: #d4d4d4 !default;
 $shade200: #c0bebe !default;
 $shade300: #b6b6b6 !default;
 $shade400: #a3a3a3 !default;
 $shade500: #7a7a7a !default;
-$shade600: #5c5c5c !default; //input bg, border, divider
-$shade700: #313131 !default; //menu bg
+$shade600: #5c5c5c !default;
+$shade700: #313131 !default;
 $shade701: #313131ad !default;
-$shade800: #292929 !default; //elevated surface
+$shade800: #292929 !default;
 $shade801: #292929ad !default;
-$shade900: #222121 !default; //ground surface
+$shade900: #222121 !default;
 $shade901: #222121ad !default;
 
 $hoverBg: rgba(255, 255, 255, 0.03) !default;
@@ -55,7 +55,7 @@ $primeIconFontSize: 1rem !default;
 $divider: 1px solid $shade600 !default;
 $inlineSpacing: 0.5rem !default; //spacing between inline elements
 $disabledOpacity: 0.4 !default; //opacity of a disabled item
-$maskBg: rgba(0, 0, 0, 0.4) !default; //modal mask bg color
+$maskBg: $shade901 !default; //modal mask bg color
 $loadingIconFontSize: 2rem !default;
 $errorColor: $red !default;
 
@@ -92,7 +92,7 @@ $inputHoverBorderColor: none !default;
 $inputFocusBorderColor: $shade800 !default;
 $inputFocusBgColor: $shade700 !default;
 $inputErrorBorderColor: $errorColor !default;
-$inputPlaceholderTextColor: $shade100 !default;
+$inputPlaceholderTextColor: $shade600 !default;
 $inputFilledBg: $shade600 !default;
 $inputFilledHoverBg: $inputFilledBg !default;
 $inputFilledFocusBg: $inputFilledBg !default;

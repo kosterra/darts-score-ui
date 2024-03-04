@@ -1,6 +1,7 @@
-import React, { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Avatar } from 'primereact/avatar';
-import { FaCircle, FaRegCircle, FaPlayCircle, FaUserCircle } from "react-icons/fa";
+import { Tag } from 'primereact/tag';
+import { FaCircle, FaRegCircle } from "react-icons/fa";
 
 import X01Context from '../../../utils/x01.context';
 
@@ -40,52 +41,67 @@ const X01ScoreBoard = (props) => {
     }, [game.currentThrow]);
 
     return (
-        <div className="container">
+        <div className="container-fluid py-xl-2 px-xl-2">
             {players && player &&
-                <div className={`row justify-content-md-center pt-2 pb-2 ${game.players.length === 2 && Number(idx) === 1 ? 'flex-row-reverse' : ''}`}>
-                    <div className="col d-flex flex-column justify-content-center">
-                        <div className="d-flex justify-content-center display-3 fw-semibold mb-2">
-                            <Avatar
-                                label={(player.firstname + ' ' + player.lastname).split(" ").map((n) => n[0]).join("")}
-                                image={player.profileImg}
-                                shape="circle"
-                                size="xlarge"
-                                style={{ width: '6rem', height: '6rem' }}
-                            />
+                <div className={`row pt-2 pb-2 ${game.players.length === 2 && Number(idx) === 1 ? 'flex-md-row-reverse' : ''}`}>
+                    <div className="col-7 col-xl-6 d-flex flex-column align-items-center justify-content-center p-0">
+                        <div className="col-12 d-flex flex-row flex-xxl-column justify-content-center">
+                            <div className="col-3 col-md-4 col-xxl-12 d-flex justify-content-center mb-xl-2">
+                                <Avatar
+                                    label={(player.firstname + ' ' + player.lastname).split(" ").map((n) => n[0]).join("")}
+                                    image={player.profileImg}
+                                    shape="circle"
+                                    size="xlarge"
+                                    style={{ maxWidth: '5.2rem', maxHeight: '5.2rem' }}
+                                    className="w-100 h-100 ratio ratio-1x1"
+                                />
+                            </div>
+                            <div className="col-7 col-md-8 col-xxl-12 d-flex flex-column justify-content-center align-items-center">
+                                <div className="col-4 d-flex justify-content-center">
+                                    <span className="fs-6 text-shade100 fw-semibold">{player.nickname}</span>
+                                </div>
+                                <div className="col-8 d-flex justify-content-center text-center">
+                                    <span className="fs-7 text-shade500 text-truncate" data-toggle="tooltip" title={player.firstname + ' ' + player.lastname}>
+                                        {player.firstname + ' ' + player.lastname}
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="col-1 d-flex d-md-none d-flex flex-column justify-content-center align-items-center gap-1">
+                                {game.startingPlayerLeg === playerId && (
+                                    <Tag value="L" severity="info" rounded className="fs-9" />
+                                )}
+                                {game.currentPlayerTurn === playerId && (
+                                    <Tag value="P" severity="success" rounded className="fs-9" />
+                                )}
+                            </div>
                         </div>
-                        <div className="d-flex justify-content-center">
-                            <span className="fs-6 text-shade100 fw-semibold">{player.nickname}</span>
-                        </div>
-                        <div className="d-flex justify-content-center">
-                            <span className="fs-7 text-shade500">{player.firstname + ' ' + player.lastname}</span>
-                        </div>
-                        <div className="d-flex justify-content-center">
+                        <div className="d-none d-md-flex col-12 d-flex justify-content-center align-items-center mt-3 gap-1">
                             {game.startingPlayerLeg === playerId && (
-                                <FaUserCircle className="text-blue m-02 mt-2" />
+                                <Tag value="&nbsp;Leg Owner&nbsp;" severity="info" rounded className="text-truncate fs-9"/>
                             )}
                             {game.currentPlayerTurn === playerId && (
-                                <FaPlayCircle className="text-primary m-02 mt-2" />
+                                <Tag value="&nbsp;Current Player&nbsp;" severity="success" rounded className="text-truncate fs-9" />
                             )}
                             {game.startingPlayerLeg !== playerId && game.currentPlayerTurn !== playerId && (
-                                <FaCircle className="opacity-0 m-02 mt-2" />
+                                <Tag value="&nbsp;" severity="" rounded className="text-truncate bg-transparent fs-9" />
                             )}
                         </div>
                     </div>
-                    <div className="col p-0">
-                        <div className="d-flex justify-content-center align-items-center h-50">
-                            <div className="display-3 text-shade100 fw-semibold mt-3" >
+                    <div className="col-5 col-xl-6 d-flex flex-row flex-md-column align-items-center justify-content-center p-0">
+                        <div className="col-6 col-xl-12 d-flex justify-content-center align-items-center">
+                            <div className="display-3 text-shade100 fw-semibold" >
                                 {game.currentPlayerTurn === playerId ?
                                     score === 1 || score < 0 ? 'BUST' : score : playerModel.score
                                 }
                             </div>
                         </div>
-                        <div className="d-flex align-items-center justify-content-center gap-3 h-50">
+                        <div className="col-6 col-xl-12 d-flex flex-column flex-md-row align-items-center justify-content-center gap-1 gap-md-3 mt-xl-2">
                             <div>
                                 <div className="d-flex justify-content-center text-shade100 fw-semibold mb-02">
                                     LEGS
                                 </div>
                                 {game.numberOfLegs <= 5 && game.legMode === 'Best of' &&
-                                    <div className="d-flex justify-content-center fs-8">
+                                    <div className="d-flex justify-content-center gap-1 fs-7 mt-1">
                                         {[...Array(game.playerModels[playerId].currentSetLegsWon)].map((e, i) => (
                                             <FaCircle key={`leg-filled-${i}`} className="fas fa-circle m-01 text-gold" />
                                         ))}
@@ -95,7 +111,7 @@ const X01ScoreBoard = (props) => {
                                     </div>
                                 }
                                 {game.numberOfLegs <= 4 && game.legMode === 'First to' &&
-                                    <div className="d-flex justify-content-center fs-8">
+                                    <div className="d-flex justify-content-center gap-1 fs-7 mt-1">
                                         {[...Array(game.playerModels[playerId].currentSetLegsWon)].map((e, i) => (
                                             <FaCircle key={`set-filled-${i}`} className="fas fa-circle m-01 text-gold" />
                                         ))}
@@ -115,7 +131,7 @@ const X01ScoreBoard = (props) => {
                                     SETS
                                 </div>
                                 {game.numberOfSets <= 5 && game.setMode === 'Best of' &&
-                                    <div className="d-flex justify-content-center fs-8">
+                                    <div className="d-flex justify-content-center gap-1 fs-7 mt-1">
                                         {[...Array(game.playerModels[playerId].setsWon)].map((e, i) => (
                                             <FaCircle key={`set-filled-${i}`} className="fas fa-circle m-01 text-gold" />
                                         ))}
@@ -125,7 +141,7 @@ const X01ScoreBoard = (props) => {
                                     </div>
                                 }
                                 {game.numberOfSets <= 4 && game.setMode === 'First to' &&
-                                    <div className="d-flex justify-content-center fs-8">
+                                    <div className="d-flex justify-content-center gap-1 fs-7 mt-1">
                                         {[...Array(game.playerModels[playerId].setsWon)].map((e, i) => (
                                             <FaCircle key={`set-filled-${i}`} className="fas fa-circle m-01 text-gold" />
                                         ))}

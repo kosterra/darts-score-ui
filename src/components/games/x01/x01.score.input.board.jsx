@@ -11,7 +11,7 @@ import X01Service from '../../../services/x01.service';
 import X01DartBoard from './x01.dartboard';
 import Checkout from './x01.checkout';
 import checkout from '../../../utils/checkout';
-import ScoreInputBoardModal from '../common/score.input.board.modal';
+import ScoreInputBoardHelp from '../common/score.input.board.help';
 
 
 const X01ScoreInputBoard = () => {
@@ -108,12 +108,12 @@ const X01ScoreInputBoard = () => {
             {!game.hasWinner && (
                 <div className="container mt-4">
                     <div className="row justify-content-center">
-                        <div className="col col-12 col-xl-5 col-xxl-4 d-flex justify-content-center justify-content-xxl-start">
+                        <div className="col col-12 col-md-8 col-xl-5 col-xxl-4 d-flex justify-content-center justify-content-xxl-start">
                             <X01DartBoard />
                         </div>
-                        <div className="col col-12 col-md-6 col-xl-3 col-xxl-2 d-flex flex-column justify-content-start gap-3">
+                        <div className="col col-12 col-md-4 col-xl-3 col-xxl-2 d-flex flex-column justify-content-start gap-3">
                             <div className="d-flex flex-column gap-1">
-                                <ScoreInputBoardModal />
+                                <ScoreInputBoardHelp />
                                 <form className="mt-1" onSubmit={submitHandler}>
                                     <div className="d-flex flex-column gap-3">
                                         <div className="d-flex flex-column gap-2">

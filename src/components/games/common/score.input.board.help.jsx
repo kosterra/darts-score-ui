@@ -1,9 +1,9 @@
-import { Fragment, useState, useRef } from 'react';
+import { Fragment, useRef } from 'react';
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { Button } from 'primereact/button';
 import { TiInfoLarge } from "react-icons/ti";
 
-const ScoreInputBoardModal = () => {
+const ScoreInputBoardHelp = () => {
     const op = useRef(null);
 
     return (
@@ -42,4 +42,4 @@ const ScoreInputBoardModal = () => {
     )
 }
 
-export default ScoreInputBoardModal;
+export default ScoreInputBoardHelp;

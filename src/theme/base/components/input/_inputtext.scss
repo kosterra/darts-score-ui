@@ -45,6 +45,7 @@
     left: nth($inputPadding, 2);
     color: $inputPlaceholderTextColor;
     transition-duration: $transitionDuration;
+    font-weight: 600;
 }
 
 .p-float-label > label.p-error {

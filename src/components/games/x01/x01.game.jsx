@@ -43,7 +43,7 @@ const X01Game = () => {
                     {game.players.length > 0 && game.players.map((playerId, idx) => (
                         <div
                             key={`score-board-col-${idx}`}
-                            className={`col-3 border-top border-bottom dotted border-shade600 border-opacity-50 ${Number(idx) < players.length - 1 ? 'border-end' : ''}`}
+                            className={`col-12 col-md-6 col-xxl-3 border-top border-bottom border-opacity-50 ${Number(idx) < players.length - 1 ? 'border-end-md' : ''}`}
                         >
                             <X01ScoreBoard key={`score-board-${idx}`} playerId={playerId} idx={idx} />
                         </div>
@@ -56,7 +56,7 @@ const X01Game = () => {
                     {game.players.length > 0 && game.players.map((playerId, idx) => (
                         <div
                             key={`statistics-board-col-${idx}`}
-                            className={`col-3 border-top border-bottom border-shade600 border-opacity-50 ${Number(idx) < players.length - 1 ? 'border-end' : ''}`}
+                            className={`col-3 border-top border-bottom border-opacity-50 ${Number(idx) < players.length - 1 ? 'border-end' : ''}`}
                         >
                             <X01StatisticsBoard key={`statistics-board-${idx}`} playerId={playerId} />
                         </div>
