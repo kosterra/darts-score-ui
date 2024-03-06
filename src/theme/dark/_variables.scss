@@ -84,7 +84,7 @@ $actionIconBorderRadius: 50% !default;
 $inputPadding: 0.8rem 0.75rem !default;
 $inputTextFontSize: 0.9rem !default;
 $inputTextFontWeight: 600 !default;
-$inputBg: $shade700 !default;
+$inputBg: $shade800 !default;
 $inputTextColor: $shade000 !default;
 $inputIconColor: $shade100 !default;
 $inputBorder: 1px solid $shade800 !default;
@@ -177,7 +177,7 @@ $secondaryButtonFocusShadow: none;
 $infoButtonBg: $blue !default;
 $infoButtonTextColor: $shade000 !default;
 $infoButtonBorder: 1px solid $blue !default;
-$infoButtonHoverBg: #7dd3fc !default;
+$infoButtonHoverBg: #61b3da !default;
 $infoButtonTextHoverColor: $infoButtonTextColor !default;
 $infoButtonHoverBorderColor: #7dd3fc !default;
 $infoButtonActiveBg: #bae6fd !default;
@@ -194,8 +194,7 @@ $successButtonHoverBorderColor: #86efac !default;
 $successButtonActiveBg: #bbf7d0 !default;
 $successButtonTextActiveColor: $successButtonTextColor !default;
 $successButtonActiveBorderColor: #bbf7d0 !default;
-$successButtonFocusShadow: 0 0 0 1px
-	scale-color($successButtonBg, $lightness: 30%) !default;
+$successButtonFocusShadow: 0 0 0 1px scale-color($successButtonBg, $lightness: 30%) !default;
 
 $warningButtonBg: $orange !default;
 $warningButtonTextColor: $shade000 !default;
@@ -206,8 +205,7 @@ $warningButtonHoverBorderColor: #fdba74 !default;
 $warningButtonActiveBg: #fed7aa !default;
 $warningButtonTextActiveColor: $warningButtonTextColor !default;
 $warningButtonActiveBorderColor: #fed7aa !default;
-$warningButtonFocusShadow: 0 0 0 1px
-	scale-color($warningButtonBg, $lightness: 30%) !default;
+$warningButtonFocusShadow: 0 0 0 1px scale-color($warningButtonBg, $lightness: 30%) !default;
 
 $helpButtonBg: $purple !default;
 $helpButtonTextColor: $shade000 !default;
@@ -229,8 +227,7 @@ $dangerButtonHoverBorderColor: #ff6762 !default;
 $dangerButtonActiveBg: #fecaca !default;
 $dangerButtonTextActiveColor: $dangerButtonTextColor !default;
 $dangerButtonActiveBorderColor: #fecaca !default;
-$dangerButtonFocusShadow: 0 0 0 1px
-	scale-color($dangerButtonBg, $lightness: 30%) !default;
+$dangerButtonFocusShadow: 0 0 0 1px scale-color($dangerButtonBg, $lightness: 30%) !default;
 
 $linkButtonColor: $primaryColor !default;
 $linkButtonHoverColor: $primaryColor !default;
@@ -286,7 +283,7 @@ $toggleButtonActiveHoverBorderColor: $primaryLightColor !default;
 $toggleButtonTextActiveHoverColor: $primaryTextColor !default;
 $toggleButtonIconActiveHoverColor: $primaryTextColor !default;
 
-$toggleButtonPillsBg: $shade800 !default;
+$toggleButtonPillsBg: $shade700 !default;
 $toggleButtonPillsBorder: 0 !default;
 $toggleButtonPillsBorderRadius: 1rem !default;
 
@@ -385,7 +382,7 @@ $panelHeaderTextHoverColor: $shade000 !default;
 
 $panelContentBorderColor: $shade600 !default;
 $panelContentBorder: 0 !default;
-$panelContentBg: $shade800 !default;
+$panelContentBg: $shade900 !default;
 $panelBrighterContentBg: $shade800 !default;
 $panelContentEvenRowBg: $shade900 !default;
 $panelContentTextColor: $shade000 !default;
@@ -467,7 +464,7 @@ $scrollPanelTrackBorder: 0 none !default;
 $scrollPanelTrackBg: $shade600 !default;
 
 //card
-$cardBackgroundColor: $shade800 !default;
+$cardBackgroundColor: $shade900 !default;
 $cardBodyPadding: 1.25rem !default;
 $cardTitleFontSize: 1.5rem !default;
 $cardTitleFontWeight: 700 !default;
@@ -488,10 +485,10 @@ $editorContentBorder: $panelContentBorder !default;
 $editorContentBg: $panelContentBg !default;
 
 //paginator
-$paginatorBg: $shade800 !default;
+$paginatorBg: $shade900 !default;
 $paginatorTextColor: $shade100 !default;
-$paginatorBorder: solid $shade600 !default;
-$paginatorBorderWidth: 1px !default;
+$paginatorBorder: none !default;
+$paginatorBorderWidth: 0 !default;
 $paginatorPadding: 0.5rem 1rem !default;
 $paginatorElementWidth: $buttonIconOnlyWidth !default;
 $paginatorElementHeight: $buttonIconOnlyWidth !default;
@@ -506,20 +503,20 @@ $paginatorElementMargin: 0.143rem !default;
 $paginatorElementPadding: 0 !default;
 
 //table
-$tableHeaderBorder: 1px solid $shade600 !default;
+$tableHeaderBorder: 1px solid $shade700 !default;
 $tableHeaderBorderWidth: 0 0 1px 0 !default;
-$tableHeaderBg: $shade800 !default;
+$tableHeaderBg: $shade900 !default;
 $tableHeaderTextColor: $shade100 !default;
 $tableHeaderFontWeight: 700 !default;
 $tableHeaderPadding: 1rem 1rem !default;
 
-$tableHeaderCellPadding: 1rem 1rem !default;
-$tableHeaderCellBg: $shade800 !default;
+$tableHeaderCellPadding: 0.4rem 1rem !default;
+$tableHeaderCellBg: $shade900 !default;
 $tableHeaderCellTextColor: $shade000 !default;
 $tableHeaderCellFontWeight: 700 !default;
-$tableHeaderCellBorder: 1px solid $shade600 !default;
+$tableHeaderCellBorder: none !default;
 $tableHeaderCellBorderWidth: 0 0 1px 0 !default;
-$tableHeaderCellHoverBg: $hoverBg !default;
+$tableHeaderCellHoverBg: $shade700 !default;
 $tableHeaderCellTextHoverColor: $shade000 !default;
 $tableHeaderCellIconColor: $shade100 !default;
 $tableHeaderCellIconHoverColor: $shade000 !default;
@@ -531,12 +528,12 @@ $tableSortableColumnBadgeSize: 1.143rem !default;
 
 $tableBodyRowBg: $shade800 !default;
 $tableBodyRowTextColor: $shade000 !default;
-$tableBodyRowEvenBg: #1c2532 !default;
+$tableBodyRowEvenBg: $shade700 !default;
 $tableBodyRowHoverBg: $hoverBg !default;
 $tableBodyRowTextHoverColor: $shade000 !default;
-$tableBodyCellBorder: 1px solid $shade600 !default;
-$tableBodyCellBorderWidth: 0 0 1px 0 !default;
-$tableBodyCellPadding: 1rem 1rem !default;
+$tableBodyCellBorder: 0px solid $shade600 !default;
+$tableBodyCellBorderWidth: 0 0 0 0 !default;
+$tableBodyCellPadding: 0.6rem 0.6rem !default;
 
 $tableFooterCellPadding: 1rem 1rem !default;
 $tableFooterCellBg: $shade800 !default;

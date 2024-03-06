@@ -1,12 +1,14 @@
 .p-datatable {
     .p-paginator-top {
         border-width: $tableTopPaginatorBorderWidth;
-        border-radius: 0;
+        border-top-left-radius: $borderRadius;
+        border-top-right-radius: $borderRadius;
     }
 
     .p-paginator-bottom {
         border-width: $tableBottomPaginatorBorderWidth;
-        border-radius: 0;
+        border-bottom-left-radius: $borderRadius;
+        border-bottom-right-radius: $borderRadius;
     }
 
     .p-datatable-header {
@@ -16,6 +18,8 @@
         border-width: $tableHeaderBorderWidth;
         padding: $tableHeaderPadding;
         font-weight: $tableHeaderFontWeight;
+        border-top-left-radius: $borderRadius;
+        border-top-right-radius: $borderRadius;
     }
 
     .p-datatable-footer {
@@ -25,6 +29,8 @@
         border-width: $tableFooterBorderWidth;
         padding: $tableFooterPadding;
         font-weight: $tableFooterFontWeight;
+        border-bottom-left-radius: $borderRadius;
+        border-bottom-right-radius: $borderRadius;
     }
 
     .p-datatable-thead > tr > th {
@@ -108,6 +114,8 @@
                 border: $tableBodyCellBorder;
                 border-width: $tableBodyCellBorderWidth;
                 padding: $tableBodyCellPadding;
+                font-size: 1rem;
+                font-weight: 600;
 
                 .p-row-toggler,
                 .p-row-editor-init,

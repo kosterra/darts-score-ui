@@ -6,8 +6,6 @@ import { InputText } from 'primereact/inputtext';
 import { classNames } from 'primereact/utils';
 import { toast } from 'react-toastify';
 
-import { FaUserPlus, FaUserEdit, FaSave, FaTimes } from "react-icons/fa";
-
 import ImageUploader from './image.uploader';
 import PlayerService from '../../services/player.service';
 import PlayerModel from '../../models/player.model';
@@ -43,7 +41,8 @@ const PlayerForm = (props) => {
             firstname: initialState.firstname,
             lastname: initialState.lastname,
             nickname: initialState.nickname,
-            profileImg: initialState.profileImg
+            profileImg: '',
+            id: initialState.id
         },
         validate: (data) => {
             let errors = {};
@@ -102,14 +101,8 @@ const PlayerForm = (props) => {
 
     const footerContent = (
         <div className="d-flex justify-content-end align-items-end gap-3">
-            <Button type="button" severity="secondary" onClick={cancelForm}>
-                <FaTimes className="pe-2 fs-5" />
-                Close
-            </Button>
-            <Button type="submit">
-                <FaSave className="pe-2 fs-5" />
-                {edit ? 'Update' : 'Create'}
-            </Button>
+            <Button type="button" label="Close" icon="pi pi-times" severity="secondary" onClick={cancelForm} />
+            <Button type="submit" label={edit ? 'Update' : 'Create'} icon="pi pi-save" />
         </div>
     );
 
@@ -182,14 +175,11 @@ const PlayerForm = (props) => {
             </Dialog>
 
             <div className="d-flex justify-content-center">
-                <Button onClick={() => setShowDialog(true)} className="py-2 px-3">
-                    {edit &&
-                        <FaUserEdit title="Edit User" />
-                    }
-                    {!edit &&
-                        <FaUserPlus title="Add User" />
-                    }
-                </Button>
+                <Button
+                    severity="primary"
+                    icon={edit ? 'pi pi-user-edit' : 'pi pi-user-plus'}
+                    onClick={() => setShowDialog(true)}
+                />
             </div>
         </div>
     );
