@@ -1,12 +1,17 @@
-import React, { Fragment, useEffect, useReducer } from 'react';
+import { Fragment, useEffect, useReducer } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
+
+import X01Context from './x01.context';
+import X01Reducer from './x01.reducer';
+import X01Service from '../services/x01.service';
+import X01ReturnToPreviousPlayer from './x01.return.to.previous.player';
+import PlayerService from '../services/player.service';
+
 import {
   validateDartValue
 } from './game.utils';
 
-import X01Context from './x01.context';
-import X01Reducer from './x01.reducer';
 import {
   FETCH_GAME_SUCCESS,
   FETCH_PLAYERS_SUCCESS,
@@ -42,9 +47,6 @@ import {
   RETURN_PREV_PLAYER
 } from './constants';
 
-import X01Service from '../services/x01.service';
-import X01ReturnToPreviousPlayer from './x01.return.to.previous.player';
-import PlayerService from '../services/player.service';
 
 const X01State = props => {
   const { id } = useParams();

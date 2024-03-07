@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 
 import {
     Col,
@@ -20,7 +20,7 @@ const X01StatsScoreBoardMultiple = (props) => {
             <Row className="p-3 border-dotted-top-grey">
                 <Col className="d-flex justify-content-center align-items-center">
                     <div className="d-flex flex-column justify-content-center">
-                        <div className="align-self-center fs-8 font-weight-normal text-white">
+                        <div className="align-self-center fs-8 font-weight-normal text-shade100">
                             {dayjs(game.createdAt).format("DD.MM.YYYY HH:mm")}
                         </div>
                         <div className="align-self-center fs-8 font-weight-normal text-gray">

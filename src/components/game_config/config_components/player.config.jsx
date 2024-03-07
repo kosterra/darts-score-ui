@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { SelectButton } from 'primereact/selectbutton';
 import { PickList } from 'primereact/picklist';
 import { Avatar } from 'primereact/avatar';

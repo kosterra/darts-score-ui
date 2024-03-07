@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
-
+import { Fragment } from 'react';
 import { Col, Row } from 'react-bootstrap';
+
 import StatsRadarChart from '../common/radar.chart';
 import StatsScatterChart from '../common/scatter.chart';
 import StatsBarChart from '../common/bar.chart';

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 import { Container } from 'react-bootstrap'
 
 import ComparisonBar from '../../elements/comparison.bar'

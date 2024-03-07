@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { Avatar } from 'primereact/avatar';
 import { Button } from 'primereact/button';
 import { FaTrash } from "react-icons/fa";

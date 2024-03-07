@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import {
     ButtonGroup,
     Col,
@@ -85,7 +85,7 @@ const PlayerVSStats = (props) => {
                 <Fragment>
                     {showStatsFilter &&
                         <Row xs={1} sm={1} md={1} className="d-flex justify-content-center align-items-center mt-4 mb-4">
-                            <Col className="col-xs-12 col-sm-12 col-md-10 col-lg-10 d-flex justify-content-md-center align-items-center p-2 text-white">
+                            <Col className="col-xs-12 col-sm-12 col-md-10 col-lg-10 d-flex justify-content-md-center align-items-center p-2 text-shade100">
                                 <Container className="d-flex justify-content-center align-items-center filter-bar gap-4 mt-4">
                                     <ButtonGroup>
                                         {statsFilter.map((filter, idx) => (
@@ -104,7 +104,7 @@ const PlayerVSStats = (props) => {
                                         ))}
                                     </ButtonGroup>
                                     <div className="d-flex justify-content-md-center align-items-center w-25">
-                                        <Row xs={2} sm={3} md={5} className="d-flex justify-content-center align-items-center border-solid-grey rounded m-0 text-white w-100">
+                                        <Row xs={2} sm={3} md={5} className="d-flex justify-content-center align-items-center border-solid-grey rounded m-0 text-shade100 w-100">
                                             {['1 D', '1 W', '1 M', '1 Y', 'All'].map((option, idx) => (
                                                 <Col key={idx} className="py-1 d-flex justify-content-center align-items-center">
                                                     <ToggleButton
@@ -113,7 +113,7 @@ const PlayerVSStats = (props) => {
                                                         type="radio"
                                                         name="date-filter"
                                                         value={option}
-                                                        className={`w-100 btn btn-sm text-white btr-16 bbr-16 fs-8 fw-semibold ${dateFilter === option ? 'btn-primary' : 'btn-tertiary'}`}
+                                                        className={`w-100 btn btn-sm text-shade100 btr-16 bbr-16 fs-8 fw-semibold ${dateFilter === option ? 'btn-primary' : 'btn-tertiary'}`}
                                                         checked={dateFilter === option}
                                                         onChange={(e) => setDateFilter(e.currentTarget.value)}
                                                     >

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import CricketState from '../../../utils/cricket.state';
 import CricketGame from './cricket.game';
 

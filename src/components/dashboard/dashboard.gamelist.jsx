@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Avatar } from 'primereact/avatar';
 import { Panel } from 'primereact/panel';
 import { Button } from 'primereact/button';
 import { DataScroller } from 'primereact/datascroller';
@@ -12,7 +13,7 @@ const DashboardGameList = (props) => {
         title = '',
         subtitle = '',
         gamesType = 'x01',
-        emptyMessage= 'No records found',
+        emptyMessage = 'No records found',
         games = [],
         players = []
     } = props;
@@ -30,49 +31,107 @@ const DashboardGameList = (props) => {
         );
     };
 
+    const x01Template = (game) => {
+        return (
+            <>
+                <div className="row mb-2">
+                    <div className="col-6">
+                        {' '}
+                    </div>
+                    <div className="col-3 d-flex align-items-center justify-content-center text-shade100 fs-7 fw-semibold">
+                        Sets
+                    </div>
+                    {game.gameIsRunning &&
+                        <div className="col-3 d-flex align-items-center justify-content-center text-shade100 fs-7 fw-semibold">
+                            Legs
+                        </div>
+                    }
+                </div>
+                {players.length > 0 && game.players.map((playerId, idx) => (
+                    <div className="row" key={idx}>
+                        <div className="col-6 d-flex align-items-center text-shade100 fs-7 fw-semibold">
+                            <Avatar
+                                label={(((players || []).find(player => player.id === playerId) || {}).firstname + ' ' + ((players || []).find(player => player.id === playerId) || {}).lastname).split(" ").map((n) => n[0]).join("")}
+                                image={((players || []).find(player => player.id === playerId) || {}).profileImg}
+                                shape="circle"
+                                size="small"
+                                className="bg-shade700 m-2 me-4"
+                            />
+                            {((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A'}
+                            {game.playerModels[playerId].hasWonGame &&
+                                <FaTrophy className="ms-2 text-gold fs-6" />
+                            }
+                        </div>
+                        <div className="col-3 d-flex align-items-center justify-content-center text-shade100 fs-7 fw-semibold">
+                            {game.playerModels[playerId].setsWon}
+                        </div>
+                        {game.gameIsRunning &&
+                            <div className="col-3 d-flex align-items-center justify-content-center text-shade100 fs-7 fw-semibold">
+                                {game.playerModels[playerId].currentSetLegsWon}
+                            </div>
+                        }
+                    </div>
+                ))}
+            </>
+        );
+    }
+
+    const cricketTemplate = (game) => {
+        return (
+            <>
+                <div className="row mb-2">
+                    <div className="col-6">
+                        {' '}
+                    </div>
+                    <div className="col-3 d-flex align-items-center justify-content-center text-shade100 fs-7 fw-semibold">
+                        {game.gameIsRunning ? 'Score' : 'End Score'}
+                    </div>
+                </div>
+                {players.length > 0 && game.players.map((playerId, idx) => (
+                    <div className="row" key={idx}>
+                        <div className="col-6 d-flex align-items-center text-shade100 fs-7 fw-semibold">
+                            <Avatar
+                                label={(((players || []).find(player => player.id === playerId) || {}).firstname + ' ' + ((players || []).find(player => player.id === playerId) || {}).lastname).split(" ").map((n) => n[0]).join("")}
+                                image={((players || []).find(player => player.id === playerId) || {}).profileImg}
+                                shape="circle"
+                                size="small"
+                                className="bg-shade700 m-2 me-4"
+                            />
+                            {((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A'}
+                            {game.playerModels[playerId].hasWonGame &&
+                                <FaTrophy className="ms-2 text-gold fs-6" />
+                            }
+                        </div>
+                        <div className="col-3 d-flex align-items-center justify-content-center text-shade100 fs-7 fw-semibold">
+                            {game.playerModels[playerId].score}
+                        </div>
+                    </div>
+                ))}
+            </>
+        );
+    }
+
     const itemTemplate = (game) => {
         return (
             <div>
-                <div>
-                    {players.length > 0 && game.players.map((playerId, idx) => (
-                        <div key={idx}>
-                            {gamesType == 'x01' &&
-                                <div className="row mb-2">
-                                    <div className={`text-white text-start align-middle fs-8 ${game.gameIsRunning ? 'col-6' : 'col-9'}`}>
-                                        {((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A'}
-                                        {game.playerModels[playerId].hasWonGame &&
-                                            <FaTrophy className="fs-6 ms-2 text-gold" />
-                                        }
-                                    </div>
-                                    <div className="col-3 text-white text-center align-middle fs-8">{game.playerModels[playerId].setsWon}</div>
-                                    {game.gameIsRunning &&
-                                        <div className="col-3 text-white text-center align-middle fs-8">{game.playerModels[playerId].currentSetLegsWon}</div>
-                                    }
-                                </div>
-                            }
-                            {gamesType == 'cricket' &&
-                                <div className="row">
-                                    <div className="col-6 text-white text-start align-middle fs-8">
-                                        {((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A'}
-                                        {game.playerModels[playerId].hasWonGame &&
-                                            <FaTrophy className="fs-6 ms-2 text-gold" />
-                                        }
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    ))}
+                <div className="col-12 d-flex flex-column justify-content-center">
+                    {gamesType == 'x01' &&
+                        x01Template(game)
+                    }
+                    {gamesType == 'cricket' &&
+                        cricketTemplate(game)
+                    }
                 </div>
                 <div className="d-flex justify-content-between align-items-end mt-4">
                     <span className="fs-9 text-shade500">{dayjs(game.createdAt).format("DD.MM.YYYY HH:mm")}</span>
                     {!game.gameIsRunning &&
-                        <a href={'/' + gamesType + '/' + game.id} rel="noopener noreferrer" className="p-button font-bold py-2 px-3">
+                        <a href={'/' + gamesType + '/' + game.id} rel="noopener noreferrer" className="p-button font-bold">
                             <FaChartBar title="Show Statistics" />
                         </a>
                     }
 
                     {game.gameIsRunning &&
-                        <a href={'/' + gamesType + '/' + game.id} rel="noopener noreferrer" className="p-button font-bold py-2 px-3">
+                        <a href={'/' + gamesType + '/' + game.id} rel="noopener noreferrer" className="p-button font-bold">
                             <GiDart title="Continue Playing" />
                         </a>
                     }
@@ -96,7 +155,7 @@ const DashboardGameList = (props) => {
     const emptyMessageTemplate = () => {
         return (
             <div>
-                <span className="text-shade400 fs-8 fw-normal">{ emptyMessage }</span>
+                <span className="text-shade400 fs-8 fw-normal">{emptyMessage}</span>
             </div>
         );
     };

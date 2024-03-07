@@ -1,5 +1,5 @@
-import React from 'react';
 import { useParams } from "react-router-dom";
+
 import PlayersList from './players.list';
 import X01List from './x01.list';
 import CricketList from './cricket.list';

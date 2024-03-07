@@ -26,10 +26,10 @@ const SelectableCard = (props) => {
                 onClick={handleCardSelect}
                 className={`rounded-0 selectable-card card-list-card ${isSelected ? 'selected' : ''} ${!selectable && !isSelected ? 'disabled' : ''} ${cssClass ? cssClass : ''}`}>
                 <Card.Body className="m-0 p-0 border-0 rounded-0">
-                    <Card.Title as="h6" className="bg-primary p-2 mb-0 text-white text-center span">
+                    <Card.Title as="h6" className="bg-primary p-2 mb-0 text-shade100 text-center span">
                         {item ? item.nickname : 'Select a Player'}
                     </Card.Title>
-                    <Card.Text as="div" className="p-2 text-white">
+                    <Card.Text as="div" className="p-2 text-shade100">
                         <div className="d-flex flex-column justify-content-center align-items-center">
                             <Avatar
                                 name={(item ? item.firstname : '') + ' ' + (item ? item.lastname : '')}

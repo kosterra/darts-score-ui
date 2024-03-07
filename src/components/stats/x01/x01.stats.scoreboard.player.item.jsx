@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import Avatar from 'react-avatar';
 
 const X01StatsScoreBoardPlayer = (props) => {

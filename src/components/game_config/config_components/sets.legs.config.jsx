@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dropdown } from 'primereact/dropdown';
 
 import SetsLegsConfigOptions from '../config_options/sets.legs.config.options';

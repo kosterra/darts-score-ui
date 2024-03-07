@@ -70,7 +70,7 @@ const PlayerSelect = (props) => {
                             </span>
                             <span className="d-flex flex-column justify-content-center ms-4">
                                 <span className="fs-6">{player.nickname}</span>
-                                <span className="text-white fs-8 font-weight-normal">{player.firstname + ' ' + player.lastname}</span>
+                                <span className="text-shade100 fs-8 font-weight-normal">{player.firstname + ' ' + player.lastname}</span>
                             </span>
                         </div>
                     )}

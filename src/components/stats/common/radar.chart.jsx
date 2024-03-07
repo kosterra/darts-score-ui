@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import { Fragment, useState } from 'react';
 import {
   Card
 } from 'react-bootstrap';
@@ -70,10 +70,10 @@ const StatsRadarChart = (props) => {
     if (active && payload && payload.length) {
       return (
         <div className="d-flex flex-column align-items-center bg-tertiary">
-          <span className="bg-primary text-center text-white fs-8 p-2 w-100">{`Section: ${payload[0].payload.section}`}</span>
+          <span className="bg-primary text-center text-shade100 fs-8 p-2 w-100">{`Section: ${payload[0].payload.section}`}</span>
           <div className="d-flex flex-column align-items-center p-2">
             {payload.map((payload, index) => (
-              <span key={index} className="text-white">
+              <span key={index} className="text-shade100">
                 <span className="fs-8">{`${players.length > 1 ? payload.name + ': ' : ''}${players.length > 1 ? payload.payload['player' + (index + 1) + 'Hit'] : payload.payload['hit']}`}</span>
                 <span className="fs-9">{` (S${payload.payload[players.length > 1 ? 'player' + (index + 1) + 'S' : 'S']}/D${payload.payload[players.length > 1 ? 'player' + (index + 1) + 'D' : 'D']}/T${payload.payload[players.length > 1 ? 'player' + (index + 1) + 'T' : 'T']})`}</span>
               </span>
@@ -90,11 +90,11 @@ const StatsRadarChart = (props) => {
     <Fragment>
       <Card className={`d-flex justify-content-center h-100 m-0 p-0 rounded-0 bg-secondary border-0`}>
         <Card.Body className="m-0 p-0 border-0 rounded-0">
-          <Card.Title as="h6" className="bg-primary p-2 mb-0 text-white text-center span">
+          <Card.Title as="h6" className="bg-primary p-2 mb-0 text-shade100 text-center span">
             <div className="fs-6 fw-semibold">{title}</div>
             <div className="fs-8 mt-1">{subtitle}</div>
           </Card.Title>
-          <Card.Text as="div" className="d-flex justify-content-center p-2 text-white">
+          <Card.Text as="div" className="d-flex justify-content-center p-2 text-shade100">
             <ResponsiveContainer width="100%" height={330}>
               <RadarChart
                 outerRadius={130}
