@@ -162,7 +162,10 @@ const X01List = (props) => {
                     <div className="container-fluid overflow-hidden">
                         <div className="row gy-4">
                             <div className="col-12 col-lg-4 d-flex flex-column gap-4">
-                                <div className="d-flex justify-content-start align-items-start">
+                                <div className="d-flex justify-content-start align-items-center gap-3">
+                                    <span className="display-6 fw-semibold text-shade100">
+                                        {game.startingScore}
+                                    </span>
                                     <Tag
                                         severity={game.gameIsRunning ? 'warning' : 'info'}
                                         value={game.gameIsRunning ? 'Running' : 'Finished'}
