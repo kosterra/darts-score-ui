@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from "react-router-dom";
 import PlayersList from './players.list';
-import X01EditList from './x01.edit.list';
+import X01List from './x01.list';
 import CricketEditList from './cricket.edit.list';
 
 const AdminPage = () => {
@@ -13,7 +13,7 @@ const AdminPage = () => {
             case 'players':
                 return <PlayersList deleteActive={true} rawActive={true} emptyText="No Players found. Please create new players first!" />;
             case 'x01':
-                return <X01EditList deleteActive={true} rawActive={true} emptyText="No X01 Games found. Please play any games first!" />;
+                return <X01List deleteActive={true} rawActive={true} emptyText="No X01 Games found. Please play any games first!" />;
             case 'cricket':
                 return <CricketEditList deleteActive={true} rawActive={true} emptyText="No Cricket Games found. Please play any games first!" />;
             default:

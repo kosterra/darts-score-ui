@@ -2,7 +2,6 @@ import { Fragment, useEffect, useState, useRef } from 'react';
 import { Avatar } from 'primereact/avatar';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 import { InputText } from 'primereact/inputtext';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
@@ -184,7 +183,7 @@ const PlayersTable = (props) => {
                 paginator
                 rows={10}
                 rowsPerPageOptions={[5, 10, 25, 50]}
-                emptyMessage="No players found."
+                emptyMessage={emptyMessage}
             >
                 <Column
                     header=""

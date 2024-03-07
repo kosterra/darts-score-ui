@@ -4,7 +4,7 @@ import { Container, Row } from 'react-bootstrap';
 
 import PlayerStats from './players/player.stats';
 import PlayerVSStats from './players/player.vs.stats';
-import X01EditList from '../admin/x01.edit.list';
+import X01List from '../admin/x01.list';
 import CricketEditList from '../admin/cricket.edit.list';
 
 const StatsPage = () => {
@@ -18,10 +18,11 @@ const StatsPage = () => {
             case 'vs':
                 return <PlayerVSStats />;
             case 'x01':
-                return <X01EditList
+                return <X01List
                     deleteActive={false}
+                    rawActive={false}
                     showStatusFilter={false}
-                    staticStatusValue="2"
+                    staticStatusValue={2}
                 />;
             case 'cricket':
                 return <CricketEditList

@@ -6,7 +6,6 @@ import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
 import { Panel } from 'primereact/panel';
 import { Toast } from 'primereact/toast';
-import { classNames } from 'primereact/utils';
 
 import PlayerService from '../../services/player.service';
 import PlayerForm from '../elements/player.form';
@@ -25,9 +24,9 @@ const PlayersList = (props) => {
     const [players, setPlayers] = useState([]);
     const [layout, setLayout] = useState('grid');
     const [searchTerm, setSearchTerm] = useState('');
-    const [sortKey, setSortKey] = useState('');
-    const [sortOrder, setSortOrder] = useState(0);
-    const [sortField, setSortField] = useState('');
+    const [sortKey, setSortKey] = useState('firstname');
+    const [sortOrder, setSortOrder] = useState(1);
+    const [sortField, setSortField] = useState('firstname');
     const sortOptions = [
         { label: 'Firstname A-Z', value: 'firstname' },
         { label: 'Firstname Z-A', value: '!firstname' },
@@ -92,7 +91,7 @@ const PlayersList = (props) => {
         }
     };
 
-    const loadPlayers = async searchTerm => {
+    const loadPlayers = async (searchTerm) => {
         let data = await PlayerService.loadPlayers(searchTerm);
         setPlayers(data);
     };
@@ -212,32 +211,28 @@ const PlayersList = (props) => {
         return (
             <div className="container-fluid overflow-hidden">
                 <div className="row gy-2">
-                    <div className="col-12 col-lg-8 d-flex align-items-center justify-content-start">
-                        <div className="row gy-2">
-                            <div className="col-12 col-sm-7 d-flex align-items-center justify-content-start">
-                                <span className="p-input-icon-left">
-                                    <i className="pi pi-search" />
-                                    <InputText
-                                        type="search" value={searchTerm || ''}
-                                        onChange={(e) => onSearchTermChange(e)}
-                                        placeholder="Global Search"
-                                    />
-                                </span>
-                            </div>
-                            <div className="col-12 col-sm-5 d-flex align-items-center justify-content-start gap-2">
-                                <Dropdown
-                                    options={sortOptions}
-                                    value={sortKey}
-                                    optionLabel="label"
-                                    placeholder="Sort List"
-                                    onChange={onSortChange}
-                                    className="w-full sm:w-14rem"
+                    <div className="col-12 col-md-8 ">
+                        <div className="d-flex flex-sm-row align-items-center justify-content-start flex-wrap gap-3 p-2">
+                            <span className="p-input-icon-left">
+                                <i className="pi pi-search" />
+                                <InputText
+                                    type="search" value={searchTerm || ''}
+                                    onChange={(e) => onSearchTermChange(e)}
+                                    placeholder="Global Search"
                                 />
-                                <PlayerForm onPlayerAdd={onPlayerAdd} />
-                            </div>
+                            </span>
+                            <Dropdown
+                                options={sortOptions}
+                                value={sortKey}
+                                optionLabel="label"
+                                placeholder="Sort List"
+                                onChange={onSortChange}
+                                className="w-full sm:w-14rem"
+                            />
+                            <PlayerForm onPlayerAdd={onPlayerAdd} />
                         </div>
                     </div>
-                    <div className="col-12 col-md-4 d-flex align-items-center justify-content-start justify-content-lg-end mb-2 mb-lg-0">
+                    <div className="col-12 col-md-4 d-flex align-items-center justify-content-start justify-content-md-end mb-2 mb-lg-0">
                         <DataViewLayoutOptions layout={layout} onChange={(e) => setLayout(e.value)} />
                     </div>
                 </div>
