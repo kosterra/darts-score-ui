@@ -222,22 +222,27 @@ const X01List = (props) => {
     const gridItem = (game, index) => {
         return (
             <div className="col-12 col-sm-6 col-lg-4 col-xl-3" key={'grid-item-' + index}>
-                <Panel header={game.startingScore} className="darker-bg">
+                <Panel className="darker-bg">
                     <div className="row mb-3">
-                        <div className="col-8 d-flex flex-column">
+                        <div className="col-12 d-flex justify-content-start align-items-center gap-3">
+                            <span className="display-6 fw-semibold text-shade100">
+                                {game.startingScore}
+                            </span>
+                            <Tag
+                                severity={game.gameIsRunning ? 'warning' : 'info'}
+                                value={game.gameIsRunning ? 'Running' : 'Finished'}
+                                rounded
+                            />
+                        </div>
+                    </div>
+                    <div className="row mb-3">
+                        <div className="col-12 d-flex flex-column">
                             <span className="fs-7 text-shade500 fw-semibold">
                                 {game.setMode} {game.numberOfSets} Set{game.numberOfSets > 1 && 's'} - {game.legMode} {game.numberOfLegs} Leg{game.numberOfLegs > 1 && 's'}
                             </span>
                             <span className="fs-9 text-shade500 pt-1">
                                 ({game.legInMode} / {game.legOutMode})
                             </span>
-                        </div>
-                        <div className="col-4 d-flex justify-content-end align-items-start">
-                            <Tag
-                                severity={game.gameIsRunning ? 'warning' : 'info'}
-                                value={game.gameIsRunning ? 'Running' : 'Finished'}
-                                rounded
-                            />
                         </div>
                     </div>
                     <div className="row pt-2">
