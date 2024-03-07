@@ -1,11 +1,9 @@
-import React from 'react';
 import { useParams } from "react-router-dom";
-import { Container, Row } from 'react-bootstrap';
 
 import PlayerStats from './players/player.stats';
 import PlayerVSStats from './players/player.vs.stats';
 import X01List from '../admin/x01.list';
-import CricketEditList from '../admin/cricket.edit.list';
+import CricketList from '../admin/cricket.list';
 
 const StatsPage = () => {
 
@@ -25,10 +23,11 @@ const StatsPage = () => {
                     staticStatusValue={2}
                 />;
             case 'cricket':
-                return <CricketEditList
+                return <CricketList
                     deleteActive={false}
+                    rawActive={false}
                     showStatusFilter={false}
-                    staticStatusValue="2"
+                    staticStatusValue={2}
                 />;
             default:
                 return <PlayerStats />;
@@ -36,11 +35,11 @@ const StatsPage = () => {
     }
 
     return (
-        <Container fluid className="p-4 bg-transparent border-0">
-            <Row className="justify-content-md-center align-items-center">
+        <div className="container-fluid p-4 bg-transparent border-0">
+            <div className="row justify-content-md-center align-items-center">
                 <StatsContent />
-            </Row>
-        </Container>
+            </div>
+        </div>
     )
 }
 

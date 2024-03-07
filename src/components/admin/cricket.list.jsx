@@ -13,11 +13,11 @@ import { GiDart } from "react-icons/gi";
 import dayjs from "dayjs";
 
 import PlayerService from '../../services/player.service';
-import X01Service from '../../services/x01.service';
+import CricketService from '../../services/cricket.service';
 import DeletePopup from '../elements/delete.popup';
 import JSONViewer from '../elements/json.viewer';
 
-const X01List = (props) => {
+const CricketList = (props) => {
     const {
         deleteActive = false,
         rawActive = true,
@@ -29,7 +29,7 @@ const X01List = (props) => {
     const toast = useRef(null);
 
     const [players, setPlayers] = useState([]);
-    const [x01Games, setX01Games] = useState([]);
+    const [cricketGames, setCricketGames] = useState([]);
     const [layout, setLayout] = useState('grid');
     const [statusFilterValue, setStatusFilterValue] = useState(staticStatusValue);
     const [sortKey, setSortKey] = useState('!createdAt');
@@ -37,9 +37,7 @@ const X01List = (props) => {
     const [sortField, setSortField] = useState('createdAt');
     const sortOptions = [
         { label: 'Latest to Earliest', value: '!createdAt' },
-        { label: 'Earliest to Latest', value: 'createdAt' },
-        { label: 'Score Low to High', value: 'startingScore' },
-        { label: 'Score High to Low', value: '!startingScore' }
+        { label: 'Earliest to Latest', value: 'createdAt' }
     ];
 
     const statusFilterValues = [
@@ -49,7 +47,7 @@ const X01List = (props) => {
     ];
 
     useEffect(() => {
-        loadX01Games();
+        loadCricketGames();
     }, [statusFilterValue]);
 
     useEffect(() => {
@@ -70,23 +68,23 @@ const X01List = (props) => {
         }
     };
 
-    const onX01GameDelete = async (game) => {
-        if (await X01Service.deleteX01(game.id)) {
+    const onCricketGameDelete = async (game) => {
+        if (await CricketService.deleteCricket(game.id)) {
             toast.current.show(
                 {
                     severity: 'info',
-                    summary: 'X01 Game deleted',
+                    summary: 'Cricket Game deleted',
                     detail: 'Successfully deleted game: ' + game.id,
                     life: 3000
                 }
             );
-            loadX01Games('');
+            loadCricketGames('');
         } else {
             toast.current.show(
                 {
                     severity: 'error',
-                    summary: 'X01 Game deleted',
-                    detail: 'Error on deleting X01 game: ' + game.id + '. Please try again or contact your system administrator',
+                    summary: 'Cricket Game deleted',
+                    detail: 'Error on deleting Cricket game: ' + game.id + '. Please try again or contact your system administrator',
                     life: 3000
                 }
             );
@@ -98,33 +96,28 @@ const X01List = (props) => {
         setPlayers(data);
     };
 
-    const loadX01Games = async () => {
+    const loadCricketGames = async () => {
         let data;
         if (statusFilterValue === 1) {
-            data = await X01Service.loadRunningX01Games();
+            data = await CricketService.loadRunningCricketGames();
         } else if (statusFilterValue === 2) {
-            data = await X01Service.loadFinishedX01Games();
+            data = await CricketService.loadFinishedCricketGames();
         } else {
-            data = await X01Service.loadAllX01Games();
+            data = await CricketService.loadAllCricketGames();
         }
-        setX01Games(data);
+        setCricketGames(data);
     }
 
     const gameTemplate = (game) => {
-        return ( 
+        return (
             <>
                 <div className="row mb-2">
                     <div className="col-6">
                         {' '}
                     </div>
                     <div className="col-3 d-flex align-items-center justify-content-center text-shade100 fs-7 fw-semibold">
-                        Sets
+                        {game.gameIsRunning ? 'Score' : 'End Score'}
                     </div>
-                    {game.gameIsRunning &&
-                        <div className="col-3 d-flex align-items-center justify-content-center text-shade100 fs-7 fw-semibold">
-                            Legs
-                        </div>
-                    }
                 </div>
                 {players.length > 0 && game.players.map((playerId, idx) => (
                     <div className="row" key={idx}>
@@ -142,13 +135,8 @@ const X01List = (props) => {
                             }
                         </div>
                         <div className="col-3 d-flex align-items-center justify-content-center text-shade100 fs-7 fw-semibold">
-                            {game.playerModels[playerId].setsWon}
+                            {game.playerModels[playerId].score}
                         </div>
-                        {game.gameIsRunning &&
-                            <div className="col-3 d-flex align-items-center justify-content-center text-shade100 fs-7 fw-semibold">
-                                {game.playerModels[playerId].currentSetLegsWon}
-                            </div>
-                        }
                     </div>
                 ))}
             </>
@@ -171,10 +159,7 @@ const X01List = (props) => {
                                 </div>
                                 <div className="d-flex flex-column">
                                     <span className="fs-7 text-shade500 fw-semibold">
-                                        {game.setMode} {game.numberOfSets} Set{game.numberOfSets > 1 && 's'} - {game.legMode} {game.numberOfLegs} Leg{game.numberOfLegs > 1 && 's'}
-                                    </span>
-                                    <span className="fs-9 text-shade500 pt-1">
-                                        ({game.legInMode} / {game.legOutMode})
+                                        Cricket Game
                                     </span>
                                 </div>
                                 <div>
@@ -188,12 +173,12 @@ const X01List = (props) => {
                             </div>
                             <div className="col-12 col-lg-4 d-flex justify-content-center justify-content-md-end align-items-center gap-2">
                                 {game.gameIsRunning &&
-                                    <a href={'/x01/' + game.id} className="p-button font-bold">
+                                    <a href={'/cricket/' + game.id} className="p-button font-bold">
                                         <GiDart title="Continue Playing" className="fs-6" />
                                     </a>
                                 }
                                 {!game.gameIsRunning &&
-                                    <a href={'/stats/games/x01/' + game.id} className="p-button font-bold">
+                                    <a href={'/stats/games/cricket/' + game.id} className="p-button font-bold">
                                         <FaChartColumn title="Show Statistics" className="fs-6" />
                                     </a>
                                 }
@@ -205,7 +190,7 @@ const X01List = (props) => {
                                         data={game}
                                         header="Delete Game"
                                         message={'game ' + game.id}
-                                        handleDelete={onX01GameDelete}
+                                        handleDelete={onCricketGameDelete}
                                     />
                                 }
                             </div>
@@ -223,10 +208,7 @@ const X01List = (props) => {
                     <div className="row mb-3">
                         <div className="col-8 d-flex flex-column">
                             <span className="fs-7 text-shade500 fw-semibold">
-                                {game.setMode} {game.numberOfSets} Set{game.numberOfSets > 1 && 's'} - {game.legMode} {game.numberOfLegs} Leg{game.numberOfLegs > 1 && 's'}
-                            </span>
-                            <span className="fs-9 text-shade500 pt-1">
-                                ({game.legInMode} / {game.legOutMode})
+                                Cricket Game
                             </span>
                         </div>
                         <div className="col-4 d-flex justify-content-end align-items-start">
@@ -251,12 +233,12 @@ const X01List = (props) => {
                         <div className="col-12 d-flex justify-content-start justify-content-xxl-end mt-2">
                             <div className="d-flex gap-2">
                                 {game.gameIsRunning &&
-                                    <a href={'/x01/' + game.id} className="p-button font-bold">
+                                    <a href={'/cricket/' + game.id} className="p-button font-bold">
                                         <GiDart title="Continue Playing" className="fs-6" />
                                     </a>
                                 }
                                 {!game.gameIsRunning &&
-                                    <a href={'/stats/games/x01/' + game.id} className="p-button font-bold">
+                                    <a href={'/stats/games/cricket/' + game.id} className="p-button font-bold">
                                         <FaChartColumn title="Show Statistics" className="fs-6" />
                                     </a>
                                 }
@@ -268,7 +250,7 @@ const X01List = (props) => {
                                         data={game}
                                         header="Delete Game"
                                         message={'game ' + game.id}
-                                        handleDelete={onX01GameDelete}
+                                        handleDelete={onCricketGameDelete}
                                     />
                                 }
                             </div>
@@ -335,7 +317,7 @@ const X01List = (props) => {
     return (
         <div className="card">
             <DataView
-                value={x01Games}
+                value={cricketGames}
                 listTemplate={listTemplate}
                 layout={layout}
                 header={header()}
@@ -350,4 +332,4 @@ const X01List = (props) => {
     )
 };
 
-export default X01List;
+export default CricketList;
