@@ -1,18 +1,8 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-
-import {
-    Menu,
-    MenuItem
-} from 'react-pro-sidebar';
-
-import {
-    MdSportsCricket
-} from "react-icons/md";
-
-import {
-    FaBullseye
-} from "react-icons/fa6";
+import { Menu, MenuItem } from 'react-pro-sidebar';
+import { MdSportsCricket } from "react-icons/md";
+import { FaBullseye } from "react-icons/fa6";
 
 const SidebarPlay = (props) => {
     const { collapsed } = props;

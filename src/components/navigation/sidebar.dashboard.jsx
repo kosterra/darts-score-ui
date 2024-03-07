@@ -1,14 +1,12 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { MdDashboard } from "react-icons/md";
 
 import {
     Menu,
     MenuItem
 } from 'react-pro-sidebar';
 
-import {
-    MdDashboard
-} from "react-icons/md";
 
 const SidebarDashboard = (props) => {
     const { collapsed } = props;

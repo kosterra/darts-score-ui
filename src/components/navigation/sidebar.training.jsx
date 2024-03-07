@@ -1,14 +1,8 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { BsClockHistory } from "react-icons/bs";
+import { Menu, MenuItem } from 'react-pro-sidebar';
 
-import {
-    Menu,
-    MenuItem
-} from 'react-pro-sidebar';
-
-import {
-    BsClockHistory
-} from "react-icons/bs";
 
 const SidebarTraining = (props) => {
     const { collapsed } = props;

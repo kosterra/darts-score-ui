@@ -1,15 +1,7 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-
-import {
-    Menu,
-    MenuItem
-} from 'react-pro-sidebar';
-
-import {
-    FaCircleQuestion,
-    FaGear
-} from "react-icons/fa6";
+import { FaCircleQuestion, FaGear } from "react-icons/fa6";
+import { Menu, MenuItem } from 'react-pro-sidebar';
 
 const SidebarMisc = () => {
 

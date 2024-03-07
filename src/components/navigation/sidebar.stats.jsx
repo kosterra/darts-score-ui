@@ -1,16 +1,12 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { FaChartLine, FaTrophy } from "react-icons/fa6";
 
 import {
     Menu,
     MenuItem,
     SubMenu
 } from 'react-pro-sidebar';
-
-import {
-    FaChartLine,
-    FaTrophy
-} from "react-icons/fa6";
 
 const SidebarStats = (props) => {
     const { collapsed } = props;

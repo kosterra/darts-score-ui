@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { GiDart } from "react-icons/gi";
 
 import {
     Menu,
@@ -10,8 +11,6 @@ import {
 import {
     FaUserPen
 } from "react-icons/fa6";
-
-import { GiDart } from "react-icons/gi";
 
 const SidebarAdmin = (props) => {
     const { collapsed } = props;

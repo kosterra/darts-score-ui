@@ -1,19 +1,8 @@
-import React, { useState } from 'react';
-import {
-    Sidebar
-} from 'react-pro-sidebar';
-
-import {
-    Button
-} from 'primereact/button';
-
-import {
-    MdClose
-} from "react-icons/md";
-
-import {
-    FaBars
-} from "react-icons/fa6";
+import { useState } from 'react';
+import { Button } from 'primereact/button';
+import { Sidebar } from 'react-pro-sidebar';
+import { MdClose } from "react-icons/md";
+import { FaBars } from "react-icons/fa6";
 
 import SidebarHeader from './sidebar.header';
 import SidebarPlay from './sidebar.play';

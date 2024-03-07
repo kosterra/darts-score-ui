@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import logo from '/logo.svg';
 
 const SidebarHeader = (props) => {
