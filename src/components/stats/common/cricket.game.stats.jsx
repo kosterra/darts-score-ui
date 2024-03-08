@@ -41,13 +41,13 @@ const CricketGameStats = () => {
     }
 
     return (
-        <Container fluid className="p-4 bg-transparent border-0">
-            <Row className="d-flex justify-content-center align-items-center">
-                <Col md={{ span: 6, offset: 3 }}>
+        <div className="container-fluid p-4">
+            <div className="row d-flex justify-content-center align-items-center">
+                <div className="col text-shade100">
                     Not yet implemented. Coming soon...
-                </Col>
-            </Row>
-        </Container>
+                </div>
+            </div>
+        </div>
     );
 }
 

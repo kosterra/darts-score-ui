@@ -1,28 +1,35 @@
 import { Fragment } from 'react';
-import Avatar from 'react-avatar';
+import { Avatar } from 'primereact/avatar';
+import { FaTrophy } from "react-icons/fa6";
 
 const X01StatsScoreBoardPlayer = (props) => {
-
     const {
-        player
+        player,
+        hasWonGame = false
     } = props
 
     return (
         <Fragment>
-            <div className="d-flex flex-column justify-content-center">
-                <Avatar
-                    name={`${player.firstname} ${player.lastname}`}
-                    src={`${player.profileImg}`}
-                    size="80"
-                    round={true}
-                    color="#565656"
-                    textSizeRatio={0.2}
-                    className="align-self-center"
-                />
-                <div className="mt-2 align-self-center fs-7 fw-semibold">
+            <div className="d-flex flex-column justify-content-center align-items-center">
+                <div className="position-relative">
+                    <Avatar
+                        label={(player.firstname + ' ' + player.lastname).split(" ").map((n) => n[0]).join("")}
+                        image={player.profileImg}
+                        shape="circle"
+                        size="xlarge"
+                        style={{ width: '6rem', height: '6rem' }}
+                        className="bg-shade700 mx-3"
+                    />
+                    <span className="position-absolute top-80 start-85 translate-middle">
+                        {hasWonGame &&
+                            <FaTrophy className="display-5 text-gold mt-2" />
+                        }
+                    </span>
+                </div>
+                <div className="mt-2 text-shade100 fs-6 fw-semibold">
                     {player.nickname}
                 </div>
-                <div className="align-self-center fs-7 fw-semibold">
+                <div className="text-shade500 fs-7 fw-semibold">
                     {player.firstname} {player.lastname}
                 </div>
             </div>

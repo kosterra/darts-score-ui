@@ -7,6 +7,23 @@
         li {
             margin-right: $tabviewHeaderSpacing;
 
+            .p-badge {
+                color: $shade500;
+            }
+
+            &.p-tabview-selected {
+                //background: $tabviewHeaderActiveBg;
+                color: $shade100;
+
+                .p-badge {
+                    background: $primaryColor;
+                }
+
+                span {
+                    color: $shade100;
+                }
+            }
+
             .p-tabview-nav-link {
                 border: $tabviewHeaderBorder;
                 border-width: $tabviewHeaderBorderWidth;

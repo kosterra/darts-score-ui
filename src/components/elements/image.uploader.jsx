@@ -47,7 +47,7 @@ const ImageUploader = (props) => {
 
     return (
         <div className="file-upload d-flex flex-column justify-content-center align-items-center">
-            <div>
+            <div className="position-relative">
                 <Avatar
                     label={name.split(" ").map((n) => n[0]).join("")}
                     image={previewUrl}
@@ -55,17 +55,16 @@ const ImageUploader = (props) => {
                     size="xlarge"
                     style={{ width: '10rem', height: '10rem' }}
                 />
-            </div>
-            <div>
                 {previewUrl &&
-                    <Button
-                        type="button"
-                        severity="danger"
-                        rounded aria-label="Delete Profile Image"
-                        onClick={handleOnFileDelete}
-                        className="delete-file">
-                        <FaTrash />
-                    </Button>
+                    <span className="position-absolute top-85 start-85 translate-middle">
+                        <Button
+                            type="button"
+                            severity="danger"
+                            rounded aria-label="Delete Profile Image"
+                            onClick={handleOnFileDelete}>
+                            <FaTrash />
+                        </Button>
+                    </span>
                 }
             </div>
             <div

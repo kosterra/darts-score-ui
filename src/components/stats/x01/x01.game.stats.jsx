@@ -1,14 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from "react-router-dom";
-
-import {
-    Button,
-    Col,
-    Container,
-    Row,
-    Tab,
-    Tabs
-} from 'react-bootstrap';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Badge } from 'primereact/badge';
+import { Button } from 'primereact/button';
+import { Panel } from 'primereact/panel';
+import { TabView, TabPanel } from 'primereact/tabview';
 
 import StatsService from '../../../services/stats.service';
 import PlayerService from '../../../services/player.service';
@@ -84,6 +79,15 @@ const X01GameStats = () => {
         navigate('/x01/' + newGame.id);
     };
 
+    const tabHeaderTemplate = (options) => {
+        return (
+            <div className="d-flex align-items-center text-shade500 gap-2 p-3" style={{ cursor: 'pointer' }} onClick={options.onClick}>
+                <Badge size="large" severity="secondary" value={options.index === 0 ? 'A' : options.index} />
+                <span className="fw-bold fs-6">{options.index === 0 ? 'Overall' : 'Set'}</span>
+            </div>
+        );
+    };
+
     if (!game || !players) {
         return (
             <PageLoader />
@@ -91,7 +95,7 @@ const X01GameStats = () => {
     }
 
     return (
-        <Container fluid className="p-4 pt-0 bg-transparent border-0">
+        <div className="container-fluid p-4 pt-0 border-0">
             <X01GameHeader
                 setMode={game.setMode}
                 numberOfSets={game.numberOfSets}
@@ -100,57 +104,73 @@ const X01GameStats = () => {
                 legInMode={game.legInMode}
                 legOutMode={game.legOutMode}
             />
-            <Row className="d-flex justify-content-center align-items-center">
-                <Col className="col-xs-12 col-sm-12 col-md-10 col-lg-8" >
+            <div className="row d-flex justify-content-center align-items-center">
+                <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8" >
                     {game.players.length === 2 &&
                         <X01StatsScoreBoard players={players} game={game} />
                     }
                     {game.players.length > 2 &&
                         <X01StatsScoreBoardMultiple players={players} game={game} />
                     }
-                </Col>
-            </Row>
-            <Row xs={1} sm={1} md={1} className="d-flex justify-content-center align-items-center">
-                <Col className="col-xs-12 col-sm-12 col-md-10 col-lg-8 px-0 rounded-2">
-                    <Tabs
-                        defaultActiveKey="overall"
-                        justify
-                    >
-                        <Tab eventKey="overall" title="Overall" className="p-4 bg-secondary">
-                            <X01StatsTab valueKey="game" game={game} gameStats={gameStats} />
-                        </Tab>
+                </div>
+            </div>
+            <div className="row d-flex justify-content-center align-items-center">
+                <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8 px-0 rounded-2">
+                    <Panel>
+                        <TabView>
+                            <TabPanel header="Overall" headerTemplate={tabHeaderTemplate}>
+                                <X01StatsTab valueKey="game" game={game} gameStats={gameStats} />
+                            </TabPanel>
 
-                        {[...Array(game.setsPlayed)].map((e, i) => (
-                            <Tab key={`set-tab-${i}`} eventKey={`set-${i}`} title={`Set ${i + 1}`} className="p-4 bg-secondary">
-                                <X01StatsTab valueKey={`set-${i + 1}`} game={game} />
-                            </Tab>
-                        ))}
-                    </Tabs>
-                </Col>
-                <Col className="col-12">
+                            {[...Array(game.setsPlayed)].map((e, i) => (
+                                <TabPanel key={`set-tab-${i}`} header={`Set ${i + 1}`} headerTemplate={tabHeaderTemplate}>
+                                    <X01StatsTab valueKey={`set-${i + 1}`} game={game} />
+                                </TabPanel>
+                            ))}
+                        </TabView>
+                    </Panel>
+                </div>
+            </div>
+            <div className="row d-flex justify-content-center align-items-center">
+                <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8 px-0 rounded-2">
                     <X01StatsCharts
                         avg={(gameStats || {}).avg || []}
                         sectionHits={(gameStats || {}).sectionHits || {}}
                         checkouts={(gameStats || {}).checkouts || {}}
                         scoreRanges={(gameStats || {}).scoreRanges || {}}
                         players={players} />
-                </Col>
-            </Row>
-            <Row className="d-grid gap-2 col-2 mx-auto mt-4">
-                <Button onClick={onRestartGame} variant="primary">
-                    <i className="fas fa-sync-alt pe-2" title='Restart'></i>
-                    Play Again
-                </Button>
-                <Button onClick={onNewGame} variant="outline-primary">
-                    <i className="fas fa-plus pe-2" title='Plus'></i>
-                    New Game
-                </Button>
-                <Button onClick={onFinishGame} variant="outline-primary">
-                    <i className="fas fa-home pe-2" title='Home'></i>
-                    Back Home
-                </Button>
-            </Row>
-        </Container>
+                </div>
+            </div>
+            <div className="row mt-4">
+                <div className="col d-flex justify-content-center align-items-center">
+                    <span className="p-buttonset">
+                        <Button
+                            label="PLAY AGAIN"
+                            icon="pi pi-sync"
+                            onClick={onRestartGame}
+                            size="small"
+                            severity="primary"
+                        />
+                        <Button
+                            label="NEW GAME"
+                            icon="pi pi-plus"
+                            onClick={onNewGame}
+                            size="small"
+                            outlined
+                            severity="primary"
+                        />
+                        <Button
+                            label="BACK HOME"
+                            icon="pi pi-home"
+                            onClick={onFinishGame}
+                            size="small"
+                            outlined
+                            severity="primary"
+                        />
+                    </span>
+                </div>
+            </div>
+        </div>
     );
 }
 

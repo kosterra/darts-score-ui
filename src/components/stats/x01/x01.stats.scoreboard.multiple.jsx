@@ -1,13 +1,8 @@
 import { Fragment } from 'react';
 
-import {
-    Col,
-    Row
-} from 'react-bootstrap';
+import dayjs from 'dayjs';
 
 import X01StatsScoreBoardPlayer from './x01.stats.scoreboard.player.item';
-
-import dayjs from 'dayjs';
 
 const X01StatsScoreBoardMultiple = (props) => {
     const {
@@ -17,30 +12,30 @@ const X01StatsScoreBoardMultiple = (props) => {
 
     return (
         <Fragment>
-            <Row className="p-3 border-dotted-top-grey">
-                <Col className="d-flex justify-content-center align-items-center">
+            <div className="row border-top p-3">
+                <div className="col d-flex justify-content-center align-items-center">
                     <div className="d-flex flex-column justify-content-center">
                         <div className="align-self-center fs-8 font-weight-normal text-shade100">
                             {dayjs(game.createdAt).format("DD.MM.YYYY HH:mm")}
                         </div>
-                        <div className="align-self-center fs-8 font-weight-normal text-gray">
+                        <div className="align-self-center fs-8 font-weight-normal text-shade600">
                             {game.gameIsRunning ? 'Running' : 'Finished'}
                         </div>
                     </div>
-                </Col>
-            </Row>
-            <Row className="mb-3 p-3 border-dotted-bottom-grey">
+                </div>
+            </div>
+            <div className="row border-bottom mb-3 p-3">
                 {game.players.map((player, idx) => (
-                    <Col key={'player' + idx} className="d-flex justify-content-center align-items-center">
+                    <div key={'player' + idx} className="col d-flex justify-content-center align-items-center">
                         <div className="d-flex flex-column justify-content-center">
                             <X01StatsScoreBoardPlayer player={players.find(item => item.id == player)} />
                             <div className="align-self-center fs-1 font-weight-normal">
                                 {game.playerModels[player].setsWon}
                             </div>
                         </div>
-                    </Col>
+                    </div>
                 ))}
-            </Row>
+            </div>
         </Fragment>
     );
 };

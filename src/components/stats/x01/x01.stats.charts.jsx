@@ -1,5 +1,4 @@
 import { Fragment } from 'react';
-import { Col, Row } from 'react-bootstrap';
 
 import StatsRadarChart from '../common/radar.chart';
 import StatsScatterChart from '../common/scatter.chart';
@@ -82,17 +81,17 @@ const X01StatsCharts = (props) => {
     };
 
     return (
-        <Fragment>
-            <Row xs={1} sm={1} md={1} lg={2} className="d-flex justify-content-center align-items-center mt-3">
-                <Col className="col-xs-12 col-md-12 col-lg-5 p-1">
+        <div className="container-fluid overflow-hidden p-0">
+            <div className="row gy-3 d-flex justify-content-center align-items-center mt-2">
+                <div className="col-12 col-xxl-6">
                     <StatsLineChart title="Averages"
                         data={avg}
                         players={players}
                         labels={getLineChartLabels()}
                         showLegend={true}
                     />
-                </Col>
-                <Col className="col-xs-12 col-md-12 col-lg-5 p-1">
+                </div>
+                <div className="col-12 col-xxl-6">
                     <StatsRadarChart title="Section Hits"
                         data={sectionHits}
                         players={players}
@@ -100,10 +99,10 @@ const X01StatsCharts = (props) => {
                         labels={getRadarChartLabels()}
                         showLegend={true}
                     />
-                </Col>
-            </Row>
-            <Row xs={1} sm={1} md={1} lg={2} className="d-flex justify-content-center align-items-center mt-3">
-                <Col className="col-xs-12 col-md-12 col-lg-5 p-1">
+                </div>
+            </div>
+            <div className="row gy-3 d-flex justify-content-center align-items-center mt-2">
+                <div className="col-12 col-xxl-6">
                     <StatsScatterChart title="Checkouts"
                         data={checkouts}
                         players={players}
@@ -115,8 +114,8 @@ const X01StatsCharts = (props) => {
                         labels={getScatterChartLabels()}
                         showLegend={true}
                     />
-                </Col>
-                <Col className="col-xs-12 col-md-12 col-lg-5 p-1">
+                </div>
+                <div className="col-12 col-xxl-6">
                     <StatsBarChart title="Score Ranges"
                         data={scoreRanges}
                         players={players}
@@ -124,9 +123,9 @@ const X01StatsCharts = (props) => {
                         labels={getBarChartLabels()}
                         showLegend={true}
                     />
-                </Col>
-            </Row>
-        </Fragment>
+                </div>
+            </div>
+        </div>
     );
 };
 

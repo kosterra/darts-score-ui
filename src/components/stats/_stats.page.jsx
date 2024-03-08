@@ -12,25 +12,35 @@ const StatsPage = () => {
     function StatsContent() {
         switch (id) {
             case 'players':
-                return <PlayerStats />;
+                return (
+                    <PlayerStats />
+                );
             case 'vs':
-                return <PlayerVSStats />;
+                return (
+                    <PlayerVSStats />
+                );
             case 'x01':
-                return <X01List
-                    deleteActive={false}
-                    rawActive={false}
-                    showStatusFilter={false}
-                    staticStatusValue={2}
-                />;
+                return (
+                    <X01List
+                        deleteActive={false}
+                        rawActive={false}
+                        showStatusFilter={false}
+                        staticStatusValue={2}
+                    />
+                );
             case 'cricket':
-                return <CricketList
-                    deleteActive={false}
-                    rawActive={false}
-                    showStatusFilter={false}
-                    staticStatusValue={2}
-                />;
+                return (
+                    <CricketList
+                        deleteActive={false}
+                        rawActive={false}
+                        showStatusFilter={false}
+                        staticStatusValue={2}
+                    />
+                );
             default:
-                return <PlayerStats />;
+                return (
+                    <PlayerStats />
+                );
         }
     }
 
@@ -43,4 +53,4 @@ const StatsPage = () => {
     )
 }
 
-export default StatsPage
+export default StatsPage;
