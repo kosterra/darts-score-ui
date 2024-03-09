@@ -2,7 +2,7 @@
 UI for application darts-score.
 
 **Stack:** 
-* Frontend: HTML, CSS, Javascript ES6, React.
+* Frontend: HTML, CSS, Javascript ES6, React, Vite, PrimeReact
 * Backend: NodeJS express.
 * Database: mongodb
 
