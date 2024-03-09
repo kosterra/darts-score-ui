@@ -10,7 +10,7 @@ const AboutCard = () => {
     const renderFooter = (link) => {
         return (
             <div className="d-flex justify-content-end">
-                <a href={ link } target="_blank" className="p-button font-bold">
+                <a href={link} target="_blank" rel="noopener noreferrer" className="p-button font-bold">
                     <FaExternalLinkAlt className="fs-6" />
                 </a>
             </div>
