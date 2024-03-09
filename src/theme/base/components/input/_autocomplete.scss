@@ -10,6 +10,13 @@
             right: nth($inputPadding, 2) + $buttonIconOnlyWidth;
         }
     }
+
+    &.full-width {
+        width: 100%;
+        .p-autocomplete-multiple-container {
+            width: 100%;
+        }
+    }
     
     .p-autocomplete-multiple-container {
         padding: math.div(nth($inputPadding, 1), 2) nth($inputPadding, 2);

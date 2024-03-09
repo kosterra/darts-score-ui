@@ -1,12 +1,9 @@
-import { Fragment, useState, useEffect } from 'react';
-import {
-    ButtonGroup,
-    Col,
-    Container,
-    Form,
-    Row,
-    ToggleButton
-} from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { Button } from 'primereact/button';
+import { Toolbar } from 'primereact/toolbar';
+import { InputSwitch } from 'primereact/inputswitch';
+import { SelectButton } from 'primereact/selectbutton';
+import { FaPlusCircle } from "react-icons/fa";
 
 import PlayerSelect from '../../elements/player.select';
 import StatsService from '../../../services/stats.service';
@@ -16,154 +13,247 @@ import X01StatsCharts from '../x01/x01.stats.charts';
 const PlayerVSStats = (props) => {
     const {
         showStatsFilter = true,
-        staticStatsFilterValue = '1'
+        staticGameTypeFilterValue = 'X01'
     } = props
 
-    const [statsFilterValue, setStatsFilterValue] = useState(staticStatsFilterValue)
-    const [players, setPlayers] = useState([])
-    const [playerStats, setPlayerStats] = useState({})
-    const [includeOthers, setIncludeOthers] = useState(false)
-    const [dateFilter, setDateFilter] = useState('All')
+    const [playersCount, setPlayersCount] = useState(2);
+    const [players, setPlayers] = useState([]);
+    const [playerStats, setPlayerStats] = useState({});
+    const [gameTypeFilterValue, setGameTypeFilterValue] = useState(staticGameTypeFilterValue);
+    const [includeOthersValue, setIncludeOthersValue] = useState(false);
+    const [dateFilterValue, setDateFilterValue] = useState('All');
 
-    const statsFilter = [
-        { name: 'X01', value: '1' },
-        { name: 'Cricket', value: '2' }
-    ];
+    const gameTypeFilter = ['X01', 'Cricket'];
+    const dateFilter = ['1 D', '1 W', '1 M', '1 Y', 'All'];
 
     const onSelectPlayer = async (player, idx) => {
+        console.log(players);
         let newPlayers = [...players];
-        newPlayers.splice(idx, 0, player)
-        setPlayers(newPlayers)
-    }
+        newPlayers.splice(idx, 0, player);
+        console.log(newPlayers);
+        setPlayers(newPlayers);
+    };
 
     const onDeletePlayer = (idx) => {
         let newPlayers = [...players]
         newPlayers.splice(idx, 1)
         setPlayers(newPlayers)
-    }
+    };
 
     const loadX01Stats = async () => {
         let playerIds = players.map(player => player.id)
-        let body = {}
-        body['playerIds'] = playerIds
-        body['includeOthers'] = includeOthers
-        body['dateFilter'] = dateFilter
+        let body = {
+            playerIds: playerIds,
+            includeOthers: includeOthersValue,
+            dateFilter: dateFilterValue
+        }
+        // body['playerIds'] = playerIds
+        // body['includeOthers'] = includeOthers
+        // body['dateFilter'] = dateFilter
         let playersStats = await StatsService.loadX01PlayersStats(body)
         setPlayerStats(playersStats)
-    }
+    };
 
     const handleIncludeOthers = (e) => {
-        setIncludeOthers(!includeOthers)
-    }
+        setIncludeOthersValue(!includeOthersValue)
+    };
+
+    const incrementPlayersCount = () => {
+        setPlayersCount(playersCount + 1);
+    };
+
+    const removePlayerCard = (idx) => {
+        setPlayersCount(playersCount - 1);
+        onDeletePlayer(idx);
+    };
+
+    const startContent = (
+        <div className="continer-fluid">
+            <SelectButton
+                value={gameTypeFilterValue}
+                onChange={(e) => setGameTypeFilterValue(e.value)}
+                options={gameTypeFilter}
+            />
+        </div>
+    );
+
+    const centerContent = (
+        <div className="d-flex flex-column align-items-center justify-content-center gap-4">
+            <span className="text-shade100 fs-8 fw-semibold">
+                Date Range
+            </span>
+            <SelectButton
+                value={dateFilterValue}
+                onChange={(e) => setDateFilterValue(e.value)}
+                options={dateFilter}
+                className="p-selectbutton-pills min-pills-width"
+            />
+        </div>
+    );
+
+    const endContent = (
+        <div className="d-flex align-items-center justify-content-center gap-2">
+            <InputSwitch
+                checked={includeOthersValue}
+                onChange={(e) => handleIncludeOthers(e.value)}
+            />
+            <span className="text-shade100 fs-8 fw-semibold">Include Games with other players</span>
+        </div>
+    );
 
     useEffect(() => {
-        if (players.length == 2) {
-            if (statsFilterValue === '1') {
+        if (players.length === playersCount) {
+            if (gameTypeFilterValue === 'X01') {
                 loadX01Stats()
-            } else {
+            } else if (gameTypeFilterValue === 'Cricket') {
                 //let data = await StatsService.loadCricketPlayerStats(player.id);
                 //setPlayerStats(data);
             }
         }
-    }, [players, statsFilterValue, includeOthers, dateFilter]);
+    }, [players, gameTypeFilterValue, includeOthersValue, dateFilterValue]);
 
     return (
-        <Fragment>
-            <Container className="d-flex justify-content-md-center align-items-top w-50">
-                <PlayerSelect
-                    idx={0}
-                    onSelect={onSelectPlayer}
-                    onDelete={onDeletePlayer}
-                />
-                <PlayerSelect
-                    idx={1}
-                    onSelect={onSelectPlayer}
-                    onDelete={onDeletePlayer}
-                />
-            </Container>
-            {players && (players.filter(player => player != null).length == 2) &&
-                <Fragment>
-                    {showStatsFilter &&
-                        <Row xs={1} sm={1} md={1} className="d-flex justify-content-center align-items-center mt-4 mb-4">
-                            <Col className="col-xs-12 col-sm-12 col-md-10 col-lg-10 d-flex justify-content-md-center align-items-center p-2 text-shade100">
-                                <Container className="d-flex justify-content-center align-items-center filter-bar gap-4 mt-4">
-                                    <ButtonGroup>
-                                        {statsFilter.map((filter, idx) => (
-                                            <ToggleButton
-                                                key={idx}
-                                                id={`stats-filter-${idx}`}
-                                                type="radio"
-                                                variant="primary"
-                                                name="radio"
-                                                value={filter.value}
-                                                checked={statsFilterValue === filter.value}
-                                                onChange={(e) => setStatsFilterValue(e.currentTarget.value)}
-                                            >
-                                                {filter.name}
-                                            </ToggleButton>
-                                        ))}
-                                    </ButtonGroup>
-                                    <div className="d-flex justify-content-md-center align-items-center w-25">
-                                        <Row xs={2} sm={3} md={5} className="d-flex justify-content-center align-items-center border-solid-grey rounded m-0 text-shade100 w-100">
-                                            {['1 D', '1 W', '1 M', '1 Y', 'All'].map((option, idx) => (
-                                                <Col key={idx} className="py-1 d-flex justify-content-center align-items-center">
-                                                    <ToggleButton
-                                                        key={idx}
-                                                        id={`date-filter-${idx}`}
-                                                        type="radio"
-                                                        name="date-filter"
-                                                        value={option}
-                                                        className={`w-100 btn btn-sm text-shade100 btr-16 bbr-16 fs-8 fw-semibold ${dateFilter === option ? 'btn-primary' : 'btn-tertiary'}`}
-                                                        checked={dateFilter === option}
-                                                        onChange={(e) => setDateFilter(e.currentTarget.value)}
-                                                    >
-                                                        {option}
-                                                    </ToggleButton>
-                                                </Col>
-                                            ))}
-                                        </Row>
-                                    </div>
-                                    <Form.Check
-                                        type="switch"
-                                        id="custom-switch"
-                                        label="Include Games with other players"
-                                        defaultChecked={includeOthers}
-                                        onChange={handleIncludeOthers}
+        <div className="container-fluid p-4 pt-0 border-0">
+            <div className="row d-flex justify-content-center align-items-center">
+                <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8" >
+                    <div className="row d-flex justify-content-center align-items-center p-4 bg-shade900">
+                        <div className="col-12 col-md-6">
+                            <PlayerSelect
+                                idx={0}
+                                onSelect={onSelectPlayer}
+                                onDelete={onDeletePlayer}
+                            />
+                        </div>
+                        <div className="col-12 col-md-6 mt-4 mt-md-0">
+                            <PlayerSelect
+                                idx={1}
+                                onSelect={onSelectPlayer}
+                                onDelete={onDeletePlayer}
+                            />
+                        </div>
+                        {playersCount > 2 &&
+                            <div className="col-12 col-md-6 mt-4">
+                                <div className="position-relative">
+                                    <PlayerSelect
+                                        idx={2}
+                                        onSelect={onSelectPlayer}
+                                        onDelete={onDeletePlayer}
                                     />
-                                </Container>
-                            </Col>
-                        </Row>
+                                    {playersCount === 3 &&
+                                        <span className="position-absolute top-0 start-100 translate-middle">
+                                            <Button
+                                                icon="pi pi-times"
+                                                size="small"
+                                                rounded
+                                                severity="danger"
+                                                aria-label="Remove Player Card"
+                                                className="text-shade100 fw-semibold me-4 mt-4"
+                                                onClick={() => removePlayerCard(2)}
+                                            />
+                                        </span>
+                                    }
+                                </div>
+                            </div>
+                        }
+                        {playersCount > 3 &&
+                            <div className="col-12 col-md-6 mt-4">
+                                <div className="position-relative">
+                                    <PlayerSelect
+                                        idx={3}
+                                        onSelect={onSelectPlayer}
+                                        onDelete={onDeletePlayer}
+                                    />
+                                    {playersCount === 4 &&
+                                        <span className="position-absolute top-0 start-100 translate-middle">
+                                            <Button
+                                                icon="pi pi-times"
+                                                size="small"
+                                                rounded
+                                                severity="danger"
+                                                aria-label="Remove Player Card"
+                                                className="text-shade100 fw-semibold me-4 mt-4"
+                                                onClick={() => removePlayerCard(3)}
+                                            />
+                                        </span>
+                                    }
+                                </div>
+                            </div>
+                        }
+                        {playersCount === 2 &&
+                            <div className="col-12 col-md-6 mt-4 d-flex align-items-center justify-content-center">
+                                <Button
+                                    icon="pi pi-plus"
+                                    size="large"
+                                    rounded
+                                    severity="secondary"
+                                    aria-label="Add Player"
+                                    className="text-shade500 fw-semibold"
+                                    onClick={incrementPlayersCount}
+                                />
+                            </div>
+                        }
+                        {playersCount === 3 &&
+                            <div className="col-12 col-md-6 mt-4 d-flex align-items-center justify-content-center">
+                                <Button
+                                    icon="pi pi-plus"
+                                    size="large"
+                                    rounded
+                                    severity="secondary"
+                                    aria-label="Add Player"
+                                    className="text-shade500 fw-semibold"
+                                    onClick={incrementPlayersCount}
+                                />
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            {players && (players.filter(player => player != null).length === playersCount) &&
+                <>
+                    {showStatsFilter &&
+                        <div className="row d-flex justify-content-center align-items-center">
+                            <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8 p-0 bg-shade900" >
+                                <Toolbar start={startContent} center={centerContent} end={endContent} className="m-4 p-4"/>
+                            </div>
+                        </div>
                     }
                     {playerStats && playerStats.playedGames > 0 &&
-                        <Row xs={1} sm={1} md={1} className="d-flex justify-content-center align-items-center">
-                            <Col className="px-0 rounded-2 mt-4 mb-4">
-                                <span className="d-flex justify-content-center align-items-center fs-4 fw-semibold mb-4 mt-4">X01 Statistics</span>
-                                <PlayersX01StatsComparisonBars playersX01Stats={playerStats} />
-                            </Col>
-                            <Col className="px-0 rounded-2 mb-4">
-                                <span className="d-flex justify-content-center align-items-center fs-4 fw-semibold mb-4 mt-4">X01 Statistics Charts</span>
-                                <X01StatsCharts
-                                    avg={((playerStats || {}).avg || []).perGame || []}
-                                    sectionHits={(playerStats || {}).sectionHits || {}}
-                                    checkouts={((playerStats || {}).checkouts || {}).rates || {}}
-                                    scoreRanges={(playerStats || {}).scoreRanges || {}}
-                                    players={players} />
-                            </Col>
-                        </Row>
+                        <>
+                            <div className="row d-flex justify-content-center align-items-center">
+                                <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8 p-0" >
+                                    <PlayersX01StatsComparisonBars playersX01Stats={playerStats} />
+                                </div>
+                            </div>
+                            <div className="row d-flex justify-content-center align-items-center">
+                                <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8 p-0" >
+                                    <X01StatsCharts
+                                        avg={((playerStats || {}).avg || []).perGame || []}
+                                        sectionHits={(playerStats || {}).sectionHits || {}}
+                                        checkouts={((playerStats || {}).checkouts || {}).rates || {}}
+                                        scoreRanges={(playerStats || {}).scoreRanges || {}}
+                                        players={players}
+                                    />
+                                </div>
+                            </div>
+                        </>
                     }
-                </Fragment>
+                </>
             }
-            {players && (players.filter(player => player != null).length != 2) &&
+            {players && (players.filter(player => player != null).length !== playersCount) &&
                 <div className="d-flex justify-content-center mt-4">
-                    <span className="empty-text text-shade700">Please select 2 players to compare statistics</span>
+                    <span className="empty-text text-shade500">
+                        Please select {playersCount} players to compare statistics
+                    </span>
                 </div>
             }
             {playerStats && playerStats.playedGames == 0 &&
                 <div className="d-flex justify-content-center mt-4">
-                    <span className="empty-text text-shade700">No games found. Check the filters</span>
+                    <span className="empty-text text-shade500">
+                        No games found. Check the filters
+                    </span>
                 </div>
             }
-        </Fragment>
+        </div>
     );
 }
 

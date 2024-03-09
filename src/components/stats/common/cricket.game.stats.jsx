@@ -1,12 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 
-import {
-    Col,
-    Container,
-    Row
-} from 'react-bootstrap';
-
 //import StatsService from '../../services/stats.service';
 import PlayerService from '../../../services/player.service';
 import PageLoader from '../../elements/page.loader';

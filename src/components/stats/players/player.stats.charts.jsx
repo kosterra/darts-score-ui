@@ -1,6 +1,3 @@
-import { Fragment } from 'react';
-import { Col, Row } from 'react-bootstrap';
-
 import StatsRadarChart from '../common/radar.chart';
 import StatsScatterChart from '../common/scatter.chart';
 import StatsBarChart from '../common/bar.chart';
@@ -13,9 +10,12 @@ const PlayerStatsCharts = (props) => {
     } = props;
 
     return (
-        <Fragment>
-            <Row xs={1} sm={1} md={2} className="d-flex justify-content-center align-items-center mt-3">
-                <Col className="col-6 p-1">
+        <div className="container overflow-hidden p-0">
+            <div className="row gy-4 mt-4 d-flex space-between">
+                <span className="d-flex justify-content-center align-items-center text-shade100 fs-4 fw-semibold mb-4 mt-4">
+                    X01 Statistics Charts
+                </span>
+                <div className="col-12 col-xl-6">
                     <StatsAreaChart title="Average"
                         subtitle="X01"
                         data={((playerStats || {}).avg || {}).perGameX01 || []}
@@ -24,8 +24,8 @@ const PlayerStatsCharts = (props) => {
                             { areaKey: "value", xkey: "label", fill: "#528b6e", stroke: "#d4c783" }
                         ]}
                     />
-                </Col>
-                <Col className="col-6 p-1">
+                </div>
+                <div className="col-12 col-xl-6">
                     <StatsRadarChart title="Section Hits"
                         subtitle="X01"
                         data={(playerStats || {}).sectionHits || []}
@@ -35,10 +35,10 @@ const PlayerStatsCharts = (props) => {
                             { radarKey: "hit", fill: "#528b6e", stroke: "#d4c783" }
                         ]}
                     />
-                </Col>
-            </Row>
-            <Row xs={1} sm={1} md={2} className="d-flex justify-content-center align-items-center mt-3">
-                <Col className="col-6 p-1">
+                </div>
+            </div>
+            <div className="row gy-4 mt-2 d-flex space-between">
+                <div className="col-12 col-xl-6">
                     <StatsScatterChart title="Checkouts"
                         subtitle="X01"
                         data={((playerStats || {}).checkouts || {}).rates || []}
@@ -52,8 +52,8 @@ const PlayerStatsCharts = (props) => {
                             { scatterKey: "section", fill: "#528b6e", stroke: "#d4c783" }
                         ]}
                     />
-                </Col>
-                <Col className="col-6 p-1">
+                </div>
+                <div className="col-12 col-xl-6 ">
                     <StatsBarChart title="Score Ranges"
                         subtitle="X01"
                         data={(playerStats || {}).scoreRanges || []}
@@ -63,9 +63,9 @@ const PlayerStatsCharts = (props) => {
                             { barKey: "count", xKey: "range", fill: "#528b6e" }
                         ]}
                     />
-                </Col>
-            </Row>
-        </Fragment>
+                </div>
+            </div>
+        </div>
     );
 };
 

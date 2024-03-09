@@ -1,6 +1,4 @@
-import {
-    Card
-} from 'react-bootstrap';
+import { Panel } from 'primereact/panel';
 
 const StatsCard = (props) => {
     const {
@@ -10,26 +8,28 @@ const StatsCard = (props) => {
         subvalue
     } = props
 
+    const headerTemplate = () => {
+        return (
+            <div className="p-panel-header">
+                <div>
+                    <div className="text-center fs-6 fw-semibold">{title}</div>
+                    <div className="text-center fs-8 fw-medium">{subtitle}</div>
+                </div>
+            </div>
+        );
+    };
 
     return (
-        <Card className="rounded-0 border-0 bg-secondary w-100">
-            <Card.Body className="m-0 p-0 border-0 rounded-0">
-                <Card.Title className="bg-primary p-2 mb-0 text-shade100 text-center span">
-                    <div className="fs-6 fw-semibold">{title}</div>
-                    <div className="fs-8 mt-1">{subtitle}</div>
-                </Card.Title>
-                <Card.Text as="div" className="p-2 text-shade100 text-center fs-1">
-                    <div className="d-flex flex-column align-items-center p-1 pt-3">
-                        <span className="text-shade100 fs-1">
-                            {value}
-                        </span>
-                        <span className="text-shade700 text-center fs-7">
-                            {subvalue}
-                        </span>
-                    </div>
-                </Card.Text>
-            </Card.Body>
-        </Card>
+        <Panel headerTemplate={headerTemplate} className="h-100 bg-shade900">
+            <div className="d-flex flex-column align-items-center p-1 pt-3">
+                <span className="text-shade100 fs-1">
+                    {value}
+                </span>
+                <span className="text-shade500 text-center fs-7 fw-semibold">
+                    {subvalue}
+                </span>
+            </div>
+        </Panel>
     )
 };
 

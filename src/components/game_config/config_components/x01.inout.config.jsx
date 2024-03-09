@@ -21,7 +21,7 @@ const X01InOutConfig = (props) => {
                                 onChange={(e) => onInOutChange('legInMode', e.value)}
                                 optionLabel="value"
                                 options={SetsLegsConfigOptions.legInOptions.values}
-                                className="p-selectbutton-pills"
+                                className="p-selectbutton-pills flex-wrap"
                             />
                         </div>
                     </div>
@@ -35,7 +35,7 @@ const X01InOutConfig = (props) => {
                                 onChange={(e) => onInOutChange('legOutMode', e.value)}
                                 optionLabel="value"
                                 options={SetsLegsConfigOptions.legOutOptions.values}
-                                className="p-selectbutton-pills"
+                                className="p-selectbutton-pills flex-wrap"
                             />
                         </div>
                     </div>

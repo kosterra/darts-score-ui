@@ -18,7 +18,7 @@ const X01ScoreConfig = (props) => {
                         onChange={(e) => onScoreChange('startingScore', e.value)}
                         optionLabel="value"
                         options={ScoreConfigOptions.gameScoreOptions.values}
-                        className="p-selectbutton-pills"
+                        className="p-selectbutton-pills flex-wrap"
                     />
                 </div>
             </div>

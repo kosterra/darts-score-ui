@@ -61,7 +61,7 @@ const PlayerConfig = (props) => {
                         onChange={(e) => onNumberOfPlayersChange('numberOfPlayers', e.value)}
                         optionLabel="name"
                         options={PlayerConfigOptions.numberOfPlayerOptions.values}
-                        className="p-selectbutton-pills"
+                        className="p-selectbutton-pills flex-wrap"
                     />
                 </div>
                 <p className="text-center text-shade500 fs-6">{'Select ' + numberOfPlayersOption + ' player' + (numberOfPlayersOption > 1 ? 's' : '')}</p>

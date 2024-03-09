@@ -28,8 +28,11 @@ const X01StatsScoreBoardMultiple = (props) => {
                 {game.players.map((player, idx) => (
                     <div key={'player' + idx} className="col d-flex justify-content-center align-items-center">
                         <div className="d-flex flex-column justify-content-center">
-                            <X01StatsScoreBoardPlayer player={players.find(item => item.id == player)} />
-                            <div className="align-self-center fs-1 font-weight-normal">
+                            <X01StatsScoreBoardPlayer
+                                player={players.find(item => item.id == player)}
+                                hasWonGame={game.playerModels[game.players[idx]].hasWonGame}
+                            />
+                            <div className="align-self-center text-shade100 fs-1 fw-semibold">
                                 {game.playerModels[player].setsWon}
                             </div>
                         </div>

@@ -82,6 +82,9 @@ const X01StatsCharts = (props) => {
 
     return (
         <div className="container-fluid overflow-hidden p-0">
+            <span className="d-flex justify-content-center align-items-center text-shade100 fs-4 fw-semibold mb-4 mt-4">
+                X01 Statistics Charts
+            </span>
             <div className="row gy-3 d-flex justify-content-center align-items-center mt-2">
                 <div className="col-12 col-xxl-6">
                     <StatsLineChart title="Averages"

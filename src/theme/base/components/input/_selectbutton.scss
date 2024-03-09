@@ -1,11 +1,17 @@
 .p-selectbutton {
     &.p-selectbutton-pills {
         display: flex;
-        flex-wrap: wrap;
         justify-content: center;
         align-items: center;
         gap: 1rem;
         width: 100%;
+
+        &.min-pills-width {
+
+            .p-button {
+                min-width: 3rem;
+            }
+        }
 
         .p-button {
             background: $toggleButtonPillsBg;

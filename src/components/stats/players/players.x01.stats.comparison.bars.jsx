@@ -1,7 +1,6 @@
-import { Fragment } from 'react'
-import { Container } from 'react-bootstrap'
+import { Panel } from 'primereact/panel';
 
-import ComparisonBar from '../../elements/comparison.bar'
+import ComparisonBar from '../../elements/comparison.bar';
 
 const PlayersX01StatsComparisonBars = (props) => {
     const {
@@ -50,23 +49,28 @@ const PlayersX01StatsComparisonBars = (props) => {
     }
 
     return (
-        <Fragment>
-            <Container className="d-flex flex-column align-items-center mt-4 mb-4 w-100">
-                <ComparisonBar data={getWonGamesData()} />
-                <ComparisonBar data={getRangesData('num180s', '180s')} />
-                <ComparisonBar data={getRangesData('num160plus', '160+')} />
-                <ComparisonBar data={getRangesData('num140plus', '140+')} />
-                {/* <ComparisonBar data={getRangesData('160+', '180')} /> */}
-                {/* <ComparisonBar data={ getRangesData('160+', '160-179') } /> */}
-                {/* <ComparisonBar data={ getRangesData('140+', '140-159') } /> */}
-                {/* <ComparisonBar data={ getRangesData('120+', '120-139') } /> */}
-                {/* <ComparisonBar data={ getRangesData('100+', '100-119') } /> */}
-                <ComparisonBar data={getAverageData('overall', 'Overall Average')} />
-                <ComparisonBar data={getAverageData('dartsPerLeg', 'AVG Darts per Leg')} />
-                <ComparisonBar data={getCheckoutData()} />
-                <ComparisonBar data={getHighestCheckoutData()} />
-            </Container>
-        </Fragment>
+        <div>
+            <span className="d-flex justify-content-center align-items-center text-shade100 fs-4 fw-semibold mb-4 mt-4">
+                X01 Statistics
+            </span>
+            <Panel>
+                <div className="d-flex flex-column align-items-center p-4">
+                    <ComparisonBar data={getWonGamesData()} />
+                    <ComparisonBar data={getRangesData('num180s', '180s')} />
+                    <ComparisonBar data={getRangesData('num160plus', '160+')} />
+                    <ComparisonBar data={getRangesData('num140plus', '140+')} />
+                    {/* <ComparisonBar data={getRangesData('160+', '180')} /> */}
+                    {/* <ComparisonBar data={ getRangesData('160+', '160-179') } /> */}
+                    {/* <ComparisonBar data={ getRangesData('140+', '140-159') } /> */}
+                    {/* <ComparisonBar data={ getRangesData('120+', '120-139') } /> */}
+                    {/* <ComparisonBar data={ getRangesData('100+', '100-119') } /> */}
+                    <ComparisonBar data={getAverageData('overall', 'Overall Average')} />
+                    <ComparisonBar data={getAverageData('dartsPerLeg', 'AVG Darts per Leg')} />
+                    <ComparisonBar data={getCheckoutData()} />
+                    <ComparisonBar data={getHighestCheckoutData()} />
+                </div>
+            </Panel>
+        </div>
     );
 };
 

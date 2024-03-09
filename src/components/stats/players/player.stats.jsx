@@ -1,8 +1,4 @@
-import { Fragment, useState, useEffect } from 'react'
-import {
-    Col,
-    Container
-} from 'react-bootstrap'
+import { useState, useEffect } from 'react'
 
 import PlayerOverallStats from './player.overall.stats'
 import StatsService from '../../../services/stats.service'
@@ -33,36 +29,42 @@ const PlayerStats = () => {
     }, [players]);
 
     return (
-        <Fragment>
-            <Container className="d-flex justify-content-md-center align-items-top w-25">
-                <PlayerSelect
-                    idx={0}
-                    onSelect={onSelectPlayer}
-                    onDelete={onDeletePlayer}
-                />
-            </Container>
-            {players && (players.filter(player => player != null).length == 1) &&
-                <div className="p-2 container">
-                    {players && players[0] &&
-                        <Container>
-                            <Col>
-                                <span className="d-flex justify-content-center align-items-center fs-4 fw-semibold mb-4 mt-4">Game Statistics</span>
-                                <PlayerOverallStats playerStats={playerStats} />
-                            </Col>
-                            <Col>
-                                <span className="d-flex justify-content-center align-items-center fs-4 fw-semibold mb-4 mt-4">X01 Statistics Charts</span>
-                                <PlayerStatsCharts playerStats={playerStats} players={players} />
-                            </Col>
-                        </Container>
-                    }
+        <div className="container-fluid p-4 pt-0 border-0">
+            <div className="row d-flex justify-content-center align-items-center">
+                <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8" >
+                    <div className="row d-flex justify-content-center align-items-center p-4 bg-shade900">
+                        <div className="col-xs-12 col-sm-12 col-md-10 col-lg-6 col-xxl-4" >
+                            <PlayerSelect
+                                idx={0}
+                                onSelect={onSelectPlayer}
+                                onDelete={onDeletePlayer}
+                            />
+                        </div>
+                    </div>
                 </div>
+            </div>
+            {players && players[0] && (players.filter(player => player != null).length == 1) &&
+                <>
+                    <div className="row d-flex justify-content-center align-items-center">
+                        <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8 p-0" >
+                            <PlayerOverallStats playerStats={playerStats} />
+                        </div>
+                    </div>
+                    <div className="row d-flex justify-content-center align-items-center">
+                        <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8 p-0" >
+                            <PlayerStatsCharts playerStats={playerStats} players={players} />
+                        </div>
+                    </div>
+                </>
             }
             {players && (players.filter(player => player != null).length != 1) &&
                 <div className="d-flex justify-content-center mt-4">
-                    <span className="empty-text text-shade700">Please select a player to show the statistics</span>
+                    <span className="empty-text text-shade500">
+                        Please select a player to show the statistics
+                    </span>
                 </div>
             }
-        </Fragment>
+        </div>
     );
 }
 

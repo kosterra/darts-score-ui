@@ -266,7 +266,7 @@ $colorPickerBorder: 1px solid $shade600 !default;
 $colorPickerHandleColor: $shade000 !default;
 
 //togglebutton
-$toggleButtonBg: $shade800 !default;
+$toggleButtonBg: $shade700 !default;
 $toggleButtonBorder: 0 !default;
 $toggleButtonTextColor: $shade000 !default;
 $toggleButtonIconColor: $shade100 !default;
@@ -882,6 +882,12 @@ $imagePreviewActionIconWidth: 3rem !default;
 $imagePreviewActionIconHeight: 3rem !default;
 $imagePreviewActionIconFontSize: 1.5rem !default;
 $imagePreviewActionIconBorderRadius: 50% !default;
+
+//toolbar
+$toolbarBg: $shade800 !default;
+$toolbarBorder: none !default;
+$toolbarBorderRadius: 0px !default;
+$toolbarPadding: $panelHeaderPadding !default;
 
 :root {
 	font-family: "Exo", sans-serif;

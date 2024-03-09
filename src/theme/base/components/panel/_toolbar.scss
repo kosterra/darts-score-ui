@@ -1,8 +1,8 @@
 .p-toolbar {
-    background: $panelHeaderBg;
-    border: $panelHeaderBorder;
-    padding: $panelHeaderPadding;
-    border-radius: $borderRadius;
+    background: $toolbarBg;
+    border: $toolbarBorder;
+    padding: $toolbarPadding;
+    border-radius: $toolbarBorderRadius;
     gap: $inlineSpacing;
 
     .p-toolbar-separator {
