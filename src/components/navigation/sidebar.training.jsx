@@ -1,14 +1,8 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { BsClockHistory } from "react-icons/bs";
+import { Menu, MenuItem } from 'react-pro-sidebar';
 
-import {
-    Menu,
-    MenuItem
-} from 'react-pro-sidebar';
-
-import {
-    BsClockHistory
-} from "react-icons/bs";
 
 const SidebarTraining = (props) => {
     const { collapsed } = props;
@@ -16,15 +10,15 @@ const SidebarTraining = (props) => {
     return (
         <Fragment>
             {collapsed &&
-                <hr className="text-gray-600 my-1" />
+                <hr className="menu-divider my-1" />
             }
             {!collapsed &&
-                <div className="text-gray-600 fw-semibold fs-8 ps-4 pt-2">
+                <div className="menu-subtitle fw-semibold fs-8 ps-4 pt-2">
                     Training
                 </div>
             }
             <Menu>
-                <MenuItem icon={<BsClockHistory />} component={<Link to="/x01" />} className="fs-8 fw-semibold">
+                <MenuItem icon={<BsClockHistory className="fs-6" />} component={<Link to="/x01" />} className="fs-8 fw-semibold">
                     Around the clock
                 </MenuItem>
             </Menu>

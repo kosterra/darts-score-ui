@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { GiDart } from "react-icons/gi";
 
 import {
     Menu,
@@ -11,28 +12,26 @@ import {
     FaUserPen
 } from "react-icons/fa6";
 
-import { GiDart } from "react-icons/gi";
-
 const SidebarAdmin = (props) => {
     const { collapsed } = props;
 
     return (
         <Fragment>
             {collapsed &&
-                <hr className="text-gray-600 my-1" />
+                <hr className="menu-divider my-1" />
             }
             {!collapsed &&
-                <div className="text-gray-600 fw-semibold fs-8 ps-4 py-2 pt-4">
+                <div className="menu-subtitle fw-semibold fs-8 ps-4 py-2 pt-4">
                     Admin
                 </div>
             }
             <Menu>
-                <MenuItem icon={<FaUserPen />} component={<Link to="/admin/players" />} className="fs-8 fw-semibold">
+                <MenuItem icon={<FaUserPen className="fs-6" />} component={<Link to="/admin/players" />} className="fs-8 fw-semibold">
                     Players
                 </MenuItem>
                 <SubMenu
                     label="Games"
-                    icon={<GiDart />}
+                    icon={<GiDart className="fs-6" />}
                     className="fs-8 fw-semibold"
                 >
                     <MenuItem component={<Link to="/admin/games/x01" />} className="fs-8 fw-semibold"> X01</MenuItem>

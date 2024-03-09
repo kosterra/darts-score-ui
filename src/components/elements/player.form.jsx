@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useFormik } from 'formik';
+import { Button } from 'primereact/button';
+import { Dialog } from 'primereact/dialog';
+import { InputText } from 'primereact/inputtext';
+import { classNames } from 'primereact/utils';
 import { toast } from 'react-toastify';
-
-import {
-    Modal,
-    Button,
-    FloatingLabel,
-    Form
-} from 'react-bootstrap';
 
 import ImageUploader from './image.uploader';
 import PlayerService from '../../services/player.service';
@@ -22,49 +20,52 @@ const PlayerForm = (props) => {
 
     const initialState = updatePlayer ? updatePlayer : PlayerModel;
 
-    const [showModal, setShowModal] = useState(false);
-    const [validated, setValidated] = useState(false);
-
-    const handleCloseModal = () => setShowModal(false);
-    const handleShowModal = () => setShowModal(true);
-
-    const [player, setPlayer] = useState(initialState);
+    const [showDialog, setShowDialog] = useState(false);
     const [previewUrl, setPreviewUrl] = useState(edit ? updatePlayer.profileImg : '');
 
     const onFileChange = (file) => {
         setPreviewUrl(URL.createObjectURL(file));
-        setPlayer((player) => ({
-            ...player,
-            profileImg: file
-        }));
+        formik.setFieldValue(
+            "profileImg",
+            file
+        );
     }
 
     const onFileDelete = () => {
         setPreviewUrl("");
-        setPlayer((player) => ({
-            ...player,
-            profileImg: ''
-        }));
+        formik.values.profileImg = '';
     }
 
-    const handleChange = (event) => {
-        setPlayer((player) => ({
-            ...player,
-            [event.target.name]: event.target.value,
-        }));
-    };
+    const formik = useFormik({
+        initialValues: {
+            firstname: initialState.firstname,
+            lastname: initialState.lastname,
+            nickname: initialState.nickname,
+            profileImg: '',
+            id: initialState.id
+        },
+        validate: (data) => {
+            let errors = {};
 
-    const handleSubmit = async (event) => {
-        if (!validate()) {
-            event.preventDefault();
-            event.stopPropagation();
-            setValidated(true);
-        } else {
-            setValidated(true);
+            if (!data.firstname) {
+                errors.firstname = 'Firstname is required';
+            }
+
+            if (!data.lastname) {
+                errors.lastname = 'Lastname is required';
+            }
+
+            if (!data.nickname) {
+                errors.nickname = 'Nickname is required';
+            }
+
+            return errors;
+        },
+        onSubmit: async (data) => {
             if (edit) {
                 try {
-                    if (await PlayerService.updatePlayer(player)) {
-                        setValidated(false);
+                    if (await PlayerService.updatePlayer(data)) {
+                        toast.success('Successfully updated player: ' + data.nickname);
                         onPlayerEdit();
                     }
                 } catch (error) {
@@ -72,98 +73,113 @@ const PlayerForm = (props) => {
                 }
             } else {
                 try {
-                    if (await PlayerService.createPlayer(player)) {
-                        setPlayer(PlayerModel);
-                        setPreviewUrl("");
-                        setValidated(false);
+                    if (await PlayerService.createPlayer(data)) {
+                        toast.success('Successfully created player: ' + data.nickname);
                         onPlayerAdd();
                     }
                 } catch (error) {
                     toast.error('Failed to create new player: ' + error);
                 }
             }
-            setShowModal(false);
+            formik.resetForm();
+            setPreviewUrl("");
         }
+    });
+
+    const isFormFieldInvalid = (name) => !!(formik.touched[name] && formik.errors[name]);
+
+    const getFormErrorMessage = (name) => {
+        return isFormFieldInvalid(name) ? <small className="p-error">{formik.errors[name]}</small> : <small className="p-error">&nbsp;</small>;
+    };
+
+    const cancelForm = () => {
+        formik.resetForm();
+        setPreviewUrl("");
+        setShowDialog(false);
     }
 
-    const validate = () =>{
-        return player.firstname && player.firstname.length > 2 && player.firstname.length <= 25 &&
-            player.lastname && player.lastname.length > 2 && player.lastname.length <= 25 &&
-            player.nickname && player.nickname.length > 2 && player.nickname.length <= 25;
-    }
+
+    const footerContent = (
+        <div className="d-flex justify-content-end align-items-end gap-3">
+            <Button type="button" label="Close" icon="pi pi-times" severity="secondary" onClick={cancelForm} />
+            <Button type="submit" label={edit ? 'Update' : 'Create'} icon="pi pi-save" />
+        </div>
+    );
 
     return (
-        <div className={`justify-content-md-center align-items-center`}>
-            <Modal show={ showModal }
-                onHide={ handleCloseModal }
-                fullscreen={ false }
-                aria-labelledby="contained-modal-title-vcenter"
-                centered>
-                <Form
-                    noValidate
-                    validated={ validated }>
-                    <Modal.Header closeButton closeVariant="white">
-                        <Modal.Title className="h6">
-                            { edit ? 'Update Player' : 'Add New Player' }
-                        </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <ImageUploader
-                            name={ player.firstname + ' ' + player.lastname }
-                            previewUrl={ previewUrl }
-                            onFileChange={ onFileChange }
-                            onFileDelete={ onFileDelete }
-                        />
-                        <FloatingLabel controlId="floatingFirstname" label="Firstname" className="mt-3 mb-3">
-                            <Form.Control
-                                name="firstname"
-                                required
-                                type="text"
-                                value={player.firstname}
-                                onChange={handleChange}
-                                minLength={3}
-                                maxLength={25} />
-                            <Form.Control.Feedback type="invalid">Between 3 and 25 characters required</Form.Control.Feedback>
-                        </FloatingLabel>
-                        <FloatingLabel controlId="floatingLastname" label="Lastname" className="mb-3">
-                            <Form.Control
-                                name="lastname"
-                                required
-                                type="text"
-                                value={player.lastname}
-                                onChange={handleChange}
-                                minLength={3}
-                                maxLength={25} />
-                            <Form.Control.Feedback type="invalid">Between 3 and 25 characters required</Form.Control.Feedback>
-                        </FloatingLabel>
-                        <FloatingLabel controlId="floatingNickname" label="Nickname" className="mb-3">
-                            <Form.Control
-                                name="nickname"
-                                required
-                                type="text"
-                                value={player.nickname}
-                                onChange={handleChange}
-                                minLength={3}
-                                maxLength={25} />
-                            <Form.Control.Feedback type="invalid">Between 3 and 25 characters required</Form.Control.Feedback>
-                        </FloatingLabel>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="tertiary" onClick={handleCloseModal} className="p-2">
-                            <i className="fas fa-times px-2"></i>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={handleSubmit} className="p-2">
-                            <i className="fas fa-save px-2"></i>
-                            { edit ? 'Update' : 'Create' }
-                        </Button>
-                    </Modal.Footer>
-                </Form>
-            </Modal>
+        <div>
+            <Dialog
+                header={edit ? 'Update Player' : 'Add New Player'}
+                visible={showDialog}
+                blockScroll={true}
+                onHide={() => setShowDialog(false)}
+                className="m-4"
+            >
+                <form onSubmit={formik.handleSubmit} className="flex flex-column gap-2">
+                    <div className="row">
+                        <div className="col-12 d-flex justify-content-center">
+                            <ImageUploader
+                                name={formik.values.firstname + ' ' + formik.values.lastname}
+                                previewUrl={previewUrl}
+                                onFileChange={onFileChange}
+                                onFileDelete={onFileDelete}
+                            />
+                        </div>
+                        <div className="col d-flex flex-column justify-content-center align-items-center p-2 pt-4 gap-4">
+                            <div className="py-1 w-100 w-sm-50">
+                                <span className="p-float-label w-100">
+                                    <InputText
+                                        id="firstname"
+                                        value={formik.values.firstname}
+                                        onChange={(e) => {
+                                            formik.setFieldValue('firstname', e.target.value);
+                                        }}
+                                        className={classNames('w-100', { 'p-invalid': isFormFieldInvalid('firstname') })}
+                                    />
+                                    <label htmlFor="firstname">Firstname</label>
+                                </span>
+                                {getFormErrorMessage('firstname')}
+                            </div>
+                            <div className="py-1 w-100 w-sm-50">
+                                <span className="p-float-label w-100">
+                                    <InputText
+                                        id="lastname"
+                                        value={formik.values.lastname}
+                                        onChange={(e) => {
+                                            formik.setFieldValue('lastname', e.target.value);
+                                        }}
+                                        className={classNames('w-100', { 'p-invalid': isFormFieldInvalid('lastname') })}
+                                    />
+                                    <label htmlFor="lastname">Lastname</label>
+                                </span>
+                                {getFormErrorMessage('lastname')}
+                            </div>
+                            <div className="py-1 w-100 w-sm-50">
+                                <span className="p-float-label w-100">
+                                    <InputText
+                                        id="nickname"
+                                        value={formik.values.nickname}
+                                        onChange={(e) => {
+                                            formik.setFieldValue('nickname', e.target.value);
+                                        }}
+                                        className={classNames('w-100', { 'p-invalid': isFormFieldInvalid('nickname') })}
+                                    />
+                                    <label htmlFor="nickname">Nickname</label>
+                                </span>
+                                {getFormErrorMessage('nickname')}
+                            </div>
+                        </div>
+                        {footerContent}
+                    </div>
+                </form>
+            </Dialog>
+
             <div className="d-flex justify-content-center">
-                <Button variant="primary" className="text-white m-0" onClick={handleShowModal}>
-                    <i className={`fas ${edit ? 'fa-edit' : 'fa-user-plus px-2'}`}></i>
-                </Button>
+                <Button
+                    severity="primary"
+                    icon={edit ? 'pi pi-user-edit' : 'pi pi-user-plus'}
+                    onClick={() => setShowDialog(true)}
+                />
             </div>
         </div>
     );

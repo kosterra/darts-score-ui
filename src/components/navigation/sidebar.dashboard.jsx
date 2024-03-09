@@ -1,14 +1,12 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { MdDashboard } from "react-icons/md";
 
 import {
     Menu,
     MenuItem
 } from 'react-pro-sidebar';
 
-import {
-    MdDashboard
-} from "react-icons/md";
 
 const SidebarDashboard = (props) => {
     const { collapsed } = props;
@@ -16,10 +14,10 @@ const SidebarDashboard = (props) => {
     return (
         <Fragment>
             {collapsed &&
-                <hr className="text-gray-600 my-1" />
+                <hr className="menu-divider my-1" />
             }
             <Menu>
-                <MenuItem icon={<MdDashboard />} component={<Link to="/" />} className="fs-8 fw-semibold">
+                <MenuItem icon={<MdDashboard className="fs-6" />} component={<Link to="/" />} className="fs-8 fw-semibold">
                     Dashboard
                 </MenuItem>
             </Menu>

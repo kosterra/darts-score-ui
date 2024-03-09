@@ -1,5 +1,7 @@
-import React, { useState, useRef } from "react";
-import Avatar from 'react-avatar';
+import { useState, useRef } from "react";
+import { Avatar } from 'primereact/avatar';
+import { Button } from 'primereact/button';
+import { FaTrash } from "react-icons/fa";
 
 const ImageUploader = (props) => {
 
@@ -45,31 +47,34 @@ const ImageUploader = (props) => {
 
     return (
         <div className="file-upload d-flex flex-column justify-content-center align-items-center">
-            <div>
+            <div className="position-relative">
                 <Avatar
-                    name={name}
-                    src={previewUrl}
-                    size="120"
-                    round={true}
-                    color="#565656"
-                    textSizeRatio={2}
+                    label={name.split(" ").map((n) => n[0]).join("")}
+                    image={previewUrl}
+                    shape="circle"
+                    size="xlarge"
+                    style={{ width: '10rem', height: '10rem' }}
                 />
                 {previewUrl &&
-                    <span
-                        className="delete-file text-gray-700 py-1 px-2 bg-tertiary rounded-circle"
-                        onClick={handleOnFileDelete}>
-                        <i className="fas fa-trash fs-8"></i>
+                    <span className="position-absolute top-85 start-85 translate-middle">
+                        <Button
+                            type="button"
+                            severity="danger"
+                            rounded aria-label="Delete Profile Image"
+                            onClick={handleOnFileDelete}>
+                            <FaTrash />
+                        </Button>
                     </span>
                 }
             </div>
             <div
-                className={`drop-zone mt-3 p-3 border-dotted-grey pe-auto ${isDragging ? 'is-dragging' : ''}`}
+                className={`drop-zone m-3 p-4 border border-shade600 rounded-1 pe-auto ${isDragging ? 'is-dragging' : ''}`}
                 onDragOver={handleOnDragOver}
                 onDragLeave={handleOnDragLeave}
                 onDrop={handleOnDrop}
                 onClick={() => fileInput.current.click()}
             >
-                <span className="fs-8 text-gray-700"><ins>Upload</ins> or Drag and drop image</span>
+                <span className="fs-7 text-shade600"><ins>Upload</ins> or Drag and drop image</span>
                 <input
                     type="file"
                     accept="image/png, image/jpg, image/jpeg"

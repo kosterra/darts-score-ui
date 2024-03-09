@@ -1,13 +1,18 @@
-import React, { Fragment, useEffect, useReducer } from 'react';
+import { Fragment, useEffect, useReducer } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
+
+import CricketContext from './cricket.context';
+import CricketReducer from './cricket.reducer';
+import CricketService from '../services/cricket.service';
+import CricketReturnToPreviousPlayer from './cricket.return.to.previous.player';
+import PlayerService from '../services/player.service';
+
 import {
   validateDartValue,
   cricketGetCurrentScore
 } from './game.utils';
 
-import CricketContext from './cricket.context';
-import CricketReducer from './cricket.reducer';
 import {
   FETCH_GAME_SUCCESS,
   FETCH_PLAYERS_SUCCESS,
@@ -23,10 +28,6 @@ import {
   GAME_HAS_WINNER,
   RETURN_PREV_PLAYER
 } from './constants';
-
-import CricketService from '../services/cricket.service';
-import CricketReturnToPreviousPlayer from './cricket.return.to.previous.player';
-import PlayerService from '../services/player.service';
 
 const CricketState = props => {
   const { id } = useParams();
