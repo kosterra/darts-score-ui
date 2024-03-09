@@ -9,26 +9,12 @@
 
 // Custom Components
 @import 'custom/components/_sidebar';
+@import 'custom/components/_charts';
+@import 'custom/components/_dartboard';
+@import 'custom/components/_fileupload';
 
 @layer bootstrap {
     @import '_bootstrap';
-
-    // custom components - to be deleted later
-    @import 'custom/components/_button';
-    @import 'custom/components/_cardlist';
-    @import 'custom/components/_charts';
-    @import 'custom/components/_checkbox';
-    @import 'custom/components/_dartboard';
-    @import 'custom/components/_dropdown';
-    @import 'custom/components/_fileupload';
-    @import 'custom/components/_form';
-    @import 'custom/components/_input';
-    @import 'custom/components/_modal';
-    @import 'custom/components/_multiselect';
-    @import 'custom/components/_navigation';
-    @import 'custom/components/_progressbar';
-    @import 'custom/components/_select';
-    // end custom components - to be deleted later
 }
 
 @layer primereact {
