@@ -1,9 +1,8 @@
-import { useState } from 'react';
-import { Container, Form } from 'react-bootstrap';
-import { AsyncTypeahead } from 'react-bootstrap-typeahead';
+import { useState, useEffect } from 'react';
+import { Avatar } from 'primereact/avatar';
+import { AutoComplete } from "primereact/autocomplete";
 
-
-import SelectableCard from './selectable.card';
+import PlayerCard from './player.card';
 import PlayerService from '../../services/player.service';
 
 const PlayerSelect = (props) => {
@@ -13,16 +12,12 @@ const PlayerSelect = (props) => {
         onDelete
     } = props
 
-    const [isLoading, setIsLoading] = useState(false);
     const [players, setPlayers] = useState([]);
     const [selectedPlayers, setSelectedPlayers] = useState([]);
 
-    const handleSearch = async (query) => {
-        setIsLoading(true);
-        let data = await PlayerService.loadPlayers(query);
-        setPlayers(data);
-        setIsLoading(false);
-    };
+    const handleSearch = (event) => {
+        loadPlayers(event.query);
+    }
 
     const handleChange = selections => {
         if (selections && selections.length > 0) {
@@ -35,48 +30,54 @@ const PlayerSelect = (props) => {
         }
     }
 
-    // Bypass client-side filtering by returning `true`. Results are already
-    // filtered by the search endpoint, so no need to do it again.
-    const filterBy = () => true;
+    const loadPlayers = async (searchTerm) => {
+        let data = await PlayerService.loadPlayers(searchTerm);
+        setPlayers(data);
+    };
+
+    const itemTemplate = (player) => {
+        return (
+            <div className="d-flex">
+                <span>
+                    <Avatar
+                        label={(player.firstname + ' ' + player.lastname).split(" ").map((n) => n[0]).join("")}
+                        image={player.profileImg}
+                        shape="circle"
+                        size="large"
+                        className="bg-shade700 m-2 me-2"
+                    />
+                </span>
+                <span className="d-flex flex-column justify-content-center ms-4">
+                    <span className="fs-6 fw-semibold">{player.nickname}</span>
+                    <span className="text-shade500 fs-7 fw-semibold">{player.firstname + ' ' + player.lastname}</span>
+                </span>
+            </div>
+        );
+    };
+
+    useEffect(() => {
+        loadPlayers('');
+    }, []);
 
     return (
-        <Container className={`px-1 p-0 selectable-card-list card-list`}>
-            <SelectableCard
-                item={selectedPlayers[0]}
-                isSelected={false}
-                selectable={false}
-                cssClass='bg-gray-900' />
-            <Form.Group className="mt-3">
-                <AsyncTypeahead
-                    multiple
-                    id="player-select"
-                    labelKey="nickname"
-                    filterBy={filterBy}
-                    isLoading={isLoading}
-                    onSearch={handleSearch}
-                    onChange={selections => handleChange(selections)}
-                    options={players}
-                    placeholder="Choose a Player..."
-                    selected={selectedPlayers}
-                    minLength={2}
-                    renderMenuItemChildren={(player) => (
-                        <div className="d-flex">
-                            <span>
-                                <img
-                                    alt={player.nickname}
-                                    src={player.profileImg}
-                                    className="dropdown-item-img"
-                                />
-                            </span>
-                            <span className="d-flex flex-column justify-content-center ms-4">
-                                <span className="fs-6">{player.nickname}</span>
-                                <span className="text-white fs-8 font-weight-normal">{player.firstname + ' ' + player.lastname}</span>
-                            </span>
-                        </div>
-                    )}
-                />
-            </Form.Group>
-        </Container>
+        <div className="container px-1 p-0">
+            <PlayerCard
+                player={selectedPlayers.length > 0 ? selectedPlayers[0] : null}
+            />
+            <AutoComplete
+                field="nickname"
+                multiple
+                selectionLimit={1}
+                value={selectedPlayers}
+                suggestions={players}
+                minLength={3}
+                completeMethod={handleSearch}
+                onChange={(e) => handleChange(e.value)}
+                itemTemplate={itemTemplate}
+                placeholder="Select a Player"
+                className="full-width mt-3"
+            />
+        </div>
     );
 }
 

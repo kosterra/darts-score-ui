@@ -8,7 +8,7 @@ const CricketModel = {
   numberOfPlayers: PlayerConfigOptions.numberOfPlayerOptions.default,
   players: [],
   currentPlayerTurn: '',
-  currentThrow: ['','',''],
+  currentThrow: ['', '', ''],
   allThrows: [],
   playerModels: {}
 }

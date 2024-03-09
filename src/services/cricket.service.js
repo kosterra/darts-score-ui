@@ -29,7 +29,7 @@ const createCricket = async (game) => {
 const loadRunningCricketGames = async () => {
     let data = await loadAllCricketGames();
     return data.filter(game => game.gameIsRunning).sort((a,b)=>{
-        return new Date(a.updatedAt) - new Date(b.updatedAt);
+        return new Date(b.updatedAt) - new Date(a.updatedAt);
     });
 }
 

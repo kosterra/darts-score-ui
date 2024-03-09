@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import logo from '/logo.svg';
 
 const SidebarHeader = (props) => {
@@ -17,7 +17,7 @@ const SidebarHeader = (props) => {
           className="d-inline-block"
         />
         {!collapsed &&
-          <span className="ps-3 text-white fw-semibold fs-7">Darts Score</span>
+          <span className="ps-3 fw-semibold fs-7">Darts Score</span>
         }
       </div>
     </Fragment>

@@ -1,76 +1,63 @@
-import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import { Panel } from 'primereact/panel';
+import { Card } from 'primereact/card';
+
+import { FaEnvelope, FaReact, FaExternalLinkAlt } from "react-icons/fa";
+
+import { SiVite, SiBootstrap } from "react-icons/si";
 
 const AboutCard = () => {
+
+    const renderFooter = (link) => {
+        return (
+            <div className="d-flex justify-content-end">
+                <a href={link} target="_blank" rel="noopener noreferrer" className="p-button font-bold">
+                    <FaExternalLinkAlt className="fs-6" />
+                </a>
+            </div>
+        );
+    };
+
     return (
-        <Col className="d-flex justify-content-center">
-            <Card bg="secondary" className="rounded-0 border-0 p-0" style={{ width: "50rem" }}>
-                <Card.Body className="m-0 p-0 border-0 rounded-0">
-                    <Card.Title className="bg-primary py-3 mb-0 text-white text-center span">
-                        About
-                    </Card.Title>
-                    <Card.Text as="div" className="d-flex flex-column align-items-center justify-content-center py-2 text-white">
-                        <Row>
-                            <Col className="mt-3">
-                                <span className="fs-6 fw-semibold">
-                                    Built using
-                                </span>
-                            </Col>
-                        </Row>
-                        <Row className="w-75 mb-3">
-                            <Col className="mt-3">
-                                <Row>
-                                    <Col className="d-flex flex-column justify-content-center align-items-center">
-                                        <i className="fab fa-react display-5"></i>
-                                        <span className="text-center">
-                                            <a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer">React</a>
-                                        </span>
-                                    </Col>
-                                </Row>
-                            </Col>
-                            <Col className="mt-3">
-                                <Row>
-                                    <Col className="d-flex flex-column justify-content-center align-items-center">
-                                        <i className="fab fa-google display-5"></i>
-                                        <span className="text-center">
-                                            <a href="https://fonts.google.com/" target="_blank" rel="noopener noreferrer">Google Fonts</a>
-                                        </span>
-                                    </Col>
-                                </Row>
-                            </Col>
-                            <Col className="mt-3">
-                                <Row>
-                                    <Col className="d-flex flex-column justify-content-center align-items-center">
-                                        <i className="fab fa-font-awesome display-5"></i>
-                                        <span className="text-center">
-                                            <a href="https://fontawesome.com/" target="_blank" rel="noopener noreferrer">Font Awesome</a>
-                                        </span>
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="mt-4">
-                                <span className="fs-6 fw-semibold">
-                                    Contact
-                                </span>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="mt-4 mb-3">
-                                <Button href="mailto:rkoster@gmx.ch" variant="primary">
-                                    <i className="fas fa-envelope me-2"></i>
-                                    E-Mail
-                                </Button>
-                            </Col>
-                        </Row>
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-        </Col>
+        <Panel header="About" className="panel-brighter-bg w-100 w-md-75 w-xxl-50 mx-auto" >
+            <div className="d-flex justify-content-center my-4 fs-5 fw-semibold">Built using</div>
+            <div className="row">
+                <div className="col col-12 col-xl-6 my-2">
+                    <Card title="Vite" subTitle="Next Generation Frontend Tooling" footer={renderFooter('https://vitejs.dev/')}>
+                        <span className="d-flex justify-content-center m-0 display-1">
+                            <SiVite />
+                        </span>
+                    </Card>
+                </div>
+                <div className="col col-12 col-xl-6 my-2">
+                    <Card title="React" subTitle="The library for web and native user interfaces" footer={renderFooter('https://reactjs.org/') }>
+                        <span className="d-flex justify-content-center m-0 display-1">
+                            <FaReact />
+                        </span>
+                    </Card>
+                </div>
+                <div className="col col-12 col-xl-6 my-2">
+                    <Card title="PrimeReact" subTitle="The Most Complete UI Suite for React.js" footer={renderFooter('https://primereact.org/')}>
+                        <span className="d-flex justify-content-center m-0">
+                            <i className="pi pi-prime display-1" />
+                        </span>
+                    </Card>
+                </div>
+                <div className="col col-12 col-xl-6 my-2">
+                    <Card title="Bootstrap" subTitle="A powerful frontend toolkit" footer={renderFooter('https://getbootstrap.com/')}>
+                        <span className="d-flex justify-content-center m-0 display-1">
+                            <SiBootstrap />
+                        </span>
+                    </Card>
+                </div>
+            </div>
+            <div className="d-flex justify-content-center my-4 fs-5 fw-semibold">Contact</div>
+            <div className="d-flex justify-content-center">
+                <a href="mailto:rkoster@gmx.ch" className="p-button font-bold">
+                    <FaEnvelope className="pe-2 fs-3" />
+                    E-Mail
+                </a>
+            </div>
+        </Panel>
     );
 };
 
