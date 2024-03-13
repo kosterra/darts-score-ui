@@ -99,7 +99,7 @@ const PlayersList = (props) => {
     const listItem = (player, index) => {
         return (
             <div className="col-12" key={'list-item-' + index}>
-                <Panel className="darker-bg">
+                <Panel className="panel-brighter-bg">
                     <div className="container-fluid overflow-hidden">
                         <div className="row gy-4">
                             <div className="col-12 col-md-8">
@@ -146,7 +146,7 @@ const PlayersList = (props) => {
     const gridItem = (player, index) => {
         return (
             <div className="col-12 col-sm-6 col-lg-4 col-xl-3" key={'grid-item-' + index}>
-                <Panel header={player.nickname} className="darker-bg">
+                <Panel header={player.nickname} className="panel-brighter-bg">
                     <div className="row">
                         <div className="d-flex flex-column justify-content-center align-items-center">
                             <Avatar

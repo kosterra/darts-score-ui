@@ -27,7 +27,7 @@ const GamesTimeline = (props) => {
             <Card
                 title={game.startingScore}
                 subTitle={player.nickname}
-                className="timeline-card bg-shade800 mb-3 p-1">
+                className="timeline-card mb-3 p-1">
                 <div className="d-flex align-items-center justify-content-center">
                     <div className="position-relative">
                         <Avatar
