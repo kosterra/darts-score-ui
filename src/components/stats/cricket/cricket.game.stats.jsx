@@ -15,7 +15,7 @@ const CricketGameStats = () => {
 
     const loadData = async () => {
         let game = await CricketService.loadCricket(id);
-        let players = await PlayerService.loadPlayers();
+        let players = await PlayerService.findPlayersByIds(game.players);
         //let gameStats = await StatsService.loadCricketGameStats(game.id);
 
         setGame(game);

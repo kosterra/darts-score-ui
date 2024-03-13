@@ -12,9 +12,6 @@ const PlayerStatsCharts = (props) => {
     return (
         <div className="container overflow-hidden p-0">
             <div className="row gy-4 mt-4 d-flex space-between">
-                <span className="d-flex justify-content-center align-items-center text-shade100 fs-4 fw-semibold mb-4 mt-4">
-                    X01 Statistics Charts
-                </span>
                 <div className="col-12 col-xl-6">
                     <StatsAreaChart title="Average"
                         subtitle="X01"

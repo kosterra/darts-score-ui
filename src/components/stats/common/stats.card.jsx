@@ -5,7 +5,8 @@ const StatsCard = (props) => {
         title,
         subtitle,
         value,
-        subvalue
+        subvalue,
+        className
     } = props
 
     const headerTemplate = () => {
@@ -20,7 +21,7 @@ const StatsCard = (props) => {
     };
 
     return (
-        <Panel headerTemplate={headerTemplate} className="h-100 bg-shade900">
+        <Panel headerTemplate={headerTemplate} className={`h-100 bg-shade900 ${className}`}>
             <div className="d-flex flex-column align-items-center p-1 pt-3">
                 <span className="text-shade100 fs-1">
                     {value}

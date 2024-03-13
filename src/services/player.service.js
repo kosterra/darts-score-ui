@@ -37,9 +37,32 @@ const getPlayer = async (playerId) => {
     }
 }
 
-const loadPlayers = async (searchTerm) => {
+const searchPlayers = async (searchTerm) => {
     try {
         const response = await fetch(API_URL + 'players/search?search=' + (searchTerm ? searchTerm : ''));
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        throw Error(error);
+    }
+}
+
+const findPlayersByIds = async (playerIds) => {
+    let body = {
+        playerIds: playerIds
+    }
+    try {
+        const response = await fetch(API_URL + 'players/find', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
         if (!response.ok) {
             throw Error(response.statusText);
         }
@@ -86,7 +109,8 @@ const deletePlayer = async (playerId) => {
 const PlayerService = {
     createPlayer,
     getPlayer,
-    loadPlayers,
+    searchPlayers,
+    findPlayersByIds,
     updatePlayer,
     deletePlayer
 }

@@ -94,7 +94,7 @@ const X01List = (props) => {
     };
 
     const loadPlayers = async () => {
-        let data = await PlayerService.loadPlayers();
+        let data = await PlayerService.searchPlayers();
         setPlayers(data);
     };
 

@@ -19,7 +19,6 @@
     }
 
     .p-datascroller-content {
-        //background: $tableBodyRowBg;
         color: $tableBodyRowTextColor;
         border: $dataViewContentBorder;
         padding: 0 !important;
@@ -28,7 +27,7 @@
             > li {
                 font-size: 0.9rem;
                 text-align: center;
-                background-color: $tableBodyRowBg;
+                background-color: $datascrollerListItemBg;
                 padding: 0.8rem;
                 margin: 0 0 0.8rem 0;
             }
