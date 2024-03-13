@@ -488,8 +488,8 @@ $editorContentBg: $panelContentBg !default;
 //paginator
 $paginatorBg: $shade900 !default;
 $paginatorTextColor: $shade100 !default;
-$paginatorBorder: none !default;
-$paginatorBorderWidth: 0 !default;
+$paginatorBorder: solid $shade700 !default;
+$paginatorBorderWidth: 0 0 1px 0 !default;
 $paginatorPadding: 0.5rem 1rem !default;
 $paginatorElementWidth: $buttonIconOnlyWidth !default;
 $paginatorElementHeight: $buttonIconOnlyWidth !default;
@@ -553,8 +553,8 @@ $tableFooterFontWeight: 700 !default;
 $tableFooterPadding: 1rem 1rem !default;
 
 $tableCellContentAlignment: left !default;
-$tableTopPaginatorBorderWidth: 1px 0 1px 0 !default;
-$tableBottomPaginatorBorderWidth: 0 0 1px 0 !default;
+$tableTopPaginatorBorderWidth: 0 0 1px 0 !default;
+$tableBottomPaginatorBorderWidth: 1px 0 0 0 !default;
 
 $tableScaleSM: 0.5 !default;
 $tableScaleLG: 1.25 !default;
