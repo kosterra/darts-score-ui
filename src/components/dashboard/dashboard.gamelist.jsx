@@ -163,7 +163,7 @@ const DashboardGameList = (props) => {
 
     return (
         <div className="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
-            <Panel headerTemplate={headerTemplate} className="mx-auto panel-brighter-bg" >
+            <Panel headerTemplate={headerTemplate} className="mx-auto" >
                 <DataScroller ref={ds} value={games} itemTemplate={itemTemplate} emptyMessage={emptyMessageTemplate()} rows={5} loader footer={footerTemplate()} />
             </Panel>
         </div>

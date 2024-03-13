@@ -18,7 +18,7 @@ const AboutCard = () => {
     };
 
     return (
-        <Panel header="About" className="panel-brighter-bg w-100 w-md-75 w-xxl-50 mx-auto" >
+        <Panel header="About" className="w-100 w-md-75 w-xxl-50 mx-auto" >
             <div className="d-flex justify-content-center my-4 fs-5 fw-semibold">Built using</div>
             <div className="row">
                 <div className="col col-12 col-xl-6 my-2">

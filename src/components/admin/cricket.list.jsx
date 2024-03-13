@@ -146,7 +146,7 @@ const CricketList = (props) => {
     const listItem = (game, index) => {
         return (
             <div className="col-12" key={'list-item-' + index}>
-                <Panel className="darker-bg">
+                <Panel className="panel-brighter-bg">
                     <div className="container-fluid overflow-hidden">
                         <div className="row gy-4">
                             <div className="col-12 col-lg-4 d-flex flex-column gap-4">
@@ -204,7 +204,7 @@ const CricketList = (props) => {
     const gridItem = (game, index) => {
         return (
             <div className="col-12 col-sm-6 col-lg-4 col-xl-3" key={'grid-item-' + index}>
-                <Panel header={game.startingScore} className="darker-bg">
+                <Panel header={game.startingScore} className="panel-brighter-bg">
                     <div className="row mb-3">
                         <div className="col-8 d-flex flex-column">
                             <span className="fs-7 text-shade500 fw-semibold">
