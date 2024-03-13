@@ -62,7 +62,7 @@ const GamesTimeline = (props) => {
                         <span className="text-shade100 fs-4 fw-semibold mb-4 mt-4">
                             Timeline
                         </span>
-                        <ScrollPanel style={{ height: '20rem' }} className="col-10 px-4">
+                        <ScrollPanel style={{ height: '20rem' }} className="col-10">
                             <Timeline
                                 value={games}
                                 content={itemContent}
