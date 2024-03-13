@@ -92,7 +92,7 @@ const CricketList = (props) => {
     };
 
     const loadPlayers = async () => {
-        let data = await PlayerService.loadPlayers();
+        let data = await PlayerService.searchPlayers();
         setPlayers(data);
     };
 
@@ -115,7 +115,7 @@ const CricketList = (props) => {
                     <div className="col-6">
                         {' '}
                     </div>
-                    <div className="col-3 d-flex align-items-center justify-content-center text-shade100 fs-7 fw-semibold">
+                    <div className="col-3 d-flex align-items-center justify-content-center text-shade100 fs-8 fw-semibold">
                         {game.gameIsRunning ? 'Score' : 'End Score'}
                     </div>
                 </div>

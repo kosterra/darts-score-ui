@@ -358,9 +358,9 @@ $inputSwitchHandleWidth: 1.25rem !default;
 $inputSwitchHandleHeight: 1.25rem !default;
 $inputSwitchHandleBorderRadius: 50% !default;
 $inputSwitchSliderPadding: 0.25rem !default;
-$inputSwitchSliderOffBg: $shade500 !default;
+$inputSwitchSliderOffBg: $shade600 !default;
 $inputSwitchHandleOffBg: $shade100 !default;
-$inputSwitchSliderOffHoverBg: $shade600 !default;
+$inputSwitchSliderOffHoverBg: $shade700 !default;
 $inputSwitchSliderOnBg: $primaryColor !default;
 $inputSwitchSliderOnHoverBg: $primaryLightColor !default;
 $inputSwitchHandleOnBg: $primaryTextColor !default;
@@ -468,8 +468,9 @@ $cardBackgroundColor: $shade900 !default;
 $cardBodyPadding: 1.25rem !default;
 $cardTitleFontSize: 1.5rem !default;
 $cardTitleFontWeight: 700 !default;
-$cardSubTitleFontWeight: 400 !default;
-$cardSubTitleColor: $shade100 !default;
+$cardSubTitleFontSize: 0.9rem !default;
+$cardSubTitleFontWeight: 600 !default;
+$cardSubTitleColor: $shade500 !default;
 $cardContentPadding: 1.25rem 0 !default;
 $cardFooterPadding: 1.25rem 0 0 0 !default;
 $cardShadow: none !default;
@@ -567,6 +568,7 @@ $dataViewListItemBorderWidth: 0 0 1px 0 !default;
 //datascroller
 $dataScrollerContentPadding: 0 !default;
 $dataScrollerContentBorder: 0 none !default;
+$datascrollerListItemBg: $shade900 !default;
 $dataScrollerListItemBorder: solid $shade600 !default;
 $dataScrollerListItemBorderWidth: 0 0 1px 0 !default;
 
@@ -580,11 +582,11 @@ $treeNodeIconColor: $shade100 !default;
 //timeline
 $timelineVerticalEventContentPadding: 0 1rem !default;
 $timelineHorizontalEventContentPadding: 1rem 0 !default;
-$timelineEventMarkerWidth: 1rem !default;
-$timelineEventMarkerHeight: 1rem !default;
+$timelineEventMarkerWidth: 1.5rem !default;
+$timelineEventMarkerHeight: 1.5rem !default;
 $timelineEventMarkerBorderRadius: 50% !default;
-$timelineEventMarkerBorder: 2px solid $primaryColor !default;
-$timelineEventMarkerBackground: $primaryTextColor !default;
+$timelineEventMarkerBorder: 2px solid $gold !default;
+$timelineEventMarkerBackground: $primaryColor !default;
 $timelineEventConnectorSize: 2px !default;
 $timelineEventColor: $shade600 !default;
 

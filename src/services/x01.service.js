@@ -55,6 +55,28 @@ const loadAllX01Games = async () => {
     }
 }
 
+const loadX01Games = async (body) => {
+    try {
+        const response = await fetch(API_URL + 'games/x01/find', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
+        const data = await response.json();
+        return data.sort((a, b) => {
+            return new Date(b.updatedAt) - new Date(a.updatedAt);
+        });
+    } catch (error) {
+        throw Error(error);
+    }
+}
+
 const loadX01 = async (id) => {
     try {
         const response = await fetch(API_URL + 'games/x01/' + id);
@@ -107,6 +129,7 @@ const X01Service = {
     loadRunningX01Games,
     loadFinishedX01Games,
     loadAllX01Games,
+    loadX01Games,
     loadX01,
     updateX01,
     deleteX01

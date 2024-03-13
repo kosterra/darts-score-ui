@@ -92,7 +92,7 @@ const PlayersList = (props) => {
     };
 
     const loadPlayers = async (searchTerm) => {
-        let data = await PlayerService.loadPlayers(searchTerm);
+        let data = await PlayerService.searchPlayers(searchTerm);
         setPlayers(data);
     };
 

@@ -10,7 +10,7 @@ const PlayerSelect = (props) => {
         idx,
         onSelect,
         onDelete
-    } = props
+    } = props;
 
     const [players, setPlayers] = useState([]);
     const [selectedPlayers, setSelectedPlayers] = useState([]);
@@ -31,7 +31,7 @@ const PlayerSelect = (props) => {
     }
 
     const loadPlayers = async (searchTerm) => {
-        let data = await PlayerService.loadPlayers(searchTerm);
+        let data = await PlayerService.searchPlayers(searchTerm);
         setPlayers(data);
     };
 

@@ -83,7 +83,7 @@ const DashboardGameList = (props) => {
                     <div className="col-6">
                         {' '}
                     </div>
-                    <div className="col-3 d-flex align-items-center justify-content-center text-shade100 fs-7 fw-semibold">
+                    <div className="col-3 d-flex align-items-center justify-content-center text-shade100 fs-8 fw-semibold">
                         {game.gameIsRunning ? 'Score' : 'End Score'}
                     </div>
                 </div>
@@ -163,7 +163,7 @@ const DashboardGameList = (props) => {
 
     return (
         <div className="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
-            <Panel headerTemplate={headerTemplate} className="mx-auto" >
+            <Panel headerTemplate={headerTemplate} className="mx-auto panel-brighter-bg" >
                 <DataScroller ref={ds} value={games} itemTemplate={itemTemplate} emptyMessage={emptyMessageTemplate()} rows={5} loader footer={footerTemplate()} />
             </Panel>
         </div>

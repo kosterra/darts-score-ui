@@ -27,7 +27,7 @@ const X01GameStats = () => {
 
     const loadData = async () => {
         let game = await X01Service.loadX01(id);
-        let players = await PlayerService.loadPlayers();
+        let players = await PlayerService.findPlayersByIds(game.players);
         let gameStats = await StatsService.loadX01GameStats(game.id);
 
         players = players.filter(player => game.players.includes(player.id));

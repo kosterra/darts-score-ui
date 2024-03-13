@@ -3,21 +3,26 @@ import { Button } from 'primereact/button';
 import { Toolbar } from 'primereact/toolbar';
 import { InputSwitch } from 'primereact/inputswitch';
 import { SelectButton } from 'primereact/selectbutton';
-import { FaPlusCircle } from "react-icons/fa";
+import { Panel } from 'primereact/panel';
 
 import PlayerSelect from '../../elements/player.select';
 import StatsService from '../../../services/stats.service';
+import X01Service from '../../../services/x01.service';
+import GamesTimeline from '../../elements/games.timeline';
 import PlayersX01StatsComparisonBars from './players.x01.stats.comparison.bars';
 import X01StatsCharts from '../x01/x01.stats.charts';
+import StatsCard from '../common/stats.card';
+import ChartConfigOptions from '../common/chart.config.options';
 
 const PlayerVSStats = (props) => {
     const {
         showStatsFilter = true,
         staticGameTypeFilterValue = 'X01'
-    } = props
+    } = props;
 
     const [playersCount, setPlayersCount] = useState(2);
     const [players, setPlayers] = useState([]);
+    const [games, setGames] = useState([]);
     const [playerStats, setPlayerStats] = useState({});
     const [gameTypeFilterValue, setGameTypeFilterValue] = useState(staticGameTypeFilterValue);
     const [includeOthersValue, setIncludeOthersValue] = useState(false);
@@ -27,35 +32,41 @@ const PlayerVSStats = (props) => {
     const dateFilter = ['1 D', '1 W', '1 M', '1 Y', 'All'];
 
     const onSelectPlayer = async (player, idx) => {
-        console.log(players);
         let newPlayers = [...players];
         newPlayers.splice(idx, 0, player);
-        console.log(newPlayers);
         setPlayers(newPlayers);
     };
 
     const onDeletePlayer = (idx) => {
-        let newPlayers = [...players]
-        newPlayers.splice(idx, 1)
-        setPlayers(newPlayers)
+        let newPlayers = [...players];
+        newPlayers.splice(idx, 1);
+        setPlayers(newPlayers);
     };
 
-    const loadX01Stats = async () => {
-        let playerIds = players.map(player => player.id)
+    const loadX01Games = async () => {
+        let playerIds = players.map(player => player.id);
         let body = {
             playerIds: playerIds,
             includeOthers: includeOthersValue,
             dateFilter: dateFilterValue
-        }
-        // body['playerIds'] = playerIds
-        // body['includeOthers'] = includeOthers
-        // body['dateFilter'] = dateFilter
-        let playersStats = await StatsService.loadX01PlayersStats(body)
-        setPlayerStats(playersStats)
+        };
+        let x01Games = await X01Service.loadX01Games(body);
+        setGames(x01Games);
+    };
+
+    const loadX01Stats = async () => {
+        let playerIds = players.map(player => player.id);
+        let body = {
+            playerIds: playerIds,
+            includeOthers: includeOthersValue,
+            dateFilter: dateFilterValue
+        };
+        let playersStats = await StatsService.loadX01PlayersStats(body);
+        setPlayerStats(playersStats);
     };
 
     const handleIncludeOthers = (e) => {
-        setIncludeOthersValue(!includeOthersValue)
+        setIncludeOthersValue(!includeOthersValue);
     };
 
     const incrementPlayersCount = () => {
@@ -101,10 +112,52 @@ const PlayerVSStats = (props) => {
         </div>
     );
 
+    const legendContent = (
+        <div>
+            <div className="row">
+                <span className="col-4 d-flex justify-content-center align-items-center p-0">
+                    <i className="pi pi-circle-fill fs-8" style={{ color: ChartConfigOptions.fillColors.values[0] }}></i>
+                </span>
+                <span className="col-8 fs-7 text-shade500 fw-semibold p-0">
+                    {players[0] ? players[0].nickname : 'N/A'}
+                </span>
+            </div>
+            <div className="row">
+                <span className="col-4 d-flex justify-content-center align-items-center p-0">
+                    <i className="pi pi-circle-fill fs-8" style={{ color: ChartConfigOptions.fillColors.values[1] }}></i>
+                </span>
+                <span className="col-8 fs-7 text-shade500 fw-semibold p-0">
+                    {players[1] ? players[1].nickname : 'N/A'}
+                </span>
+            </div>
+            {players.length > 2 &&
+                <div className="row">
+                    <span className="col-4 d-flex justify-content-center align-items-center p-0">
+                        <i className="pi pi-circle-fill fs-8" style={{ color: ChartConfigOptions.fillColors.values[2] }}></i>
+                    </span>
+                    <span className="col-8 fs-7 text-shade500 fw-semibold p-0">
+                        {players[2] ? players[2].nickname : 'N/A'}
+                    </span>
+                </div>
+            }
+            {players.length > 3 &&
+                <div className="row">
+                    <span className="col-4 d-flex justify-content-center align-items-center p-0">
+                        <i className="pi pi-circle-fill fs-8" style={{ color: ChartConfigOptions.fillColors.values[3] }}></i>
+                    </span>
+                    <span className="col-8 fs-7 text-shade500 fw-semibold p-0">
+                        {players[3] ? players[3].nickname : 'N/A'}
+                    </span>
+                </div>
+            }
+        </div>
+    );
+
     useEffect(() => {
         if (players.length === playersCount) {
             if (gameTypeFilterValue === 'X01') {
-                loadX01Stats()
+                loadX01Stats();
+                loadX01Games();
             } else if (gameTypeFilterValue === 'Cricket') {
                 //let data = await StatsService.loadCricketPlayerStats(player.id);
                 //setPlayerStats(data);
@@ -212,7 +265,7 @@ const PlayerVSStats = (props) => {
                 <>
                     {showStatsFilter &&
                         <div className="row d-flex justify-content-center align-items-center">
-                            <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8 p-0 bg-shade900" >
+                            <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8 px-3 bg-shade900" >
                                 <Toolbar start={startContent} center={centerContent} end={endContent} className="m-4 p-4"/>
                             </div>
                         </div>
@@ -220,8 +273,48 @@ const PlayerVSStats = (props) => {
                     {playerStats && playerStats.playedGames > 0 &&
                         <>
                             <div className="row d-flex justify-content-center align-items-center">
-                                <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8 p-0" >
-                                    <PlayersX01StatsComparisonBars playersX01Stats={playerStats} />
+                                <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8 p-0">
+                                    <Panel>
+                                        <div className="row">
+                                            <div className="col-12 col-lg-6 p-0 align-top" >
+                                                <GamesTimeline games={games} players={players} />
+                                            </div>
+                                            <div className="col-12 col-lg-6 p-0 align-top" >
+                                                <Panel className="h-100">
+                                                    <div className="d-flex flex-column align-items-center">
+                                                        <span className="text-shade100 fs-4 fw-semibold mb-4 mt-4">
+                                                            Infos
+                                                        </span>
+                                                        <div className="container overflow-hidden">
+                                                            <div className="row gy-4 d-flex justify-content-center">
+                                                                <div className="col-12 col-sm-6 col-lg-4">
+                                                                    <StatsCard
+                                                                        title="Played Games"
+                                                                        value={games.length}
+                                                                        subvalue=""
+                                                                        className="panel-brighter-bg"
+                                                                    />
+                                                                </div>
+                                                                <div className="col-12 col-sm-6 col-lg-4">
+                                                                    <StatsCard
+                                                                        title="Legend"
+                                                                        value={legendContent}
+                                                                        subvalue=""
+                                                                        className="panel-brighter-bg"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </Panel>
+                                            </div>
+                                        </div>
+                                        <div className="row d-flex justify-content-center align-items-center">
+                                            <div className="col-12 p-0" >
+                                                <PlayersX01StatsComparisonBars playersX01Stats={playerStats} />
+                                            </div>
+                                        </div>
+                                    </Panel>
                                 </div>
                             </div>
                             <div className="row d-flex justify-content-center align-items-center">

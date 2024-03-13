@@ -11,7 +11,7 @@ import X01GamePage from './components/games/x01/_x01.game.page';
 import X01GameStats from './components/stats/x01/x01.game.stats';
 import CricketConfigPage from './components/game_config/cricket/_cricket.config.page';
 import CricketGamePage from './components/games/cricket/_cricket.game.page';
-import CricketGameStats from './components/stats/common/cricket.game.stats';
+import CricketGameStats from './components/stats/cricket/cricket.game.stats';
 import StatsPage from './components/stats/_stats.page';
 import AboutPage from './components/about/_about.page';
 import AdminPage from './components/admin/_admin.page';

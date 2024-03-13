@@ -43,7 +43,7 @@ const PlayersTable = (props) => {
     }
 
     const loadPlayers = async searchTerm => {
-        let data = await PlayerService.loadPlayers(searchTerm);
+        let data = await PlayerService.searchPlayers(searchTerm);
         setPlayers(data);
     }
 
@@ -123,7 +123,6 @@ const PlayersTable = (props) => {
     const header = renderHeader();
 
     const accept = async () => {
-        console.log(playerToDelete)
         if (playerToDelete && playerToDelete.id) {
             await PlayerService.deletePlayer(playerToDelete.id)
             setPlayerToDelete({});
