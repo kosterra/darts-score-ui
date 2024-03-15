@@ -15,7 +15,7 @@ const loadPlayerStats = async (playerId) => {
         const data = await response.json();
         return data;
     } catch (error) {
-        throw Error(error);
+        throw Error(error.message);
     }
 }
 
@@ -35,7 +35,7 @@ const loadX01PlayersStats = async (body) => {
         const data = await response.json();
         return data;
     } catch (error) {
-        throw Error(error);
+        throw Error(error.message);
     }
 }
 
@@ -48,7 +48,7 @@ const loadPlayersCricketStats = async (playerId) => {
         const data = await response.json();
         return data;
     } catch (error) {
-        throw Error(error);
+        throw Error(error.message);
     }
 }
 
@@ -61,7 +61,7 @@ const loadX01GameStats = async (gameId) => {
         const data = await response.json();
         return data;
     } catch (error) {
-        throw Error(error);
+        throw Error(error.message);
     }
 }
 

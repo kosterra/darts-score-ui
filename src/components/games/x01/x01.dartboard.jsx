@@ -1,11 +1,17 @@
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
+import { Toast } from 'primereact/toast';
+
 import DartBoard from '../common/dartboard';
 import X01Context from '../../../utils/x01.context';
 
-import { toast } from 'react-toastify';
-
 const X01DartBoard = () => {
-  const { game, updateCurrentThrowDartBoard, getCurrentThrowScore } = useContext(X01Context);
+  const {
+    game,
+    updateCurrentThrowDartBoard,
+    getCurrentThrowScore
+  } = useContext(X01Context);
+
+  const toast = useRef(null);
 
   const setDartValue = (value) => {
     let totalScore = getCurrentThrowScore();
@@ -14,7 +20,14 @@ const X01DartBoard = () => {
     let newCurrentScore = currentPlayerScore - totalScore;
 
     if (newCurrentScore <= 1) {
-      toast.error("You can't throw any more darts");
+      toast.current.show(
+        {
+          severity: 'error',
+          summary: 'No more darts',
+          detail: 'You can\'t throw any more darts',
+          life: 3000
+        }
+      );
       return
     }
 
@@ -22,7 +35,10 @@ const X01DartBoard = () => {
   }
 
   return (
-    <DartBoard handleClick={setDartValue} />
+    <>
+      <DartBoard handleClick={setDartValue} />
+      <Toast ref={toast} position="bottom-right" />
+    </>
   )
 }
 

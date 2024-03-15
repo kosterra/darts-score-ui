@@ -6,7 +6,7 @@ const StatsCard = (props) => {
         subtitle,
         value,
         subvalue,
-        className
+        className = ''
     } = props
 
     const headerTemplate = () => {

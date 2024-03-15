@@ -95,7 +95,7 @@ const deleteCricket = async (cricketId) => {
         }
         return response.ok;
     } catch (error) {
-        throw Error(error);
+        throw Error(error.message);
     }
 }
 

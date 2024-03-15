@@ -20,7 +20,7 @@ const createPlayer = async (player) => {
         }
         return response.ok;
     } catch (error) {
-        throw Error(error);
+        throw Error(error.message);
     }
 }
 
@@ -33,7 +33,7 @@ const getPlayer = async (playerId) => {
         const data = await response.json();
         return data;
     } catch (error) {
-        throw Error(error);
+        throw Error(error.message);
     }
 }
 
@@ -46,7 +46,7 @@ const searchPlayers = async (searchTerm) => {
         const data = await response.json();
         return data;
     } catch (error) {
-        throw Error(error);
+        throw Error(error.message);
     }
 }
 
@@ -69,7 +69,7 @@ const findPlayersByIds = async (playerIds) => {
         const data = await response.json();
         return data;
     } catch (error) {
-        throw Error(error);
+        throw Error(error.message);
     }
 }
 
@@ -87,7 +87,7 @@ const updatePlayer = async (player) => {
         }
         return response.ok;
     } catch (error) {
-        throw Error(error);
+        throw Error(error.message);
     }
 }
 
@@ -101,7 +101,7 @@ const deletePlayer = async (playerId) => {
         }
         return response.ok;
     } catch (error) {
-        throw Error(error);
+        throw Error(error.message);
     }
 }
 
