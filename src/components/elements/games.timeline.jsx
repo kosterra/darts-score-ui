@@ -67,7 +67,7 @@ const GamesTimeline = (props) => {
                                 value={games}
                                 content={itemContent}
                                 opposite={oppositeContent}
-                                align="right"
+                                align="alternate"
                             />
                         </ScrollPanel>
                     </div>
