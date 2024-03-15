@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from 'primereact/button';
 import { Sidebar } from 'react-pro-sidebar';
+import { Toolbar } from 'primereact/toolbar';
 import { MdClose } from "react-icons/md";
 import { FaBars } from "react-icons/fa6";
 
@@ -15,12 +16,25 @@ import SidebarDashboard from './sidebar.dashboard';
 
 const NavigationSidebar = () => {
     const [collapsed, setCollapsed] = useState(true);
+    const [toggled, setToggled] = useState(false);
+
+    const centerContent = (
+        <div className="flex flex-wrap align-items-center gap-3">
+            <button
+                onClick={() => setToggled(!toggled)}
+                className="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200">
+                <i className="pi pi-bars text-2xl"></i>
+            </button>
+        </div>
+    );
 
     return (
         <div className="sidebar min-vh-100">
             <Sidebar
                 breakPoint="md"
                 collapsed={collapsed}
+                toggled={toggled}
+                onBackdropClick={() => setToggled(false)}
             >
                 <div className="h-100 sidebar-container">
                     <div className="row pt-2 pb-3">
@@ -53,6 +67,9 @@ const NavigationSidebar = () => {
                     <SidebarMisc />
                 </div>
             </Sidebar>
+            <div className="d-block d-md-none position-fixed bottom-0 start-0 bg-shade800 w-100 p-2 mt-2 z-3">
+                <Toolbar center={centerContent} />
+            </div>
         </div>
     );
 };

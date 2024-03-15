@@ -60,7 +60,9 @@ const CricketConfig = () => {
                     onSelectedPlayersChange={handleConfigChange}
                 />
                 <div className="container" align="center">
-                    <Button variant="primary" className="m-0" onClick={handleSubmit}>Start Game</Button>
+                    <Button variant="primary" size="small" className="m-0" onClick={handleSubmit}>
+                        Start Game
+                    </Button>
                 </div>
             </div>
         </Panel>
