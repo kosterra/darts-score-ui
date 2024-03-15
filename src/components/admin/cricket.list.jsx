@@ -72,7 +72,7 @@ const CricketList = (props) => {
         if (await CricketService.deleteCricket(game.id)) {
             toast.current.show(
                 {
-                    severity: 'info',
+                    severity: 'success',
                     summary: 'Cricket Game deleted',
                     detail: 'Successfully deleted game: ' + game.id,
                     life: 3000

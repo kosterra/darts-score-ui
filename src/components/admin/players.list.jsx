@@ -72,7 +72,7 @@ const PlayersList = (props) => {
         if (await PlayerService.deletePlayer(player.id)) {
             toast.current.show(
                 {
-                    severity: 'info',
+                    severity: 'success',
                     summary: 'Player deleted',
                     detail: 'Successfully deleted player: ' + player.nickname,
                     life: 3000

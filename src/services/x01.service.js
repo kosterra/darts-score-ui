@@ -22,7 +22,7 @@ const createX01 = async (game) => {
         const data = await response.json();
         return data;
     } catch (error) {
-        throw new Error(error);
+        throw new Error(error.message);
     }
 }
 
@@ -51,7 +51,7 @@ const loadAllX01Games = async () => {
             return new Date(b.updatedAt) - new Date(a.updatedAt);
         });
     } catch (error) {
-        throw new Error(error);
+        throw new Error(error.message);
     }
 }
 
@@ -73,7 +73,7 @@ const loadX01Games = async (body) => {
             return new Date(b.updatedAt) - new Date(a.updatedAt);
         });
     } catch (error) {
-        throw Error(error);
+        throw Error(error.message);
     }
 }
 
@@ -119,7 +119,7 @@ const deleteX01 = async (x01Id) => {
         }
         return response.ok;
     } catch (error) {
-        throw Error(error);
+        throw Error(error.message);
     }
 }
 

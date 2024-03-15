@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { Toast } from 'primereact/toast';
 import { Panel } from 'primereact/panel';
 import { Button } from 'primereact/button';
 
@@ -13,6 +13,8 @@ const CricketConfig = () => {
     const initialState = CricketModels.CricketModel;
 
     const [game, setGame] = useState(initialState);
+
+    const toast = useRef(null);
 
     const navigate = useNavigate();
 
@@ -28,7 +30,14 @@ const CricketConfig = () => {
         if (!validate()) {
             event.preventDefault();
             event.stopPropagation();
-            toast.error('You need to select ' + game.numberOfPlayers + ' players!');
+            toast.current.show(
+                {
+                    severity: 'error',
+                    summary: 'Missing Config',
+                    detail: 'You need to select ' + game.numberOfPlayers + ' players!',
+                    life: 3000
+                }
+            );
         } else {
             let playerIds = game.players.map((item) => item.id);
             game.isSoloGame = playerIds.length === 1;
@@ -51,21 +60,24 @@ const CricketConfig = () => {
     }
 
     return (
-        <Panel header="Cricket" className="w-100 w-md-75 w-xxl-50 mx-auto" >
-            <div className="container">
-                <PlayerConfig
-                    numberOfPlayersOption={game.numberOfPlayers}
-                    selectedPlayers={game.players}
-                    onNumberOfPlayersChange={handleConfigChange}
-                    onSelectedPlayersChange={handleConfigChange}
-                />
-                <div className="container" align="center">
-                    <Button variant="primary" size="small" className="m-0" onClick={handleSubmit}>
-                        Start Game
-                    </Button>
+        <>
+            <Panel header="Cricket" className="w-100 w-md-75 w-xxl-50 mx-auto" >
+                <div className="container">
+                    <PlayerConfig
+                        numberOfPlayersOption={game.numberOfPlayers}
+                        selectedPlayers={game.players}
+                        onNumberOfPlayersChange={handleConfigChange}
+                        onSelectedPlayersChange={handleConfigChange}
+                    />
+                    <div className="container" align="center">
+                        <Button variant="primary" size="small" className="m-0" onClick={handleSubmit}>
+                            Start Game
+                        </Button>
+                    </div>
                 </div>
-            </div>
-        </Panel>
+            </Panel>
+            <Toast ref={toast} position="bottom-right" />
+        </>
     );
 }
 

@@ -128,7 +128,7 @@ const PlayersTable = (props) => {
             setPlayerToDelete({});
             toast.current.show(
                 {
-                    severity: 'info',
+                    severity: 'success',
                     summary: 'Player deleted',
                     detail: 'Successfully deleted player: ' + playerToDelete.nickname,
                     life: 3000

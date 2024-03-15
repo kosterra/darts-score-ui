@@ -74,7 +74,7 @@ const X01List = (props) => {
         if (await X01Service.deleteX01(game.id)) {
             toast.current.show(
                 {
-                    severity: 'info',
+                    severity: 'success',
                     summary: 'X01 Game deleted',
                     detail: 'Successfully deleted game: ' + game.id,
                     life: 3000

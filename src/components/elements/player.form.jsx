@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useFormik } from 'formik';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { classNames } from 'primereact/utils';
-import { toast } from 'react-toastify';
+import { Toast } from 'primereact/toast';
 
 import ImageUploader from './image.uploader';
 import PlayerService from '../../services/player.service';
@@ -17,6 +17,8 @@ const PlayerForm = (props) => {
         updatePlayer,
         edit
     } = props;
+
+    const toast = useRef(null);
 
     const initialState = updatePlayer ? updatePlayer : PlayerModel;
 
@@ -65,20 +67,48 @@ const PlayerForm = (props) => {
             if (edit) {
                 try {
                     if (await PlayerService.updatePlayer(data)) {
-                        toast.success('Successfully updated player: ' + data.nickname);
+                        toast.current.show(
+                            {
+                                severity: 'success',
+                                summary: 'Update Player',
+                                detail: 'Successfully updated player: ' + data.nickname,
+                                life: 3000
+                            }
+                        );
                         onPlayerEdit();
                     }
                 } catch (error) {
-                    toast.error('Failed to update player: ' + error);
+                    toast.current.show(
+                        {
+                            severity: 'error',
+                            summary: 'Update Player',
+                            detail: 'Failed to update Player: ' + error.message,
+                            life: 3000
+                        }
+                    );
                 }
             } else {
                 try {
                     if (await PlayerService.createPlayer(data)) {
-                        toast.success('Successfully created player: ' + data.nickname);
+                        toast.current.show(
+                            {
+                                severity: 'success',
+                                summary: 'Create Player',
+                                detail: 'Successfully created Player: ' + data.nickname,
+                                life: 3000
+                            }
+                        );
                         onPlayerAdd();
                     }
                 } catch (error) {
-                    toast.error('Failed to create new player: ' + error);
+                    toast.current.show(
+                        {
+                            severity: 'error',
+                            summary: 'Create Player',
+                            detail: 'Failed to create Player: ' + error.message,
+                            life: 3000
+                        }
+                    );
                 }
             }
             formik.resetForm();
@@ -181,6 +211,7 @@ const PlayerForm = (props) => {
                     onClick={() => setShowDialog(true)}
                 />
             </div>
+            <Toast ref={toast} position="bottom-right" />
         </div>
     );
 };
