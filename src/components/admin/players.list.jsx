@@ -146,7 +146,7 @@ const PlayersList = (props) => {
     const gridItem = (player, index) => {
         return (
             <div className="col-12 col-sm-6 col-lg-4 col-xl-3" key={'grid-item-' + index}>
-                <Panel header={player.nickname} className="panel-brighter-bg">
+                <Panel className="panel-brighter-bg no-header">
                     <div className="row">
                         <div className="d-flex flex-column justify-content-center align-items-center">
                             <Avatar
@@ -155,9 +155,10 @@ const PlayersList = (props) => {
                                 shape="circle"
                                 size="xlarge"
                                 style={{ width: '6rem', height: '6rem' }}
-                                className="bg-shade700"
+                                className="bg-shade700 mt-4"
                             />
-                            <span className="my-4 text-shade600 fw-semibold fs-6">{player.firstname + ' ' + player.lastname}</span>
+                            <span className="text-shade100 fw-semibold fs-5 mt-4">{player.nickname}</span>
+                            <span className="text-shade600 fw-semibold fs-6 mb-4">{player.firstname + ' ' + player.lastname}</span>
                         </div>
                     </div>
                     <div className="row mt-2">

@@ -55,7 +55,7 @@
 
     &.p-dialog-maximized {
         .p-dialog-header, .p-dialog-content:last-of-type {
-            border-radius: 0;
+            border-radius: $borderRadius;
         }
     }
     

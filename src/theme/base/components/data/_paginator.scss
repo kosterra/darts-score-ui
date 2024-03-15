@@ -4,7 +4,7 @@
     border: $paginatorBorder;
     border-width: $paginatorBorderWidth;
     padding: $paginatorPadding;
-    border-radius: 0;
+    border-radius: $borderRadius;
 
     .p-paginator-first,
     .p-paginator-prev,

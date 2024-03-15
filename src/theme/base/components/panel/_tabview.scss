@@ -69,7 +69,7 @@
         color: $tabviewHeaderTextActiveColor;
         width: $buttonIconOnlyWidth;
         box-shadow: $raisedButtonShadow;
-        border-radius: 0;
+        border-radius: $borderRadius;
 
         &:focus-visible {
             @include focused-inset();

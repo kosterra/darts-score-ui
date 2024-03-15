@@ -52,7 +52,7 @@ const AboutCard = () => {
             </div>
             <div className="d-flex justify-content-center my-4 fs-5 fw-semibold">Contact</div>
             <div className="d-flex justify-content-center">
-                <a href="mailto:rkoster@gmx.ch" className="p-button font-bold">
+                <a href="mailto:rkoster@gmx.ch" className="p-button p-button-sm">
                     <FaEnvelope className="pe-2 fs-3" />
                     E-Mail
                 </a>

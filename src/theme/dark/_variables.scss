@@ -43,7 +43,7 @@ $fontSize: 1rem !default;
 $fontWeight: normal !default;
 $textColor: $shade000 !default;
 $textSecondaryColor: $shade100 !default;
-$borderRadius: 4px !default;
+$borderRadius: 5px !default;
 $transitionDuration: 0.2s !default;
 $formElementTransition: background-color $transitionDuration,
 	color $transitionDuration, border-color $transitionDuration,
@@ -888,7 +888,6 @@ $imagePreviewActionIconBorderRadius: 50% !default;
 //toolbar
 $toolbarBg: $shade800 !default;
 $toolbarBorder: none !default;
-$toolbarBorderRadius: 0px !default;
 $toolbarPadding: $panelHeaderPadding !default;
 
 :root {

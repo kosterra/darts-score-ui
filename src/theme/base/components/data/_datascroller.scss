@@ -1,12 +1,12 @@
 .p-datascroller {
     .p-paginator-top {
         border-width: $tableTopPaginatorBorderWidth;
-        border-radius: 0;
+        border-radius: $borderRadius;
     }
 
     .p-paginator-bottom {
         border-width: $tableBottomPaginatorBorderWidth;
-        border-radius: 0;
+        border-radius: $borderRadius;
     }
 
     .p-datascroller-header {
@@ -28,6 +28,7 @@
                 font-size: 0.9rem;
                 text-align: center;
                 background-color: $datascrollerListItemBg;
+                border-radius: $borderRadius;
                 padding: 0.8rem;
                 margin: 0 0 0.8rem 0;
             }
@@ -51,7 +52,7 @@
         //border-width: $tableFooterBorderWidth;
         padding: $tableFooterPadding;
         font-weight: $tableFooterFontWeight;
-        //border-bottom-left-radius: $borderRadius;
-        //border-bottom-right-radius: $borderRadius;
+        border-bottom-left-radius: $borderRadius;
+        border-bottom-right-radius: $borderRadius;
     }
 }

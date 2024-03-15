@@ -1,12 +1,12 @@
 .p-dataview {
 	.p-paginator-top {
 		border-width: $tableTopPaginatorBorderWidth;
-		border-radius: 0;
+		border-radius: $borderRadius;
 	}
 
 	.p-paginator-bottom {
 		border-width: $tableBottomPaginatorBorderWidth;
-		border-radius: 0;
+		border-radius: $borderRadius;
 	}
 
 	.p-dataview-header {
@@ -16,6 +16,8 @@
 		border-width: $tableHeaderBorderWidth;
 		padding: $tableHeaderPadding;
 		font-weight: $tableHeaderFontWeight;
+		border-top-left-radius: $borderRadius;
+		border-top-right-radius: $borderRadius;
 	}
 
 	.p-dataview-content {
