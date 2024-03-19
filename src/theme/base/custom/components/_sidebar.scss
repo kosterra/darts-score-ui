@@ -3,44 +3,48 @@
     height: 100%;
     border: none;
 
-    .sidebar-container {
+    .ps-sidebar-container {
         background: $sidebarContainerBg;
-        color: $sidebarTextColor;
-        font-family: $fontFamily;
         
-        .menu-subtitle {
-            color: $sidebarMenuSubtitleColor;
-        }
-
-        .menu-divider {
-            color: $sidebarMenuDividerColor;
-        }
-
-        .ps-menuitem-root {
-
-            .ps-menu-button {
-                &:hover {
-                    background-color: $sidebarMenuitemHoverBg;
-                }
-
-                .ps-submenu-expand-icon {
-                    color: $sidebarExpandIconColor;
-                }
+        .sidebar-container {
+            background: $sidebarContainerBg;
+            color: $sidebarTextColor;
+            font-family: $fontFamily;
+            
+            .menu-subtitle {
+                color: $sidebarMenuSubtitleColor;
             }
 
-            .ps-submenu-content {
-                .ps-menuitem-root {
-                    .ps-menu-button {
-                        &:hover {
-                            background-color: $sidebarSubmenuitemHoverBg;
+            .menu-divider {
+                color: $sidebarMenuDividerColor;
+            }
+
+            .ps-menuitem-root {
+
+                .ps-menu-button {
+                    &:hover {
+                        background-color: $sidebarMenuitemHoverBg;
+                    }
+
+                    .ps-submenu-expand-icon {
+                        color: $sidebarExpandIconColor;
+                    }
+                }
+
+                .ps-submenu-content {
+                    .ps-menuitem-root {
+                        .ps-menu-button {
+                            &:hover {
+                                background-color: $sidebarSubmenuitemHoverBg;
+                            }
                         }
                     }
                 }
             }
-        }
 
-        .ps-submenu-content {
-            background-color: $sidebarSubmenuContentBg;
+            .ps-submenu-content {
+                background-color: $sidebarSubmenuContentBg;
+            }
         }
     }
 }
