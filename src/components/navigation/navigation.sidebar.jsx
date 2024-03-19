@@ -29,12 +29,13 @@ const NavigationSidebar = () => {
     );
 
     return (
-        <div className="sidebar min-vh-100">
+        <div className="sidebar vh-100">
             <Sidebar
                 breakPoint="md"
                 collapsed={collapsed}
                 toggled={toggled}
                 onBackdropClick={() => setToggled(false)}
+                className="pb-5 pb-md-0 z-2"
             >
                 <div className="h-100 sidebar-container">
                     <div className="row pt-2 pb-3">
@@ -67,7 +68,7 @@ const NavigationSidebar = () => {
                     <SidebarMisc />
                 </div>
             </Sidebar>
-            <div className="d-block d-md-none position-fixed bottom-0 start-0 bg-shade800 w-100 p-2 mt-2 z-3">
+            <div className="navbar d-block d-md-none fixed-bottom bg-shade800 w-100 p-2 z-3">
                 <Toolbar center={centerContent} />
             </div>
         </div>

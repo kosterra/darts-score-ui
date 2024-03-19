@@ -22,7 +22,7 @@ function App() {
     return (
         <PrimeReactProvider>
             <Router>
-                <div className="d-flex">
+                <div className="d-flex mb-5 mb-md-0">
                     <NavigationSidebar />
                     <Routes>
                         <Route path="/" element={<Dashboard />} />
