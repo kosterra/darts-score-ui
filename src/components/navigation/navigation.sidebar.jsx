@@ -29,7 +29,7 @@ const NavigationSidebar = () => {
     );
 
     return (
-        <div className="sidebar min-vh-100">
+        <div className="sidebar vh-100">
             <Sidebar
                 breakPoint="md"
                 collapsed={collapsed}
