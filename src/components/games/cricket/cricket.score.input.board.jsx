@@ -59,9 +59,9 @@ const CricketScoreInputBoard = () => {
         if (validatePattern) {
             let throwIndex = Number(target.name.split('-')[1]) - 1;
             if (target.value.length > 0) {
-                updateCurrentThrowManual(score, target.value, throwIndex);
+                updateCurrentThrowManual(target.value, throwIndex);
             } else {
-                updateCurrentThrowManual(score, '', throwIndex);
+                updateCurrentThrowManual('', throwIndex);
             }
         }
     };
@@ -123,7 +123,7 @@ const CricketScoreInputBoard = () => {
                                                     type="button"
                                                     icon="pi pi-times"
                                                     className="p-button-danger"
-                                                    onClick={() => updateCurrentThrowManual(score, '', 0)}
+                                                    onClick={() => updateCurrentThrowManual('', 0)}
                                                 />
                                             </div>
                                             {(game.currentThrow[1].trim() !== ''
@@ -144,7 +144,7 @@ const CricketScoreInputBoard = () => {
                                                             type="button"
                                                             icon="pi pi-times"
                                                             className="p-button-danger"
-                                                            onClick={() => updateCurrentThrowManual(score, '', 1)}
+                                                            onClick={() => updateCurrentThrowManual('', 1)}
                                                         />
                                                     </div>
                                                 )}
@@ -166,7 +166,7 @@ const CricketScoreInputBoard = () => {
                                                             type="button"
                                                             icon="pi pi-times"
                                                             className="p-button-danger"
-                                                            onClick={() => updateCurrentThrowManual(score, '', 2)}
+                                                            onClick={() => updateCurrentThrowManual('', 2)}
                                                         />
                                                     </div>
                                                 )}
