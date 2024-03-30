@@ -25,5 +25,4 @@ services:
   #    - "3000:80"
   #   tty: true
   #   environment:
-  #     - DARTS_SCORE_API_HOST=${VITE_API_HOST}
-  #     - DARTS_SCORE_API_PORT=${VITE_API_PORT}
+  #     - DARTS_SCORE_API_URL=${VITE_API_URL}

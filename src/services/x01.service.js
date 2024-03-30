@@ -1,9 +1,8 @@
 const {
-    VITE_API_HOST,
-    VITE_API_PORT
+    VITE_API_URL
 } = import.meta.env;
 
-const API_URL = 'http://' + VITE_API_HOST + ':' + VITE_API_PORT + '/api/';
+const API_URL = VITE_API_URL + '/api/';
 
 // Public methods to export
 const createX01 = async (game) => {

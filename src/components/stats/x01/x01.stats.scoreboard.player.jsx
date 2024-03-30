@@ -13,8 +13,8 @@ const X01StatsScoreBoardPlayer = (props) => {
             <div className="d-flex flex-column justify-content-center align-items-center">
                 <div className="position-relative">
                     <Avatar
-                        label={(player.firstname + ' ' + player.lastname).split(" ").map((n) => n[0]).join("")}
-                        image={player.profileImg}
+                        label={(((player || {}).firstname || '') + ' ' + ((player || {}).lastname || '')).split(" ").map((n) => n[0]).join("")}
+                        image={player || {}.profileImg || ''}
                         shape="circle"
                         size="xlarge"
                         style={{ width: '6rem', height: '6rem' }}
@@ -27,10 +27,10 @@ const X01StatsScoreBoardPlayer = (props) => {
                     </span>
                 </div>
                 <div className="mt-2 text-shade100 fs-6 fw-semibold">
-                    {player.nickname}
+                    {(player || {}).nickname || 'N/A'}
                 </div>
                 <div className="text-shade500 fs-7 fw-semibold">
-                    {player.firstname} {player.lastname}
+                    {(player || {}).firstname || ''} {(player || {}).lastname || ''}
                 </div>
             </div>
         </Fragment>
