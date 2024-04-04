@@ -6,7 +6,7 @@ const X01StatsScoreBoardPlayer = (props) => {
     const {
         player,
         hasWonGame = false
-    } = props
+    } = props;
 
     return (
         <Fragment>
@@ -14,7 +14,7 @@ const X01StatsScoreBoardPlayer = (props) => {
                 <div className="position-relative">
                     <Avatar
                         label={(((player || {}).firstname || '') + ' ' + ((player || {}).lastname || '')).split(" ").map((n) => n[0]).join("")}
-                        image={player || {}.profileImg || ''}
+                        image={(player || {}).profileImg || ''}
                         shape="circle"
                         size="xlarge"
                         style={{ width: '6rem', height: '6rem' }}

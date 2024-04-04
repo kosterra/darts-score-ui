@@ -1,3 +1,7 @@
+import {
+    getHeaders
+} from '../utils/service.utils';
+
 const {
     VITE_API_URL
 } = import.meta.env;
@@ -10,13 +14,17 @@ const createPlayer = async (player) => {
     Object.keys(player).forEach(key => formData.append(key, player[key]));
 
     try {
+        let method = 'POST';
         const response = await fetch(API_URL + 'players', {
-            method: 'POST',
+            method: method,
+            headers: getHeaders(method),
             body: formData
         });
+
         if (!response.ok) {
             throw Error(response.statusText);
         }
+
         return response.ok;
     } catch (error) {
         throw Error(error.message);
@@ -25,12 +33,17 @@ const createPlayer = async (player) => {
 
 const getPlayer = async (playerId) => {
     try {
-        const response = await fetch(API_URL + 'players/' + playerId);
+        let method = 'GET';
+        const response = await fetch(API_URL + 'players/' + playerId, {
+            method: method,
+            headers: getHeaders(method)
+        });
+
         if (!response.ok) {
             throw Error(response.statusText);
-        }
-        const data = await response.json();
-        return data;
+        };
+
+        return await response.json();
     } catch (error) {
         throw Error(error.message);
     }
@@ -38,12 +51,17 @@ const getPlayer = async (playerId) => {
 
 const searchPlayers = async (searchTerm) => {
     try {
-        const response = await fetch(API_URL + 'players/search?search=' + (searchTerm ? searchTerm : ''));
+        let method = 'GET';
+        const response = await fetch(API_URL + 'players/search?search=' + (searchTerm ? searchTerm : ''), {
+            method: method,
+            headers: getHeaders(method)
+        });
+
         if (!response.ok) {
             throw Error(response.statusText);
-        }
-        const data = await response.json();
-        return data;
+        };
+
+        return await response.json();
     } catch (error) {
         throw Error(error.message);
     }
@@ -54,19 +72,18 @@ const findPlayersByIds = async (playerIds) => {
         playerIds: playerIds
     }
     try {
+        let method = 'POST';
         const response = await fetch(API_URL + 'players/find', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'accept': 'application/json'
-            },
+            method: method,
+            headers: getHeaders(method),
             body: JSON.stringify(body)
         });
+
         if (!response.ok) {
             throw Error(response.statusText);
-        }
-        const data = await response.json();
-        return data;
+        };
+
+        return await response.json();
     } catch (error) {
         throw Error(error.message);
     }
@@ -77,13 +94,17 @@ const updatePlayer = async (player) => {
     Object.keys(player).forEach(key => formData.append(key, player[key]));
 
     try {
+        let method = 'PUT';
         const response = await fetch(API_URL + 'players/' + player.id, {
-            method: 'PUT',
+            method: method,
+            headers: getHeaders(method),
             body: formData
         });
+
         if (!response.ok) {
             throw Error(response.statusText);
-        }
+        };
+
         return response.ok;
     } catch (error) {
         throw Error(error.message);
@@ -92,12 +113,16 @@ const updatePlayer = async (player) => {
 
 const deletePlayer = async (playerId) => {
     try {
+        let method = 'DELETE';
         const response = await fetch(API_URL + 'players/' + playerId, {
-            method: 'DELETE'
+            method: method,
+            headers: getHeaders(method)
         });
+
         if (!response.ok) {
             throw Error(response.statusText);
-        }
+        };
+        
         return response.ok;
     } catch (error) {
         throw Error(error.message);
