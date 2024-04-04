@@ -1,3 +1,7 @@
+import {
+    getHeaders
+} from '../utils/service.utils';
+
 const {
     VITE_API_URL
 } = import.meta.env;
@@ -7,19 +11,18 @@ const API_URL = VITE_API_URL + '/api/';
 // Public methods to export
 const createCricket = async (game) => {
     try {
+        let method = 'POST';
         const response = await fetch(API_URL + 'games/cricket', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'accept': 'application/json'
-            },
+            method: method,
+            headers: getHeaders(method),
             body: JSON.stringify(game)
         });
+
         if (!response.ok) {
             throw Error(response.statusText);
-        }
-        const data = await response.json();
-        return data;
+        };
+
+        return await response.json();
     } catch (error) {
         throw new Error(error);
     }
@@ -41,12 +44,17 @@ const loadFinishedCricketGames = async () => {
 
 const loadAllCricketGames = async () => {
     try {
-        const response = await fetch(API_URL + 'games/cricket');
+        let method = 'GET';
+        const response = await fetch(API_URL + 'games/cricket', {
+            method: method,
+            headers: getHeaders(method)
+        });
+            
         if (!response.ok) {
             throw Error(response.statusText);
-        }
-        const data = await response.json();
-        return data;
+        };
+
+        return await response.json();
     } catch (error) {
         throw new Error(error);
     }
@@ -54,12 +62,17 @@ const loadAllCricketGames = async () => {
 
 const loadCricket = async (id) => {
     try {
-        const response = await fetch(API_URL + 'games/cricket/' + id);
+        let method = 'GET';
+        const response = await fetch(API_URL + 'games/cricket/' + id, {
+            method: method,
+            headers: getHeaders(method)
+        });
+
         if (!response.ok) {
             throw Error(response.statusText);
-        }
-        const data = await response.json();
-        return data;
+        };
+
+        return await response.json();
     } catch (error) {
         throw new Error(error);
     }
@@ -67,17 +80,17 @@ const loadCricket = async (id) => {
 
 const updateCricket = async (game) => {
     try {
+        let method = 'PUT';
         const response = await fetch(API_URL + 'games/cricket/' + game.id, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'accept': 'application/json'
-            },
+            method: method,
+            headers: getHeaders(method),
             body: JSON.stringify(game)
         });
+
         if (!response.ok) {
             throw Error(response.statusText);
-        }
+        };
+
         return response.ok;
     } catch (error) {
         throw new Error(error);
@@ -86,12 +99,17 @@ const updateCricket = async (game) => {
 
 const deleteCricket = async (cricketId) => {
     try {
+        let method = 'DELETE';
         const response = await fetch(API_URL + 'games/cricket/' + cricketId, {
-            method: 'DELETE'
+            method: method,
+            headers: getHeaders(method),
+            body: JSON.stringify(game)
         });
+
         if (!response.ok) {
             throw Error(response.statusText);
-        }
+        };
+        
         return response.ok;
     } catch (error) {
         throw Error(error.message);
