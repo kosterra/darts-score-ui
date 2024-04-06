@@ -6,9 +6,9 @@ const {
 const getHeaders = (method) => {
     let headers = {};
 
-    if (method === 'POST') {
+    if (method === 'POST' || method === 'PUT') {
         headers['Content-Type'] = 'application/json';
-        headers['accept'] = 'application/json';
+        //headers['accept'] = 'application/json';
     }
 
     if (VITE_CF_CLIENT_ID) {

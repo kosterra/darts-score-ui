@@ -48,7 +48,7 @@ const Dashboard = () => {
 
 	return (
 		<div className="container-fluid p-4 border-0">
-			<div className="row" data-masonry='{"percentPosition": true }'>
+			<div className="row">
 				{runningX01Games && runningX01Games.length > 0 &&
 					<DashboardGameList
 						title="X01"

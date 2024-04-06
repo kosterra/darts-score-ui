@@ -1,4 +1,4 @@
-import { Fragment, useContext } from 'react';
+import { Fragment, useContext, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import X01Context from '../../../utils/x01.context';
@@ -18,9 +18,11 @@ const X01Game = () => {
 
     const navigate = useNavigate();
 
-    if (game.hasWinner) {
-        navigate("/stats/games/x01/" + game.id, { replace: true });
-    }
+    useEffect(() => {
+        if (game.hasWinner) {
+            navigate("/stats/games/x01/" + game.id, { replace: true });
+        }
+    }, [game.hasWinner]);
 
     if (loading.initGameLoading) {
         return (
