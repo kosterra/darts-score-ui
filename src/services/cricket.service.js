@@ -11,10 +11,9 @@ const API_URL = VITE_API_URL + '/api/';
 // Public methods to export
 const createCricket = async (game) => {
     try {
-        let method = 'POST';
         const response = await fetch(API_URL + 'games/cricket', {
-            method: method,
-            headers: getHeaders(method),
+            method: 'POST',
+            headers: getHeaders(true),
             body: JSON.stringify(game)
         });
 
@@ -44,10 +43,9 @@ const loadFinishedCricketGames = async () => {
 
 const loadAllCricketGames = async () => {
     try {
-        let method = 'GET';
         const response = await fetch(API_URL + 'games/cricket', {
-            method: method,
-            headers: getHeaders(method)
+            method: 'GET',
+            headers: getHeaders(false)
         });
             
         if (!response.ok) {
@@ -62,10 +60,9 @@ const loadAllCricketGames = async () => {
 
 const loadCricket = async (id) => {
     try {
-        let method = 'GET';
         const response = await fetch(API_URL + 'games/cricket/' + id, {
-            method: method,
-            headers: getHeaders(method)
+            method: 'GET',
+            headers: getHeaders(false)
         });
 
         if (!response.ok) {
@@ -80,10 +77,9 @@ const loadCricket = async (id) => {
 
 const updateCricket = async (game) => {
     try {
-        let method = 'PUT';
         const response = await fetch(API_URL + 'games/cricket/' + game.id, {
-            method: method,
-            headers: getHeaders(method),
+            method: 'PUT',
+            headers: getHeaders(true),
             body: JSON.stringify(game)
         });
 
@@ -99,9 +95,8 @@ const updateCricket = async (game) => {
 
 const deleteCricket = async (cricketId) => {
     try {
-        let method = 'DELETE';
         const response = await fetch(API_URL + 'games/cricket/' + cricketId, {
-            method: method,
+            method: 'DELETE',
             headers: getHeaders(method),
             body: JSON.stringify(game)
         });
@@ -109,7 +104,7 @@ const deleteCricket = async (cricketId) => {
         if (!response.ok) {
             throw Error(response.statusText);
         };
-        
+
         return response.ok;
     } catch (error) {
         throw Error(error.message);

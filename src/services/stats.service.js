@@ -11,10 +11,9 @@ const API_URL = VITE_API_URL + '/api/';
 // Public methods to export
 const loadPlayerStats = async (playerId) => {
     try {
-        let method = 'GET';
         const response = await fetch(API_URL + 'stats/player/' + playerId, {
-            method: method,
-            headers: getHeaders(method)
+            method: 'GET',
+            headers: getHeaders(false)
         });
 
         if (!response.ok) {
@@ -29,10 +28,9 @@ const loadPlayerStats = async (playerId) => {
 
 const loadX01PlayersStats = async (body) => {
     try {
-        let method = 'POST';
         const response = await fetch(API_URL + 'stats/players/x01', {
-            method: method,
-            headers: getHeaders(method),
+            method: 'POST',
+            headers: getHeaders(true),
             body: JSON.stringify(body)
         });
 
@@ -48,10 +46,9 @@ const loadX01PlayersStats = async (body) => {
 
 const loadPlayersCricketStats = async (playerId) => {
     try {
-        let method = 'GET';
         const response = await fetch(API_URL + 'stats/player/' + playerId, {
-            method: method,
-            headers: getHeaders(method)
+            method: 'GET',
+            headers: getHeaders(false)
         });
 
         if (!response.ok) {
@@ -66,10 +63,9 @@ const loadPlayersCricketStats = async (playerId) => {
 
 const loadX01GameStats = async (gameId) => {
     try {
-        let method = 'GET';
         const response = await fetch(API_URL + 'stats/games/x01/' + gameId, {
-            method: method,
-            headers: getHeaders(method)
+            method: 'GET',
+            headers: getHeaders(false)
         });
 
         if (!response.ok) {

@@ -3,12 +3,11 @@ const {
     VITE_CF_CLIENT_SECRET
 } = import.meta.env;
 
-const getHeaders = (method) => {
+const getHeaders = (addContentTypeJSON) => {
     let headers = {};
 
-    if (method === 'POST' || method === 'PUT') {
+    if (addContentTypeJSON) {
         headers['Content-Type'] = 'application/json';
-        //headers['accept'] = 'application/json';
     }
 
     if (VITE_CF_CLIENT_ID) {

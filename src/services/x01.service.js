@@ -11,10 +11,9 @@ const API_URL = VITE_API_URL + '/api/';
 // Public methods to export
 const createX01 = async (game) => {
     try {
-        let method = 'POST';
         const response = await fetch(API_URL + 'games/x01', {
-            method: method,
-            headers: getHeaders(method),
+            method: 'POST',
+            headers: getHeaders(true),
             body: JSON.stringify(game)
         });
 
@@ -44,10 +43,9 @@ const loadFinishedX01Games = async () => {
 
 const loadAllX01Games = async () => {
     try {
-        let method = 'GET';
         const response = await fetch(API_URL + 'games/x01', {
-            method: method,
-            headers: getHeaders(method)
+            method: 'GET',
+            headers: getHeaders(false)
         });
 
         if (!response.ok) {
@@ -65,10 +63,9 @@ const loadAllX01Games = async () => {
 
 const loadX01Games = async (body) => {
     try {
-        let method = 'POST';
         const response = await fetch(API_URL + 'games/x01/find', {
-            method: method,
-            headers: getHeaders(method),
+            method: 'POST',
+            headers: getHeaders(true),
             body: JSON.stringify(body)
         });
 
@@ -87,10 +84,9 @@ const loadX01Games = async (body) => {
 
 const loadX01 = async (id) => {
     try {
-        let method = 'GET';
         const response = await fetch(API_URL + 'games/x01/' + id, {
-            method: method,
-            headers: getHeaders(method)
+            method: 'GET',
+            headers: getHeaders(false)
         });
 
         if (!response.ok) {
@@ -105,10 +101,9 @@ const loadX01 = async (id) => {
 
 const updateX01 = async (game) => {
     try {
-        let method = 'PUT';
         const response = await fetch(API_URL + 'games/x01/' + game.id, {
-            method: method,
-            headers: getHeaders(method),
+            method: 'PUT',
+            headers: getHeaders(true),
             body: JSON.stringify(game)
         });
 
@@ -124,10 +119,9 @@ const updateX01 = async (game) => {
 
 const deleteX01 = async (x01Id) => {
     try {
-        let method = 'DELETE';
         const response = await fetch(API_URL + 'games/x01/' + x01Id, {
-            method: method,
-            headers: getHeaders(method)
+            method: 'DELETE',
+            headers: getHeaders(false)
         });
 
         if (!response.ok) {

@@ -14,10 +14,9 @@ const createPlayer = async (player) => {
     Object.keys(player).forEach(key => formData.append(key, player[key]));
 
     try {
-        let method = 'POST';
         const response = await fetch(API_URL + 'players', {
-            method: method,
-            headers: getHeaders(method),
+            method: 'POST',
+            headers: getHeaders(false),
             body: formData
         });
 
@@ -33,10 +32,9 @@ const createPlayer = async (player) => {
 
 const getPlayer = async (playerId) => {
     try {
-        let method = 'GET';
         const response = await fetch(API_URL + 'players/' + playerId, {
-            method: method,
-            headers: getHeaders(method)
+            method: 'GET',
+            headers: getHeaders(false)
         });
 
         if (!response.ok) {
@@ -51,10 +49,9 @@ const getPlayer = async (playerId) => {
 
 const searchPlayers = async (searchTerm) => {
     try {
-        let method = 'GET';
         const response = await fetch(API_URL + 'players/search?search=' + (searchTerm ? searchTerm : ''), {
-            method: method,
-            headers: getHeaders(method)
+            method: 'GET',
+            headers: getHeaders(false)
         });
 
         if (!response.ok) {
@@ -72,10 +69,9 @@ const findPlayersByIds = async (playerIds) => {
         playerIds: playerIds
     }
     try {
-        let method = 'POST';
         const response = await fetch(API_URL + 'players/find', {
-            method: method,
-            headers: getHeaders(method),
+            method: 'POST',
+            headers: getHeaders(true),
             body: JSON.stringify(body)
         });
 
@@ -94,10 +90,9 @@ const updatePlayer = async (player) => {
     Object.keys(player).forEach(key => formData.append(key, player[key]));
 
     try {
-        let method = 'PUT';
         const response = await fetch(API_URL + 'players/' + player.id, {
-            method: method,
-            headers: getHeaders(method),
+            method: 'PUT',
+            headers: getHeaders(false),
             body: formData
         });
 
@@ -113,16 +108,15 @@ const updatePlayer = async (player) => {
 
 const deletePlayer = async (playerId) => {
     try {
-        let method = 'DELETE';
         const response = await fetch(API_URL + 'players/' + playerId, {
-            method: method,
-            headers: getHeaders(method)
+            method: 'DELETE',
+            headers: getHeaders(false)
         });
 
         if (!response.ok) {
             throw Error(response.statusText);
         };
-        
+
         return response.ok;
     } catch (error) {
         throw Error(error.message);
