@@ -26,13 +26,13 @@ const GamesTimeline = (props) => {
         return (
             <Card
                 title={game.startingScore}
-                subTitle={player.nickname}
+                subTitle={(player || {}).nickname || 'N/A'}
                 className="timeline-card mb-3 p-2">
                 <div className="d-flex align-items-center justify-content-center">
                     <div className="position-relative">
                         <Avatar
-                            label={(player.firstname + ' ' + player.lastname).split(" ").map((n) => n[0]).join("")}
-                            image={player.profileImg}
+                            label={(((player || {}).firstname || 'N') + ' ' + ((player || {}).firstname || 'A')).split(" ").map((n) => n[0]).join("")}
+                            image={(player || {}).profileImg || ''}
                             shape="circle"
                             size="large"
                             className="bg-shade700"

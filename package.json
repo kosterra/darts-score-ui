@@ -1,7 +1,7 @@
 {
   "name": "darts-score-ui",
   "description": "WebUI for darts-score Application",
-  "version": "2024.4.1",
+  "version": "2024.4.2",
   "private": true,
   "license": "GPLv3",
   "type": "module",
