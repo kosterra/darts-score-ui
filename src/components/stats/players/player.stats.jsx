@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
-import PlayerOverallStats from './player.overall.stats'
-import StatsService from '../../../services/stats.service'
-import PlayerStatsCharts from './player.stats.charts'
-import PlayerSelect from '../../elements/player.select'
+import PlayerOverallStats from './player.overall.stats';
+import StatsService from '../../../services/stats.service';
+import PlayerStatsCharts from './player.stats.charts';
+import PlayerSelect from '../../elements/player.select';
 
 const PlayerStats = () => {
     const [players, setPlayers] = useState([])

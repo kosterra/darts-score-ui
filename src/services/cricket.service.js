@@ -97,8 +97,7 @@ const deleteCricket = async (cricketId) => {
     try {
         const response = await fetch(API_URL + 'games/cricket/' + cricketId, {
             method: 'DELETE',
-            headers: getHeaders(method),
-            body: JSON.stringify(game)
+            headers: getHeaders(false)
         });
 
         if (!response.ok) {

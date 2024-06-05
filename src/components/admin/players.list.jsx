@@ -62,6 +62,9 @@ const PlayersList = (props) => {
     const onPlayerAdd = () => {
         setSearchTerm('');
         loadPlayers('');
+        setSortOrder(1);
+        setSortField('firstname');
+        setSortKey('firstname');
     };
 
     const onPlayerEdit = () => {
@@ -120,6 +123,7 @@ const PlayersList = (props) => {
                             </div>
                             <div className="col-12 col-md-4 d-flex justify-content-center justify-content-md-end align-items-center gap-2">
                                 <PlayerForm
+                                    key={'player-form-' + index}
                                     onPlayerEdit={onPlayerEdit}
                                     edit={true}
                                     updatePlayer={player}

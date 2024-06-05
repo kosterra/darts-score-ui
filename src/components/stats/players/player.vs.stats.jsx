@@ -339,7 +339,7 @@ const PlayerVSStats = (props) => {
                     </span>
                 </div>
             }
-            {playerStats && playerStats.playedGames == 0 &&
+            {players && (players.filter(player => player != null).length === playersCount) && playerStats && playerStats.playedGames == 0 &&
                 <div className="d-flex justify-content-center mt-4">
                     <span className="empty-text text-shade500">
                         No games found. Check the filters

@@ -150,17 +150,15 @@ const CricketList = (props) => {
                     <div className="container-fluid overflow-hidden">
                         <div className="row gy-4">
                             <div className="col-12 col-lg-4 d-flex flex-column gap-4">
-                                <div className="d-flex justify-content-start align-items-start">
+                                <div className="d-flex justify-content-start align-items-center gap-3">
+                                    <span className="fs-5 text-shade100 fw-semibold">
+                                        Cricket Game
+                                    </span>
                                     <Tag
                                         severity={game.gameIsRunning ? 'warning' : 'info'}
                                         value={game.gameIsRunning ? 'Running' : 'Finished'}
                                         rounded
                                     />
-                                </div>
-                                <div className="d-flex flex-column">
-                                    <span className="fs-7 text-shade500 fw-semibold">
-                                        Cricket Game
-                                    </span>
                                 </div>
                                 <div>
                                     <span className="fs-8 text-shade500">
@@ -204,14 +202,12 @@ const CricketList = (props) => {
     const gridItem = (game, index) => {
         return (
             <div className="col-12 col-sm-6 col-lg-4 col-xl-3" key={'grid-item-' + index}>
-                <Panel header={game.startingScore} className="panel-brighter-bg no-header">
+                <Panel className="panel-brighter-bg no-header">
                     <div className="row mb-3">
-                        <div className="col-8 d-flex flex-column">
-                            <span className="fs-7 text-shade500 fw-semibold">
+                        <div className="d-flex justify-content-start align-items-center gap-3">
+                            <span className="fs-5 text-shade100 fw-semibold">
                                 Cricket Game
                             </span>
-                        </div>
-                        <div className="col-4 d-flex justify-content-end align-items-start">
                             <Tag
                                 severity={game.gameIsRunning ? 'warning' : 'info'}
                                 value={game.gameIsRunning ? 'Running' : 'Finished'}

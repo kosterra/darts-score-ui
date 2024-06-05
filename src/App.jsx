@@ -11,6 +11,7 @@ import CricketConfigPage from './components/game_config/cricket/_cricket.config.
 import CricketGamePage from './components/games/cricket/_cricket.game.page';
 import CricketGameStats from './components/stats/cricket/cricket.game.stats';
 import StatsPage from './components/stats/_stats.page';
+import TrainingPage from './components/training/_training.page';
 import AboutPage from './components/about/_about.page';
 import AdminPage from './components/admin/_admin.page';
 
@@ -35,10 +36,13 @@ function App() {
                         <Route path="/stats/games/:id" element={<StatsPage />} />
                         <Route path="/stats/games/x01/:id" element={<X01GameStats />} />
                         <Route path="/stats/games/cricket/:id" element={<CricketGameStats />} />
+                        <Route path="/training" element={<TrainingPage />} />
+                        <Route path="/training/atc" element={<TrainingPage />} />
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/admin" element={<Navigate replace to="/admin/players" />} />
                         <Route path="/admin/:id" element={<AdminPage />} />
                         <Route path="/admin/games/:id" element={<AdminPage />} />
+                        <Route path="/admin/training/:id" element={<AdminPage />} />
                         <Route path="*" element={<Navigate replace to="/" />} />
                     </Routes>
                 </div>

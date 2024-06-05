@@ -31,7 +31,7 @@ const GamesTimeline = (props) => {
                 <div className="d-flex align-items-center justify-content-center">
                     <div className="position-relative">
                         <Avatar
-                            label={(((player || {}).firstname || 'N') + ' ' + ((player || {}).firstname || 'A')).split(" ").map((n) => n[0]).join("")}
+                            label={(((player || {}).firstname || 'N') + ' ' + ((player || {}).lastname || 'A')).split(" ").map((n) => n[0]).join("")}
                             image={(player || {}).profileImg || ''}
                             shape="circle"
                             size="large"

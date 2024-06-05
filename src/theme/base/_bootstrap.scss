@@ -2,12 +2,14 @@
 @import "../../../node_modules/bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
-$red: map-get($colors, "red");;
-$blue: map-get($colors, "blue");;
-$beige: map-get($colors, "beige");;
-$gold: map-get($colors, "gold");;
-$yellow: map-get($colors, "yellow");;
-$green: map-get($colors, "green");;
+$red: map-get($colors, "red");
+$blue: map-get($colors, "blue");
+$beige: map-get($colors, "beige");
+$gold: map-get($colors, "gold");
+$silver: map-get($colors, "silver");
+$bronze: map-get($colors, "bronze");
+$yellow: map-get($colors, "yellow");
+$green: map-get($colors, "green");
 
 $primary:       $primaryColor;
 $secondary:     $shade900;
@@ -19,6 +21,8 @@ $danger:        $red;
 
 $border-color:  $shade600;
 
+$font-family-monospace: verdana, sans-serif;
+
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../../../node_modules/bootstrap/scss/variables";
 @import "../../../node_modules/bootstrap/scss/variables-dark";
@@ -28,6 +32,8 @@ $custom-colors: (
     "beige": $beige,
     "blue": $blue,
     "gold": $gold,
+    "silver": $silver,
+    "bronze": $bronze,
     "purple": $purple,
     "orange": $orange,
     "shade100": $shade100,

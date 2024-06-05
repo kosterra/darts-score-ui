@@ -9,7 +9,7 @@ import SidebarHeader from './sidebar.header';
 import SidebarPlay from './sidebar.play';
 import SidebarAdmin from './sidebar.admin';
 import SidebarStats from './sidebar.stats';
-// import SidebarTraining from './sidebar.training';
+import SidebarTraining from './sidebar.training';
 import SidebarMisc from './sidebar.misc';
 import SidebarDashboard from './sidebar.dashboard';
 
@@ -62,7 +62,7 @@ const NavigationSidebar = () => {
                     </div>
                     <SidebarDashboard collapsed={collapsed} />
                     <SidebarPlay collapsed={collapsed} />
-                    {/* <SidebarTraining collapsed={ collapsed } /> */}
+                    <SidebarTraining collapsed={ collapsed } />
                     <SidebarStats collapsed={collapsed} />
                     <SidebarAdmin collapsed={collapsed} />
                     <SidebarMisc />
