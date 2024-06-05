@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { GiDart } from "react-icons/gi";
+import { BsPersonFillCheck } from "react-icons/bs";
 
 import {
     Menu,
@@ -36,6 +37,13 @@ const SidebarAdmin = (props) => {
                 >
                     <MenuItem component={<Link to="/admin/games/x01" />} className="fs-8 fw-semibold"> X01</MenuItem>
                     <MenuItem component={<Link to="/admin/games/cricket" />} className="fs-8 fw-semibold"> Cricket</MenuItem>
+                </SubMenu>
+                <SubMenu
+                    label="Training"
+                    icon={<BsPersonFillCheck className="fs-6" />}
+                    className="fs-8 fw-semibold"
+                >
+                    <MenuItem component={<Link to="/admin/training/atc" />} className="fs-8 fw-semibold"> Around the Clock</MenuItem>
                 </SubMenu>
             </Menu>
         </Fragment>

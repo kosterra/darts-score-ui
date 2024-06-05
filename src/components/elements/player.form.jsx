@@ -46,6 +46,7 @@ const PlayerForm = (props) => {
             profileImg: '',
             id: initialState.id
         },
+        enableReinitialize: true,
         validate: (data) => {
             let errors = {};
 
