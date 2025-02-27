@@ -1,4 +1,4 @@
-FROM node:21.7.1-alpine AS builder
+FROM node:23.8.0-alpine AS builder
 
 WORKDIR /app
 
@@ -15,7 +15,7 @@ RUN npm run build
 # ==================================
 #        Development Build
 # ==================================
-FROM node:21.7.1-alpine AS development
+FROM node:23.8.0-alpine AS development
 
 # Create the app directory and set owner and permissions
 RUN mkdir -p /app
@@ -32,7 +32,7 @@ CMD ["npm", "run", "test"]
 # ==================================
 #        Production Build
 # ==================================
-FROM nginx:1.25.4-alpine AS production
+FROM nginx:23.8.0-alpine AS production
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf

@@ -1,4 +1,4 @@
-import { Rings } from 'react-loader-spinner';
+import { BounceLoader } from 'react-spinners';
 
 const PageLoader = () => {
 
@@ -6,15 +6,9 @@ const PageLoader = () => {
         <div className="container-fluid m-5">
             <div className="d-flex justify-content-center align-items-center">
                 <span className="display-2 me-2 fw-semibold text-shade100">L</span>
-                <Rings
-                    height="120"
-                    width="120"
+                <BounceLoader
                     color="#528b6e"
-                    radius="12"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
-                    ariaLabel="rings-loading"
+                    size="60"
                 />
                 <span className="display-2 ms-2 fw-semibold text-shade100">ading</span>
             </div>
