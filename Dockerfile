@@ -32,7 +32,7 @@ CMD ["npm", "run", "test"]
 # ==================================
 #        Production Build
 # ==================================
-FROM nginx:23.8.0-alpine AS production
+FROM nginx:1.27.4-alpine AS production
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
