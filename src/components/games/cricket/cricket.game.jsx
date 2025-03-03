@@ -1,6 +1,10 @@
 import { Fragment, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'primereact/button';
+import { SplitButton } from 'primereact/splitbutton';
+import { PiShuffle } from "react-icons/pi";
+import { PiUserSwitch } from "react-icons/pi";
+import { MdReplay } from "react-icons/md";
 
 import CricketContext from '../../../utils/cricket.context';
 import CricketModels from '../../../models/cricket.models';
@@ -26,14 +30,23 @@ const CricketGame = () => {
         navigate("/", { replace: true });
     };
 
-    const onRestartGame = async () => {
+    const onRestartGame = async (switchPlayers = false, shufflePlayers = false) => {
         let newMatchSetup = { ...CricketModels.CricketModel };
         newMatchSetup.isSoloGame = game.players.length === 1;
         newMatchSetup.startingScore = game.startingScore;
         newMatchSetup.numberOfPlayers = game.players.length;
+
+        if (switchPlayers) {
+            newMatchSetup.players = game.players.reverse();
+        } else if (shufflePlayers) {
+            newMatchSetup.players = game.players.sort(() => Math.random() - 0.5);
+        } else {
+            newMatchSetup.players = game.players;
+        }
+
         newMatchSetup.currentPlayerTurn = game.players[0];
-        newMatchSetup.players = game.players;
         newMatchSetup.playerModels = {};
+
         game.players.forEach(player => {
             let cricketPlayerModel = { ...CricketModels.CricketPlayerModel };
             cricketPlayerModel.score = Number(game.startingScore);
@@ -73,32 +86,34 @@ const CricketGame = () => {
             {game.hasWinner && (
                 <div className="container-fluid mt-4">
                     <div className="row">
-                        <div className="col d-flex justify-content-center align-items-center">
-                            <span className="p-buttonset">
-                                <Button
-                                    label="PLAY AGAIN"
-                                    icon="pi pi-sync"
-                                    onClick={onRestartGame}
-                                    size="small"
-                                    severity="primary"
-                                />
-                                <Button
-                                    label="NEW GAME"
-                                    icon="pi pi-plus"
-                                    onClick={onNewGame}
-                                    size="small"
-                                    outlined
-                                    severity="primary"
-                                />
-                                <Button
-                                    label="BACK HOME"
-                                    icon="pi pi-home"
-                                    onClick={onFinishGame}
-                                    size="small"
-                                    outlined
-                                    severity="primary"
-                                />
-                            </span>
+                        <div className="col d-flex justify-content-center align-items-center gap-2">
+                            <SplitButton
+                                label="PLAY AGAIN"
+                                icon={<MdReplay className="me-2 fs-5" />}
+                                onClick={onRestartGame}
+                                size="small"
+                                severity="primary"
+                                model={[
+                                    { label: 'Switch Players', icon: <PiUserSwitch className="me-2 mb-1 fs-5" />, visible: game.players.length == 2, command: () => onRestartGame(true) },
+                                    { label: 'Shuffle Players', icon: <PiShuffle className="me-2 mb-1 fs-5" />, visible: game.players.length > 2, command: () => onRestartGame(false, true) }
+                                ]}
+                            />
+                            <Button
+                                label="NEW GAME"
+                                icon="pi pi-plus"
+                                onClick={onNewGame}
+                                size="small"
+                                outlined
+                                severity="primary"
+                            />
+                            <Button
+                                label="BACK HOME"
+                                icon="pi pi-home"
+                                onClick={onFinishGame}
+                                size="small"
+                                outlined
+                                severity="primary"
+                            />
                         </div>
                     </div>
                 </div>

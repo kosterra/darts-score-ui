@@ -114,7 +114,7 @@ const X01List = (props) => {
         return ( 
             <>
                 <div className="row mb-2">
-                    <div className="col-6">
+                    <div className={`${game.gameIsRunning ? "col-6" : "col-9"}`}>
                         {' '}
                     </div>
                     <div className="col-3 d-flex align-items-center justify-content-center text-shade100 fs-7 fw-semibold">
@@ -128,7 +128,7 @@ const X01List = (props) => {
                 </div>
                 {players.length > 0 && game.players.map((playerId, idx) => (
                     <div className="row" key={idx}>
-                        <div className="col-6 d-flex align-items-center text-shade100 fs-7 fw-semibold">
+                        <div className={`${game.gameIsRunning ? "col-6" : "col-9"} d-flex align-items-center text-shade100 fs-7 fw-semibold`}>
                             <Avatar
                                 label={(((players || []).find(player => player.id === playerId) || {}).firstname + ' ' + ((players || []).find(player => player.id === playerId) || {}).lastname).split(" ").map((n) => n[0]).join("")}
                                 image={((players || []).find(player => player.id === playerId) || {}).profileImg}
