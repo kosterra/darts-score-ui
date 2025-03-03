@@ -82,10 +82,10 @@ const CricketScoreBoard = (props) => {
                                 />
                             </div>
                             <div className="col-12 d-flex flex-column justify-content-center align-items-center">
-                                <div className="d-flex justify-content-center">
+                                <div>
                                     <span className="fs-6 text-shade100 fw-semibold">{player.nickname}</span>
                                 </div>
-                                <div className="d-flex justify-content-center text-center">
+                                <div>
                                     <span className="fs-7 text-shade500 text-truncate" data-toggle="tooltip" title={player.firstname + ' ' + player.lastname}>
                                         {player.firstname + ' ' + player.lastname}
                                     </span>

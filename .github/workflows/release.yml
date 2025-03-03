@@ -17,7 +17,7 @@ jobs:
           token: ${{ secrets.DARTS_SCORE_PAT }}
       - name: Get package info
         id: package
-        uses: codex-team/action-nodejs-package-info@v1.1
+        uses: kylejrp/action-nodejs-package-info@v1.2
       - name: Get the output
         run: |
           echo "name: ${{ steps.package.outputs.name }}"

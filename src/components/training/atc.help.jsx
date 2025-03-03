@@ -41,7 +41,7 @@ const ATCHelp = () => {
                 draggable={false}
                 resizable={false}>
                 <p className="m-0">
-                    Hit every double on the board, beginning from 1 around the clock to 20 and then the bullseye in order. Ther is no Dartboard to save your hits.
+                    Hit every double on the board, beginning from 1 around the clock to 20 and then the bullseye in order. There is no Dartboard to save your hits.
                     Just start the stopwatch and stop once you have finished the challenge.
                     <br /><br />
                     <span className="fs-6 fw-semibold">Modes:</span>

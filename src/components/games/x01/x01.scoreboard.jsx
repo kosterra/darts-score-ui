@@ -4,6 +4,8 @@ import { Tag } from 'primereact/tag';
 import { FaCircle, FaRegCircle } from "react-icons/fa";
 
 import X01Context from '../../../utils/x01.context';
+import CheckoutOverlay from './x01.checkout.overlay';
+import checkout from '../../../utils/checkout';
 
 const X01ScoreBoard = (props) => {
     const { playerId, idx } = props
@@ -57,10 +59,10 @@ const X01ScoreBoard = (props) => {
                                 />
                             </div>
                             <div className="col-7 col-md-8 col-xxl-12 d-flex flex-column justify-content-center align-items-center">
-                                <div className="col-4 d-flex justify-content-center">
+                                <div>
                                     <span className="fs-6 text-shade100 fw-semibold">{player.nickname}</span>
                                 </div>
-                                <div className="col-8 d-flex justify-content-center text-center">
+                                <div>
                                     <span className="fs-7 text-shade500 text-truncate" data-toggle="tooltip" title={player.firstname + ' ' + player.lastname}>
                                         {player.firstname + ' ' + player.lastname}
                                     </span>
@@ -84,6 +86,9 @@ const X01ScoreBoard = (props) => {
                             )}
                             {game.startingPlayerLeg !== playerId && game.currentPlayerTurn !== playerId && (
                                 <Tag value="&nbsp;" severity="" rounded className="text-truncate bg-transparent fs-9" />
+                            )}
+                            {checkout[game.currentPlayerTurn === playerId ? score : playerModel.score] && (
+                                <CheckoutOverlay score={game.currentPlayerTurn === playerId ? score : playerModel.score} />
                             )}
                         </div>
                     </div>

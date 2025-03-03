@@ -642,7 +642,7 @@ $errorMessageTextColor: $shade100 !default;
 $errorMessageIconColor: #fca5a5 !default;
 
 //overlays
-$overlayContentBorder: 0 none !default;
+$overlayContentBorder: $primaryColor none !default;
 $overlayContentBg: $shade900 !default;
 $overlayContainerShadow: 0 !default;
 
@@ -697,7 +697,7 @@ $progressBarValueTextColor: $primaryTextColor !default;
 //menu (e.g. menu, menubar, tieredmenu)
 $menuWidth: 12.5rem !default;
 $menuBg: $shade700 !default;
-$menuBorder: 1px solid $shade600 !default;
+$menuBorder: 0 none !default;
 $menuTextColor: $shade000 !default;
 $menuitemPadding: 0.75rem 1.25rem !default;
 $menuitemBorderRadius: 0 !default;
@@ -721,9 +721,11 @@ $submenuHeaderTextColor: $shade000 !default;
 $submenuHeaderBorderRadius: 0 !default;
 $submenuHeaderFontWeight: 700 !default;
 $overlayMenuBg: $menuBg !default;
-$overlayMenuBorder: 1px solid $shade600 !default;
+$overlayMenuBorder: 0 none !default;
 $overlayMenuShadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
 	0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12) !default;
+$overlayMenuFontSize: 0.9rem !default;
+$overlayMenuFontWeight: 600 !default;
 $verticalMenuPadding: 0.25rem 0 !default;
 $menuSeparatorMargin: 0.25rem 0 !default;
 

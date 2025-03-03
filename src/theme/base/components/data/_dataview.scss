@@ -46,4 +46,10 @@
 			height: $loadingIconFontSize;
 		}
 	}
+
+	.p-dataview-emptymessage {
+		font-size: 1rem;
+		font-weight: 500;
+		padding: 15px 32px;
+	}
 }
