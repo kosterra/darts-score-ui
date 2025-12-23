@@ -12,7 +12,8 @@ const X01ScoreBoard = (props) => {
     const {
         game,
         players,
-        getCurrentThrowScore
+        getCurrentThrowScore,
+        checkIfScoreIsBusted
     } = useContext(X01Context);
 
     const [player] = useState(players.find(player => player.id === playerId));
@@ -96,7 +97,7 @@ const X01ScoreBoard = (props) => {
                         <div className="col-6 col-xl-12 d-flex justify-content-center align-items-center">
                             <div className="display-3 text-shade100 fw-semibold" >
                                 {game.currentPlayerTurn === playerId ?
-                                    score === 1 || score < 0 ? 'BUST' : score : playerModel.score
+                                    checkIfScoreIsBusted(score) ? 'BUST' : score : playerModel.score
                                 }
                             </div>
                         </div>

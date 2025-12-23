@@ -1,9 +1,82 @@
 import StatsCard from '../common/stats.card';
 
-const PlayerOverallStats = (props) => {
+const PlayerOverallStats = ({ playerStats = {} }) => {
     const {
-        playerStats
-    } = props
+        playedGames = {},
+        wonGames = {},
+        avg = {},
+        num180s = 0,
+        num140plus = 0,
+        checkouts = {},
+        throwedDarts = {},
+        throwedPoints = {},
+    } = playerStats;
+
+    const stats = [
+        {
+            title: 'Played Games',
+            subtitle: 'X01',
+            value: playedGames.x01
+        },
+        {
+            title: 'Won Games',
+            subtitle: 'X01',
+            value: wonGames.x01,
+            subvalue: playedGames.x01 ? `(${Math.round((wonGames.x01 * 100) / playedGames.x01)}%)` : '(0%)'
+        },
+        {
+            title: 'Played Games',
+            subtitle: 'Cricket',
+            value: playedGames.cricket
+        },
+        {
+            title: 'Won Games',
+            subtitle: 'Cricket',
+            value: wonGames.cricket,
+            subvalue: playedGames.cricket ? `(${Math.round((wonGames.cricket * 100) / playedGames.cricket)}%)` : '(0%)'
+        },
+        {
+            title: 'Overall Avg',
+            subtitle: 'X01',
+            value: avg.overallX01
+        },
+        {
+            title: 'Avg Darts per Leg',
+            subtitle: 'X01',
+            value: avg.dartsPerLegX01
+        },
+        {
+            title: "180's",
+            subtitle: 'X01',
+            value: num180s
+        },
+        {
+            title: '140+',
+            subtitle: 'X01',
+            value: num140plus
+        },
+        {
+            title: 'Checkout Rate',
+            subtitle: 'X01',
+            value: `${checkouts.hit || 0} / ${checkouts.total || 0}`,
+            subvalue: checkouts.total ? `(${Math.round((checkouts.hit * 100) / checkouts.total)}%)` : '(0%)'
+        },
+        {
+            title: 'Highest Checkout',
+            subtitle: 'X01',
+            value: checkouts.highest
+        },
+        {
+            title: 'Throwed Darts',
+            subtitle: 'X01',
+            value: (throwedDarts.x01 || 0).toLocaleString('de-CH')
+        },
+        {
+            title: 'Throwed Points',
+            subtitle: 'X01',
+            value: (throwedPoints.x01 || 0).toLocaleString('de-CH')
+        },
+    ];
 
     return (
         <div className="container overflow-hidden p-0 mt-4">
@@ -11,105 +84,19 @@ const PlayerOverallStats = (props) => {
                 Game Statistics
             </span>
             <div className="row gy-4 mt-4 d-flex space-between">
-                <div className="col-12 col-sm-6 col-lg-4 col-xl-3">
-                    <StatsCard
-                        title="Played Games"
-                        subtitle="X01"
-                        value={(((playerStats || {}).playedGames || {}).x01 || 0)}
-                        subvalue=""
-                    />
-                </div>
-                <div className="col-12 col-sm-6 col-lg-4 col-xl-3">
-                    <StatsCard
-                        title="Won Games"
-                        subtitle="X01"
-                        value={(((playerStats || {}).wonGames || {}).x01 || 0)}
-                        subvalue={'(' + Math.round(((((playerStats || {}).wonGames || {}).x01 || 0) * 100) / (((playerStats || {}).playedGames || {}).x01 || 0), 0) + '%)'}
-                    />
-                </div>
-                <div className="col-12 col-sm-6 col-lg-4 col-xl-3">
-                    <StatsCard
-                        title="Played Games"
-                        subtitle="Cricket"
-                        value={(((playerStats || {}).playedGames || {}).cricket || 0)}
-                        subvalue=""
-                    />
-                </div>
-                <div className="col-12 col-sm-6 col-lg-4 col-xl-3">
-                    <StatsCard
-                        title="Won Games"
-                        subtitle="Cricket"
-                        value={(((playerStats || {}).wonGames || {}).cricket || 0)}
-                        subvalue={'(' + Math.round(((((playerStats || {}).wonGames || {}).cricket || 0) * 100) / (((playerStats || {}).playedGames || {}).cricket || 0), 0) + '%)'}
-                    />
-                </div>
-                <div className="col-12 col-sm-6 col-lg-4 col-xl-3">
-                    <StatsCard
-                        title="Overall Avg"
-                        subtitle="X01"
-                        value={(((playerStats || {}).avg || {}).overallX01 || 0)}
-                        subvalue=""
-                    />
-                </div>
-                <div className="col-12 col-sm-6 col-lg-4 col-xl-3">
-                    <StatsCard
-                        title="Avg Darts per Leg"
-                        subtitle="X01"
-                        value={(((playerStats || {}).avg || {}).dartsPerLegX01 || 0)}
-                        subvalue=""
-                    />
-                </div>
-                <div className="col-12 col-sm-6 col-lg-4 col-xl-3">
-                    <StatsCard
-                        title="180's"
-                        subtitle="X01"
-                        value={((playerStats || {}).num180s || 0)}
-                        subvalue=""
-                    />
-                </div>
-                <div className="col-12 col-sm-6 col-lg-4 col-xl-3">
-                    <StatsCard
-                        title="140+"
-                        subtitle="X01"
-                        value={((playerStats || {}).num140plus || 0)}
-                        subvalue=""
-                    />
-                </div>
-                <div className="col-12 col-sm-6 col-lg-4 col-xl-3">
-                    <StatsCard
-                        title="Checkout Rate"
-                        subtitle="X01"
-                        value={(((playerStats || {}).checkouts || {}).hit || 0) + ' / ' + (((playerStats || {}).checkouts || {}).total || 0)}
-                        subvalue={'(' + Math.round(((((playerStats || {}).checkouts || {}).hit || 0) * 100) / (((playerStats || {}).checkouts || {}).total || 0), 0) + '%)'}
-                    />
-                </div>
-                <div className="col-12 col-sm-6 col-lg-4 col-xl-3">
-                    <StatsCard
-                        title="Highest Checkout"
-                        subtitle="X01"
-                        value={(((playerStats || {}).checkouts || {}).highest || 0)}
-                        subvalue=""
-                    />
-                </div>
-                <div className="col-12 col-sm-6 col-lg-4 col-xl-3">
-                    <StatsCard
-                        title="Throwed Darts"
-                        subtitle="X01"
-                        value={(((playerStats || {}).throwedDarts || {}).x01 || 0).toLocaleString('de-CH')}
-                        subvalue=""
-                    />
-                </div>
-                <div className="col-12 col-sm-6 col-lg-4 col-xl-3">
-                    <StatsCard
-                        title="Throwed Points"
-                        subtitle="X01"
-                        value={(((playerStats || {}).throwedPoints || {}).x01 || 0).toLocaleString('de-CH')}
-                        subvalue=""
-                    />
-                </div>
+                {stats.map((stat, idx) => (
+                    <div key={idx} className="col-12 col-sm-6 col-lg-4 col-xl-3">
+                        <StatsCard
+                            title={stat.title}
+                            subtitle={stat.subtitle}
+                            value={stat.value || 0}
+                            subvalue={stat.subvalue || ''}
+                        />
+                    </div>
+                ))}
             </div>
         </div>
     );
-}
+};
 
 export default PlayerOverallStats;

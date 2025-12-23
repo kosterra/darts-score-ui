@@ -8,7 +8,8 @@ const X01DartBoard = () => {
   const {
     game,
     updateCurrentThrowDartBoard,
-    getCurrentThrowScore
+    getCurrentThrowScore,
+    checkCanThrowMoreDarts
   } = useContext(X01Context);
 
   const toast = useRef(null);
@@ -19,7 +20,7 @@ const X01DartBoard = () => {
 
     let newCurrentScore = currentPlayerScore - totalScore;
 
-    if (newCurrentScore <= 1) {
+    if (!checkCanThrowMoreDarts(newCurrentScore)) {
       toast.current.show(
         {
           severity: 'error',

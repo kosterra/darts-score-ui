@@ -4,6 +4,7 @@ import PlayerStats from './players/player.stats';
 import PlayerVSStats from './players/player.vs.stats';
 import X01List from '../admin/x01.list';
 import CricketList from '../admin/cricket.list';
+import EliminationList from '../admin/elimination.list';
 
 const StatsPage = () => {
 
@@ -31,6 +32,15 @@ const StatsPage = () => {
             case 'cricket':
                 return (
                     <CricketList
+                        deleteActive={false}
+                        rawActive={false}
+                        showStatusFilter={false}
+                        staticStatusValue={2}
+                    />
+                );
+            case 'elimination':
+                return (
+                    <EliminationList
                         deleteActive={false}
                         rawActive={false}
                         showStatusFilter={false}

@@ -54,7 +54,7 @@ const PlayerConfig = (props) => {
     return (
         <div className="container">
             <p className="text-center text-shade500 fs-7 fw-semibold">Players</p>
-            <div className="row m-0 py-3 mb-3">
+            <div className="row m-0">
                 <div className="col-12 border border-shade600 rounded m-0 mb-4 py-3">
                     <SelectButton
                         value={numberOfPlayersOption}
@@ -64,28 +64,33 @@ const PlayerConfig = (props) => {
                         className="p-selectbutton-pills flex-wrap"
                     />
                 </div>
-                <p className="text-center text-shade500 fs-6">{'Select ' + numberOfPlayersOption + ' player' + (numberOfPlayersOption > 1 ? 's' : '')}</p>
-                <div className="d-flex justify-content-end mb-2">
+            </div>
+            <div className="row m-0">
+                <span className="col-4 p-0"></span>
+                <span className="col-4 p-0 d-flex justify-content-center align-items-center">
+                    <p className="text-shade500 fs-6">{'Select ' + numberOfPlayersOption + ' player' + (numberOfPlayersOption > 1 ? 's' : '')}</p>
+                </span>
+                <div className="col-4 p-0 d-flex justify-content-end mb-2">
                     <PlayerForm onPlayerAdd={onPlayerAdd} />
                 </div>
-                <div className="col-12 p-0 mb-3">
-                    <div className="col py-1 d-flex justify-content-center align-items-center">
-                        <PickList
-                            dataKey="id"
-                            source={players}
-                            target={selectedPlayers}
-                            onChange={onPlayerSelectChange}
-                            itemTemplate={playerItemTemplate}
-                            filter
-                            filterBy="firstname,lastname,nickname"
-                            breakpoint="1280px"
-                            sourceHeader="Available Players"
-                            targetHeader="Selected Players"
-                            showSourceControls={false}
-                            sourceFilterPlaceholder="Search players"
-                            targetFilterPlaceholder="Search players"
-                        />
-                    </div>
+            </div>
+            <div className="col-12 p-0 mb-3">
+                <div className="col py-1 d-flex justify-content-center align-items-center">
+                    <PickList
+                        dataKey="id"
+                        source={players}
+                        target={selectedPlayers}
+                        onChange={onPlayerSelectChange}
+                        itemTemplate={playerItemTemplate}
+                        filter
+                        filterBy="firstname,lastname,nickname"
+                        breakpoint="1280px"
+                        sourceHeader="Available Players"
+                        targetHeader="Selected Players"
+                        showSourceControls={false}
+                        sourceFilterPlaceholder="Search players"
+                        targetFilterPlaceholder="Search players"
+                    />
                 </div>
             </div>
         </div>

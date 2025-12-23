@@ -10,6 +10,9 @@ import X01GameStats from './components/stats/x01/x01.game.stats';
 import CricketConfigPage from './components/game_config/cricket/_cricket.config.page';
 import CricketGamePage from './components/games/cricket/_cricket.game.page';
 import CricketGameStats from './components/stats/cricket/cricket.game.stats';
+import EliminationConfigPage from './components/game_config/elimination/_elimination.config.page';
+import EliminationGamePage from './components/games/elimination/_elimination.game.page';
+import EliminationGameStats from './components/stats/elimination/elimination.game.stats';
 import StatsPage from './components/stats/_stats.page';
 import TrainingPage from './components/training/_training.page';
 import AboutPage from './components/about/_about.page';
@@ -31,11 +34,14 @@ function App() {
                         <Route path="/x01/:id" element={<X01GamePage />} />
                         <Route path="/cricket" element={<CricketConfigPage />} />
                         <Route path="/cricket/:id" element={<CricketGamePage />} />
+                        <Route path="/elimination" element={<EliminationConfigPage />} />
+                        <Route path="/elimination/:id" element={<EliminationGamePage />} />
                         <Route path="/stats" element={<Navigate replace to="/stats/players" />} />
                         <Route path="/stats/:id" element={<StatsPage />} />
                         <Route path="/stats/games/:id" element={<StatsPage />} />
                         <Route path="/stats/games/x01/:id" element={<X01GameStats />} />
                         <Route path="/stats/games/cricket/:id" element={<CricketGameStats />} />
+                        <Route path="/stats/games/elimination/:id" element={<EliminationGameStats />} />
                         <Route path="/training" element={<TrainingPage />} />
                         <Route path="/training/atc" element={<TrainingPage />} />
                         <Route path="/about" element={<AboutPage />} />

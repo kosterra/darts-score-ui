@@ -7,45 +7,35 @@ const PlayersX01StatsComparisonBars = (props) => {
         playersX01Stats
     } = props;
 
-    const getWonGamesData = () => {
-        var wonGames = (playersX01Stats || {}).wonGames || {}
-        wonGames.name = 'Won Games'
+    const getChartData = (path, title) => {
+        const source = path
+            .split('.')
+            .reduce((obj, key) => obj?.[key], playersX01Stats) ?? {};
 
-        return [wonGames]
-    }
-
-    const getRangesData = (valueKey, title) => {
-        var ranges = (playersX01Stats || {})[valueKey]
-        ranges.name = title
-
-        return [ranges]
-    }
-
-    const getAverageData = (valueKey, title) => {
-        var average = ((playersX01Stats || {}).avg || {})[valueKey]
-        average.name = title
-
-        return [average]
-    }
+        return [{ ...source, name: title }];
+    };
 
     const getCheckoutData = () => {
-        var checkout = {}
-        checkout.name = "Checkout"
-        checkout.unit = "%"
+        const stats = playersX01Stats?.checkouts ?? {}
+        const total = stats.total ?? {}
+        const hit = stats.hit ?? {}
 
-        checkout['player1'] = (100 / ((((playersX01Stats || {}).checkouts || {}).total || {})['player1'] || 0) * (((playersX01Stats || {}).checkouts || {}).hit || {})['player1'] || 0).toFixed(1)
-        checkout['player1sub'] = '(' + ((((playersX01Stats || {}).checkouts || {}).hit || {})['player1'] || 0) + '/' + ((((playersX01Stats || {}).checkouts || {}).total || {})['player1'] || 0) + ')'
-        checkout['player2'] = (100 / ((((playersX01Stats || {}).checkouts || {}).total || {})['player2'] || 0) * (((playersX01Stats || {}).checkouts || {}).hit || {})['player2'] || 0).toFixed(1)
-        checkout['player2sub'] = '(' + ((((playersX01Stats || {}).checkouts || {}).hit || {})['player2'] || 0) + '/' + ((((playersX01Stats || {}).checkouts || {}).total || {})['player2'] || 0) + ')'
+        const makePlayerData = (playerKey) => {
+            const totalVal = total[playerKey] ?? 0
+            const hitVal = hit[playerKey] ?? 0
 
-        return [checkout]
-    }
+            const percentage = totalVal > 0 ? ((hitVal / totalVal) * 100).toFixed(1) : '0.0'
+            const sub = `(${hitVal}/${totalVal})`
 
-    const getHighestCheckoutData = () => {
-        var checkout = ((playersX01Stats || {}).checkouts || {}).highest
-        checkout.name = "Highest Checkout"
+            return { [playerKey]: percentage, [`${playerKey}sub`]: sub }
+        }
 
-        return [checkout]
+        return [{
+            name: "Checkout",
+            unit: "%",
+            ...makePlayerData('player1'),
+            ...makePlayerData('player2')
+        }]
     }
 
     return (
@@ -53,20 +43,20 @@ const PlayersX01StatsComparisonBars = (props) => {
             <span className="d-flex justify-content-center align-items-center text-shade100 fs-4 fw-semibold mb-4 mt-4">
                 X01 Statistics
             </span>
+
             <div className="d-flex flex-column align-items-center p-4">
-                <ComparisonBar data={getWonGamesData()} />
-                <ComparisonBar data={getRangesData('num180s', '180s')} />
-                <ComparisonBar data={getRangesData('num160plus', '160+')} />
-                <ComparisonBar data={getRangesData('num140plus', '140+')} />
-                {/* <ComparisonBar data={getRangesData('160+', '180')} /> */}
-                {/* <ComparisonBar data={ getRangesData('160+', '160-179') } /> */}
-                {/* <ComparisonBar data={ getRangesData('140+', '140-159') } /> */}
-                {/* <ComparisonBar data={ getRangesData('120+', '120-139') } /> */}
-                {/* <ComparisonBar data={ getRangesData('100+', '100-119') } /> */}
-                <ComparisonBar data={getAverageData('overall', 'Overall Average')} />
-                <ComparisonBar data={getAverageData('dartsPerLeg', 'AVG Darts per Leg')} />
-                <ComparisonBar data={getCheckoutData()} />
-                <ComparisonBar data={getHighestCheckoutData()} />
+                {[
+                    { data: getChartData('wonGames', 'Won Games') },
+                    { data: getChartData('num180s', '180s') },
+                    { data: getChartData('num160plus', '160+') },
+                    { data: getChartData('num140plus', '140+') },
+                    { data: getChartData('avg.overall', 'Overall Average') },
+                    { data: getChartData('avg.dartsPerLeg', 'AVG Darts per Leg') },
+                    { data: getCheckoutData() },          // Sonderfall mit Berechnung
+                    { data: getChartData('checkouts.highest', 'Highest Checkout') },
+                ].map((item, idx) => (
+                    <ComparisonBar key={idx} data={item.data} />
+                ))}
             </div>
         </Panel>
     );

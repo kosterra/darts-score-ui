@@ -7,7 +7,8 @@ const ScoreConfigOptions = {
             { value: 701 },
             { value: 1001 }
         ],
-        default: 501
+        x01Default: 501,
+        eliminationDefault: 301
     }
 };
 

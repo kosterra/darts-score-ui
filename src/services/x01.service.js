@@ -9,7 +9,7 @@ const {
 const API_URL = VITE_API_URL + '/api/';
 
 // Public methods to export
-const createX01 = async (game) => {
+const createX01Game = async (game) => {
     try {
         const response = await fetch(API_URL + 'games/x01', {
             method: 'POST',
@@ -61,7 +61,7 @@ const loadAllX01Games = async () => {
     }
 }
 
-const loadX01Games = async (body) => {
+const findX01Games = async (body) => {
     try {
         const response = await fetch(API_URL + 'games/x01/find', {
             method: 'POST',
@@ -82,7 +82,7 @@ const loadX01Games = async (body) => {
     }
 }
 
-const loadX01 = async (id) => {
+const loadX01GameById = async (id) => {
     try {
         const response = await fetch(API_URL + 'games/x01/' + id, {
             method: 'GET',
@@ -99,7 +99,7 @@ const loadX01 = async (id) => {
     }
 }
 
-const updateX01 = async (game) => {
+const updateX01Game = async (game) => {
     try {
         const response = await fetch(API_URL + 'games/x01/' + game.id, {
             method: 'PUT',
@@ -117,7 +117,7 @@ const updateX01 = async (game) => {
     }
 }
 
-const deleteX01 = async (x01Id) => {
+const deleteX01Game = async (x01Id) => {
     try {
         const response = await fetch(API_URL + 'games/x01/' + x01Id, {
             method: 'DELETE',
@@ -136,14 +136,14 @@ const deleteX01 = async (x01Id) => {
 
 // Export methods
 const X01Service = {
-    createX01,
+    createX01Game,
     loadRunningX01Games,
     loadFinishedX01Games,
     loadAllX01Games,
-    loadX01Games,
-    loadX01,
-    updateX01,
-    deleteX01
+    findX01Games,
+    loadX01GameById,
+    updateX01Game,
+    deleteX01Game
 }
 
 export default X01Service;

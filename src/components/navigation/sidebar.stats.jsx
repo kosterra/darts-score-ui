@@ -37,6 +37,7 @@ const SidebarStats = (props) => {
                 >
                     <MenuItem component={<Link to="/stats/games/x01" />} className="fs-8 fw-semibold"> X01</MenuItem>
                     <MenuItem component={<Link to="/stats/games/cricket" />} className="fs-8 fw-semibold"> Cricket</MenuItem>
+                    <MenuItem component={<Link to="/stats/games/elimination" />} className="fs-8 fw-semibold"> Elimination</MenuItem>
                 </SubMenu>
             </Menu>
         </Fragment>

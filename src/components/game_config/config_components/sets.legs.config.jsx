@@ -21,7 +21,7 @@ const SetsLegsConfig = (props) => {
 
     return (
         <div className="container">
-            <div className="row mb-3">
+            <div className="row">
                 <div className="col-12 col-xl-6">
                     <p className="text-center text-shade500 fs-7 fw-semibold">Sets</p>
                     <div className="row gap-1 border border-shade600 rounded m-0 py-3 mb-3">

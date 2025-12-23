@@ -17,36 +17,36 @@ const DartBoard = (props) => {
 
             <g transform="translate(210, 210) scale(1, -1)">
                 <circle id="0"
-                        className="out"
-                        cx="0"
-                        cy="0"
-                        r="9999">
+                    className="out"
+                    cx="0"
+                    cy="0"
+                    r="9999">
                 </circle>
                 <circle id="0"
-                        className="item zero"
-                        cx="0"
-                        cy="0"
-                        r="210"
-                        label="0"
-                        value="0">
+                    className="item zero"
+                    cx="0"
+                    cy="0"
+                    r="210"
+                    label="0"
+                    value="0">
                 </circle>
                 <circle id="0"
-                        className="item filler"
-                        cx="0"
-                        cy="0"
-                        r="170">
+                    className="item filler"
+                    cx="0"
+                    cy="0"
+                    r="170">
                 </circle>
                 <circle id="S25"
-                        className="item single-bull"
-                        cx="0"
-                        cy="0"
-                        r="41">
+                    className="item single-bull"
+                    cx="0"
+                    cy="0"
+                    r="41">
                 </circle>
                 <circle id="D25"
-                        className="item double-bull"
-                        cx="0"
-                        cy="0"
-                        r="16">
+                    className="item double-bull"
+                    cx="0"
+                    cy="0"
+                    r="16">
                 </circle>
                 <path d="M 83.95350895058671,13.296929528419623 A 85 85 0 0 0 83.95350895058671,-13.296929528419623 L 40.49522196440065,-6.413813066649466 A 41 41 0 0 1 40.49522196440065,6.413813066649466 Z"
                     id="S6"

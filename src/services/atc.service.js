@@ -29,9 +29,7 @@ const createATCEntry = async (atc) => {
 
 const loadATCEntries = async (mode) => {
     try {
-        console.log(mode);
         let queryString = mode ? '?mode=' + mode : '';
-        console.log(queryString);
         const response = await fetch(API_URL + 'training/atc' + queryString, {
             method: 'GET',
             headers: getHeaders(false)

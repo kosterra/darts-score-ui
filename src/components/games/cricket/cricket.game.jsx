@@ -2,8 +2,7 @@ import { Fragment, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'primereact/button';
 import { SplitButton } from 'primereact/splitbutton';
-import { PiShuffle } from "react-icons/pi";
-import { PiUserSwitch } from "react-icons/pi";
+import { PiShuffle, PiUserSwitch } from "react-icons/pi";
 import { MdReplay } from "react-icons/md";
 
 import CricketContext from '../../../utils/cricket.context';
@@ -15,53 +14,40 @@ import PageLoader from '../../elements/page.loader';
 
 const CricketGame = () => {
     const navigate = useNavigate();
+    const { game, players, loading } = useContext(CricketContext);
 
-    const {
-        game,
-        players,
-        loading
-    } = useContext(CricketContext);
-
-    const onNewGame = () => {
-        navigate("/cricket", { replace: true });
-    };
-
-    const onFinishGame = () => {
-        navigate("/", { replace: true });
-    };
+    const onNewGame = () => navigate("/cricket", { replace: true });
+    const onFinishGame = () => navigate("/", { replace: true });
 
     const onRestartGame = async (switchPlayers = false, shufflePlayers = false) => {
-        let newMatchSetup = { ...CricketModels.CricketModel };
+        const newMatchSetup = { ...CricketModels.CricketGameModel };
         newMatchSetup.isSoloGame = game.players.length === 1;
         newMatchSetup.startingScore = game.startingScore;
         newMatchSetup.numberOfPlayers = game.players.length;
 
         if (switchPlayers) {
-            newMatchSetup.players = game.players.reverse();
+            newMatchSetup.players = game.players.slice().reverse();
         } else if (shufflePlayers) {
-            newMatchSetup.players = game.players.sort(() => Math.random() - 0.5);
+            newMatchSetup.players = game.players.slice().sort(() => Math.random() - 0.5);
         } else {
-            newMatchSetup.players = game.players;
+            newMatchSetup.players = [...game.players];
         }
 
-        newMatchSetup.currentPlayerTurn = game.players[0];
+        newMatchSetup.currentPlayerTurn = newMatchSetup.players[0];
         newMatchSetup.playerModels = {};
 
-        game.players.forEach(player => {
-            let cricketPlayerModel = { ...CricketModels.CricketPlayerModel };
-            cricketPlayerModel.score = Number(game.startingScore);
-            newMatchSetup.playerModels[player] = cricketPlayerModel;
+        newMatchSetup.players.forEach(player => {
+            newMatchSetup.playerModels[player] = {
+                ...CricketModels.CricketPlayerModel,
+                score: Number(game.startingScore)
+            };
         });
 
-        let newGame = await CricketService.createCricket(newMatchSetup)
+        const newGame = await CricketService.createCricketGame(newMatchSetup);
         navigate('/cricket/' + newGame.id);
     };
 
-    if (loading.initGameLoading) {
-        return (
-            <PageLoader />
-        )
-    }
+    if (loading.initGameLoading) return <PageLoader />;
 
     return (
         <Fragment>
@@ -70,19 +56,22 @@ const CricketGame = () => {
                     <div className="text-shade100 fw-semibold fs-7">Cricket</div>
                 </div>
             </div>
+
             <div className="container-fluid">
                 <div className="row justify-content-md-center">
-                    {game.players.length > 0 && game.players.map((playerId, idx) => (
+                    {game.players.map((playerId, idx) => (
                         <div
                             key={`score-board-col-${idx}`}
-                            className={`col-12 col-md-6 col-xxl-3 border-top border-bottom border-opacity-50 ${Number(idx) < players.length - 1 ? 'border-end-md' : ''}`}
+                            className={`col-12 col-md-6 col-xxl-3 border-top border-bottom border-opacity-50 ${idx < players.length - 1 ? 'border-end-md' : ''}`}
                         >
-                            <CricketScoreBoard key={`score-board-${idx}`} playerId={playerId} idx={idx} />
+                            <CricketScoreBoard playerId={playerId} idx={idx} />
                         </div>
                     ))}
                 </div>
             </div>
+
             <CricketScoreInputBoard />
+
             {game.hasWinner && (
                 <div className="container-fluid mt-4">
                     <div className="row">
@@ -94,7 +83,7 @@ const CricketGame = () => {
                                 size="small"
                                 severity="primary"
                                 model={[
-                                    { label: 'Switch Players', icon: <PiUserSwitch className="me-2 mb-1 fs-5" />, visible: game.players.length == 2, command: () => onRestartGame(true) },
+                                    { label: 'Switch Players', icon: <PiUserSwitch className="me-2 mb-1 fs-5" />, visible: game.players.length === 2, command: () => onRestartGame(true) },
                                     { label: 'Shuffle Players', icon: <PiShuffle className="me-2 mb-1 fs-5" />, visible: game.players.length > 2, command: () => onRestartGame(false, true) }
                                 ]}
                             />
@@ -119,7 +108,7 @@ const CricketGame = () => {
                 </div>
             )}
         </Fragment>
-    )
+    );
 }
 
 export default CricketGame;

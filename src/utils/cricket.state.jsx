@@ -8,10 +8,7 @@ import CricketService from '../services/cricket.service';
 import CricketReturnToPreviousPlayer from './cricket.return.to.previous.player';
 import PlayerService from '../services/player.service';
 
-import {
-    validateDartValue,
-    cricketGetCurrentScore
-} from './game.utils';
+import { validateDartValue, cricketGetCurrentScore } from './game.utils';
 
 import {
     FETCH_GAME_SUCCESS,
@@ -52,7 +49,7 @@ const CricketState = props => {
         setLoading('initGameLoading', true);
         async function fetchCricket() {
             try {
-                let cricket = await CricketService.loadCricket(id);
+                let cricket = await CricketService.loadCricketGameById(id);
                 dispatch({ type: FETCH_GAME_SUCCESS, payload: cricket });
                 return cricket;
             } catch (error) {

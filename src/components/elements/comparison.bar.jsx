@@ -29,7 +29,7 @@ const ComparisonBar = (props) => {
     return (
         <Fragment>
             {Object.values(data[0]).filter((value) => !isNaN(value) && value > 0).length > 0 &&
-                <div className="row">
+                <div className="w-100">
                     <div className="col-12 d-flex justify-content-center align-items-center">
                         <span className="fs-7 fw-semibold text-shade500">{data[0].name}</span>
                     </div>

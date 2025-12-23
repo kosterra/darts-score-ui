@@ -13,7 +13,7 @@ import X01Service from '../../../services/x01.service';
 
 
 const X01Config = () => {
-    const initialState = X01Models.X01Model;
+    const initialState = X01Models.X01GameModel;
 
     const [game, setGame] = useState(initialState);
 
@@ -69,7 +69,7 @@ const X01Config = () => {
                 game.playerModels[player] = x01PlayerModel;
             })
 
-            let newGame = await X01Service.createX01(game)
+            let newGame = await X01Service.createX01Game(game)
             navigate('/x01/' + newGame.id);
         }
     }

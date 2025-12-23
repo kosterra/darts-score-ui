@@ -15,132 +15,66 @@ import {
 } from './constants';
 
 const CricketReducer = (state, action) => {
-    switch (action.type) {
+    const { game, players, loading } = state;
+    const { payload, type } = action;
+
+    switch (type) {
         case FETCH_GAME_SUCCESS:
-            return {
-                ...state,
-                game: { ...action.payload },
-            };
+            return { ...state, game: { ...payload } };
         case FETCH_PLAYERS_SUCCESS:
-            return {
-                ...state,
-                players: [...action.payload],
-            };
+            return { ...state, players: [...payload] };
         case UPDATE_CURRENT_THROW:
-            return {
-                ...state,
-                game: { ...state.game, currentThrow: action.payload }
-            };
+            return { ...state, game: { ...game, currentThrow: payload } };
         case RESET_CURRENT_THROW:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    currentThrow: ['', '', '']
-                }
-            };
+            return { ...state, game: { ...game, currentThrow: ['', '', ''] } };
         case UPDATE_PLAYER_SCORE:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload.playerId]: {
-                            ...state.game.playerModels[action.payload.playerId],
-                            score: action.payload.score
-                        }
-                    }
-                }
-            };
-        case UPDATE_ALL_THROWS:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    allThrows: action.payload
-                }
-            };
         case UPDATE_TOTAL_THROW:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload.playerId]: {
-                            ...state.game.playerModels[action.payload.playerId],
-                            totalThrow: action.payload.totalThrow
-                        }
-                    }
-                }
-            };
         case UPDATE_SECTION_HIT:
+        case UPDATE_HITS: {
+            const { playerId, ...update } = payload;
             return {
                 ...state,
                 game: {
-                    ...state.game,
+                    ...game,
                     playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload.playerId]: {
-                            ...state.game.playerModels[action.payload.playerId],
-                            sectionHit: action.payload.sectionHit,
+                        ...game.playerModels,
+                        [playerId]: {
+                            ...game.playerModels[playerId],
+                            ...update
                         }
                     }
                 }
             };
-        case UPDATE_HITS:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload.playerId]: {
-                            ...state.game.playerModels[action.payload.playerId],
-                            hit: action.payload.hit,
-                        }
-                    }
-                }
-            };
+        }
+        case UPDATE_ALL_THROWS:
+            return { ...state, game: { ...game, allThrows: payload } };
         case CHANGE_CURRENT_PLAYER:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    currentPlayerTurn: action.payload
-                }
-            };
+            return { ...state, game: { ...game, currentPlayerTurn: payload } };
         case GAME_HAS_WINNER:
             return {
                 ...state,
                 game: {
-                    ...state.game,
+                    ...game,
                     gameIsRunning: false,
                     hasWinner: true,
                     playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload]: {
-                            ...state.game.playerModels[action.payload],
+                        ...game.playerModels,
+                        [payload]: {
+                            ...game.playerModels[payload],
                             hasWonGame: true
                         }
                     }
                 }
             };
         case RETURN_PREV_PLAYER:
-            return {
-                ...state,
-                game: action.payload,
-            };
+            return { ...state, game: payload };
         case SET_LOADING:
             return {
                 ...state,
-                loading: { ...state.loading, [action.payload.eventName]: action.payload.setTo }
+                loading: { ...loading, [payload.eventName]: payload.setTo }
             };
         default:
-            return {
-                ...state
-            }
+            return state;
     }
 };
 

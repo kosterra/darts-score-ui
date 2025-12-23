@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Menu, MenuItem } from 'react-pro-sidebar';
 import { MdSportsCricket } from "react-icons/md";
 import { FaBullseye } from "react-icons/fa6";
+import { BiTargetLock } from "react-icons/bi";
 
 const SidebarPlay = (props) => {
     const { collapsed } = props;
@@ -23,6 +24,9 @@ const SidebarPlay = (props) => {
                 </MenuItem>
                 <MenuItem icon={<MdSportsCricket className="fs-6" />} component={<Link to="/cricket" />} className="fs-8 fw-semibold">
                     Cricket
+                </MenuItem>
+                <MenuItem icon={<BiTargetLock className="fs-6" />} component={<Link to="/elimination" />} className="fs-8 fw-semibold">
+                    Elimination
                 </MenuItem>
             </Menu>
         </Fragment>

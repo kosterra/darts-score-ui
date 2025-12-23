@@ -2,11 +2,11 @@ import ScoreConfigOptions from "../components/game_config/config_options/score.c
 import SetsLegsConfigOptions from "../components/game_config/config_options/sets.legs.config.options";
 import PlayerConfigOptions from "../components/game_config/config_options/player.config.options";
 
-const X01Model = {
+const X01GameModel = {
     gameIsRunning: true,
     isSoloGame: false,
     hasWinner: false,
-    startingScore: ScoreConfigOptions.gameScoreOptions.default,
+    startingScore: ScoreConfigOptions.gameScoreOptions.x01Default,
     setMode: SetsLegsConfigOptions.setLegModeOptions.default,
     legMode: SetsLegsConfigOptions.setLegModeOptions.default,
     legInMode: SetsLegsConfigOptions.legInOptions.default,
@@ -82,7 +82,7 @@ const X01PlayerModel = {
 }
 
 const X01Models = {
-    X01Model,
+    X01GameModel,
     X01PlayerModel
 }
 

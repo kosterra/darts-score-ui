@@ -9,7 +9,7 @@ const {
 const API_URL = VITE_API_URL + '/api/';
 
 // Public methods to export
-const createCricket = async (game) => {
+const createCricketGame = async (game) => {
     try {
         const response = await fetch(API_URL + 'games/cricket', {
             method: 'POST',
@@ -58,7 +58,7 @@ const loadAllCricketGames = async () => {
     }
 }
 
-const loadCricket = async (id) => {
+const loadCricketGameById = async (id) => {
     try {
         const response = await fetch(API_URL + 'games/cricket/' + id, {
             method: 'GET',
@@ -75,7 +75,7 @@ const loadCricket = async (id) => {
     }
 }
 
-const updateCricket = async (game) => {
+const updateCricketGame = async (game) => {
     try {
         const response = await fetch(API_URL + 'games/cricket/' + game.id, {
             method: 'PUT',
@@ -93,7 +93,7 @@ const updateCricket = async (game) => {
     }
 }
 
-const deleteCricket = async (cricketId) => {
+const deleteCricketGame = async (cricketId) => {
     try {
         const response = await fetch(API_URL + 'games/cricket/' + cricketId, {
             method: 'DELETE',
@@ -112,13 +112,13 @@ const deleteCricket = async (cricketId) => {
 
 // Export methods
 const CricketService = {
-    createCricket,
+    createCricketGame,
     loadRunningCricketGames,
     loadFinishedCricketGames,
     loadAllCricketGames,
-    loadCricket,
-    updateCricket,
-    deleteCricket
+    loadCricketGameById,
+    updateCricketGame,
+    deleteCricketGame
 }
 
 export default CricketService;

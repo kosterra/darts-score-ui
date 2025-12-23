@@ -20,6 +20,7 @@ const X01ScoreInputBoard = () => {
         onClickValidateThrow,
         getCurrentThrowScore,
         onClickReturnToPreviousPlayer,
+        checkCanThrowMoreDarts,
         loading
     } = useContext(X01Context);
 
@@ -91,7 +92,7 @@ const X01ScoreInputBoard = () => {
     useEffect(() => {
         if (submit) {
             setSubmit(false);
-            X01Service.updateX01(game);
+            X01Service.updateX01Game(game);
         }
         // eslint-disable-next-line
     }, [game.currentPlayerTurn, game.hasWinner]);
@@ -127,7 +128,7 @@ const X01ScoreInputBoard = () => {
                                                     onClick={() => updateCurrentThrowManual(score, '', 0)}
                                                 />
                                             </div>
-                                            {((score !== 1 && score > 0) || game.currentThrow[1].trim() !== '' || (game.currentThrow[1].trim() === '' && game.currentThrow[2].trim() !== '')) && (
+                                            {(checkCanThrowMoreDarts(score) || game.currentThrow[1].trim() !== '' || (game.currentThrow[1].trim() === '' && game.currentThrow[2].trim() !== '')) && (
                                                 <div className="p-inputgroup flex-1">
                                                     <InputText
                                                         name="d-2"
@@ -146,7 +147,7 @@ const X01ScoreInputBoard = () => {
                                                     />
                                                 </div>
                                             )}
-                                            {((score !== 1 && score > 0) || game.currentThrow[2].trim() !== '') && (
+                                            {(checkCanThrowMoreDarts(score) || game.currentThrow[2].trim() !== '') && (
                                                 <div className="p-inputgroup flex-1">
                                                     <InputText
                                                         name="d-3"

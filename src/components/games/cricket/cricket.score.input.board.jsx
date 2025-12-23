@@ -1,14 +1,16 @@
-import { useContext, useState, useEffect, Fragment } from 'react';
+import { useContext, Fragment } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { ProgressSpinner } from 'primereact/progressspinner';
-import { FaUndo } from "react-icons/fa";
 import { FaPaperPlane } from "react-icons/fa6";
+import { FaUndo } from "react-icons/fa";
+
 
 import CricketContext from '../../../utils/cricket.context';
 import CricketService from '../../../services/cricket.service';
 import CricketDartBoard from './cricket.dartboard';
 import ScoreInputBoardHelp from '../common/score.input.board.help';
+import { LuKanban } from 'react-icons/lu';
 
 const CricketScoreInputBoard = () => {
     const {
@@ -23,193 +25,100 @@ const CricketScoreInputBoard = () => {
         loading
     } = useContext(CricketContext);
 
-    const [score, setScore] = useState(game.startingScore);
-    const [sectionHit, setSectionHit] = useState(game.playerModels[game.currentPlayerTurn].sectionHit);
-    const [submit, setSubmit] = useState(false);
-
     const keyfilterPattern = /^[SDT0-9]{1,3}$/;
 
-    const handlers = {
-        submitThrows: handleSubmitThrows,
-        submitReturn: handleSubmitReturn,
-    }
-
-    const submitHandler = (e) => {
-        const { id } = e.nativeEvent.submitter;
-        handlers[id](e);
+    const handleThrowSubmit = (e) => {
+        e.preventDefault();
+        onClickValidateThrow(getCurrentThrowScore(), getCurrentSectionHit());
+        CricketService.updateCricketGame(game);
+        e.target.reset();
     };
 
-    function handleSubmitThrows(e) {
-        e.preventDefault();
-        onClickValidateThrow(score, sectionHit);
-        setSubmit(true);
-        e.target.reset();
-    }
-
-    function handleSubmitReturn(e) {
+    const handleReturnSubmit = (e) => {
         e.preventDefault();
         onClickReturnToPreviousPlayer();
-        setSubmit(true);
+        CricketService.updateCricketGame(game);
         e.target.reset();
-    }
-
-    const validateInput = (event, validatePattern) => {
-        const target = event.target;
-        // validatePattern is the result of the regex against the whole input string
-        if (validatePattern) {
-            let throwIndex = Number(target.name.split('-')[1]) - 1;
-            if (target.value.length > 0) {
-                updateCurrentThrowManual(target.value, throwIndex);
-            } else {
-                updateCurrentThrowManual('', throwIndex);
-            }
-        }
     };
 
-    useEffect(() => {
-        const clickEnterSubmitForm = (e) => {
-            if (e.key === 'Enter') {
-                document.getElementById('submit-throws').click();
-            }
-        }
+    const renderInput = (index) => {
+        const value = game.currentThrow[index] || '';
+        const shouldRender = value !== '' || (!checkIfAllSectionsClosed(getCurrentSectionHit()) || !checkIfScoreIsHighestScore(getCurrentThrowScore()));
+        if (!shouldRender) return null;
 
-        document.addEventListener('keyup', clickEnterSubmitForm);
+        return (
+            <div className="p-inputgroup flex-1" key={`throw-${index}`}>
+                <InputText
+                    name={`d-${index + 1}`}
+                    placeholder={`D${index + 1}`}
+                    value={value}
+                    keyfilter={keyfilterPattern}
+                    validateOnly
+                    onInput={(e) => updateCurrentThrowManual(e.target.value, index)}
+                    className="focused-bg-only"
+                />
+                <Button
+                    type="button"
+                    icon="pi pi-times"
+                    className="p-button-danger"
+                    onClick={() => updateCurrentThrowManual('', index)}
+                />
+            </div>
+        );
+    };
 
-        return () => {
-            document.removeEventListener('keyup', clickEnterSubmitForm);
-        }
-    }, []);
-
-    useEffect(() => {
-        setSectionHit(getCurrentSectionHit());
-        setScore(getCurrentThrowScore());
-        // eslint-disable-next-line
-    }, [game.currentThrow]);
-
-    useEffect(() => {
-        if (submit) {
-            setSubmit(false);
-            CricketService.updateCricket(game);
-        }
-        // eslint-disable-next-line
-    }, [game.currentPlayerTurn, game.hasWinner]);
-
+    if (game.hasWinner) return null;
 
     return (
         <Fragment>
-            {!game.hasWinner && (
-                <div className="container mt-4">
-                    <div className="row justify-content-center">
-                        <div className="col col-12 col-md-8 col-xl-5 col-xxl-4 d-flex justify-content-center justify-content-xxl-start">
-                            <CricketDartBoard />
-                        </div>
-                        <div className="col col-12 col-md-4 col-xl-3 col-xxl-2 d-flex flex-column justify-content-start gap-3">
-                            <div className="d-flex flex-column gap-1">
-                                <ScoreInputBoardHelp />
-                                <form className="mt-1" onSubmit={submitHandler}>
-                                    <div className="d-flex flex-column gap-3">
-                                        <div className="d-flex flex-column gap-2">
-                                            <div className="p-inputgroup flex-1">
-                                                <InputText
-                                                    name="d-1"
-                                                    placeholder="D1"
-                                                    value={game.currentThrow[0]}
-                                                    keyfilter={keyfilterPattern}
-                                                    validateOnly
-                                                    onInput={validateInput}
-                                                    className="focused-bg-only"
-                                                />
-                                                <Button
-                                                    type="button"
-                                                    icon="pi pi-times"
-                                                    className="p-button-danger"
-                                                    onClick={() => updateCurrentThrowManual('', 0)}
-                                                />
-                                            </div>
-                                            {(game.currentThrow[1].trim() !== ''
-                                                || (game.currentThrow[1].trim() === '' &&
-                                                    (!checkIfAllSectionsClosed(sectionHit) || !checkIfScoreIsHighestScore(score))))
-                                                && (
-                                                    <div className="p-inputgroup flex-1">
-                                                        <InputText
-                                                            name="d-2"
-                                                            placeholder="D2"
-                                                            value={game.currentThrow[1]}
-                                                            keyfilter={keyfilterPattern}
-                                                            validateOnly
-                                                            onInput={validateInput}
-                                                            className="focused-bg-only"
-                                                        />
-                                                        <Button
-                                                            type="button"
-                                                            icon="pi pi-times"
-                                                            className="p-button-danger"
-                                                            onClick={() => updateCurrentThrowManual('', 1)}
-                                                        />
-                                                    </div>
-                                                )}
-                                            {(game.currentThrow[2].trim() !== ''
-                                                || (game.currentThrow[2].trim() === '' &&
-                                                    (!checkIfAllSectionsClosed(sectionHit) || !checkIfScoreIsHighestScore(score))))
-                                                && (
-                                                    <div className="p-inputgroup flex-1">
-                                                        <InputText
-                                                            name="d-3"
-                                                            placeholder="D3"
-                                                            value={game.currentThrow[2]}
-                                                            keyfilter={keyfilterPattern}
-                                                            validateOnly
-                                                            onInput={validateInput}
-                                                            className="focused-bg-only"
-                                                        />
-                                                        <Button
-                                                            type="button"
-                                                            icon="pi pi-times"
-                                                            className="p-button-danger"
-                                                            onClick={() => updateCurrentThrowManual('', 2)}
-                                                        />
-                                                    </div>
-                                                )}
-                                        </div>
-                                        <div className="d-flex gap-2">
-                                            {loading.validateThrow ? (
-                                                <Button disabled>
-                                                    <ProgressSpinner
-                                                        style={{ width: '20px', height: '20px' }}
-                                                        strokeWidth="8"
-                                                        fill="var(--surface-ground)"
-                                                        animationDuration=".8s"
-                                                    />
-                                                    <span className="visually-hidden">Loading...</span>
-                                                </Button>
-                                            ) : (
-                                                <Button
-                                                    id="submitThrows"
-                                                    type="submit"
-                                                    severity="primary"
-                                                >
-                                                    <FaPaperPlane />
-                                                </Button>
-                                            )}
-                                            {game.allThrows.length !== 0 && (
-                                                <Button
-                                                    id="submitReturn"
-                                                    severity="danger"
-                                                    type="submit"
-                                                >
-                                                    <FaUndo />
-                                                </Button>
-                                            )}
-                                        </div>
-                                    </div>
-                                </form>
+            <div className="container mt-4">
+                <div className="row justify-content-center">
+                    <div className="col col-12 col-md-8 col-xl-5 col-xxl-4 d-flex justify-content-center justify-content-xxl-start">
+                        <CricketDartBoard />
+                    </div>
+                    <div className="col col-12 col-md-4 col-xl-3 col-xxl-2 d-flex flex-column justify-content-start gap-3">
+                        <ScoreInputBoardHelp />
+                        <form className="mt-1" onSubmit={handleThrowSubmit}>
+                            <div className="d-flex flex-column gap-3">
+                                <div className="d-flex flex-column gap-2">
+                                    {[0, 1, 2].map(renderInput)}
+                                </div>
+                                <div className="d-flex gap-2">
+                                    {loading.validateThrow ? (
+                                        <Button disabled>
+                                            <ProgressSpinner
+                                                style={{ width: '20px', height: '20px' }}
+                                                strokeWidth="8"
+                                                fill="var(--surface-ground)"
+                                                animationDuration=".8s"
+                                            />
+                                            <span className="visually-hidden">Loading...</span>
+                                        </Button>
+                                    ) : (
+                                        <Button
+                                            type="submit"
+                                            severity="primary"
+                                        >
+                                            <FaPaperPlane />
+                                        </Button>
+                                    )}
+                                    {game.allThrows.length > 0 && (
+                                        <Button
+                                            type="button"
+                                            severity="danger"
+                                            onClick={handleReturnSubmit}
+                                        >
+                                            <FaUndo />
+                                        </Button>
+                                    )}
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
-            )}
+            </div>
         </Fragment>
-    )
-}
+    );
+};
 
-export default CricketScoreInputBoard
+export default CricketScoreInputBoard;

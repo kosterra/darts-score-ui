@@ -3,6 +3,7 @@ import DashboardGameList from './dashboard.gamelist';
 
 import X01Service from '../../services/x01.service';
 import CricketService from '../../services/cricket.service';
+import EliminationService from '../../services/elimination.service';
 import PlayerService from '../../services/player.service';
 
 const Dashboard = () => {
@@ -11,6 +12,8 @@ const Dashboard = () => {
 	const [finishedX01Games, setFinishedX01Games] = useState([]);
 	const [runningCricketGames, setRunningCricketGames] = useState([]);
 	const [finishedCricketGames, setFinishedCricketGames] = useState([]);
+	const [runningEliminationGames, setRunningEliminationGames] = useState([]);
+	const [finishedEliminationGames, setFinishedEliminationGames] = useState([]);
 	const [players, setPlayers] = useState([]);
 
 	const loadRunningX01Games = async () => {
@@ -23,6 +26,11 @@ const Dashboard = () => {
 		setRunningCricketGames(data);
 	}
 
+	const loadRunningEliminationGames = async () => {
+		let data = await EliminationService.loadRunningEliminationGames();
+		setRunningEliminationGames(data);
+	}
+
 	const loadFinishedX01Games = async () => {
 		let data = await X01Service.loadFinishedX01Games();
 		setFinishedX01Games(data);
@@ -31,6 +39,11 @@ const Dashboard = () => {
 	const loadFinishedCricketGames = async () => {
 		let data = await CricketService.loadFinishedCricketGames();
 		setFinishedCricketGames(data);
+	}
+
+	const loadFinishedEliminationGames = async () => {
+		let data = await EliminationService.loadFinishedEliminationGames();
+		setFinishedEliminationGames(data);
 	}
 
 	const loadPlayers = async () => {
@@ -43,6 +56,8 @@ const Dashboard = () => {
 		loadFinishedX01Games();
 		loadRunningCricketGames();
 		loadFinishedCricketGames();
+		loadRunningEliminationGames();
+		loadFinishedEliminationGames();
 		loadPlayers();
 	}, []);
 
@@ -87,6 +102,26 @@ const Dashboard = () => {
 						players={players}
 						gamesType="cricket"
 						emptyMessage="Not yet any Cricket games played"
+					/>
+				}
+				{runningEliminationGames && runningEliminationGames.length > 0 &&
+					<DashboardGameList
+						title="Elimination"
+						subtitle="Currently Running"
+						games={runningEliminationGames}
+						players={players}
+						gamesType="elimination"
+						emptyMessage="Currently no running Elimination games"
+					/>
+				}
+				{finishedEliminationGames && finishedEliminationGames.length > 0 &&
+					<DashboardGameList
+						title="Elimination"
+						subtitle="Recently Finished"
+						games={finishedEliminationGames}
+						players={players}
+						gamesType="elimination"
+						emptyMessage="Not yet any Elimination games played"
 					/>
 				}
 			</div>

@@ -220,7 +220,7 @@ const ATCEntryAdminList = (props) => {
                         </div>
                     </div>
                     <div className="col-12 col-md-4 d-flex align-items-center justify-content-center">
-                        <span className="fw-semibold fs-4">Around the Clock Entries</span>
+                        <span className="fw-semibold fs-4">Around the Clock Trainings</span>
                     </div>
                     <div className="col-12 col-md-4 d-flex align-items-center justify-content-start justify-content-md-end mb-2 mb-lg-0">
                         <DataViewLayoutOptions layout={layout} onChange={(e) => setLayout(e.value)} />

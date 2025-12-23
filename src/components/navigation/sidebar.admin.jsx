@@ -37,6 +37,7 @@ const SidebarAdmin = (props) => {
                 >
                     <MenuItem component={<Link to="/admin/games/x01" />} className="fs-8 fw-semibold"> X01</MenuItem>
                     <MenuItem component={<Link to="/admin/games/cricket" />} className="fs-8 fw-semibold"> Cricket</MenuItem>
+                    <MenuItem component={<Link to="/admin/games/elimination" />} className="fs-8 fw-semibold"> Elimination</MenuItem>
                 </SubMenu>
                 <SubMenu
                     label="Training"
