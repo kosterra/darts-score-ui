@@ -11,10 +11,9 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          token: ${{ secrets.DARTS_SCORE_PAT }}
       - name: Get package info
         id: package
         uses: kylejrp/action-nodejs-package-info@v1.2
