@@ -216,7 +216,7 @@ const PlayersList = (props) => {
         return (
             <div className="container-fluid overflow-hidden">
                 <div className="row gy-2">
-                    <div className="col-12 col-md-8 ">
+                    <div className="col-12 col-md-4">
                         <div className="d-flex flex-sm-row align-items-center justify-content-start flex-wrap gap-3 p-2">
                             <span className="p-input-icon-left">
                                 <i className="pi pi-search" />
@@ -236,6 +236,9 @@ const PlayersList = (props) => {
                             />
                             <PlayerForm onPlayerAdd={onPlayerAdd} />
                         </div>
+                    </div>
+                    <div className="col-12 col-md-4 d-flex align-items-center justify-content-center">
+                        <span className="fw-semibold fs-4">Players</span>
                     </div>
                     <div className="col-12 col-md-4 d-flex align-items-center justify-content-start justify-content-md-end mb-2 mb-lg-0">
                         <DataViewLayoutOptions layout={layout} onChange={(e) => setLayout(e.value)} />

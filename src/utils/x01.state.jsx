@@ -9,7 +9,11 @@ import X01ReturnToPreviousPlayer from './x01.return.to.previous.player';
 import PlayerService from '../services/player.service';
 
 import {
-    validateDartValue
+    validateDartValue,
+    dartIsDouble,
+    dartIsTriple,
+    lastDartIsDouble,
+    lastDartIsTriple
 } from './game.utils';
 
 import {
@@ -71,7 +75,7 @@ const X01State = props => {
         setLoading('initGameLoading', true);
         async function fetchX01() {
             try {
-                let x01 = await X01Service.loadX01(id);
+                let x01 = await X01Service.loadX01GameById(id);
                 dispatch({ type: FETCH_GAME_SUCCESS, payload: x01 });
                 return x01;
             } catch (error) {
@@ -203,7 +207,7 @@ const X01State = props => {
             scoreLeft: currentScore
         }];
 
-        let hasBusted = checkIfHasBusted(currentScore)
+        let hasBusted = checkIfScoreIsBusted(currentScore)
         let hasWonLeg = false;
         let hasWonSet = false;
         let hasWonGame = false;
@@ -273,26 +277,27 @@ const X01State = props => {
             return false;
         }
 
-        if (currentScore === 1 || currentScore === 0) {
-            return true;
-        }
-
         return true;
     }
 
-    const checkIfHasBusted = (currentScore) => {
-        let hasBusted = currentScore < 0;
+    const checkIfScoreIsBusted = (currentScore) => {
+        let isBusted = currentScore < 0;
 
-        if (!hasBusted) {
+        if (!isBusted) {
             if (state.game.legOutMode === 'Double Out') {
-                hasBusted = currentScore === 1 || (currentScore === 0 && !lastDartIsDouble());
+                isBusted = currentScore === 1 || (currentScore === 0 && !lastDartIsDouble(state.game.currentThrow));
             } else if (state.game.legOutMode === 'Master Out') {
-                hasBusted = currentScore === 1 || (currentScore === 0 && !lastDartIsDouble() && !lastDartIsTriple());
+                isBusted = currentScore === 1 || (currentScore === 0 && !lastDartIsDouble(state.game.currentThrow) && !lastDartIsTriple(state.game.currentThrow));
             }
         }
 
-        return hasBusted;
+        return isBusted;
     }
+
+    const checkCanThrowMoreDarts = (currentScore) => {
+        const dartsThrown = state.game.currentThrow.filter(d => d.trim() !== '').length;
+        return dartsThrown < 3 && currentScore > 0 && !checkIfScoreIsBusted(currentScore);
+    };
 
     const playerUpdateStat = (currentScore) => {
         updateTotalThrow();
@@ -309,76 +314,6 @@ const X01State = props => {
         updateTotalThrowEndGame();
         calculateAverage(true);
         updateScoreRanges(true);
-    }
-
-    const dartIsDouble = (value) => {
-        if (/^d/i.test(value)) {
-            return true
-        } else {
-            return false
-        }
-    }
-
-    const dartIsTriple = (value) => {
-        if (/^t/i.test(value)) {
-            return true
-        } else {
-            return false
-        }
-    }
-
-    const lastDartIsDouble = () => {
-        let values = state.game.currentThrow;
-
-        if (values[2].trim() === '' && values[1].trim() === '') {
-
-            if (/^d/i.test(values[0])) {
-                return true
-            } else {
-                return false
-            }
-        }
-
-        if (values[2].trim() === '') {
-            if (/^d/i.test(values[1])) {
-                return true
-            } else {
-                return false
-            }
-        }
-
-        if (/^d/i.test(values[2])) {
-            return true
-        } else {
-            return false
-        }
-    }
-
-    const lastDartIsTriple = () => {
-        let values = state.game.currentThrow;
-
-        if (values[2].trim() === '' && values[1].trim() === '') {
-
-            if (/^t/i.test(values[0])) {
-                return true
-            } else {
-                return false
-            }
-        }
-
-        if (values[2].trim() === '') {
-            if (/^t/i.test(values[1])) {
-                return true
-            } else {
-                return false
-            }
-        }
-
-        if (/^t/i.test(values[2])) {
-            return true
-        } else {
-            return false
-        }
     }
 
     const getCurrentThrowScore = () => {
@@ -1139,7 +1074,9 @@ const X01State = props => {
                     updateCurrentThrowManual,
                     updateCurrentThrowDartBoard,
                     getCurrentThrowScore,
-                    onClickReturnToPreviousPlayer
+                    onClickReturnToPreviousPlayer,
+                    checkCanThrowMoreDarts,
+                    checkIfScoreIsBusted
                 }}
             >
                 {props.children}

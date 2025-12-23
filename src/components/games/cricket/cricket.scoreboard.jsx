@@ -1,12 +1,11 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { Avatar } from 'primereact/avatar';
 import { Tag } from 'primereact/tag';
 import { FaCircle, FaRegCircle } from "react-icons/fa";
 
 import CricketContext from '../../../utils/cricket.context';
 
-const CricketScoreBoard = (props) => {
-    const { playerId, idx } = props
+const CricketScoreBoard = ({ playerId, idx }) => {
     const {
         game,
         players,
@@ -15,110 +14,86 @@ const CricketScoreBoard = (props) => {
         checkSectionClosed
     } = useContext(CricketContext);
 
-    const [player] = useState(players.find(player => player.id === playerId));
-    const [playerModel, setPlayerModel] = useState(game.playerModels[playerId]);
-    const [score, setScore] = useState(game.playerModels[playerId].score);
-    const [sectionHit, setSectionHit] = useState(game.playerModels[playerId].sectionHit);
+    const player = players.find(p => p.id === playerId);
+    if (!player) return null;
 
-    const getNumberTemplate = (title, number) => { 
+    const isCurrentPlayer = game.currentPlayerTurn === playerId;
+    const score = isCurrentPlayer ? getCurrentThrowScore() : game.playerModels[playerId].score;
+    const sectionHit = isCurrentPlayer ? getCurrentSectionHit() : game.playerModels[playerId].sectionHit;
+
+    const renderNumberTemplate = (label, number) => {
+        const hits = sectionHit[number.toString()] || 0;
+        const filled = Math.min(hits, 3);
+        const empty = 3 - filled;
+
         return (
-            <div className="d-flex flex-row">
+            <div className="d-flex flex-row" key={number}>
                 <div className={`col-4 d-flex justify-content-center text-shade100 fw-semibold p-0 ${checkSectionClosed(number) ? 'text-red text-decoration-line-through' : ''}`}>
-                    {title}
+                    {label}
                 </div>
-                <div className={`col-8 d-flex justify-content-center align-items-center gap-1 p-0`}>
-                    {[...Array(sectionHit[number.toString()] > 3 ? 3 : sectionHit[number.toString()])].map((e, i) => (
-                        <FaCircle key={`number-filled-${i}`} className="text-gold" />
-                    ))}
-                    {[...Array(sectionHit[number.toString()] >= 3 ? 0 : 3 - sectionHit[number.toString()])].map((e, i) => (
-                        <FaRegCircle key={`number-unfilled-${i}`} className="text-gold" />
-                    ))}
+                <div className="col-8 d-flex justify-content-center align-items-center gap-1 p-0">
+                    {[...Array(filled)].map((_, i) => <FaCircle key={`filled-${i}`} className="text-gold" />)}
+                    {[...Array(empty)].map((_, i) => <FaRegCircle key={`empty-${i}`} className="text-gold" />)}
                 </div>
             </div>
         );
-    }
+    };
 
     useEffect(() => {
-        const clickEnterSubmitForm = (e) => {
+        const handleEnter = (e) => {
             if (e.key === 'Enter') {
-                document.getElementById('submit-throws').click();
+                const submitButton = document.getElementById('submit-throws');
+                if (submitButton) submitButton.click();
             }
-        }
-
-        document.addEventListener('keyup', clickEnterSubmitForm);
-
-        return () => {
-            document.removeEventListener('keyup', clickEnterSubmitForm);
-        }
-    }, [])
-
-    useEffect(() => {
-        if (game.currentPlayerTurn === playerId) {
-            setScore(getCurrentThrowScore());
-            setSectionHit(getCurrentSectionHit());
-        } else {
-            setScore(game.playerModels[playerId].score);
-            setSectionHit(game.playerModels[playerId].sectionHit);
-        }
-
-        setPlayerModel(game.playerModels[playerId])
-        // eslint-disable-next-line
-    }, [game.currentThrow]);
+        };
+        document.addEventListener('keyup', handleEnter);
+        return () => document.removeEventListener('keyup', handleEnter);
+    }, []);
 
     return (
         <div className="container-fluid py-xl-2 px-xl-2">
-            {players && player &&
-                <div className={`row pt-2 pb-2 ${game.players.length === 2 && Number(idx) === 1 ? 'flex-md-row-reverse' : ''}`}>
-                    <div className="col-4 d-flex flex-column align-items-center justify-content-center p-0">
-                        <div className="col-12 d-flex flex-column justify-content-center">
-                            <div className="col-12 d-flex justify-content-center mb-xl-2">
-                                <Avatar
-                                    label={(player.firstname + ' ' + player.lastname).split(" ").map((n) => n[0]).join("")}
-                                    image={player.profileImg}
-                                    shape="circle"
-                                    size="xlarge"
-                                    style={{ maxWidth: '5.2rem', maxHeight: '5.2rem' }}
-                                    className="w-100 h-100 ratio ratio-1x1"
-                                />
-                            </div>
-                            <div className="col-12 d-flex flex-column justify-content-center align-items-center">
-                                <div>
-                                    <span className="fs-6 text-shade100 fw-semibold">{player.nickname}</span>
-                                </div>
-                                <div>
-                                    <span className="fs-7 text-shade500 text-truncate" data-toggle="tooltip" title={player.firstname + ' ' + player.lastname}>
-                                        {player.firstname + ' ' + player.lastname}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="d-flex col-12 d-flex justify-content-center align-items-center mt-3 gap-1">
-                            {game.currentPlayerTurn === playerId && (
-                                <Tag value="&nbsp;Current Player&nbsp;" severity="success" rounded className="text-truncate fs-9" />
-                            )}
-                            {game.startingPlayerLeg !== playerId && game.currentPlayerTurn !== playerId && (
-                                <Tag value="&nbsp;" severity="" rounded className="text-truncate bg-transparent fs-9" />
-                            )}
+            <div className={`row pt-2 pb-2 ${game.players.length === 2 && idx === 1 ? 'flex-md-row-reverse' : ''}`}>
+
+                {/* Player Info */}
+                <div className="col-4 d-flex flex-column align-items-center justify-content-center p-0">
+                    <Avatar
+                        label={(player.firstname + ' ' + player.lastname).split(" ").map(n => n[0]).join("")}
+                        image={player.profileImg}
+                        shape="circle"
+                        size="xlarge"
+                        style={{ maxWidth: '5.2rem', maxHeight: '5.2rem' }}
+                        className="w-100 h-100 ratio ratio-1x1"
+                    />
+                    <div className="text-center mt-2">
+                        <div className="fs-6 text-shade100 fw-semibold">{player.nickname}</div>
+                        <div className="fs-7 text-shade500 text-truncate" title={player.firstname + ' ' + player.lastname}>
+                            {player.firstname + ' ' + player.lastname}
                         </div>
                     </div>
-                    <div className="col-4 d-flex justify-content-center align-items-center">
-                        <div className="display-3 text-shade100 fw-semibold" >
-                            {game.currentPlayerTurn === playerId ? score : playerModel.score}
-                        </div>
-                    </div>
-                    <div className="col-4 p-0">
-                        {getNumberTemplate('20', 20)}
-                        {getNumberTemplate('19', 19)}
-                        {getNumberTemplate('18', 18)}
-                        {getNumberTemplate('17', 17)}
-                        {getNumberTemplate('16', 16)}
-                        {getNumberTemplate('15', 15)}
-                        {getNumberTemplate('BULL', 25)}
+
+                    {/* Current Player Tag */}
+                    <div className="d-flex mt-3 gap-1">
+                        <Tag
+                            value={isCurrentPlayer ? 'Current Player' : ''}
+                            severity={isCurrentPlayer ? 'success' : ''}
+                            rounded
+                            className={`text-truncate fs-9 ${!isCurrentPlayer ? 'bg-transparent' : ''}`}
+                        />
                     </div>
                 </div>
-            }
+
+                {/* Player Score */}
+                <div className="col-4 d-flex justify-content-center align-items-center">
+                    <div className="display-3 text-shade100 fw-semibold">{score}</div>
+                </div>
+
+                {/* Section Hits */}
+                <div className="col-4 p-0">
+                    {['20', '19', '18', '17', '16', '15', 'BULL'].map((num) => renderNumberTemplate(num === 'BULL' ? 'BULL' : num, num === 'BULL' ? 25 : Number(num)))}
+                </div>
+            </div>
         </div>
     );
-}
+};
 
-export default CricketScoreBoard
+export default CricketScoreBoard;

@@ -69,7 +69,7 @@ const CricketList = (props) => {
     };
 
     const onCricketGameDelete = async (game) => {
-        if (await CricketService.deleteCricket(game.id)) {
+        if (await CricketService.deleteCricketGame(game.id)) {
             toast.current.show(
                 {
                     severity: 'success',
@@ -283,7 +283,7 @@ const CricketList = (props) => {
         return (
             <div className="container-fluid overflow-hidden">
                 <div className="row gy-2">
-                    <div className="col-12 col-md-8">
+                    <div className="col-12 col-md-4">
                         <div className="d-flex flex-sm-row align-items-center justify-content-start flex-wrap gap-3 p-2">
                             {showStatusFilter &&
                                 <SelectButton
@@ -301,6 +301,9 @@ const CricketList = (props) => {
                                 onChange={onSortChange}
                             />
                         </div>
+                    </div>
+                    <div className="col-12 col-md-4 d-flex align-items-center justify-content-center">
+                        <span className="fw-semibold fs-4">Cricket Games</span>
                     </div>
                     <div className="col-12 col-md-4 d-flex align-items-center justify-content-start justify-content-lg-end mb-2 mb-lg-0">
                         <DataViewLayoutOptions layout={layout} onChange={(e) => setLayout(e.value)} />

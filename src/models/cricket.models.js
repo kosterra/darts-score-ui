@@ -1,6 +1,6 @@
 import PlayerConfigOptions from "../components/game_config/config_options/player.config.options";
 
-const CricketModel = {
+const CricketGameModel = {
     gameIsRunning: true,
     isSoloGame: false,
     hasWinner: false,
@@ -35,7 +35,7 @@ const CricketPlayerModel = {
 }
 
 const CricketModels = {
-    CricketModel,
+    CricketGameModel,
     CricketPlayerModel
 }
 

@@ -6,7 +6,7 @@ import Stopwatch from "../elements/stopwatch";
 import PlayerSelect from "../elements/player.select";
 import ATCEntryList from './atc.enty.list';
 import ATCService from "../../services/atc.service";
-import ATCModel from "../../models/atc.model";
+import ATCEntryModel from "../../models/atc.model";
 import ATCModeConfig from './atc.mode.config';
 import ATCConfigOptions from './atc.config.options';
 
@@ -41,7 +41,7 @@ const ATC = () => {
     }
 
     const saveChallenge = async (timeMs, hours, minutes, seconds, milliseconds) => {
-        const atcEntry = ATCModel;
+        const atcEntry = ATCEntryModel;
         atcEntry.timeMs = timeMs;
         atcEntry.hours = hours;
         atcEntry.minutes = minutes;

@@ -5,13 +5,11 @@ import CricketContext from '../../../utils/cricket.context';
 const CricketDartBoard = () => {
   const { updateCurrentThrowDartBoard } = useContext(CricketContext);
 
-  const setDartValue = (value) => {
+  const handleDartClick = (value) => {
     updateCurrentThrowDartBoard(value);
   }
 
-  return (
-    <DartBoard handleClick={setDartValue} />
-  )
+  return <DartBoard handleClick={handleDartClick} />;
 }
 
-export default CricketDartBoard
+export default CricketDartBoard;

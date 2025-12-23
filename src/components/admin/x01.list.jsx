@@ -71,7 +71,7 @@ const X01List = (props) => {
     };
 
     const onX01GameDelete = async (game) => {
-        if (await X01Service.deleteX01(game.id)) {
+        if (await X01Service.deleteX01Game(game.id)) {
             toast.current.show(
                 {
                     severity: 'success',
@@ -313,7 +313,7 @@ const X01List = (props) => {
         return (
             <div className="container-fluid overflow-hidden">
                 <div className="row gy-2">
-                    <div className="col-12 col-md-8">
+                    <div className="col-12 col-md-4">
                         <div className="d-flex flex-sm-row align-items-center justify-content-start flex-wrap gap-3 p-2">
                             {showStatusFilter &&
                                 <SelectButton
@@ -331,6 +331,9 @@ const X01List = (props) => {
                                 onChange={onSortChange}
                             />
                         </div>
+                    </div>
+                    <div className="col-12 col-md-4 d-flex align-items-center justify-content-center">
+                        <span className="fw-semibold fs-4">X01 Games</span>
                     </div>
                     <div className="col-12 col-md-4 d-flex align-items-center justify-content-start justify-content-lg-end mb-2 mb-lg-0">
                         <DataViewLayoutOptions layout={layout} onChange={(e) => setLayout(e.value)} />

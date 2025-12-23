@@ -1,6 +1,6 @@
 import ATCConfigOptions from "../components/training/atc.config.options";
 
-const ATCModel = {
+const ATCEntryModel = {
     timeMs: 0,
     hours: 0,
     minutes: 0,
@@ -10,4 +10,4 @@ const ATCModel = {
     player: {}
 }
 
-export default ATCModel;
+export default ATCEntryModel;

@@ -111,6 +111,41 @@ const DashboardGameList = (props) => {
         );
     }
 
+    const eliminationTemplate = (game) => {
+        return (
+            <>
+                <div className="row mb-2">
+                    <div className={`${game.gameIsRunning ? "col-6" : "col-9"}`}>
+                        {' '}
+                    </div>
+                    <div className="col-3 d-flex align-items-center justify-content-center text-shade100 fs-8 fw-semibold">
+                        {game.gameIsRunning ? 'Score' : 'End Score'}
+                    </div>
+                </div>
+                {players.length > 0 && game.players.map((playerId, idx) => (
+                    <div className="row" key={idx}>
+                        <div className={`${game.gameIsRunning ? "col-6" : "col-9"} d-flex align-items-center text-shade100 fs-7 fw-semibold`}>
+                            <Avatar
+                                label={(((players || []).find(player => player.id === playerId) || {}).firstname + ' ' + ((players || []).find(player => player.id === playerId) || {}).lastname).split(" ").map((n) => n[0]).join("")}
+                                image={((players || []).find(player => player.id === playerId) || {}).profileImg}
+                                shape="circle"
+                                size="small"
+                                className="bg-shade700 m-2 me-4"
+                            />
+                            {((players || []).find(player => player.id === playerId) || {}).nickname || 'N / A'}
+                            {game.playerModels[playerId].hasWonGame &&
+                                <FaTrophy className="ms-2 text-gold fs-6" />
+                            }
+                        </div>
+                        <div className="col-3 d-flex align-items-center justify-content-center text-shade100 fs-7 fw-semibold">
+                            {game.playerModels[playerId].score}
+                        </div>
+                    </div>
+                ))}
+            </>
+        );
+    }
+
     const itemTemplate = (game) => {
         return (
             <div>
@@ -120,6 +155,9 @@ const DashboardGameList = (props) => {
                     }
                     {gamesType == 'cricket' &&
                         cricketTemplate(game)
+                    }
+                    {gamesType == 'elimination' &&
+                        eliminationTemplate(game)
                     }
                 </div>
                 <div className="d-flex justify-content-between align-items-end mt-4">

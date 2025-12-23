@@ -1,21 +1,12 @@
-import { Fragment } from 'react';
-
 import X01StatsComparisonBars from './x01.stats.comparison.bars';
 
-const X01StatsTab = (props) => {
-    const {
-        valueKey,
-        game
-    } = props;
-
+const X01StatsTab = ({ valueKey, game }) => {
     return (
-        <Fragment>
-            <div className="row">
-                <div className="col">
-                    <X01StatsComparisonBars game={ game } valueKey={ valueKey } />
-                </div>
+        <div className="row">
+            <div className="col">
+                <X01StatsComparisonBars game={game} valueKey={valueKey} />
             </div>
-        </Fragment>
+        </div>
     );
 };
 

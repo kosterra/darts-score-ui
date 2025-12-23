@@ -1,58 +1,49 @@
 import { Fragment } from 'react';
-
 import ComparisonBar from '../../elements/comparison.bar';
 
-const X01StatsComparisonBars = (props) => {
-    const {
-        valueKey,
-        game
-    } = props;
+const X01StatsComparisonBars = ({ valueKey, game }) => {
+    const players = game.players || [];
 
-    const getWonLegsData = () => {
-        var wonLegs = {};
-        wonLegs.name = 'Won Legs';
+    // Hilfsfunktion zum sicheren Zugriff auf Spielerstatistiken
+    const getPlayerStat = (playerId, path = [], defaultValue = 0) => {
+        return path.reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), game.playerModels[playerId]) ?? defaultValue;
+    };
 
-        game.players.forEach((playerId, idx) => {
-            wonLegs['player' + (idx + 1)] = (((game || {}).playerModels[playerId] || {}).legsWon || {})[valueKey] || 0
-        })
+    const buildData = (name, pathMapper, unit) => ({
+        name,
+        unit,
+        ...Object.fromEntries(
+            players.map((playerId, idx) => {
+                const val = pathMapper(playerId);
+                return [`player${idx + 1}`, val];
+            })
+        )
+    });
 
-        return [wonLegs];
-    }
+    const getWonLegsData = () =>
+        [buildData('Won Legs', (playerId) => getPlayerStat(playerId, ['legsWon', valueKey]))];
 
-    const getRangesData = (name, range) => {
-        var ranges = {};
-        ranges.name = name;
+    const getRangesData = (name, range) =>
+        [buildData(name, (playerId) => getPlayerStat(playerId, ['scoreRanges', valueKey, range]))];
 
-        game.players.forEach((playerId, idx) => {
-            ranges['player' + (idx + 1)] = ((((game || {}).playerModels[playerId] || {}).scoreRanges || {})[valueKey] || {})[range] || 0
-        })
+    const getAverageData = () =>
+        [buildData('Average', (playerId) => {
+            const avg = getPlayerStat(playerId, ['averages', valueKey, valueKey === 'game' ? 'begMidGame' : 'begMidSet'], 0);
+            return Number(avg.toFixed(1));
+        })];
 
-        return [ranges];
-    }
+    const getCheckoutData = () =>
+        [buildData('Checkouts', (playerId) => {
+            const checkout = getPlayerStat(playerId, ['checkout', valueKey], { total: 0, hit: 0 });
+            const percent = checkout.total ? (100 * checkout.hit) / checkout.total : 0;
+            return Number(percent.toFixed(1));
+        }, '%')];
 
-    const getAverageData = () => {
-        var average = {};
-        average.name = "Average";
-
-        game.players.forEach((playerId, idx) => {
-            average['player' + (idx + 1)] = (((((game || {}).playerModels[playerId] || {}).averages || {})[valueKey] || {})[valueKey === 'game' ? 'begMidGame' : 'begMidSet'] || 0).toFixed(1)
-        });
-
-        return [average];
-    }
-
-    const getCheckoutData = () => {
-        var checkout = {};
-        checkout.name = "Checkouts";
-        checkout.unit = "%";
-
-        game.players.forEach((playerId, idx) => {
-            checkout['player' + (idx + 1)] = ((100 / ((((game || {}).playerModels[playerId] || {}).checkout || {})[valueKey] || {}).total) * ((((game || {}).playerModels[playerId] || {}).checkout || {})[valueKey] || {}).hit || 0).toFixed(1);
-            checkout['player' + (idx + 1) + 'sub'] = '(' + (((((game || {}).playerModels[playerId] || {}).checkout || {})[valueKey] || {}).hit || 0) + '/' + (((((game || {}).playerModels[playerId] || {}).checkout || {})[valueKey] || {}).total || 0) + ')';
-        })
-
-        return [checkout];
-    }
+    const getCheckoutSubData = () =>
+        [buildData('Checkouts Sub', (playerId) => {
+            const checkout = getPlayerStat(playerId, ['checkout', valueKey], { total: 0, hit: 0 });
+            return `(${checkout.hit}/${checkout.total})`;
+        })];
 
     return (
         <Fragment>
@@ -64,6 +55,7 @@ const X01StatsComparisonBars = (props) => {
             <ComparisonBar data={getRangesData('100+', '100-119')} />
             <ComparisonBar data={getAverageData()} />
             <ComparisonBar data={getCheckoutData()} />
+            <ComparisonBar data={getCheckoutSubData()} />
         </Fragment>
     );
 };

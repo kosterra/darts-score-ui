@@ -10,7 +10,7 @@ import CricketService from '../../../services/cricket.service';
 
 
 const CricketConfig = () => {
-    const initialState = CricketModels.CricketModel;
+    const initialState = CricketModels.CricketGameModel;
 
     const [game, setGame] = useState(initialState);
 
@@ -50,7 +50,7 @@ const CricketConfig = () => {
                 game.playerModels[player] = cricketPlayerModel;
             })
 
-            let newGame = await CricketService.createCricket(game)
+            let newGame = await CricketService.createCricketGame(game)
             navigate('/cricket/' + newGame.id);
         }
     }

@@ -33,23 +33,32 @@ import {
     FETCH_PLAYERS_SUCCESS
 } from './constants';
 
+// Hilfsfunktion für Updates an einem Spieler
+const updatePlayerModel = (state, playerId, update) => ({
+    ...state,
+    game: {
+        ...state.game,
+        playerModels: {
+            ...state.game.playerModels,
+            [playerId]: {
+                ...state.game.playerModels[playerId],
+                ...update
+            }
+        }
+    }
+});
+
 const X01Reducer = (state, action) => {
     switch (action.type) {
         case FETCH_GAME_SUCCESS:
-            return {
-                ...state,
-                game: { ...action.payload },
-            };
+            return { ...state, game: { ...action.payload } };
+
         case FETCH_PLAYERS_SUCCESS:
-            return {
-                ...state,
-                players: [...action.payload],
-            };
+            return { ...state, players: [...action.payload] };
+
         case UPDATE_CURRENT_THROW:
-            return {
-                ...state,
-                game: { ...state.game, currentThrow: action.payload }
-            };
+            return { ...state, game: { ...state.game, currentThrow: action.payload } };
+
         case PUSH_TO_CURRENT_LEG_THROWS:
             return {
                 ...state,
@@ -58,22 +67,13 @@ const X01Reducer = (state, action) => {
                     currentLegThrows: [...state.game.currentLegThrows, action.payload]
                 }
             };
+
         case RESET_CURRENT_THROW:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    currentThrow: ['', '', '']
-                }
-            };
+            return { ...state, game: { ...state.game, currentThrow: ['', '', ''] } };
+
         case SAVE_ALL_SETS_THROWS:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    allSetsThrows: action.payload
-                }
-            };
+            return { ...state, game: { ...state.game, allSetsThrows: action.payload } };
+
         case SAVE_CURRENT_LEG_THROWS:
             return {
                 ...state,
@@ -85,271 +85,80 @@ const X01Reducer = (state, action) => {
                     }
                 }
             };
+
         case RESET_CURRENT_LEG_THROWS:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    currentLegThrows: []
-                }
-            };
+            return { ...state, game: { ...state.game, currentLegThrows: [] } };
+
+        // Spielerbezogene Updates
         case UPDATE_PLAYER_SCORE:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload.playerId]: {
-                            ...state.game.playerModels[action.payload.playerId],
-                            score: action.payload.score
-                        }
-                    }
-                }
-            };
+            return updatePlayerModel(state, action.payload.playerId, { score: action.payload.score });
+
         case RESET_SCORES:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload]: {
-                            ...state.game.playerModels[action.payload],
-                            score: state.game.startingScore
-                        }
-                    }
-                }
-            };
+            return updatePlayerModel(state, action.payload, { score: state.game.startingScore });
+
         case UPDATE_AVERAGES:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload.playerId]: {
-                            ...state.game.playerModels[action.payload.playerId],
-                            averages: action.payload.averages
-                        }
-                    }
-                }
-            };
+            return updatePlayerModel(state, action.payload.playerId, { averages: action.payload.averages });
+
         case UPDATE_TOTAL_THROW:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload.playerId]: {
-                            ...state.game.playerModels[action.payload.playerId],
-                            totalThrow: action.payload.totalThrow
-                        }
-                    }
-                }
-            };
+            return updatePlayerModel(state, action.payload.playerId, { totalThrow: action.payload.totalThrow });
+
         case UPDATE_TOTAL_THROW_BEG_MID_GAME:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload.playerId]: {
-                            ...state.game.playerModels[action.payload.playerId],
-                            totalThrowBegMidGame: action.payload.totalThrowBegMidGame
-                        }
-                    }
-                }
-            };
+            return updatePlayerModel(state, action.payload.playerId, { totalThrowBegMidGame: action.payload.totalThrowBegMidGame });
+
         case UPDATE_TOTAL_THROW_END_GAME:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload.playerId]: {
-                            ...state.game.playerModels[action.payload.playerId],
-                            totalThrowEndGame: action.payload.totalThrowEndGame
-                        }
-                    }
-                }
-            };
+            return updatePlayerModel(state, action.payload.playerId, { totalThrowEndGame: action.payload.totalThrowEndGame });
+
         case UPDATE_BEST_THREE_DARTS:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload.playerId]: {
-                            ...state.game.playerModels[action.payload.playerId],
-                            bestThreeDarts: action.payload.bestThreeDarts
-                        }
-                    }
-                }
-            };
+            return updatePlayerModel(state, action.payload.playerId, { bestThreeDarts: action.payload.bestThreeDarts });
+
         case UPDATE_CHECKOUT_SCORE:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload.playerId]: {
-                            ...state.game.playerModels[action.payload.playerId],
-                            checkoutScores: action.payload.checkoutScores,
-                        }
-                    }
-                }
-            };
+            return updatePlayerModel(state, action.payload.playerId, { checkoutScores: action.payload.checkoutScores });
+
         case UPDATE_SECTION_HIT:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload.playerId]: {
-                            ...state.game.playerModels[action.payload.playerId],
-                            hit: action.payload.hit,
-                        }
-                    }
-                }
-            };
+            return updatePlayerModel(state, action.payload.playerId, { hit: action.payload.hit });
+
         case UPDATE_SCORE_RANGES:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload.playerId]: {
-                            ...state.game.playerModels[action.payload.playerId],
-                            scoreRanges: action.payload.scoreRanges,
-                        }
-                    }
-                }
-            };
+            return updatePlayerModel(state, action.payload.playerId, { scoreRanges: action.payload.scoreRanges });
+
         case UPDATE_CHECKOUT:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload.playerId]: {
-                            ...state.game.playerModels[action.payload.playerId],
-                            checkout: action.payload.checkout,
-                        }
-                    }
-                }
-            };
-        case INCREMENT_CURRENT_SET:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    currentSet: state.game.currentSet + 1
-                }
-            };
-        case INCREMENT_CURRENT_SET_LEG:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    currentSetLeg: state.game.currentSetLeg + 1
-                }
-            };
-        case INCREMENT_LEGS_PLAYED:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    legsPlayed: state.game.legsPlayed + 1
-                }
-            };
+            return updatePlayerModel(state, action.payload.playerId, { checkout: action.payload.checkout });
+
         case INCREMENT_LEGS_WON:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload.playerId]: {
-                            ...state.game.playerModels[action.payload.playerId],
-                            legsWon: action.payload.legsWon,
-                            currentSetLegsWon: state.game.playerModels[action.payload.playerId].currentSetLegsWon + 1,
-                        }
-                    }
-                }
-            };
-        case INCREMENT_SETS_PLAYED:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    setsPlayed: state.game.setsPlayed + 1
-                }
-            };
+            return updatePlayerModel(state, action.payload.playerId, {
+                legsWon: action.payload.legsWon,
+                currentSetLegsWon: state.game.playerModels[action.payload.playerId].currentSetLegsWon + 1
+            });
+
         case INCREMENT_SETS_WON:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload.playerId]: {
-                            ...state.game.playerModels[action.payload.playerId],
-                            setsWon: state.game.playerModels[action.payload.playerId].setsWon + 1,
-                        }
-                    }
-                }
-            };
+            return updatePlayerModel(state, action.payload.playerId, {
+                setsWon: state.game.playerModels[action.payload.playerId].setsWon + 1
+            });
+
         case RESET_PLAYER_LEG:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    currentSetLeg: 1,
-                    playerModels: {
-                        ...state.game.playerModels,
-                        [action.payload]: {
-                            ...state.game.playerModels[action.payload],
-                            currentSetLegsWon: 0
-                        }
-                    }
-                }
-            };
+            return updatePlayerModel(state, action.payload, { currentSetLegsWon: 0, currentSetLeg: 1 });
+
+        // Allgemeine Spielupdates
+        case INCREMENT_CURRENT_SET:
+            return { ...state, game: { ...state.game, currentSet: state.game.currentSet + 1 } };
+
+        case INCREMENT_CURRENT_SET_LEG:
+            return { ...state, game: { ...state.game, currentSetLeg: state.game.currentSetLeg + 1 } };
+
+        case INCREMENT_LEGS_PLAYED:
+            return { ...state, game: { ...state.game, legsPlayed: state.game.legsPlayed + 1 } };
+
+        case INCREMENT_SETS_PLAYED:
+            return { ...state, game: { ...state.game, setsPlayed: state.game.setsPlayed + 1 } };
+
         case CHANGE_CURRENT_PLAYER:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    currentPlayerTurn: action.payload
-                }
-            };
+            return { ...state, game: { ...state.game, currentPlayerTurn: action.payload } };
+
         case CHANGE_STARTING_PLAYER_SET:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    currentPlayerTurn: action.payload,
-                    startingPlayerLeg: action.payload,
-                    startingPlayerSet: action.payload
-                }
-            };
+            return { ...state, game: { ...state.game, currentPlayerTurn: action.payload, startingPlayerLeg: action.payload, startingPlayerSet: action.payload } };
+
         case CHANGE_STARTING_PLAYER_LEG:
-            return {
-                ...state,
-                game: {
-                    ...state.game,
-                    currentPlayerTurn: action.payload,
-                    startingPlayerLeg: action.payload
-                }
-            };
+            return { ...state, game: { ...state.game, currentPlayerTurn: action.payload, startingPlayerLeg: action.payload } };
+
         case GAME_HAS_WINNER:
             return {
                 ...state,
@@ -361,27 +170,19 @@ const X01Reducer = (state, action) => {
                     currentSetLeg: 0,
                     playerModels: {
                         ...state.game.playerModels,
-                        [action.payload]: {
-                            ...state.game.playerModels[action.payload],
-                            hasWonGame: true
-                        }
+                        [action.payload]: { ...state.game.playerModels[action.payload], hasWonGame: true }
                     }
                 }
             };
+
         case RETURN_PREV_PLAYER:
-            return {
-                ...state,
-                game: action.payload,
-            };
+            return { ...state, game: action.payload };
+
         case SET_LOADING:
-            return {
-                ...state,
-                loading: { ...state.loading, [action.payload.eventName]: action.payload.setTo }
-            };
+            return { ...state, loading: { ...state.loading, [action.payload.eventName]: action.payload.setTo } };
+
         default:
-            return {
-                ...state
-            }
+            return state;
     }
 };
 
