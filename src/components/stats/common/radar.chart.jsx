@@ -22,9 +22,14 @@ const StatsRadarChart = ({ title, subtitle = '', data, players, axisKey, labels,
                         Section: {payload[0].payload?.section}
                     </span>
                     <div className="d-flex flex-column align-items-center p-2">
-                        {payload.map((p, idx) => (
-                            <span key={idx} className="text-shade100 fs-8 fw-semibold">
-                                {`${players.length > 1 ? p.name + ': ' : ''}${p.payload[p.dataKey] ?? 0}`}
+                        {payload.map((payload, index) => (
+                            <span key={index} className="text-shade100">
+                                <span className="fs-8 fw-semibold">
+                                    {`${players.length > 1 ? payload.name + ': ' : ''}${players.length > 1 ? payload.payload['player' + (index + 1) + 'Hit'] : payload.payload['hit']}`}
+                                </span>
+                                <span className="fs-9 fw-semibold">
+                                    {` (S${payload.payload[players.length > 1 ? 'player' + (index + 1) + 'S' : 'S']}/D${payload.payload[players.length > 1 ? 'player' + (index + 1) + 'D' : 'D']}/T${payload.payload[players.length > 1 ? 'player' + (index + 1) + 'T' : 'T']})`}
+                                </span>
                             </span>
                         ))}
                     </div>

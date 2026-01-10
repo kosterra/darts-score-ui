@@ -15,22 +15,24 @@ const StatsScatterChart = ({ title, subtitle = '', data, players, xKey, yKey, zK
     );
 
     const CustomTooltip = ({ active, payload }) => {
-        if (active && payload?.length) {
+        if (active && payload && payload.length) {
             return (
                 <div className="d-flex flex-column align-items-center bg-shade800">
                     <span className="bg-primary text-shade100 text-center fw-semibold fs-7 p-2 w-100">
-                        {payload[0].payload?.section}
+                        {`${payload[0].payload.section}`}
                     </span>
                     <div className="d-flex flex-column align-items-center p-2">
-                        {payload.map((p, idx) => (
-                            <span key={idx} className="text-shade100 fs-8 fw-semibold">
-                                {`${players.length > 1 ? p.name + ': ' : ''}${p.payload[p.dataKey] ?? 0}`}
-                            </span>
-                        ))}
+                        <span className="text-shade100 fs-8 fw-semibold pb-1">
+                            {`${payload[0].payload.rate + '%'}`}
+                        </span>
+                        <span className="text-shade100 fs-9 fw-semibold">
+                            {`${'(' + payload[0].payload.hit + '/' + payload[0].payload.total + ')'}`}
+                        </span>
                     </div>
                 </div>
             );
         }
+
         return null;
     };
 
