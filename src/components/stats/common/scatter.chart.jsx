@@ -40,8 +40,8 @@ const StatsScatterChart = ({ title, subtitle = '', data, players, xKey, yKey, zK
         <Panel headerTemplate={headerTemplate} className={`mx-auto ${className}`}>
             <ResponsiveContainer width="100%" height={400}>
                 <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 0 }}>
-                    <XAxis type="number" dataKey={xKey} label={{ value: xLabel, position: "bottom", dy: 0 }} />
-                    <YAxis type="number" dataKey={yKey} label={{ value: yLabel, position: "center", angle: -90, dx: -20 }} />
+                    <XAxis type="number" dataKey={xKey} label={{ value: xLabel, position: "bottom", dy: 0 }} tickLine={false} tick={false} />
+                    <YAxis type="number" dataKey={yKey} label={{ value: yLabel, position: "center", angle: -90, dx: 0 }} tickLine={false} tick={false} />
                     <ZAxis type="number" dataKey={zKey} range={[100, 1000]} />
                     {labels.map((label, idx) => (
                         <Scatter

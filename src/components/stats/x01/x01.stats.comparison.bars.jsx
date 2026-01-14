@@ -32,18 +32,25 @@ const X01StatsComparisonBars = ({ valueKey, game }) => {
             return Number(avg.toFixed(1));
         })];
 
-    const getCheckoutData = () =>
-        [buildData('Checkouts', (playerId) => {
-            const checkout = getPlayerStat(playerId, ['checkout', valueKey], { total: 0, hit: 0 });
-            const percent = checkout.total ? (100 * checkout.hit) / checkout.total : 0;
-            return Number(percent.toFixed(1));
-        }, '%')];
+    const getCheckoutData = () => {
+        const checkout = {
+            name: 'Checkouts',
+            unit: '%'
+        };
 
-    const getCheckoutSubData = () =>
-        [buildData('Checkouts Sub', (playerId) => {
-            const checkout = getPlayerStat(playerId, ['checkout', valueKey], { total: 0, hit: 0 });
-            return `(${checkout.hit}/${checkout.total})`;
-        })];
+        game.players.forEach((playerId, idx) => {
+            const { hit = 0, total = 0 } =
+                game?.playerModels?.[playerId]?.checkout?.[valueKey] ?? {};
+
+            const percent = total ? ((100 * hit) / total).toFixed(1) : '0.0';
+
+            const key = `player${idx + 1}`;
+            checkout[key] = `${percent}`;
+            checkout[`${key}sub`] = `(${hit}/${total})`;
+        });
+
+        return [checkout];
+    };
 
     return (
         <Fragment>
@@ -55,7 +62,6 @@ const X01StatsComparisonBars = ({ valueKey, game }) => {
             <ComparisonBar data={getRangesData('100+', '100-119')} />
             <ComparisonBar data={getAverageData()} />
             <ComparisonBar data={getCheckoutData()} />
-            <ComparisonBar data={getCheckoutSubData()} />
         </Fragment>
     );
 };
