@@ -15,7 +15,7 @@ const ComparisonBar = (props) => {
     const {
         data
     } = props;
-
+    
     const { fillColors } = ChartConfigOptions;
 
     const valueAccessor = attribute => ({ payload }) => {
